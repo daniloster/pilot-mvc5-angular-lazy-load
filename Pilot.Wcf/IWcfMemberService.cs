@@ -15,6 +15,7 @@ namespace Pilot.Wcf
     {
 
         [OperationContract]
+        [FaultContract(typeof(string))]
         string GetData(Member member);
 
         [OperationContract]

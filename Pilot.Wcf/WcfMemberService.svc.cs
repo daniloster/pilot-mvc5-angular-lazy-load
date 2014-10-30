@@ -1,6 +1,7 @@
 ﻿using Microsoft.Practices.Unity;
 using Pilot.Entity;
 using Pilot.Service.Interfaces;
+using Pilot.Util.Exceptions;
 using Pilot.Util.Unity.Lifetime;
 using Pilot.Wcf.Config;
 using System;
@@ -27,7 +28,14 @@ namespace Pilot.Wcf
 
         public string GetData(Member member)
         {
-            return string.Format("You entered: {0} with ID: ", member.FirstName, member.Id);
+            try
+            {
+                return string.Format("You entered: {0} with ID: ", member.FirstName, member.Id);
+            }
+            catch (Exception e)
+            {
+                throw new FaultException<string>(e.Message, new FaultReason(e.StackTrace));
+            }
         }
 
         public CompositeType GetDataUsingDataContract(CompositeType composite)
