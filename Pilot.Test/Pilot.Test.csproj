@@ -190,7 +190,7 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Config\Database\pilot_test_database.sqlite" />
+    <Content Include="Config\DbConnections.config" />
     <None Include="Integrated\Member\Scheme.xsc">
       <DependentUpon>Scheme.xsd</DependentUpon>
     </None>
