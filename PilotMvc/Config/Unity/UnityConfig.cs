@@ -10,7 +10,7 @@ using Pilot.Util.Transaction;
 using System.Web.Mvc;
 using Pilot.Util.Unity.Factory;
 
-namespace Pilot.Util.Config
+namespace PilotMvc.Config.Unity
 {
     /// <summary>
     /// Specifies the Unity configuration for the main container.

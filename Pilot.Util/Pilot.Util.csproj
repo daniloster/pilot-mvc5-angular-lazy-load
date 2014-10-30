@@ -164,9 +164,6 @@
     <Compile Include="Unity\Lifetime\UnityIoCSingletonLifetimeAttribute.cs" />
     <Compile Include="Unity\Lifetime\UnityIoCPerRequestLifetimeAttribute.cs" />
     <Compile Include="Unity\Lifetime\UnityIoCTransientLifetimeAttribute.cs" />
-    <Compile Include="Unity\Config\UnityConfig.cs" />
-    <Compile Include="Unity\Config\UnityMvcActivator.cs" />
-    <Compile Include="Unity\Config\UnityWebApiActivator.cs" />
     <Compile Include="Transaction\TransactionalAttribute.cs" />
     <Compile Include="Transaction\TransactionBehaviour.cs" />
   </ItemGroup>

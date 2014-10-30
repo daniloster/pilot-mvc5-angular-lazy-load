@@ -962,6 +962,9 @@
   <ItemGroup>
     <Compile Include="Config\BundleConfig.cs" />
     <Compile Include="Config\RouteConfig.cs" />
+    <Compile Include="Config\Unity\UnityConfig.cs" />
+    <Compile Include="Config\Unity\UnityMvcActivator.cs" />
+    <Compile Include="Config\Unity\UnityWebApiActivator.cs" />
     <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\PartialsController.cs" />

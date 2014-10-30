@@ -1,6 +1,6 @@
 ﻿using Microsoft.Practices.Unity;
-using Pilot.Util.Config;
 using PilotMvc.Config;
+using PilotMvc.Config.Unity;
 using System;
 using System.Collections.Generic;
 using System.Linq;

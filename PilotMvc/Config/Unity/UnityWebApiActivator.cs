@@ -1,10 +1,10 @@
 using System.Web.Http;
 using Microsoft.Practices.Unity.WebApi;
 
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Pilot.Util.Config.UnityWebApiActivator), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(Pilot.Util.Config.UnityWebApiActivator), "Shutdown")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(PilotMvc.Config.Unity.UnityWebApiActivator), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(PilotMvc.Config.Unity.UnityWebApiActivator), "Shutdown")]
 
-namespace Pilot.Util.Config
+namespace PilotMvc.Config.Unity
 {
     /// <summary>Provides the bootstrapping for integrating Unity with WebApi when it is hosted in ASP.NET</summary>
     public static class UnityWebApiActivator
