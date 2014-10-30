@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph GraphDirection="LeftToRight" Layout="ForceDirected" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="Antlr 3.4.1.9004" Category="Package" Bounds="21.1563013328914,727.479932510737,102.053333333333,25.9599999999999" Label="Antlr 3.4.1.9004" />
+    <Node Id="CommonServiceLocator 1.2" Category="Package" Bounds="458.685278788582,619.646915100146,164.676666666667,25.96" Label="CommonServiceLocator 1.2" />
+    <Node Id="EntityFramework 6.0.0" Category="Package" Bounds="167.98577136048,671.519967826894,136.196666666667,25.96" Label="EntityFramework 6.0.0" />
+    <Node Id="EntityFramework 6.1.1" Category="Package" Bounds="637.165699903638,443.517150503182,136.196666666667,25.96" Label="EntityFramework 6.1.1" />
+    <Node Id="Microsoft.AspNet.Mvc 5.0.0" Category="Package" Bounds="480.040286339595,1063.23987256773,164.746666666667,25.96" Label="Microsoft.AspNet.Mvc 5.0.0" />
+    <Node Id="Microsoft.AspNet.Razor 3.0.0" Category="Package" Bounds="549.246937760405,1119.23054429868,172.593333333333,25.96" Label="Microsoft.AspNet.Razor 3.0.0" />
+    <Node Id="Microsoft.AspNet.Web.Optimization 1.1.3" Category="Package" Bounds="180.80802461773,895.359889012245,238.463333333333,25.96" Label="Microsoft.AspNet.Web.Optimization 1.1.3" />
+    <Node Id="Microsoft.AspNet.WebApi 5.0.0" Category="Package" Bounds="243.933993205764,559.599967826894,184.92,25.96" Label="Microsoft.AspNet.WebApi 5.0.0" />
+    <Node Id="Microsoft.AspNet.WebApi.Client 5.2.0" Category="Package" Bounds="138.277593848655,503.639967826894,217.896666666667,25.96" Label="Microsoft.AspNet.WebApi.Client 5.2.0" />
+    <Node Id="Microsoft.AspNet.WebApi.Core 5.2.0" Category="Package" Bounds="157.569822139261,335.759967826894,212.43,25.96" Label="Microsoft.AspNet.WebApi.Core 5.2.0" />
+    <Node Id="Microsoft.AspNet.WebApi.OData 5.0.0" Category="Package" Bounds="153.209699605046,727.479967826894,221.26,25.96" Label="Microsoft.AspNet.WebApi.OData 5.0.0" />
+    <Node Id="Microsoft.AspNet.WebApi.Owin 5.2.0" Category="Package" Bounds="198.853758560756,223.84006422553,214.936666666666,25.96" Label="Microsoft.AspNet.WebApi.Owin 5.2.0" />
+    <Node Id="Microsoft.AspNet.WebApi.OwinSelfHost 5.2.0" Category="Package" Bounds="249.151950671871,55.9600333648466,258.96,25.96" Label="Microsoft.AspNet.WebApi.OwinSelfHost 5.2.0" />
+    <Node Id="Microsoft.AspNet.WebApi.WebHost 5.0.0" Category="Package" Bounds="308.189271528685,447.679967826894,236.77,25.96" Label="Microsoft.AspNet.WebApi.WebHost 5.0.0" />
+    <Node Id="Microsoft.AspNet.WebPages 3.0.0" Category="Package" Bounds="432.407836807053,1175.19063247113,198.483333333333,25.96" Label="Microsoft.AspNet.WebPages 3.0.0" />
+    <Node Id="Microsoft.Data.Edm 5.6.0" Category="Package" Bounds="27.2527587192617,951.320048973176,151.64,25.96" Label="Microsoft.Data.Edm 5.6.0" />
+    <Node Id="Microsoft.Data.OData 5.6.0" Category="Package" Bounds="66.3431878926278,839.399960553697,161.906666666667,25.96" Label="Microsoft.Data.OData 5.6.0" />
+    <Node Id="Microsoft.Owin 2.1.0" Category="Package" Bounds="294.554806635661,167.880072481922,128.29,25.96" Label="Microsoft.Owin 2.1.0" />
+    <Node Id="Microsoft.Owin.Host.HttpListener 2.1.0" Category="Package" Bounds="217.964855465699,-1.13686837721616E-13,223.14,25.96" Label="Microsoft.Owin.Host.HttpListener 2.1.0" />
+    <Node Id="Microsoft.Owin.Hosting 2.1.0" Category="Package" Bounds="253.151518040152,111.920067816291,172.363333333333,25.96" Label="Microsoft.Owin.Hosting 2.1.0" />
+    <Node Id="Microsoft.Web.Infrastructure 1.0.0.0" Category="Package" Bounds="284.237777112278,1119.20005825856,208.076666666667,25.96" Label="Microsoft.Web.Infrastructure 1.0.0.0" />
+    <Node Id="Microsoft.jQuery.Unobtrusive.Validation 3.0.0" Category="Package" Bounds="191.456753526277,1063.23988901224,258.583333333333,25.96" Label="Microsoft.jQuery.Unobtrusive.Validation 3.0.0" />
+    <Node Id="Moq 4.2.1409.1722" Category="Package" Bounds="669.038347167969,752.71458684082,120.66,25.96" Label="Moq 4.2.1409.1722" />
+    <Node Id="NDbUnit.Core 1.6.8.0" Category="Package" Bounds="816.71369913737,863.67468684082,130.926666666667,25.96" Label="NDbUnit.Core 1.6.8.0" UseManualLocation="True" />
+    <Node Id="NDbUnit.SqlLite 1.6.8.0" Category="Package" Bounds="803.446244710286,696.75448684082,141.263333333333,25.96" Label="NDbUnit.SqlLite 1.6.8.0" UseManualLocation="True" />
+    <Node Id="NDbUnit.SqlServerCe 1.6.8.0" Category="Package" Bounds="593.607252197266,864.63478684082,169.09,25.96" Label="NDbUnit.SqlServerCe 1.6.8.0" />
+    <Node Id="Newtonsoft.Json 6.0.3" Category="Package" Bounds="168.728897525304,615.559967826894,135.453333333333,25.9599999999999" Label="Newtonsoft.Json 6.0.3" />
+    <Node Id="Owin 1.0" Category="Package" Bounds="314.60548440609,279.800052085868,66.2433333333333,25.96" Label="Owin 1.0" />
+    <Node Id="Pilot.Database" Category="Project" Bounds="681.248375034717,331.597093453645,95.4533333333333,25.96" Label="Pilot.Database" />
+    <Node Id="Pilot.Entity" Category="Project" Bounds="732.985053513038,387.557057918437,75.9366666666667,25.96" Label="Pilot.Entity" />
+    <Node Id="Pilot.Service" Category="Project" Bounds="574.959604765055,499.47720869072,83.5266666666666,25.96" Label="Pilot.Service" />
+    <Node Id="Pilot.Test" Category="Project" Bounds="665.492694550507,696.504632206493,67.9533333333334,25.96" Label="Pilot.Test" UseManualLocation="True" />
+    <Node Id="Pilot.Util" Category="Project" Bounds="334.182595672437,646.929262562184,64.3533333333332,25.9599999999999" Label="Pilot.Util" />
+    <Node Id="PilotMvc" Category="Project" Bounds="323.88274319089,787.526870684077,65.6966666666667,25.96" Label="PilotMvc" />
+    <Node Id="System.Data.SQLite.Core 1.0.94.0" Category="Package" Bounds="768.022595987285,623.647063666744,193.113333333333,25.96" Label="System.Data.SQLite.Core 1.0.94.0" UseManualLocation="True" />
+    <Node Id="System.Data.SQLite.EF6 1.0.94.0" Category="Package" Bounds="602.261830955639,563.686902171932,186.603333333333,25.96" Label="System.Data.SQLite.EF6 1.0.94.0" />
+    <Node Id="System.Spatial 5.6.0" Category="Package" Bounds="0,895.360105914393,123.97,25.9599999999999" Label="System.Spatial 5.6.0" />
+    <Node Id="Unity 3.5.1404.0" Category="Package" Bounds="458.854157720644,563.68686702474,104.19,25.96" Label="Unity 3.5.1404.0" />
+    <Node Id="Unity.AspNet.WebApi 3.5.1404.0" Category="Package" Bounds="404.469800817023,731.566870971431,190.836666666667,25.96" Label="Unity.AspNet.WebApi 3.5.1404.0" />
+    <Node Id="Unity.Interception 3.5.1404.0" Category="Package" Bounds="428.536013019551,675.606819120177,170.956666666667,25.96" Label="Unity.Interception 3.5.1404.0" />
+    <Node Id="Unity.Mvc 3.5.1404.0" Category="Package" Bounds="441.17436639776,787.526801729175,128.856666666667,25.96" Label="Unity.Mvc 3.5.1404.0" />
+    <Node Id="Unity.SelfHostWebApiOwin 1.0.14" Category="Package" Bounds="258.292205797346,391.719967826894,198.46,25.96" Label="Unity.SelfHostWebApiOwin 1.0.14" />
+    <Node Id="WebActivatorEx 2.0" Category="Package" Bounds="419.965640634661,1007.27988901224,122.323333333333,25.96" Label="WebActivatorEx 2.0" />
+    <Node Id="WebGrease 1.5.2" Category="Package" Bounds="141.873816403999,783.43994594355,108.596666666667,25.96" Label="WebGrease 1.5.2" />
+    <Node Id="angularjs 1.2.25" Category="Package" Bounds="308.138314075395,951.319889012245,102.306666666667,25.96" Label="angularjs 1.2.25" />
+    <Node Id="jQuery 1.10.2" Category="Package" Bounds="196.582781683197,1233.2296514426,89.3666666666668,25.96" Label="jQuery 1.10.2" />
+    <Node Id="jQuery.Validation 1.11.1" Category="Package" Bounds="220.764743402231,1175.16029515496,145.306666666667,25.96" Label="jQuery.Validation 1.11.1" />
+  </Nodes>
+  <Links>
+    <Link Source="Microsoft.AspNet.Mvc 5.0.0" Target="Microsoft.AspNet.Razor 3.0.0" Category="Package Dependency" Bounds="579.366929443351,1089.19987256773,32.0773400861593,24.559444731244" />
+    <Link Source="Microsoft.AspNet.Mvc 5.0.0" Target="Microsoft.AspNet.WebPages 3.0.0" Category="Package Dependency" Bounds="536.874084472656,1089.19982910156,21.2942504882813,77.2401123046875" />
+    <Link Source="Microsoft.AspNet.Web.Optimization 1.1.3" Target="Microsoft.Web.Infrastructure 1.0.0.0" Category="Package Dependency" Bounds="299.107299804688,921.319885253906,157.759796142578,194.797790527344" />
+    <Link Source="Microsoft.AspNet.Web.Optimization 1.1.3" Target="WebGrease 1.5.2" Category="Package Dependency" Bounds="214.340486467263,815.99679528628,73.6530881705827,79.3630937259649" />
+    <Link Source="Microsoft.AspNet.WebApi 5.0.0" Target="Microsoft.AspNet.WebApi.WebHost 5.0.0" Category="Package Dependency" Bounds="346.852713833279,480.648064650792,63.6160168204533,78.9519031761015" />
+    <Link Source="Microsoft.AspNet.WebApi.Client 5.2.0" Target="Newtonsoft.Json 6.0.3" Category="Package Dependency" Bounds="238.566776089822,529.599967826894,7.41005073824891,77.0013860622406" />
+    <Link Source="Microsoft.AspNet.WebApi.Core 5.2.0" Target="Microsoft.AspNet.WebApi.Client 5.2.0" Category="Package Dependency" Bounds="248.342025756836,361.719970703125,13.4498748779297,132.931579589844" />
+    <Link Source="Microsoft.AspNet.WebApi.OData 5.0.0" Target="Microsoft.AspNet.WebApi.Client 5.2.0" Category="Package Dependency" Bounds="240.512023925781,538.472961425781,73.8045349121094,189.007019042969" />
+    <Link Source="Microsoft.AspNet.WebApi.OData 5.0.0" Target="Microsoft.AspNet.WebApi.Core 5.2.0" Category="Package Dependency" Bounds="133.101928710938,368.287536621094,112.367385864258,359.192443847656" />
+    <Link Source="Microsoft.AspNet.WebApi.OData 5.0.0" Target="Microsoft.Data.OData 5.6.0" Category="Package Dependency" Bounds="200.717697143555,753.43994140625,62.5909576416016,83.4542236328125" />
+    <Link Source="Microsoft.AspNet.WebApi.Owin 5.2.0" Target="Microsoft.AspNet.WebApi.Core 5.2.0" Category="Package Dependency" Bounds="271.915581918359,249.80006422553,29.4732162214373,77.5470437415882" />
+    <Link Source="Microsoft.AspNet.WebApi.Owin 5.2.0" Target="Microsoft.Owin 2.1.0" Category="Package Dependency" Bounds="318.471177627706,200.410872104855,21.929373169759,23.4291921206754" />
+    <Link Source="Microsoft.AspNet.WebApi.Owin 5.2.0" Target="Owin 1.0" Category="Package Dependency" Bounds="315.926055166569,249.80006422553,16.8439910190925,22.7650811675135" />
+    <Link Source="Microsoft.AspNet.WebApi.OwinSelfHost 5.2.0" Target="Microsoft.AspNet.WebApi.Owin 5.2.0" Category="Package Dependency" Bounds="243.017333984375,81.920036315918,82.0225219726563,134.08602142334" />
+    <Link Source="Microsoft.AspNet.WebApi.OwinSelfHost 5.2.0" Target="Microsoft.Owin.Host.HttpListener 2.1.0" Category="Package Dependency" Bounds="346.858567268549,32.72527182147,20.3852505260384,23.2347615433766" />
+    <Link Source="Microsoft.AspNet.WebApi.OwinSelfHost 5.2.0" Target="Microsoft.Owin.Hosting 2.1.0" Category="Package Dependency" Bounds="353.620933269196,81.9200333648466,15.8956194722294,22.6347925042742" />
+    <Link Source="Microsoft.AspNet.WebApi.WebHost 5.0.0" Target="Microsoft.AspNet.WebApi.Core 5.2.0" Category="Package Dependency" Bounds="252.316680908203,370.549194335938,103.751129150391,77.1307678222656" />
+    <Link Source="Microsoft.AspNet.WebPages 3.0.0" Target="Microsoft.AspNet.Razor 3.0.0" Category="Package Dependency" Bounds="555.74784703277,1149.458454334,47.7737187420234,25.7321781371395" />
+    <Link Source="Microsoft.AspNet.WebPages 3.0.0" Target="Microsoft.Web.Infrastructure 1.0.0.0" Category="Package Dependency" Bounds="429.897015794134,1148.43396939571,68.5149889098957,26.756663075425" />
+    <Link Source="Microsoft.Data.OData 5.6.0" Target="Microsoft.Data.Edm 5.6.0" Category="Package Dependency" Bounds="119.285209655762,865.359985351563,24.1093063354492,77.8729248046875" />
+    <Link Source="Microsoft.Data.OData 5.6.0" Target="System.Spatial 5.6.0" Category="Package Dependency" Bounds="89.2985393327137,865.359960553697,38.2099070343369,25.0638122627862" />
+    <Link Source="Microsoft.Owin 2.1.0" Target="Owin 1.0" Category="Package Dependency" Bounds="384.475311279297,193.840072631836,39.4492797851563,82.3650665283203" />
+    <Link Source="Microsoft.Owin.Hosting 2.1.0" Target="Microsoft.Owin 2.1.0" Category="Package Dependency" Bounds="343.825299282905,137.880067816291,7.43896080837914,21.4949351040076" />
+    <Link Source="Microsoft.Owin.Hosting 2.1.0" Target="Owin 1.0" Category="Package Dependency" Bounds="376.340087890625,137.880065917969,54.2397766113281,138.289520263672" />
+    <Link Source="Microsoft.jQuery.Unobtrusive.Validation 3.0.0" Target="jQuery.Validation 1.11.1" Category="Package Dependency" Bounds="278.548431396484,1089.19982910156,23.7669372558594,77.217529296875" />
+    <Link Source="NDbUnit.SqlLite 1.6.8.0" Target="NDbUnit.Core 1.6.8.0" Category="Package Dependency" Bounds="874.707713001923,722.714527587891,6.40334264350497,131.970741607208" />
+    <Link Source="NDbUnit.SqlServerCe 1.6.8.0" Target="NDbUnit.Core 1.6.8.0" Category="Package Dependency" Bounds="762.697252197266,877.005092261405,45.0165465868562,0.21183664956618" />
+    <Link Source="Pilot.Database" Target="EntityFramework 6.1.1" Category="Installed Package" Bounds="709.879241329592,357.557093453645,16.3459010420243,77.1554773764793" />
+    <Link Source="Pilot.Entity" Target="EntityFramework 6.1.1" Category="Installed Package" Bounds="727.35180577543,413.517057918437,28.3648691488029,24.1637436891149" />
+    <Link Source="Pilot.Service" Target="EntityFramework 6.1.1" Category="Installed Package" Bounds="637.260147174321,474.285505210334,39.8588044187651,25.1917034803853" />
+    <Link Source="Pilot.Service" Target="Unity 3.5.1404.0" Category="Installed Package" Bounds="540.024771061358,525.43720869072,55.3159683939385,33.5793938564532" />
+    <Link Source="Pilot.Test" Target="Moq 4.2.1409.1722" Category="Installed Package" Bounds="706.373608693503,722.464649658203,11.8639316256954,22.3041154094228" />
+    <Link Source="Pilot.Test" Target="NDbUnit.SqlLite 1.6.8.0" Category="Installed Package" Bounds="733.445996500651,709.533272807474,61.0002574255084,0.0872959272745675" />
+    <Link Source="Pilot.Test" Target="NDbUnit.SqlServerCe 1.6.8.0" Category="Installed Package" Bounds="663.2255859375,722.464660644531,20.3342895507813,133.260192871094" />
+    <Link Source="Pilot.Test" Target="System.Data.SQLite.EF6 1.0.94.0" Category="Installed Package" Bounds="696.20976704769,598.643011582544,2.87785492180717,97.8616380756596" />
+    <Link Source="Pilot.Test" Target="Unity.AspNet.WebApi 3.5.1404.0" Category="Installed Package" Bounds="582.636920773263,715.45365320836,82.8557423940542,14.5560547581965" />
+    <Link Source="Pilot.Test" Target="Unity.Interception 3.5.1404.0" Category="Installed Package" Bounds="608.436075665375,699.22667556403,57.0565875019425,6.42935377672848" />
+    <Link Source="Pilot.Test" Target="Unity.Mvc 3.5.1404.0" Category="Installed Package" Bounds="541.395278566372,722.464649658203,130.428242414721,61.2374409282656" />
+    <Link Source="Pilot.Util" Target="Microsoft.AspNet.WebApi 5.0.0" Category="Installed Package" Bounds="343.768810399189,594.072769424558,18.1366292618582,52.856493137626" />
+    <Link Source="Pilot.Util" Target="Microsoft.AspNet.WebApi.OData 5.0.0" Category="Installed Package" Bounds="287.436655269299,672.889262562184,62.4025291894799,49.0303275049413" />
+    <Link Source="Pilot.Util" Target="Unity.AspNet.WebApi 3.5.1404.0" Category="Installed Package" Bounds="384.014678955078,672.889282226563,85.7047119140625,54.1627197265625" />
+    <Link Source="Pilot.Util" Target="Unity.Interception 3.5.1404.0" Category="Installed Package" Bounds="398.53592900577,666.158611742026,39.8120467902796,7.73229199077991" />
+    <Link Source="Pilot.Util" Target="Unity.Mvc 3.5.1404.0" Category="Installed Package" Bounds="369.729339599609,672.889282226563,83.2710571289063,112.089416503906" />
+    <Link Source="Pilot.Util" Target="Unity.SelfHostWebApiOwin 1.0.14" Category="Installed Package" Bounds="298.055084228516,422.090179443359,140.93310546875,224.839080810547" />
+    <Link Source="PilotMvc" Target="EntityFramework 6.0.0" Category="Installed Package" Bounds="288.122741699219,700.057922363281,96.4811401367188,87.4689331054688" />
+    <Link Source="PilotMvc" Target="Microsoft.AspNet.Web.Optimization 1.1.3" Category="Installed Package" Bounds="311.051789158652,813.486870684077,38.8552719404109,73.9068419932145" />
+    <Link Source="PilotMvc" Target="Microsoft.AspNet.WebApi 5.0.0" Category="Installed Package" Bounds="329.894897460938,594.504272460938,54.708984375,193.022583007813" />
+    <Link Source="PilotMvc" Target="Microsoft.AspNet.WebApi.OData 5.0.0" Category="Installed Package" Bounds="291.477834841517,758.325828757581,45.1734371459311,29.2010419264954" />
+    <Link Source="PilotMvc" Target="Microsoft.jQuery.Unobtrusive.Validation 3.0.0" Category="Installed Package" Bounds="342.048492431641,813.486877441406,83.8899230957031,243.753479003906" />
+    <Link Source="PilotMvc" Target="Unity.AspNet.WebApi 3.5.1404.0" Category="Installed Package" Bounds="388.387007784122,760.803520812994,69.9133106027075,27.3290671526306" />
+    <Link Source="PilotMvc" Target="Unity.Interception 3.5.1404.0" Category="Installed Package" Bounds="362.903869628906,703.948791503906,95.1369323730469,83.5780639648438" />
+    <Link Source="PilotMvc" Target="Unity.Mvc 3.5.1404.0" Category="Installed Package" Bounds="389.579409857556,800.506835739979,42.5949565402047,1.97292873735933E-05" />
+    <Link Source="PilotMvc" Target="Unity.SelfHostWebApiOwin 1.0.14" Category="Installed Package" Bounds="298.055084228516,422.090179443359,133.801849365234,365.436676025391" />
+    <Link Source="PilotMvc" Target="angularjs 1.2.25" Category="Installed Package" Bounds="367.86572265625,813.486877441406,58.0726928710938,134.576416015625" />
+    <Link Source="System.Data.SQLite.EF6 1.0.94.0" Target="EntityFramework 6.1.1" Category="Package Dependency" Bounds="696.611290020391,478.447969687106,6.88079395058082,85.2389324848263" />
+    <Link Source="System.Data.SQLite.EF6 1.0.94.0" Target="System.Data.SQLite.Core 1.0.94.0" Category="Package Dependency" Bounds="732.151541475163,589.646900634766,87.3576288022725,30.9910614385408" />
+    <Link Source="Unity 3.5.1404.0" Target="CommonServiceLocator 1.2" Category="Package Dependency" Bounds="517.924963345444,589.64686702474,11.8623026384462,22.0723879833503" />
+    <Link Source="Unity.AspNet.WebApi 3.5.1404.0" Target="Microsoft.AspNet.WebApi.WebHost 5.0.0" Category="Package Dependency" Bounds="422.463531494141,482.558929443359,45.2229614257813,249.007965087891" />
+    <Link Source="Unity.AspNet.WebApi 3.5.1404.0" Target="Unity 3.5.1404.0" Category="Package Dependency" Bounds="418.40185546875,595.204711914063,68.9360656738281,136.362182617188" />
+    <Link Source="Unity.AspNet.WebApi 3.5.1404.0" Target="WebActivatorEx 2.0" Category="Package Dependency" Bounds="437.841583251953,757.52685546875,38.7909851074219,240.938537597656" />
+    <Link Source="Unity.Interception 3.5.1404.0" Target="Unity 3.5.1404.0" Category="Package Dependency" Bounds="448.551116943359,593.892211914063,39.5934448242188,81.714599609375" />
+    <Link Source="Unity.Mvc 3.5.1404.0" Target="CommonServiceLocator 1.2" Category="Package Dependency" Bounds="545.056579589844,649.58837890625,63.44189453125,137.938720703125" />
+    <Link Source="Unity.Mvc 3.5.1404.0" Target="Microsoft.AspNet.Mvc 5.0.0" Category="Package Dependency" Bounds="508.277240109619,813.486801729175,49.6455378230571,240.938250967263" />
+    <Link Source="Unity.Mvc 3.5.1404.0" Target="Unity 3.5.1404.0" Category="Package Dependency" Bounds="398.076477050781,593.897888183594,80.2815551757813,193.62890625" />
+    <Link Source="Unity.Mvc 3.5.1404.0" Target="WebActivatorEx 2.0" Category="Package Dependency" Bounds="483.569209069559,813.486801729175,20.5878199878427,184.848394800582" />
+    <Link Source="Unity.SelfHostWebApiOwin 1.0.14" Target="Microsoft.AspNet.WebApi.Client 5.2.0" Category="Package Dependency" Bounds="260.43603515625,417.679962158203,81.8648376464844,78.3892211914063" />
+    <Link Source="Unity.SelfHostWebApiOwin 1.0.14" Target="Microsoft.AspNet.WebApi.Core 5.2.0" Category="Package Dependency" Bounds="293.255028401837,366.333298023405,42.5246605999066,25.3866698034889" />
+    <Link Source="Unity.SelfHostWebApiOwin 1.0.14" Target="Microsoft.AspNet.WebApi.Owin 5.2.0" Category="Package Dependency" Bounds="348.158477783203,253.082336425781,41.3644714355469,138.637634277344" />
+    <Link Source="Unity.SelfHostWebApiOwin 1.0.14" Target="Microsoft.AspNet.WebApi.OwinSelfHost 5.2.0" Category="Package Dependency" Bounds="363.475982666016,86.632209777832,69.2198791503906,305.087760925293" />
+    <Link Source="Unity.SelfHostWebApiOwin 1.0.14" Target="Microsoft.Owin 2.1.0" Category="Package Dependency" Bounds="362.65625,198.913101196289,61.2683410644531,192.806869506836" />
+    <Link Source="Unity.SelfHostWebApiOwin 1.0.14" Target="Microsoft.Owin.Host.HttpListener 2.1.0" Category="Package Dependency" Bounds="363.735565185547,28.0213661193848,154.510589599609,363.69860458374" />
+    <Link Source="Unity.SelfHostWebApiOwin 1.0.14" Target="Microsoft.Owin.Hosting 2.1.0" Category="Package Dependency" Bounds="363.475982666016,140.896286010742,67.1038818359375,250.823684692383" />
+    <Link Source="Unity.SelfHostWebApiOwin 1.0.14" Target="Newtonsoft.Json 6.0.3" Category="Package Dependency" Bounds="128.143417358398,417.679962158203,195.852432250977,192.165557861328" />
+    <Link Source="Unity.SelfHostWebApiOwin 1.0.14" Target="Owin 1.0" Category="Package Dependency" Bounds="358.797698974609,313.716217041016,19.9986267089844,78.0037536621094" />
+    <Link Source="Unity.SelfHostWebApiOwin 1.0.14" Target="Unity 3.5.1404.0" Category="Package Dependency" Bounds="435.598358154297,417.679962158203,116.042022705078,137.605926513672" />
+    <Link Source="WebActivatorEx 2.0" Target="Microsoft.Web.Infrastructure 1.0.0.0" Category="Package Dependency" Bounds="432.887390136719,1033.23986816406,44.1695251464844,82.0548095703125" />
+    <Link Source="WebGrease 1.5.2" Target="Antlr 3.4.1.9004" Category="Package Dependency" Bounds="109.145630905855,757.142284017204,58.267062208249,26.2976619263453" />
+    <Link Source="WebGrease 1.5.2" Target="Newtonsoft.Json 6.0.3" Category="Package Dependency" Bounds="146.83674621582,644.144653320313,37.2864990234375,139.295288085938" />
+    <Link Source="jQuery.Validation 1.11.1" Target="jQuery 1.10.2" Category="Package Dependency" Bounds="258.937066818583,1201.12029515496,22.82370034117,25.413379348106" />
+  </Links>
+  <Categories>
+    <Category Id="Installed Package" />
+    <Category Id="Package" />
+    <Category Id="Package Dependency" />
+    <Category Id="Project" />
+  </Categories>
+  <Properties>
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="Expression" DataType="System.String" />
+    <Property Id="GraphDirection" DataType="Microsoft.VisualStudio.Diagrams.Layout.LayoutOrientation" />
+    <Property Id="GroupLabel" DataType="System.String" />
+    <Property Id="IsEnabled" DataType="System.Boolean" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="Layout" DataType="System.String" />
+    <Property Id="TargetType" DataType="System.Type" />
+    <Property Id="UseManualLocation" DataType="System.Boolean" />
+    <Property Id="Value" DataType="System.String" />
+    <Property Id="ValueLabel" DataType="System.String" />
+  </Properties>
+  <Styles>
+    <Style TargetType="Node" GroupLabel="Project" ValueLabel="True">
+      <Condition Expression="HasCategory('Project')" />
+      <Setter Property="Background" Value="Blue" />
+    </Style>
+    <Style TargetType="Link" GroupLabel="Package Dependency" ValueLabel="True">
+      <Condition Expression="HasCategory('Package Dependency')" />
+      <Setter Property="Background" Value="Yellow" />
+    </Style>
+  </Styles>
+</DirectedGraph>

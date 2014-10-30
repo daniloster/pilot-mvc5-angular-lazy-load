@@ -1,0 +1,53 @@
+﻿<div ng-controller="MemberCtrl" class="clearfix">
+    @Html.Partial("~/Views/LoadingPanel.cshtml")
+    <div class="sixteen columns">
+        <strong class="error">{{ error }}</strong>
+    </div>
+    <div class="eight columns">
+        <h2>{{ titleView }}</h2>
+        <input type="text" ng-model="textFilter" />
+        <table class="table table-bordered table-hover members-table">
+            <thead class="strong">
+                <tr>
+                    <th>#</th>
+                    <td>FirstName</td>
+                    <th>LastName</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr data-ng-repeat="member in members | filter:textFilter">
+                    <td><strong data-ng-hide="member.editMode">{{ member.Id }}</strong></td>
+                    <td>
+                        <p data-ng-hide="member.editMode">{{ member.FirstName }}</p>
+                        <input data-ng-show="member.editMode" type="text" data-ng-model="member.FirstName" />
+                    </td>
+                    <td>
+                        <p data-ng-hide="member.editMode">{{ member.LastName }}</p>
+                        <input data-ng-show="member.editMode" type="text" data-ng-model="member.LastName" />
+                    </td>
+                    <td>
+                        <p data-ng-hide="member.editMode"><a data-ng-click="toggleEdit(member)" href="javascript:;">Edit</a> | <a data-ng-click="deletemember(member)" href="javascript:;">Delete</a></p>
+                        <p data-ng-show="member.editMode"><a data-ng-click="save(member)" href="javascript:;">Save</a> | <a data-ng-click="toggleEdit(member)" href="javascript:;">Cancel</a></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <p>
+            <a data-ng-hide="addMode" data-ng-click="toggleAdd()" href="javascript:;" class="btn btn-primary">Add New</a>
+            &nbsp;
+        </p>
+    </div>
+    <div class="eight columns" data-ng-show="addMode">
+        <form name="addMember">
+            <h2>{{ titleRegister }}</h2>
+            <label>FirstName:</label><input type="text" data-ng-model="newmember.FirstName" required />
+            <label>LastName:</label><input type="text" data-ng-model="newmember.LastName" required />
+            <br />
+            <br />
+            <input type="submit" value="Add" data-ng-click="add()" data-ng-disabled="!addMember.$valid" class="btn btn-primary" />
+            <input type="button" value="Cancel" data-ng-click="toggleAdd()" class="btn btn-primary" />
+            <br />
+            <br />
+        </form>
+    </div>
+</div>

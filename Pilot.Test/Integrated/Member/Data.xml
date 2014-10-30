@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Scheme xmlns="http://tempuri.org/Scheme.xsd">
+  <Members>
+    <Id>1</Id>
+    <FirstName>Danilo</FirstName>
+    <LastName>Castro</LastName>
+    <Email>danilocastro@outlook.com</Email>
+  </Members>
+  <Members>
+    <Id>2</Id>
+    <FirstName>Leticia</FirstName>
+    <LastName>Calmon</LastName>
+  </Members>
+  <Contacts>
+    <Id>1</Id>
+    <MemberId>1</MemberId>
+    <ContactTypeId>1</ContactTypeId>
+    <Value>Parnell Street</Value>
+  </Contacts>
+</Scheme>

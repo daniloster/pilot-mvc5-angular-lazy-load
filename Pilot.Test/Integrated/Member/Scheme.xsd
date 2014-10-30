@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Scheme" targetNamespace="http://tempuri.org/Scheme.xsd" xmlns:mstns="http://tempuri.org/Scheme.xsd" xmlns="http://tempuri.org/Scheme.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Scheme" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Scheme" msprop:Generator_UserDSName="Scheme">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Members" msprop:Generator_TableClassName="MembersDataTable" msprop:Generator_TableVarName="tableMembers" msprop:Generator_RowChangedName="MembersRowChanged" msprop:Generator_TablePropName="Members" msprop:Generator_RowDeletingName="MembersRowDeleting" msprop:Generator_RowChangingName="MembersRowChanging" msprop:Generator_RowEvHandlerName="MembersRowChangeEventHandler" msprop:Generator_RowDeletedName="MembersRowDeleted" msprop:Generator_RowClassName="MembersRow" msprop:Generator_UserTableName="Members" msprop:Generator_RowEvArgName="MembersRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:long" />
+              <xs:element name="FirstName" msprop:Generator_ColumnVarNameInTable="columnFirstName" msprop:Generator_ColumnPropNameInRow="FirstName" msprop:Generator_ColumnPropNameInTable="FirstNameColumn" msprop:Generator_UserColumnName="FirstName" type="xs:string" />
+              <xs:element name="LastName" msprop:Generator_ColumnVarNameInTable="columnLastName" msprop:Generator_ColumnPropNameInRow="LastName" msprop:Generator_ColumnPropNameInTable="LastNameColumn" msprop:Generator_UserColumnName="LastName" type="xs:string" />
+              <xs:element name="Email" msprop:Generator_ColumnVarNameInTable="columnEmail" msprop:Generator_ColumnPropNameInRow="Email" msprop:Generator_ColumnPropNameInTable="EmailColumn" msprop:Generator_UserColumnName="Email" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Contacts" msprop:Generator_TableClassName="ContactsDataTable" msprop:Generator_TableVarName="tableContacts" msprop:Generator_TablePropName="Contacts" msprop:Generator_RowDeletingName="ContactsRowDeleting" msprop:Generator_RowChangingName="ContactsRowChanging" msprop:Generator_RowEvHandlerName="ContactsRowChangeEventHandler" msprop:Generator_RowDeletedName="ContactsRowDeleted" msprop:Generator_UserTableName="Contacts" msprop:Generator_RowChangedName="ContactsRowChanged" msprop:Generator_RowEvArgName="ContactsRowChangeEvent" msprop:Generator_RowClassName="ContactsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:long" />
+              <xs:element name="MemberId" msprop:Generator_ColumnVarNameInTable="columnMemberId" msprop:Generator_ColumnPropNameInRow="MemberId" msprop:Generator_ColumnPropNameInTable="MemberIdColumn" msprop:Generator_UserColumnName="MemberId" type="xs:long" />
+              <xs:element name="ContactTypeId" msprop:Generator_ColumnVarNameInTable="columnContactTypeId" msprop:Generator_ColumnPropNameInRow="ContactTypeId" msprop:Generator_ColumnPropNameInTable="ContactTypeIdColumn" msprop:Generator_UserColumnName="ContactTypeId" type="xs:short" />
+              <xs:element name="Value" msprop:Generator_ColumnVarNameInTable="columnValue" msprop:Generator_ColumnPropNameInRow="Value" msprop:Generator_ColumnPropNameInTable="ValueColumn" msprop:Generator_UserColumnName="Value" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="PK_Members" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Members" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="PK_CONTACTS" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Contacts" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:keyref name="FK_Members_Contacts" refer="PK_Members" msprop:rel_Generator_UserChildTable="Contacts" msprop:rel_Generator_ChildPropName="GetContactsRows" msprop:rel_Generator_UserRelationName="FK_Members_Contacts" msprop:rel_Generator_ParentPropName="MembersRow" msprop:rel_Generator_RelationVarName="relationFK_Members_Contacts" msprop:rel_Generator_UserParentTable="Members" msdata:UpdateRule="None" msdata:DeleteRule="None">
+      <xs:selector xpath=".//mstns:Contacts" />
+      <xs:field xpath="mstns:MemberId" />
+    </xs:keyref>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,15 @@
+﻿/* Doc: http://www.tutorialspoint.com/sqlite/index.htm */
+
+CREATE TABLE Members(
+	Id UNSIGNED BIG INT PRIMARY KEY,
+	FirstName nvarchar(200),
+	LastName nvarchar(200),
+	Email nvarchar(250));
+	
+CREATE TABLE Contacts(
+	Id UNSIGNED BIG INT PRIMARY KEY,
+	MemberId UNSIGNED BIG INT NOT NULL,
+	ContactTypId smallint NOT NULL,
+	Value nvarchar(500),
+	FOREIGN KEY ([MemberId]) REFERENCES [Members] ([Id]) 
+   ON DELETE NO ACTION ON UPDATE NO ACTION);

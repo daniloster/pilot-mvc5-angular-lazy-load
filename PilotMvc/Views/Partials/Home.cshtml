@@ -1,0 +1,8 @@
+﻿@section MainScript{~/Content/Scripts/App/main.js}
+
+<div ng-controller="HomeCtrl" class="clearfix">
+    @Html.Partial("~/Views/LoadingPanel.cshtml")
+    <h2>{{ message }}</h2>
+    <input type="button" ng-click="changeWelcome()" value="Change Welcome" />
+</div>
+

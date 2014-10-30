@@ -1,0 +1,1 @@
+<Playlist Version="1.0"><Add Test="Pilot.Test.MemberServiceTest.WhenTryToSaveAMemberWithLastNameEmptyThenThrowAValidationException" /><Add Test="Pilot.Test.MemberServiceTest.WhenTryToSaveAMemberWithAllRequiredPropertiesFilledThenSetIdEqualsOne" /><Add Test="Pilot.Test.Integrated.Member.MemberServiceTest.WhenTriedToGetMemberById1ThenShouldRetrieveMemberDanilo" /></Playlist>
