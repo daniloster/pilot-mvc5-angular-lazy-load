@@ -1,0 +1,18 @@
+# git ignore file
+PilotMvc/Config/DbConnections.config
+Pilot.Wcf/Config/DbConnections.config
+Pilot.Test/Config/DbConnections.config
+PilotMvc/bin/
+PilotMvc/obj/
+Pilot.Wcf/bin/
+Pilot.Wcf/obj/
+Pilot.Util/bin/
+Pilot.Util/obj/
+Pilot.Test/bin/
+Pilot.Test/obj/
+Pilot.Service/bin/
+Pilot.Service/obj/
+Pilot.Entity/bin/
+Pilot.Entity/obj/
+Pilot.Database/bin/
+Pilot.Database/obj/
