@@ -4,6 +4,7 @@ using Pilot.Util.Unity.Lifetime;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -38,7 +39,22 @@ namespace Pilot.Database
         {
             if (entity.Id > 0)
             {
-                DbContext.Entry<TEntity>(entity).State = EntityState.Modified;
+                DbEntityEntry<TEntity> entry = DbContext.Entry<TEntity>(entity);
+
+                if (entry.State == EntityState.Detached)
+                {
+                    var set = DbContext.ObjectContext.CreateObjectSet<TEntity>();
+                    TEntity attachedEntity = set.SingleOrDefault(e => e.Id == entity.Id);  // You need to have access to key
+                    if (attachedEntity != null)
+                    {
+                        var attachedEntry = DbContext.Entry(attachedEntity);
+                        attachedEntry.CurrentValues.SetValues(entity);
+                    }
+                    else
+                    {
+                        entry.State = EntityState.Modified; // This should attach entity
+                    }
+                }
             }
             else
             {
