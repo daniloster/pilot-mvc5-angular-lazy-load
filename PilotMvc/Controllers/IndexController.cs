@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Pilot.Util.Unity.Lifetime;
 using Pilot.Entity;
+using Pilot.Util.Exceptions;
 
 namespace PilotMvc.Controllers
 {
@@ -15,8 +16,7 @@ namespace PilotMvc.Controllers
             return View();
         }
 
-        [System.Web.Mvc.ActionName("update-total-members")]
-        [HttpPost]
+        [ActionName("update-total-members"), HttpPost, HandleUIException]
         /// Parameters
         /// Use [FromUri] in case the request is a GET
         /// Use [FromBody] in case the request is a POST
@@ -24,7 +24,14 @@ namespace PilotMvc.Controllers
         /// Use [HttpGet] or [HttpPost] to determine type of request accepted
         public ActionResult Send(/*[FromUri]*/Member member)
         {
-            return Json(new { FirstName = "Mock", LastName = member.LastName, Date = DateTime.Now, Floating = 9.9999999 }, JsonRequestBehavior.AllowGet);
+            try
+            {
+                return Json(new { FirstName = "Mock", LastName = member.LastName, Date = DateTime.Now, Floating = 9.9999999 }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e) 
+            {
+                throw new JsonException(e);
+            }
         }
 	}
 }
