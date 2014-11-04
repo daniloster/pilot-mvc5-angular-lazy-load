@@ -181,9 +181,9 @@
     <Content Include="Content\Images\sk-favicon.ico" />
     <Content Include="Content\Scripts\app.js" />
     <Content Include="Content\Scripts\main.js" />
-    <Content Include="Content\Scripts\app\svc\member.js" />
-    <Content Include="Content\Scripts\app\ctrl\home.js" />
-    <Content Include="Content\Scripts\app\ctrl\member.js" />
+    <Content Include="Content\Scripts\app\member\memberSvc.js" />
+    <Content Include="Content\Scripts\app\home\homeCtrl.js" />
+    <Content Include="Content\Scripts\app\member\memberCtrl.js" />
     <Content Include="Content\Scripts\lib\angularjs\angular-amd.js" />
     <Content Include="Content\Scripts\lib\domReady.js" />
     <Content Include="Content\Scripts\lib\requirejs.text.min.js" />
@@ -997,7 +997,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="App_Start\" />
     <Folder Include="Content\Fonts\" />
-    <Folder Include="Content\Scripts\app\dct\" />
+    <Folder Include="Content\Scripts\dct\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

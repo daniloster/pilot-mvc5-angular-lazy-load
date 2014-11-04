@@ -31,10 +31,10 @@
 
                 $routeProvider
                     .when("", { })
-                    .when("/home", { templateUrl: '/Partials/Home.html', resolve: resolve(['app/ctrl/home']) })
-                    .when("/member", { templateUrl: '/Partials/Member.html', resolve: resolve(['app/ctrl/member']) })
-                    .otherwise({ templateUrl: '/Partials/Home.html', resolve: resolve(['app/ctrl/home']) });
+                    .when("/home", { templateUrl: '/Partials/Home.html', resolve: resolve(['app/home/homeCtrl']) })
+                    .when("/member", { templateUrl: '/Partials/Member.html', resolve: resolve(['app/member/memberCtrl']) });
                 //.otherwise({ redirectTo: '/' });
+                //.otherwise({ templateUrl: '/Partials/Member.html', resolve: resolve(['app/member/memberCtrl']) });
                 $locationProvider.html5Mode({
                     enabled: true,
                     requireBase: false

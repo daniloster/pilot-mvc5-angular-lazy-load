@@ -16,17 +16,23 @@ namespace PilotMvc.Controllers
             return View();
         }
 
-        [ActionName("update-total-members"), HttpPost, HandleUIException]
+        [ActionName("send-test"), HttpPost, HandleUIException]
         /// Parameters
         /// Use [FromUri] in case the request is a GET
         /// Use [FromBody] in case the request is a POST
         /// Method 
         /// Use [HttpGet] or [HttpPost] to determine type of request accepted
-        public ActionResult Send(/*[FromUri]*/Member member)
+        public JsonResult Send(/*[FromUri]*/Member member)
         {
             try
             {
-                return Json(new { FirstName = "Mock", LastName = member.LastName, Date = DateTime.Now, Floating = 9.9999999 }, JsonRequestBehavior.AllowGet);
+                var obj = new Member{ FirstName = "Mock", LastName = member.LastName, Id = 20 };
+                var list = new List<Member>();
+                for (int i = 0; i < 230; i++)
+                {
+                    list.Add(obj);
+                }
+                return Json(list, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e) 
             {
