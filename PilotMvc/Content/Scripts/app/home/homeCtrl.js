@@ -20,6 +20,20 @@
                             console.log(data);
                         });
                 };
+
+                $scope.getListExample2 = function () {
+                    memberSvc.test2(
+                        { LastName: "Castro" },
+                        function (data) {
+                            console.log(data);
+                            $scope.user = data;
+                        },
+                        function (data) {
+                            console.log(data);
+                        });
+                };
+
+                $scope.getListExample2();
             }];
 
             app.lazy.controller('app.home.homeCtrl', HomeCtrl);

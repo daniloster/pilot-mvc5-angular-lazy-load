@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Pilot.Util.Unity.Lifetime;
 using Pilot.Entity;
 using Pilot.Util.Exceptions;
+using Pilot.Util.Mvc;
 
 namespace PilotMvc.Controllers
 {
@@ -33,6 +34,24 @@ namespace PilotMvc.Controllers
                     list.Add(obj);
                 }
                 return Json(list, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e) 
+            {
+                throw new JsonException(e);
+            }
+        }
+        
+        [ActionName("send-test2"), HttpPost, HandleUIException]
+        /// Parameters
+        /// Use [FromUri] in case the request is a GET
+        /// Use [FromBody] in case the request is a POST
+        /// Method 
+        /// Use [HttpGet] or [HttpPost] to determine type of request accepted
+        public JsonResult Send2(/*[FromUri]*/Member member)
+        {
+            try
+            {
+                return new JsonResultView(new { FirstName = "Mock", LastName = member.LastName, Birthday = DateTime.Now }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception e) 
             {

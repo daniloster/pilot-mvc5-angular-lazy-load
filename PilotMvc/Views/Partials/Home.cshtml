@@ -2,5 +2,11 @@
     @Html.Partial("~/Views/LoadingPanel.cshtml")
     <h2>{{ message }}</h2>
     <input type="button" ng-click="changeWelcome()" value="Change Welcome" />
+
+    <div ng-if="user">
+        <span>{{ user.FirstName }}</span><br />
+        <span>{{ user.LastName }}</span><br />
+        <span>{{ user.Birthday | date:'dd/MM/yyyy' }}</span><br />
+    </div>
 </div>
 

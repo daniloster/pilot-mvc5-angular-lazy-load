@@ -18,6 +18,14 @@
                     }).success(successHandler).error(errorHandler);
                 };
 
+                resource.test2 = function (param, successHandler, errorHandler) {
+                    $http({
+                        url: '/index/send-test2',
+                        method: "POST",
+                        data: param
+                    }).success(successHandler).error(errorHandler);
+                };
+
                 return resource;
             }];
             //<instance>.test({LastName: "Castro", function(data) { console.log(data); }, function(data) { console.log(data); } });
