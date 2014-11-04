@@ -16,3 +16,5 @@ Pilot.Entity/bin/
 Pilot.Entity/obj/
 Pilot.Database/bin/
 Pilot.Database/obj/
+packages/
+!packages/repositories.config
