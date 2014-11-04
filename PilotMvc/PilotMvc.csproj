@@ -180,6 +180,7 @@
     <Content Include="Content\Images\bp-apple-touch-icon-precomposed.png" />
     <Content Include="Content\Images\sk-favicon.ico" />
     <Content Include="Content\Scripts\app.js" />
+    <Content Include="Content\Scripts\util.js" />
     <Content Include="Content\Scripts\main.js" />
     <Content Include="Content\Scripts\app\member\memberSvc.js" />
     <Content Include="Content\Scripts\app\home\homeCtrl.js" />

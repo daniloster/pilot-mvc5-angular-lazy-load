@@ -30,10 +30,9 @@
                 };
 
                 $routeProvider
-                    .when("", { })
-                    .when("/home", { templateUrl: '/Partials/Home.html', resolve: resolve(['app/home/homeCtrl']) })
-                    .when("/member", { templateUrl: '/Partials/Member.html', resolve: resolve(['app/member/memberCtrl']) });
-                //.otherwise({ redirectTo: '/' });
+                    .when("/", { templateUrl: '/Partials/Home.html', resolve: resolve(['app/home/homeCtrl']) })
+                    .when("/member", { templateUrl: '/Partials/Member.html', resolve: resolve(['app/member/memberCtrl']) })
+                    .otherwise({ redirectTo: '/' });
                 //.otherwise({ templateUrl: '/Partials/Member.html', resolve: resolve(['app/member/memberCtrl']) });
                 $locationProvider.html5Mode({
                     enabled: true,

@@ -8,5 +8,9 @@
         <span>{{ user.LastName }}</span><br />
         <span>{{ user.Birthday | date:'dd/MM/yyyy' }}</span><br />
     </div>
+
+    <select ng-model="syncOpt" ng-options="d as d.Name for d in elements">
+        <option value="">Select One</option>
+    </select>
 </div>
 
