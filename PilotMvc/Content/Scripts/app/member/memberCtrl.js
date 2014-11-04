@@ -1,8 +1,8 @@
 (function () {
     var MemberCtrl = null;
-    define(['app', 'app/svc/member'], function (app) {
+    define(['app', 'app/member/memberSvc'], function (app) {
         if (MemberCtrl === null) {
-            MemberCtrl = ['$scope', 'MemberSvc', function ($scope, MemberSvc) {
+            MemberCtrl = ['$scope', 'app.member.memberSvc', function ($scope, memberSvc) {
                 $scope.loading = true;
                 $scope.addMode = false;
 
@@ -11,7 +11,7 @@
 
                 //Used to display the data  
                 $scope.getAll = function () {
-                    MemberSvc.query(function (data) {
+                    memberSvc.query(function (data) {
                         $scope.members = data;
                         $scope.loading = false;
                     }, function () {
@@ -32,7 +32,7 @@
                 $scope.save = function () {
                     $scope.loading = true;
                     var memb = this.member;
-                    MemberSvc.update({ Id: memb.Id }, memb, function (data) {
+                    memberSvc.update({ Id: memb.Id }, memb, function (data) {
                         alert("Saved Successfully!!");
                         memb.editMode = false;
                         $scope.loading = false;
@@ -48,7 +48,7 @@
                 $scope.add = function () {
                     $scope.loading = true;
                     var memb = this.newmember;
-                    MemberSvc.create(memb, function (data) {
+                    memberSvc.create(memb, function (data) {
                         alert("Added Successfully!!");
                         $scope.addMode = false;
                         $scope.members.push(data);
@@ -64,7 +64,7 @@
                 $scope.deletemember = function () {
                     $scope.loading = true;
                     var memberid = this.member.Id;
-                    MemberSvc.delete({ Id: memberid }, function (data) {
+                    memberSvc.delete({ Id: memberid }, function (data) {
                         alert("Deleted Successfully!!");
                         //$.each($scope.members, function (i) {
                         //    if ($scope.members[i].Id === memberid) {
@@ -83,8 +83,7 @@
 
                 $scope.getAll();
             }];
-            MemberCtrl.name = 'MemberCtrl';
-            app.lazy.controller(MemberCtrl.name, MemberCtrl);
+            app.lazy.controller('app.member.memberCtrl', MemberCtrl);
         }
     });
 })();

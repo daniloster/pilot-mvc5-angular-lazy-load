@@ -37,6 +37,12 @@ namespace PilotMvc.Config
                 url: "{controller}/{action}"
             );
 
+            routes.MapRoute(
+                "DefaultRoute",
+                "{*url}",
+                new { controller = "Index", action = "Index" }
+            );
+
             /*routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

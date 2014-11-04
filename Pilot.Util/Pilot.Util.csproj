@@ -149,11 +149,14 @@
   <ItemGroup>
     <Compile Include="Data\ApplicationSettings.cs" />
     <Compile Include="Exceptions\BaseException.cs" />
+    <Compile Include="Exceptions\HandleUIExceptionAttribute.cs" />
+    <Compile Include="Exceptions\JsonException.cs" />
     <Compile Include="Exceptions\ValidationException.cs" />
     <Compile Include="Logging\DiagnosisBehaviour.cs" />
     <Compile Include="Logging\DiagnosisEvents.cs" />
     <Compile Include="Logging\EventSourceCreator.cs" />
     <Compile Include="Logging\LoggerFile.cs" />
+    <Compile Include="Mvc\JsonResultView.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Unity\SelfHostWebApiOwin\Startup.cs" />
     <Compile Include="Unity\SelfHostWebApiOwin\UnityHelpers.cs" />
