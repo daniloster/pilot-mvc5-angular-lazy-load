@@ -174,12 +174,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\ajax-loader.gif" />
     <Content Include="Content\Images\sk-apple-touch-icon-114x114.png" />
     <Content Include="Content\Images\sk-apple-touch-icon-72x72.png" />
     <Content Include="Content\Images\sk-apple-touch-icon.png" />
     <Content Include="Content\Images\bp-apple-touch-icon-precomposed.png" />
     <Content Include="Content\Images\sk-favicon.ico" />
     <Content Include="Content\Scripts\app.js" />
+    <Content Include="Content\Scripts\app\contact\contactCtrl.js" />
+    <Content Include="Content\Scripts\app\contact\contactSvc.js" />
+    <Content Include="Content\Scripts\app\upload\fileModel.js" />
+    <Content Include="Content\Scripts\app\upload\uploadSvc.js" />
+    <Content Include="Content\Scripts\app\util\loadingCtrl.js" />
     <Content Include="Content\Scripts\util.js" />
     <Content Include="Content\Scripts\main.js" />
     <Content Include="Content\Scripts\app\member\memberSvc.js" />
@@ -966,6 +972,8 @@
     <Compile Include="Config\Unity\UnityConfig.cs" />
     <Compile Include="Config\Unity\UnityMvcActivator.cs" />
     <Compile Include="Config\Unity\UnityWebApiActivator.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Controllers\IndexController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\PartialsController.cs" />
@@ -977,8 +985,6 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
-    <Content Include="Views\BoilerplateNavMenu.cshtml" />
-    <Content Include="Views\BoilerplateLayout.cshtml" />
     <Content Include="Content\Scripts\lib\zepto.min.js" />
     <Content Include="Views\Partials\Member.cshtml" />
     <Content Include="Views\SkeletonLayout.cshtml" />
@@ -987,6 +993,7 @@
     <Content Include="Views\Index\Index.cshtml" />
     <Content Include="Views\Partials\Home.cshtml" />
     <Content Include="Content\Scripts\lib\jQuery\jquery-2.min.js" />
+    <Content Include="Views\Partials\Contact.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

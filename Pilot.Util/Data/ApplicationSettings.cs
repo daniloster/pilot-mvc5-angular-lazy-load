@@ -58,6 +58,7 @@ namespace Pilot.Util.Data
         public bool LoggingFileLogEnabled { get; set; }
         public string LoggingSubject { get; set; }
         public string LoggingPath { get; set; }
+        public string UploadTmpDirectory { get; set; }
     }
 }
 

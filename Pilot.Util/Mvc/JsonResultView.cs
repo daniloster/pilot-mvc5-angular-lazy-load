@@ -30,7 +30,9 @@ namespace Pilot.Util.Mvc
             if (Data != null)
             {
                 JsonTextWriter writer = new JsonTextWriter(response.Output) { Formatting = Formatting.Indented };
-                JsonSerializer serializer = JsonSerializer.Create(new JsonSerializerSettings());
+                JsonSerializer serializer = JsonSerializer.Create(new JsonSerializerSettings() {
+                    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+                });
                 serializer.Serialize(writer, Data);
                 writer.Flush();
             }

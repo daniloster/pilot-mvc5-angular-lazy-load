@@ -27,6 +27,7 @@
                 $routeProvider
                     .when("/", { templateUrl: '/Partials/Home.html', resolve: resolve(['app/home/homeCtrl']) })
                     .when("/member", { templateUrl: '/Partials/Member.html', resolve: resolve(['app/member/memberCtrl']) })
+                    .when("/contact", { templateUrl: '/Partials/Contact.html', resolve: resolve(['app/contact/contactCtrl']) })
                     .otherwise({ redirectTo: '/' });
 
                 $locationProvider.html5Mode({

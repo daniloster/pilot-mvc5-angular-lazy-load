@@ -29,7 +29,7 @@
                 return resource;
             }];
             //<instance>.test({LastName: "Castro", function(data) { console.log(data); }, function(data) { console.log(data); } });
-            app.lazy.factory('app.member.memberSvc', Svc);
+            app.lazy.factory('memberSvc', Svc);
         }
     });
 })();

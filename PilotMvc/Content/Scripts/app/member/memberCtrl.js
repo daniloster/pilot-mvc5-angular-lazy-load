@@ -2,7 +2,7 @@
     var MemberCtrl = null;
     define(['app', 'app/member/memberSvc'], function (app) {
         if (MemberCtrl === null) {
-            MemberCtrl = ['$scope', 'app.member.memberSvc', function ($scope, memberSvc) {
+            MemberCtrl = ['$scope', 'memberSvc', function ($scope, memberSvc) {
                 $scope.loading = true;
                 $scope.addMode = false;
 
@@ -83,7 +83,7 @@
 
                 $scope.getAll();
             }];
-            app.lazy.controller('app.member.memberCtrl', MemberCtrl);
+            app.lazy.controller('memberCtrl', MemberCtrl);
         }
     });
 })();

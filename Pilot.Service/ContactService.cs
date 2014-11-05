@@ -1,5 +1,6 @@
 ﻿using Pilot.Database.Interfaces;
 using Pilot.Entity;
+using Pilot.Entity.Domain;
 using Pilot.Service.Interfaces;
 using Pilot.Util.Exceptions;
 using Pilot.Util.Transaction;
@@ -17,6 +18,16 @@ namespace Pilot.Service
     public class ContactService : CRUDService<Contact>, IContactService
     {
         public ContactService(IEntityContext<Contact> db) : base(db) { }
+
+        public IList<ContactType> GetContactTypes()
+        {
+            return ContactType.List;
+        }
+
+        public IList<Contact> GetWithMember()
+        {
+            return db.DbContext.Contacts.Include("Member").ToList();
+        }
 
         public override void Save(Contact entity)
         {

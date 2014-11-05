@@ -1,0 +1,58 @@
+﻿<div ng-controller="contactCtrl" class="clearfix">
+    <h2>{{ message }}</h2>
+
+    <form name="addContact">
+        <input type="file" name="myFile" file-model="myFile"/>
+        <span ng-show="fileHasBeenSelected">{{ myFile.fileName }}</span>
+        <input ng-show="fileHasBeenSelected" type="button" ng-click="upload()" value="Upload" />
+
+
+        <select ng-model="contact.Member" required ng-options="member.FirstName for member in members">
+          <option value="">-- choose member --</option>
+        </select>
+
+        <select ng-model="contact.Type" required ng-options="type.Description for type in contactTypes">
+          <option value="">-- choose contact type --</option>
+        </select>
+        <span>{{ contact.Member.FirstName }}</span><br />
+        <span>{{ contact.Member.LastName }}</span><br />
+        <span>{{ contact.Member.Birthday | date:'dd/MM/yyyy' }}</span><br />
+        <span>{{ contact.Type.Description }}</span><br />
+        <input type="text" ng-model="contact.Value" required/>
+
+        <input type="submit" value="Add" data-ng-click="create()" data-ng-disabled="!addContact.$valid && !fileHasBeenUploaded" class="btn btn-primary" />
+        <input type="button" value="Cancel" data-ng-click="toggleAdd()" class="btn btn-primary" />
+    </form>
+
+    <div class="eight columns">
+        <input type="text" ng-model="textFilter" />
+        <table class="table table-bordered table-hover members-table">
+            <thead class="strong">
+                <tr>
+                    <th>#</th>
+                    <th>Type</th>
+                    <th>Value</th>
+                    <th>Member</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr data-ng-repeat="entity in contacts | filter:textFilter">
+                    <td><strong>{{ entity.Id }}</strong></td>
+                    <td>
+                        <p>{{ entity.Type.Description }}</p>
+                    </td>
+                    <td>
+                        <p>{{ entity.Value }}</p>
+                    </td>
+                    <td>
+                        <p>{{ entity.Member.FirstName }} {{ entity.Member.LastName }}</p>
+                    </td>
+                    <td>
+                        <p><a data-ng-click="delete(entity, $index)" href="javascript:;">Delete</a></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
