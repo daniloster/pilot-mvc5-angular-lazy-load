@@ -6,7 +6,7 @@
                 var clearContact = function () {
                     $scope.contact = { Member: { Id: 0 }, Type: { Id: 0 } };
                     $scope.myFileData = {};
-                    $scope.fileHasBeenSelected = false;
+                    //$scope.fileHasBeenSelected = false;
                     $scope.fileHasBeenUploaded = false;
                 };
 
@@ -17,7 +17,7 @@
 
                 $scope.$watch('myFile', function (nval, oval) {
                     if (nval === oval) return;
-                    $scope.fileHasBeenSelected = !!nval;
+                    //$scope.fileHasBeenSelected = !!nval;
                     $scope.fileHasBeenUploaded = false;
                 });
                 //var find = Array.createFinder('Id');

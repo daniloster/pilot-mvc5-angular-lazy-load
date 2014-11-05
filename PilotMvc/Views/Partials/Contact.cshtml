@@ -3,25 +3,25 @@
 
     <form name="addContact">
         <input type="file" name="myFile" file-model="myFile"/>
-        <span ng-show="fileHasBeenSelected">{{ myFile.fileName }}</span>
-        <input ng-show="fileHasBeenSelected" type="button" ng-click="upload()" value="Upload" />
+        <span ng-show="!addContact.myFile.$valid">{{ myFile.fileName }}</span>
+        <input ng-show="!addContact.myFile.$valid" type="button" ng-click="upload()" value="Upload" />
 
 
-        <select ng-model="contact.Member" required ng-options="member.FirstName for member in members">
+        <select ng-show="myFileData.Size > 0" ng-model="contact.Member" required ng-options="member.FirstName for member in members">
           <option value="">-- choose member --</option>
         </select>
 
-        <select ng-model="contact.Type" required ng-options="type.Description for type in contactTypes">
+        <select ng-show="myFileData.Size > 0" ng-model="contact.Type" required ng-options="type.Description for type in contactTypes">
           <option value="">-- choose contact type --</option>
         </select>
-        <span>{{ contact.Member.FirstName }}</span><br />
-        <span>{{ contact.Member.LastName }}</span><br />
-        <span>{{ contact.Member.Birthday | date:'dd/MM/yyyy' }}</span><br />
-        <span>{{ contact.Type.Description }}</span><br />
-        <input type="text" ng-model="contact.Value" required/>
+        <span ng-show="myFileData.Size > 0">{{ contact.Member.FirstName }}</span><br />
+        <span ng-show="myFileData.Size > 0">{{ contact.Member.LastName }}</span><br />
+        <span ng-show="myFileData.Size > 0">{{ contact.Member.Birthday | date:'dd/MM/yyyy' }}</span><br />
+        <span ng-show="myFileData.Size > 0">{{ contact.Type.Description }}</span><br />
+        <input ng-show="myFileData.Size > 0" type="text" ng-model="contact.Value" required/>
 
-        <input type="submit" value="Add" data-ng-click="create()" data-ng-disabled="!addContact.$valid && !fileHasBeenUploaded" class="btn btn-primary" />
-        <input type="button" value="Cancel" data-ng-click="toggleAdd()" class="btn btn-primary" />
+        <input type="submit" value="Add" ng-show="myFileData.Size > 0" ng-click="create()" ng-disabled="!addContact.$valid" class="btn btn-primary" />
+        <input type="button" value="Cancel" ng-show="myFileData.Size > 0" ng-click="clear()" class="btn btn-primary" />
     </form>
 
     <div class="eight columns">
