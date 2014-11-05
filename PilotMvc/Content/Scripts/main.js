@@ -1,9 +1,5 @@
-window.name = "NG_DEFER_BOOTSTRAP!";
 define(['angular', 'app', 'domReady', 'util'], function (angular, app, domReady) {
-
-    domReady(function () {
-        app.init();
+    angular.element(document).ready(function () {
+        angular.bootstrap(document, [app['name']]);
     });
-
-    angular.bootstrap(document, [app['name']]);
 });

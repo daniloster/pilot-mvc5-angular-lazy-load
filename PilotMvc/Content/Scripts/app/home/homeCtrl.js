@@ -28,7 +28,7 @@
                 ];
 
                 var find = Array.createFinder('Id');
-                $scope.syncOpt = find($scope.elements, $scope.syncOpt);
+                $scope.syncOpt = find($scope.elements, $scope.syncOpt.Id);
 
                 $scope.isSelected = function (defined, option) {
                     return (!defined && !option) || (!!option && defined.Id == option.Id);

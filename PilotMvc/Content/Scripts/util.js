@@ -35,13 +35,11 @@ define([], function () {
     }
 
     Array.createFinder = (function (prop) {
-        return function (arr, item) {
-            for (var i = 0, len = arr.length; i < len; i++) {
-                if (!!item && arr[i][prop] == item[prop]) {
-                    return arr[i];
-                }
-            }
-            return null;
+        return function (arr, val) {
+            var items = arr.filter(function (item) {
+                return item[prop] == val;
+            });
+            return (items.length)? items[0] : null;
         }
     });
 });

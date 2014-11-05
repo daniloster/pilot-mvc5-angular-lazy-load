@@ -4,11 +4,6 @@
     define(['angular', 'resolveDependencies', 'domReady'], function (angular, resolve, domReady) {
         if (app === null) {
             app = angular.module('pilotApp', ['ngRoute', 'ngResource']);
-            
-            app.init = function () {
-                /* Solbing problem to integrate ASP.MVC with angularjs + requirejs */
-                angular.resumeBootstrap([app['name']]);
-            };
 
             app.config(['$routeProvider', '$locationProvider', '$controllerProvider', '$provide', '$filterProvider', '$compileProvider',
             function ($routeProvider, $locationProvider, $controllerProvider, $provide, $filterProvider, $compileProvider) {
@@ -33,7 +28,7 @@
                     .when("/", { templateUrl: '/Partials/Home.html', resolve: resolve(['app/home/homeCtrl']) })
                     .when("/member", { templateUrl: '/Partials/Member.html', resolve: resolve(['app/member/memberCtrl']) })
                     .otherwise({ redirectTo: '/' });
-                //.otherwise({ templateUrl: '/Partials/Member.html', resolve: resolve(['app/member/memberCtrl']) });
+
                 $locationProvider.html5Mode({
                     enabled: true,
                     requireBase: false
