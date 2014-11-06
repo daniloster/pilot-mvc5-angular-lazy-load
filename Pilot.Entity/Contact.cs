@@ -16,6 +16,7 @@ namespace Pilot.Entity
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
         public long MemberId { get; set; }
+        [Editable(false)]
         public virtual Member Member { get; set; } 
         public short ContactTypeId { get; set; }
         public string Value { get; set; }

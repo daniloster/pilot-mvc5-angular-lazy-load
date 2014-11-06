@@ -35,17 +35,11 @@ namespace Pilot.Service
         {
             ValidateRequiredProperties(entity);
             base.Save(entity);
-            Contact contact = null;
-            List<Contact> contacts = new List<Contact>();
-            if (entity.Contacts != null)
-            {
-                contacts.AddRange(entity.Contacts);
-            }
+            List<Contact> contacts = new List<Contact>((entity.Contacts == null) ? new Contact[0] : entity.Contacts);
             for (short idx = 0, len = (short)contacts.Count; idx < len; idx++)
             {
-                contact = contacts[idx];
-                contact.MemberId = entity.Id;
-                ContactSvc.Save(contact);
+                contacts[idx].MemberId = entity.Id;
+                ContactSvc.Save(contacts[idx]);
             }
         }
 

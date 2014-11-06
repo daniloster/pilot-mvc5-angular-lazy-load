@@ -29,6 +29,7 @@ namespace Pilot.Entity
         [DataMember]
         public string Email { get; set; }
         [DataMember]
+        [Editable(false)]
         public virtual ICollection<Contact> Contacts { get; set; }
 
         [NotMapped]
