@@ -11,6 +11,10 @@ namespace Pilot.Service.Interfaces
 {
     public interface ICRUDService<TEntity> : IDisposable where TEntity : class, IBaseEntity
     {
+        TEntity GetAttachedEntity(TEntity entity, string[] collectionToLoad);
+
+        TEntity GetAttachedEntity(TEntity entity);
+
         [Transactional]
         void Save(TEntity entity);
 
@@ -21,6 +25,8 @@ namespace Pilot.Service.Interfaces
         void Delete(TEntity entity);
 
         TEntity Get(long id);
+
+        IList<TEntity> Get(long[] ids);
 
         IList<TEntity> Get();
     }

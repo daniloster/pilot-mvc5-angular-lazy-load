@@ -10,11 +10,8 @@ using System.Threading.Tasks;
 
 namespace Pilot.Entity
 {
-    public class Contact : IBaseEntity
+    public class Contact : BaseEntity
     {
-        [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public long Id { get; set; }
         public long MemberId { get; set; }
         [Editable(false)]
         public virtual Member Member { get; set; } 

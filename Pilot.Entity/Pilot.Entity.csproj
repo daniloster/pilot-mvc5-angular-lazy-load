@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contact.cs" />
+    <Compile Include="BaseEntity.cs" />
     <Compile Include="Domain\ContactType.cs" />
     <Compile Include="IBaseEntity.cs" />
     <Compile Include="Member.cs" />

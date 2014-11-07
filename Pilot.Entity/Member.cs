@@ -11,17 +11,15 @@ using System.Threading.Tasks;
 namespace Pilot.Entity
 {
     [DataContract]
-    public class Member : IBaseEntity
+    public class Member : BaseEntity
     {
         public Member() 
         {
             Contacts = new HashSet<Contact>();
         }
 
-        [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         [DataMember]
-        public long Id { get; set; }
+        public override long Id { get; set; }
         [DataMember]
         public string FirstName { get; set; }
         [DataMember]

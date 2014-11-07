@@ -35,6 +35,30 @@ namespace Pilot.Database
             return DbContext.SaveChanges();
         }
 
+        public TEntity GetAttachedEntity(TEntity entity)
+        {
+            return GetAttachedEntity(entity, new string[0]);
+        }
+        public TEntity GetAttachedEntity(TEntity entity, string[] collectionToLoad)
+        {
+            DbEntityEntry<TEntity> entry = DbContext.Entry<TEntity>(entity);
+
+            if (entry.State == EntityState.Detached)
+            {
+                var set = DbContext.ObjectContext.CreateObjectSet<TEntity>();
+                TEntity attachedEntity = set.SingleOrDefault(e => e.Id == entity.Id);  // You need to have access to key
+                if (attachedEntity != null)
+                {
+                    var attachedEntry = DbContext.Entry(attachedEntity);
+                    attachedEntry.CurrentValues.SetValues(entity);
+                    collectionToLoad.All(prop => { attachedEntry.Collection(prop).Load(); return true; });
+                    return attachedEntry.Entity;
+                }
+            }
+
+            return entity;
+        }
+
         public virtual void Save(TEntity entity)
         {
             if (entity.Id > 0)
@@ -54,6 +78,10 @@ namespace Pilot.Database
                     {
                         entry.State = EntityState.Modified; // This should attach entity
                     }
+                }
+                else
+                {
+                    entry.State = EntityState.Modified; // This should attach entity
                 }
             }
             else
@@ -83,6 +111,11 @@ namespace Pilot.Database
         public virtual IList<TEntity> Get()
         {
             return new List<TEntity>(this.DbContext.ObjectContext.CreateObjectSet<TEntity>().AsEnumerable()); 
+        }
+
+        public virtual IList<TEntity> Get(long[] ids)
+        {
+            return new List<TEntity>(this.DbContext.ObjectContext.CreateObjectSet<TEntity>().Where(e => ids.Contains(e.Id)).AsEnumerable());
         }
 
         public virtual IQueryable<TEntity> AsQueryableTyped()

@@ -23,6 +23,16 @@ namespace Pilot.Service
             this.db = db;
         }
 
+        public TEntity GetAttachedEntity(TEntity entity, string[] collectionToLoad)
+        {
+            return db.GetAttachedEntity(entity, collectionToLoad);
+        }
+
+        public TEntity GetAttachedEntity(TEntity entity)
+        {
+            return db.GetAttachedEntity(entity);
+        }
+
         public virtual void Save(TEntity entity)
         {
             db.Save(entity);
@@ -41,6 +51,11 @@ namespace Pilot.Service
         public virtual TEntity Get(long id)
         {
             return db.Get(id);
+        }
+
+        public virtual IList<TEntity> Get(long[] ids)
+        {
+            return db.Get(ids);
         }
 
         public virtual IList<TEntity> Get()

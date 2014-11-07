@@ -15,6 +15,10 @@ namespace Pilot.Database.Interfaces
 
         DbSet<TEntity> Repository { get; }
 
+        TEntity GetAttachedEntity(TEntity entity);
+
+        TEntity GetAttachedEntity(TEntity entity, string[] collectionToLoad);
+
         void Save(TEntity entity);
 
         void Delete(long id);
@@ -22,6 +26,8 @@ namespace Pilot.Database.Interfaces
         void Delete(TEntity entity);
 
         TEntity Get(long id);
+
+        IList<TEntity> Get(long[] ids);
 
         IList<TEntity> Get();
 
