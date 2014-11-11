@@ -9,7 +9,7 @@ Pilot project integrating MVC5, Entity Framework 6 and front-end based on requir
   2. ~~ASP MVC5~~
     * ~~What is it?~~
     * ~~What does it do?~~
-    * ~~How to configure?~~
+    * ~~How do I configure it?~~
     * ~~Dependency injection with MVC5~~
   3. ~~Javascript~~
   4. ~~Javascript (AngularJS + RequireJS)~~
