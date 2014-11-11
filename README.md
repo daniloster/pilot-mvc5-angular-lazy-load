@@ -6,7 +6,7 @@ Pilot project integrating MVC5 and Entity Framework 6, front-end based on requir
 ## Roadmap
 1. Purpose
 2. Basic aproaching of modules
-  1. ~~DI (*Dependency injection*)~~
+  1. DI (*Dependency injection*)
   2. ~~ASP MVC5~~
   3. ~~Javascript (AngularJS + RequireJS)~~
   4. ~~WCF~~
@@ -31,3 +31,11 @@ For this project, I've taken the second path.
 
 ### Basic aproaching of modules
 Before we start properly it (I love code first also), we need to understand some basic topics. I'll just give basic concepts about each one. But it is important understand it with your heart. I used to say that everything becomes easy after total understanding of the engines.
+
+### Dependency injection
+Firstly, I'll give you some references about the subject and afterwards I'll give my own idea about it. I think that it is pretty similar, but it'll be condensed. 
+[Roadmap of DI, according to MSDN](http://msdn.microsoft.com/en-us/library/dn223671%28v=pandp.30%29.aspx)
+[Dependency injection, MSDN](http://msdn.microsoft.com/en-us/library/dn178469(v=pandp.30).aspx)
+[Dependency injection with Unity](http://msdn.microsoft.com/en-us/library/dn178463(v=pandp.30).aspx)
+So, DI comes from IoC (*Inversion of Control*). IoC means, none object can instantiate your dependencies. Then, it can be implemented by many ways, one of them it is DI. We have a lot of frameworks and libraries with DI implementation such as Spring, Dagger, Google Guice - [for Java](https://keyholesoftware.com/2014/02/17/dependency-injection-options-for-java/) -, Unity, Spring.NET, Castle Windsor - [for .NET](http://www.hanselman.com/blog/ListOfNETDependencyInjectionContainersIOC.aspx).
+In this project we're going to use Unity.
