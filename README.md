@@ -6,9 +6,8 @@ Pilot project integrating MVC5, Entity Framework 6 and front-end based on requir
 1. Purpose
 2. Basic aproaching of modules
   1. DI (*Dependency injection*)
-  2. ~~ASP MVC5~~
-    * ~~What is it?~~
-    * ~~What does it do?~~
+  2. ASP MVC5
+    * What is it? What does it do?
     * ~~How do I configure it?~~
     * ~~Dependency injection with MVC5~~
   3. ~~Javascript~~
@@ -47,4 +46,10 @@ Firstly, I'll give you some references about the subject and afterwards I'll giv
 [Dependency injection, MSDN](http://msdn.microsoft.com/en-us/library/dn178469(v=pandp.30).aspx)
 [Dependency injection with Unity](http://msdn.microsoft.com/en-us/library/dn178463(v=pandp.30).aspx)
 So, DI comes from IoC (*Inversion of Control*). IoC basically means that none object can instantiate your dependencies. Then, it can be implemented by many ways, one of them it is DI. We have a lot of frameworks and libraries with DI implementation such as Spring, Dagger, Google Guice - [for Java](https://keyholesoftware.com/2014/02/17/dependency-injection-options-for-java/) -, Unity, Spring.NET, Castle Windsor - [for .NET](http://www.hanselman.com/blog/ListOfNETDependencyInjectionContainersIOC.aspx).
-In this project we're going to use Unity.
+In this project we're going to use Unity to inject the dependencies.
+
+### ASP MVC5
+
+#### What is it? What does it do?
+It is a web framework based on assign URL requests to a controller method. In a MVC5 project you can map URLs to base controllers that will return a generic type called ActionResult. But you can also map URLs to api controllers which ones will answer providing xml and json data. Taking advantage on it, you can build REST services.
+In version 5, MVC brings mapping through the attributes (who are used to handle java code, it is the same as annotations.
