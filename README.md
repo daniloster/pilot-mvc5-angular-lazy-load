@@ -6,10 +6,11 @@ Pilot project integrating MVC5, Entity Framework 6 and front-end based on requir
 1. Purpose
 2. Basic aproaching of modules
   1. DI (*Dependency injection*)
-  2. ASP MVC5
-    * What is it?
-    * What does it do?
-    * 
+  2. ~~ASP MVC5~~
+    * ~~What is it?~~
+    * ~~What does it do?~~
+    * ~~How to configure?~~
+    * ~~Dependency injection with MVC5~~
   3. ~~Javascript~~
   4. ~~Javascript (AngularJS + RequireJS)~~
   5. ~~WCF~~
