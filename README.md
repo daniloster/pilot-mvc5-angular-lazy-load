@@ -8,7 +8,7 @@ Pilot project integrating MVC5, Entity Framework 6 and front-end based on requir
   1. DI (*Dependency injection*)
   2. ASP MVC5
     * What is it? What does it do?
-    * ~~How do I configure it?~~
+    * How do I configure it?
     * ~~Dependency injection with MVC5~~
   3. ~~Javascript~~
     * ~~First steps~~ 
