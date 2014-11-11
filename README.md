@@ -4,7 +4,7 @@ Pilot C# MVC5 (EF6, AngularJS, RequireJS)
 Pilot project integrating MVC5 and Entity Framework 6, front-end based on requirejs and angularjs with lazy load.
 
 ## Roadmap
-1. Porpose
+1. Purpose
 2. ~~Basic aproaching of modules~~
   1. ~~DI (*Dependency injection*)~~
   2. ~~ASP MVC5~~
@@ -21,5 +21,9 @@ Pilot project integrating MVC5 and Entity Framework 6, front-end based on requir
 5. ~~Come together~~
 
 
-### Porpose
-The idea behind this project is spread the knowledge which I've learnt in the last few days. I'd created a challenge for me and that was the result. The project consist in build a metodology of development with angularjs, in which one I could notice how much faster can be develop web projects with SPA (*Single Page Application*), especially with angularjs.
+### Purpose
+The idea behind this project is to spread the knowledge which I've learnt in the last few days. I'd created a challenge for myself and that was the result. The project consist in build a metodology of development with angularjs, in which one I could notice the performance of application and how faster can be to develop web projects with SPA (*Single Page Application*).
+Considering that SPA works with partial rendering, we could aproach in two ways.
+* Load your whole application at the first access and show content on demand
+* Load your application on demand as long as it is necessary.
+For this project, I've taken the second path.
