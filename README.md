@@ -1,4 +1,4 @@
-<style>
+<style type="text/css" rel="stylesheet">
 .align-justify{text-align:justify}
 </style>
 Pilot C# MVC5 (EF6, AngularJS, RequireJS)
