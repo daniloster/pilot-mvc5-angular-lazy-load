@@ -94,4 +94,64 @@ public class MemberController : ApiController
     }
 }
 ```
+### How do I configure it?
+Mapping routes can be done in two ways.
+  * Literal Mapping in a RouteConfig class
+  * Attribute Mapping in the controller classes
 
+#### Literal Mapping in a RouteConfig class
+In your Global.asax.cs file, on method Application_Start you must have a code like following.
+```CSharp
+protected void Application_Start()
+{
+    /// Defining global serializer which one uses Newtonsoft.Json 
+    /// to define behaviour in a looping reference
+    GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Serialize;
+    /// The following two lines are important to configure our routes
+    GlobalConfiguration.Configure(RouteConfig.Register);
+    RouteConfig.RegisterRoutes(RouteTable.Routes);
+    
+    BundleConfig.RegisterBundles(BundleTable.Bundles);
+}
+```
+Then, in our RouteConfig file (you can create in any directory, but I'd suggest create that class in a config folder (namespace).
+```CSharp
+public class RouteConfig
+{
+    public static void Register(HttpConfiguration config)
+    {
+        /// Mapping our api controllers
+        /// It is important understand the routeTemplate variable
+        /// It means that the core web handler will try to match the 
+        /// request in order. So, try to create your route from the 
+        /// most specific to generic one.
+        /// In that URL mapped, we have {controller} which means the 
+        /// controller name and it is not case sensitive.
+        /// And {id} that is a parameter configured in the next line as optional.
+        /// The name of the parameter should match with parameter name on your 
+        /// methods, then can be omitted.
+        routes.MapHttpRoute(
+            name: "DefaultApi",
+            routeTemplate: "api/{controller}/{id}",
+            defaults: new { id = RouteParameter.Optional }
+        );
+    }
+    
+    public static void RegisterRoutes(RouteCollection routes)
+    {
+        routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+        AreaRegistration.RegisterAllAreas();
+        
+        /// Mapping our base controllers
+        /// In any case, although our controllers are being named meanwhile 
+        /// class as MemberController or ContactController, the parameter 
+        /// {controller} must omit the word "Controller".
+        routes.MapRoute(
+            name: "DefaultController",
+            url: "{controller}/{action}",
+            defaults: new { controller = "Index", action = "Index" }
+        );
+    }
+}
+```
+Afterwards, we are able to make a request base in these pattern of URLs like "contact/query" for base controller and "api/member/:id" for api controller, but the parameter :id must be changed by a real value.
