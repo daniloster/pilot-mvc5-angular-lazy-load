@@ -12,7 +12,12 @@ Pilot project integrating MVC5, Entity Framework 6 and front-end based on requir
     * ~~How do I configure it?~~
     * ~~Dependency injection with MVC5~~
   3. ~~Javascript~~
+    * ~~First steps~~ 
+    * ~~Closures~~
+    * ~~Best practices~~
   4. ~~Javascript (AngularJS + RequireJS)~~
+    * ~~First steps~~ 
+    * ~~Best pratices~~
   5. ~~WCF~~
   6. ~~Services~~
   7. ~~Entity Framework 6~~
