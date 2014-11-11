@@ -51,5 +51,5 @@ In this project we're going to use Unity to inject the dependencies.
 ### ASP MVC5
 
 #### What is it? What does it do?
-It is a web framework based on assign URL requests to a controller method. In a MVC5 project you can map URLs to base controllers that will return a generic type called ActionResult. But you can also map URLs to api controllers which ones will answer providing xml and json data. Taking advantage on it, you can build REST services.
+It is a web framework based on assign a URL request to a controller method. In a MVC5 project you can map URLs to base controllers that will return a generic type called ActionResult. But you can also map URLs to api controllers which ones will answer providing xml and json data. Taking advantage on it, you can build REST services.
 In version 5, MVC brings mapping through the attributes (who are used to handle java code, it is the same as annotations.
