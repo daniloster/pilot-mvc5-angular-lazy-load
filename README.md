@@ -26,4 +26,5 @@ The idea behind this project is to spread the knowledge which I've learnt in the
 Considering that SPA works with partial rendering, we could aproach in two ways.
 * Load your whole application at the first access and show content on demand
 * Load your application on demand as long as it is necessary.
+
 For this project, I've taken the second path.
