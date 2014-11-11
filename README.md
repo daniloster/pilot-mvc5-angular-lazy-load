@@ -54,11 +54,11 @@ In this project we're going to use Unity to inject the dependencies.
 It is a web framework based on assign a URL request to a controller method. In a MVC5 project you can map URLs to base controllers that will return a generic type called ActionResult. As you can see below.
 ```CSharp
 
-/// Guessing that we have that mapping in our controller, the following 
+/// Guessing that we have the mapping below in our project, the following 
 /// controller has access through the URL: "default/index", it means that
-/// you're gonna call Index method inside controller Default.
+/// you're gonna call Index method inside Default controller.
 routes.MapRoute(
-    name: "DefaultController",
+    name: "AnyNameItIsLikeAKeyForEachMapping",
     url: "{controller}/{action}"
 );
 
