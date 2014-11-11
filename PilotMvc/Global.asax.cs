@@ -20,7 +20,7 @@ namespace PilotMvc
             UnityConfig.GetConfiguredContainer();
 
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Serialize;
-            AreaRegistration.RegisterAllAreas();
+            GlobalConfiguration.Configure(RouteConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }

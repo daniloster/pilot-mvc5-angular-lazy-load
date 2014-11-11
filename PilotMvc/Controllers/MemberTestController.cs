@@ -10,14 +10,10 @@ using Pilot.Util.Mvc;
 
 namespace PilotMvc.Controllers
 {
-    public class IndexController : Controller
+    [RoutePrefix("member-test")]
+    public class MemberTestController : Controller
     {
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        [ActionName("send-test"), HttpPost, HandleUIException]
+        [Route("send-test"), HttpPost, HandleUIException]
         /// Parameters
         /// Use [FromUri] in case the request is a GET
         /// Use [FromBody] in case the request is a POST
@@ -40,8 +36,8 @@ namespace PilotMvc.Controllers
                 throw new JsonException(e);
             }
         }
-        
-        [ActionName("send-test2"), HttpPost, HandleUIException]
+
+        [Route("send-test2"), HttpPost, HandleUIException]
         /// Parameters
         /// Use [FromUri] in case the request is a GET
         /// Use [FromBody] in case the request is a POST

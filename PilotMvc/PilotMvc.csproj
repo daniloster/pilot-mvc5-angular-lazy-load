@@ -973,8 +973,9 @@
     <Compile Include="Config\Unity\UnityMvcActivator.cs" />
     <Compile Include="Config\Unity\UnityWebApiActivator.cs" />
     <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
-    <Compile Include="Controllers\IndexController.cs" />
+    <Compile Include="Controllers\MemberTestController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\PartialsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -994,6 +995,7 @@
     <Content Include="Views\Partials\Home.cshtml" />
     <Content Include="Content\Scripts\lib\jQuery\jquery-2.min.js" />
     <Content Include="Views\Partials\Contact.cshtml" />
+    <Content Include="Views\Partials\404.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

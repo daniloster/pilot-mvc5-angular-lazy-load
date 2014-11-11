@@ -12,7 +12,7 @@
 
                 resource.test = function (param, successHandler, errorHandler) {
                     $http({
-                        url: '/index/send-test',
+                        url: '/member-test/send-test',
                         method: "POST",
                         data: param
                     }).success(successHandler).error(errorHandler);
@@ -20,7 +20,7 @@
 
                 resource.test2 = function (param, successHandler, errorHandler) {
                     $http({
-                        url: '/index/send-test2',
+                        url: '/member-test/send-test2',
                         method: "POST",
                         data: param
                     }).success(successHandler).error(errorHandler);

@@ -25,10 +25,11 @@
                 };
 
                 $routeProvider
-                    .when("/", { templateUrl: '/Partials/Home.html', resolve: resolve(['app/home/homeCtrl']) })
-                    .when("/member", { templateUrl: '/Partials/Member.html', resolve: resolve(['app/member/memberCtrl']) })
-                    .when("/contact", { templateUrl: '/Partials/Contact.html', resolve: resolve(['app/contact/contactCtrl']) })
-                    .otherwise({ redirectTo: '/' });
+                    .when("/", { templateUrl: '/partials/home', resolve: resolve(['app/home/homeCtrl']) })
+                    .when("/404", { templateUrl: '/partials/404' })
+                    .when("/member", { templateUrl: '/partials/member', resolve: resolve(['app/member/memberCtrl']) })
+                    .when("/contact", { templateUrl: '/partials/contact', resolve: resolve(['app/contact/contactCtrl']) })
+                    .otherwise({ redirectTo: '/404' });
 
                 $locationProvider.html5Mode({
                     enabled: true,

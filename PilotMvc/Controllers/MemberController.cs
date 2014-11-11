@@ -12,6 +12,8 @@ using System.Web.Http;
 
 namespace PilotMvc.Controllers
 {
+    /*http://localhost:[port]/api/member*/
+    [Route("api/member")]
     public class MemberController : ApiController
     {
         //public MemberService service = new MemberService();
@@ -21,12 +23,16 @@ namespace PilotMvc.Controllers
         public MemberController() { }
 
         // GET api/member
+        //[Route("")]
+        //[HttpGet]
         public IEnumerable<Member> Get()
         {
             return Service.Get();
         }
 
         // GET api/member/5
+        //[Route("{id:int}")]
+        //[HttpGet]
         public Member Get(int id)
         {
             Member member = Service.Get(id);
@@ -38,6 +44,8 @@ namespace PilotMvc.Controllers
         }
 
         // POST api/member
+        //[Route("")]
+        //[HttpPost]
         public HttpResponseMessage Post(Member member)
         {
             if (ModelState.IsValid)
@@ -57,6 +65,8 @@ namespace PilotMvc.Controllers
         }
 
         // PUT api/member/5
+        //[Route("{id:int}")]
+        //[HttpPut]
         public HttpResponseMessage Put(int id, Member member)
         {
             if (!ModelState.IsValid)
@@ -85,6 +95,8 @@ namespace PilotMvc.Controllers
         }
 
         // DELETE api/member/5
+        //[Route("{id:int}")]
+        //[HttpDelete]
         public HttpResponseMessage Delete(long id)
         {
             Member member = Service.Get(id);

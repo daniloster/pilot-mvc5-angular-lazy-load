@@ -10,31 +10,60 @@ namespace PilotMvc.Config
 {
     public class RouteConfig
     {
+        public static void Register(HttpConfiguration config)
+        {
+            config.MapHttpAttributeRoutes();
+        }
+
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            AreaRegistration.RegisterAllAreas();
+
+            routes.MapMvcAttributeRoutes();
+            
+            // Code below removed and replaced by attributes mapping
+
+            //routes.MapRoute(
+            //    name: "Index",
+            //    url: string.Empty,
+            //    defaults: new { controller = "Index", action = "Index" }
+            //);
+
+            //routes.MapRoute(
+            //    name: "Partials",
+            //    url: "Partials/{action}.html",
+            //    defaults: new { controller = "Partials" }
+            //);
+
+            //routes.MapHttpRoute(
+            //    name: "DefaultApi",
+            //    routeTemplate: "api/{controller}/{id}",
+            //    defaults: new { id = RouteParameter.Optional }
+            //);
+
+            //routes.MapRoute(
+            //    name: "DefaultController",
+            //    url: "{controller}/{action}"
+            //);
+
+            //routes.MapRoute(
+            //    name: "DefaultAnswer",
+            //    url: "{controller}/{action}",
+            //    defaults: new { controller = "Index", action = "index" }
+            //);
+
             routes.MapRoute(
-                name: "Index",
-                url: string.Empty,
-                defaults: new { controller = "Index", action = "Index" }
+                name: "DefaultController1Step",
+                url: "{controller}",
+                defaults: new { controller = "Default", action = "Index" }
             );
 
             routes.MapRoute(
-                name: "Partials",
-                url: "Partials/{action}.html",
-                defaults: new { controller = "Partials" }
-            );
-
-            routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
-
-            routes.MapRoute(
-                name: "DefaultController",
-                url: "{controller}/{action}"
+                name: "DefaultController2Step",
+                url: "{controller}/{action}",
+                defaults: new { controller = "Default", action = "Index" }
             );
 
             routes.MapRoute(
@@ -42,12 +71,6 @@ namespace PilotMvc.Config
                 "{*url}",
                 new { controller = "Index", action = "Index" }
             );
-
-            /*routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );*/
         }
     }
 }

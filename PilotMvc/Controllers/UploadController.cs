@@ -16,11 +16,12 @@ using Pilot.Util.Logging;
 
 namespace PilotMvc.Controllers
 {
+    [RoutePrefix("upload")]
     public class UploadController : Controller
     {
         public const string PrivateKeyWord = "Upl04dCr4zyyyynesSS";
 
-        [ActionName("file"), HttpPost, HandleUIException]
+        [Route("file"), HttpPost, HandleUIException]
         public JsonResult Create()
         {
             try

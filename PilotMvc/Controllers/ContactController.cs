@@ -13,12 +13,13 @@ using Pilot.Util.Data;
 
 namespace PilotMvc.Controllers
 {
+    [RoutePrefix("contact")]
     public class ContactController : Controller
     {
         [Dependency]
         public IContactService Service { get; set; }
 
-        [ActionName("create"), HttpPost, HandleUIException]
+        [Route("create"), HttpPost, HandleUIException]
         public JsonResult Create(Contact contact, string fileName, int fileSize)
         {
             try
@@ -33,8 +34,8 @@ namespace PilotMvc.Controllers
                 throw new JsonException(e);
             }
         }
-        
-        [ActionName("delete"), HttpPost, HandleUIException]
+
+        [Route("delete"), HttpPost, HandleUIException]
         public JsonResult Delete(long Id)
         {
             try
@@ -48,8 +49,8 @@ namespace PilotMvc.Controllers
                 throw new JsonException(e);
             }
         }
-        
-        [ActionName("query"), HttpPost, HandleUIException]
+
+        [Route("query"), HttpPost, HandleUIException]
         public JsonResult Query()
         {
             try
@@ -63,7 +64,7 @@ namespace PilotMvc.Controllers
             }
         }
 
-        [ActionName("get-contact-types"), HttpPost, HandleUIException]
+        [Route("get-contact-types"), HttpPost, HandleUIException]
         public JsonResult GetContactTypes()
         {
             try

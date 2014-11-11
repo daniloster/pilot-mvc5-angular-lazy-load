@@ -7,26 +7,40 @@ using System.Web.Mvc;
 
 namespace PilotMvc.Controllers
 {
+    [RoutePrefix("partials")]
+    [Route("{action=index}")]
     public class PartialsController : Controller
     {
         //
         // GET: /Partials/
+        [Route]
         public ActionResult Index()
         {
             return RedirectToAction("Home");
         }
 
+        [Route("home")]
         public ActionResult Home()
         {
             return View();
         }
 
+        ///if you dont assing any route name for your controller method,
+        /// yourit'll be the action name. Besides it is not a case sensitive
+        [Route("member")] 
         public ActionResult Member()
         {
             return View();
         }
 
+        [Route("contact")]
         public ActionResult Contact()
+        {
+            return View();
+        }
+
+        [Route("404")]
+        public ActionResult PageNotFound()
         {
             return View();
         }
