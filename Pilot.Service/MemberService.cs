@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace Pilot.Service
 {
@@ -27,7 +28,7 @@ namespace Pilot.Service
         public Member GetMemberWithContacts(long id)
         {
             var query = this.db.DbContext.Members
-                .Include("Contacts").Where(m => m.Id == id);
+                .Include(m => m.Contacts).Where(m => m.Id == id);
             return query.SingleOrDefault();
         }
 
@@ -38,7 +39,7 @@ namespace Pilot.Service
             List<Contact> contacts = new List<Contact>((entity.Contacts == null) ? new Contact[0] : entity.Contacts);
             for (short idx = 0, len = (short)contacts.Count; idx < len; idx++)
             {
-                contacts[idx].MemberId = entity.Id;
+                //contacts[idx].MemberId = entity.Id;
                 ContactSvc.Save(contacts[idx]);
             }
         }

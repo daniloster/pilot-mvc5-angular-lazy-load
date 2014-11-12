@@ -30,14 +30,14 @@
                     query: function (success, error) {
                         $http.post('/member/all').success(success).error(error);
                     },
-                    create: function (success, error) {
-                        $http.post('/member/save').success(success).error(error);
+                    create: function (data, success, error) {
+                        $http.post('/member/save', data).success(success).error(error);
                     },
-                    update: function (success, error) {
-                        $http.post('/member/save').success(success).error(error);
+                    update: function (data, success, error) {
+                        $http.post('/member/save', data).success(success).error(error);
                     },
-                    delete: function (success, error) {
-                        $http.post('/member/delete').success(success).error(error);
+                    delete: function (data, success, error) {
+                        $http.post('/member/delete', data).success(success).error(error);
                     }
                 };
                 

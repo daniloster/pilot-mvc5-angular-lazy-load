@@ -18,7 +18,7 @@ namespace Pilot.Database
             modelBuilder.Entity<Contact>()
             .HasRequired(c => c.Member)
             .WithMany(m => m.Contacts)
-            .HasForeignKey<long>(c => c.MemberId);
+            .Map(m => m.MapKey("MemberId"));
 
             //modelBuilder.Entity<StockMarketCurrentData>()
             //.HasRequired<StockMarketData>(cd => cd.IrelandIEXData);

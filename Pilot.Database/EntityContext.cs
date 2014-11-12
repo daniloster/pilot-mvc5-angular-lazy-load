@@ -35,18 +35,18 @@ namespace Pilot.Database
             return DbContext.SaveChanges();
         }
 
-        public TEntity GetAttachedEntity(TEntity entity)
+        public T GetAttachedEntity<T>(T entity) where T : class, IBaseEntity
         {
             return GetAttachedEntity(entity, new string[0]);
         }
-        public TEntity GetAttachedEntity(TEntity entity, string[] collectionToLoad)
+        public T GetAttachedEntity<T>(T entity, string[] collectionToLoad) where T : class, IBaseEntity
         {
-            DbEntityEntry<TEntity> entry = DbContext.Entry<TEntity>(entity);
+            DbEntityEntry<T> entry = DbContext.Entry<T>(entity);
 
             if (entry.State == EntityState.Detached)
             {
-                var set = DbContext.ObjectContext.CreateObjectSet<TEntity>();
-                TEntity attachedEntity = set.SingleOrDefault(e => e.Id == entity.Id);  // You need to have access to key
+                var set = DbContext.ObjectContext.CreateObjectSet<T>();
+                T attachedEntity = set.SingleOrDefault(e => e.Id == entity.Id);  // You need to have access to key
                 if (attachedEntity != null)
                 {
                     var attachedEntry = DbContext.Entry(attachedEntity);

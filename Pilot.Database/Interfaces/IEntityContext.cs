@@ -15,9 +15,9 @@ namespace Pilot.Database.Interfaces
 
         DbSet<TEntity> Repository { get; }
 
-        TEntity GetAttachedEntity(TEntity entity);
+        T GetAttachedEntity<T>(T entity) where T : class, IBaseEntity;
 
-        TEntity GetAttachedEntity(TEntity entity, string[] collectionToLoad);
+        T GetAttachedEntity<T>(T entity, string[] collectionToLoad) where T : class, IBaseEntity;
 
         void Save(TEntity entity);
 

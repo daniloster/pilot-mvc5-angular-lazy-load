@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace Pilot.Service
 {
@@ -26,12 +27,13 @@ namespace Pilot.Service
 
         public IList<Contact> GetWithMember()
         {
-            return db.DbContext.Contacts.Include("Member").ToList();
+            return db.DbContext.Contacts.Include(c => c.Member).ToList();
         }
 
         public override void Save(Contact entity)
         {
             ValidateRequiredProperties(entity);
+            entity.Member = db.GetAttachedEntity<Member>(entity.Member);
             base.Save(entity);
         }
 
@@ -42,11 +44,11 @@ namespace Pilot.Service
                 throw new ValidationException("A contact is required to save into database.", string.Format("{0} entity", typeof(Contact).Name));
             }
 
-            if (entity.MemberId <= 0)
-            {
-                throw new ValidationException("Member is required.",
-                    string.Format("{0} entity.{1}", typeof(Contact).Name, "MemberId"));
-            }
+            //if (entity.MemberId <= 0)
+            //{
+            //    throw new ValidationException("Member is required.",
+            //        string.Format("{0} entity.{1}", typeof(Contact).Name, "MemberId"));
+            //}
 
             if (entity.Type == null)
             {

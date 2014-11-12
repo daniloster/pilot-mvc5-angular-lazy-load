@@ -12,7 +12,7 @@ namespace Pilot.Entity
 {
     public class Contact : BaseEntity
     {
-        public long MemberId { get; set; }
+        //public long MemberId { get; set; }
         [Editable(false)]
         public virtual Member Member { get; set; } 
         public short ContactTypeId { get; set; }
