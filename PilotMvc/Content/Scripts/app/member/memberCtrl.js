@@ -65,6 +65,7 @@
                     $scope.loading = true;
                     var memberid = this.member.Id;
                     memberSvc.delete({ Id: memberid }, function (data) {
+                        $scope.loading = false;
                         alert("Deleted Successfully!!");
                         //$.each($scope.members, function (i) {
                         //    if ($scope.members[i].Id === memberid) {
@@ -73,10 +74,9 @@
                         //    }
                         //});
                         $scope.getAll();
-                        //$scope.loading = false;
                     }, function (data) {
-                        $scope.error = "An Error has occured while Saving Member! " + data;
                         $scope.loading = false;
+                        $scope.error = "An Error has occured while Saving Member! " + data;
 
                     });
                 };

@@ -9,7 +9,19 @@ namespace Pilot.Util.Security
 {
     public class Encrypter
     {
+
+
         public static string Encrypt(string keyword, string value)
+        {
+            var data = System.Text.Encoding.ASCII.GetBytes(
+                string.Format("{0}{1}",
+                    keyword,
+                    value));
+            data = MD5.Create().ComputeHash(data);
+            return Convert.ToBase64String(data);
+        }
+
+        public static string EncryptForPassword(string keyword, string value)
         {
             var data = System.Text.Encoding.ASCII.GetBytes(
                 string.Format("{0}{1}",

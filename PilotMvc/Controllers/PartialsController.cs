@@ -16,7 +16,7 @@ namespace PilotMvc.Controllers
         [Route]
         public ActionResult Index()
         {
-            return RedirectToAction("Home");
+            return RedirectToAction("home");
         }
 
         [Route("home")]
@@ -41,6 +41,18 @@ namespace PilotMvc.Controllers
 
         [Route("404")]
         public ActionResult PageNotFound()
+        {
+            return View();
+        }
+
+        [Route("not-authorized")]
+        public ActionResult NotAuthorized()
+        {
+            return View();
+        }
+
+        [Route("login")]
+        public ActionResult Login()
         {
             return View();
         }

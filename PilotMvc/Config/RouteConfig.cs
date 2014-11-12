@@ -55,21 +55,15 @@ namespace PilotMvc.Config
             //);
 
             routes.MapRoute(
-                name: "DefaultController1Step",
-                url: "{controller}",
+                name: "Index",
+                url: string.Empty,
                 defaults: new { controller = "Default", action = "Index" }
             );
 
             routes.MapRoute(
-                name: "DefaultController2Step",
-                url: "{controller}/{action}",
-                defaults: new { controller = "Default", action = "Index" }
-            );
-
-            routes.MapRoute(
-                "DefaultRoute",
+                "NotFound",
                 "{*url}",
-                new { controller = "Index", action = "Index" }
+                new { controller = "Default", action = "Index" }
             );
         }
     }

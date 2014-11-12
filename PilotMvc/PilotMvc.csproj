@@ -183,9 +183,14 @@
     <Content Include="Content\Scripts\app.js" />
     <Content Include="Content\Scripts\app\contact\contactCtrl.js" />
     <Content Include="Content\Scripts\app\contact\contactSvc.js" />
+    <Content Include="Content\Scripts\app\home\homeSvc.js" />
     <Content Include="Content\Scripts\app\upload\fileModel.js" />
     <Content Include="Content\Scripts\app\upload\uploadSvc.js" />
     <Content Include="Content\Scripts\app\util\loadingCtrl.js" />
+    <Content Include="Content\Scripts\app\_examples\examplesCtrl.js" />
+    <Content Include="Content\Scripts\auth\userCtrl.js" />
+    <Content Include="Content\Scripts\auth\roles.js" />
+    <Content Include="Content\Scripts\auth\session.js" />
     <Content Include="Content\Scripts\util.js" />
     <Content Include="Content\Scripts\main.js" />
     <Content Include="Content\Scripts\app\member\memberSvc.js" />
@@ -939,7 +944,7 @@
     <Content Include="Content\Scripts\lib\jQuery\jquery-1.10.2.min.js" />
     <Content Include="Content\Scripts\lib\jQuery\jquery.validate.min.js" />
     <Content Include="Content\Scripts\lib\jQuery\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Content\Scripts\resolveDependencies.js" />
+    <Content Include="Content\Scripts\resolve.js" />
     <Content Include="Content\Styles\Boilerplate\form.css" />
     <Content Include="Content\Styles\Boilerplate\main.css" />
     <Content Include="Content\Styles\Boilerplate\normalize.css" />
@@ -973,9 +978,10 @@
     <Compile Include="Config\Unity\UnityMvcActivator.cs" />
     <Compile Include="Config\Unity\UnityWebApiActivator.cs" />
     <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
-    <Compile Include="Controllers\MemberTestController.cs" />
+    <Compile Include="Controllers\MemberBetaApiController.cs" />
     <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="Controllers\PartialsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -991,11 +997,14 @@
     <Content Include="Views\SkeletonLayout.cshtml" />
     <Content Include="Views\SkeletonNavMenu.cshtml" />
     <Content Include="Views\LoadingPanel.cshtml" />
-    <Content Include="Views\Index\Index.cshtml" />
+    <Content Include="Views\Default\Index.cshtml" />
     <Content Include="Views\Partials\Home.cshtml" />
     <Content Include="Content\Scripts\lib\jQuery\jquery-2.min.js" />
     <Content Include="Views\Partials\Contact.cshtml" />
     <Content Include="Views\Partials\404.cshtml" />
+    <Content Include="Views\Partials\NotAuthorized.cshtml" />
+    <Content Include="Views\Partials\Login.cshtml" />
+    <Content Include="Views\Partials\Examples.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

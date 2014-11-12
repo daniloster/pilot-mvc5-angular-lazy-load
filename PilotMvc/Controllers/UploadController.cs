@@ -52,9 +52,8 @@ namespace PilotMvc.Controllers
 
         public static string GetFileName(string fileName, int size)
         {
-            string _fileName = Encrypter.Encrypt(
-                    string.Format("{0}{1}{2}", System.Web.HttpContext.Current.Session.SessionID, PrivateKeyWord, size)
-                    , fileName).Replace("=", string.Empty);
+            string _fileName = Encrypter.Encrypt(PrivateKeyWord
+                    , string.Format("{0}{1}{2}{3}", System.Web.HttpContext.Current.Session.SessionID, PrivateKeyWord, size, fileName));
             _fileName = string.Format("{0}{1}", _fileName, fileName.Substring(fileName.LastIndexOf(".")));
             return _fileName;
         }

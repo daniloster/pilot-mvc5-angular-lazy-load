@@ -3,29 +3,44 @@
     define(['app'], function (app) {
         if (Svc == null) {
             Svc = ['$resource', '$http', function ($resource, $http) {
-                var resource = $resource('/api/member/:Id', {}, {
-                    query: { method: 'GET', params: { Id: '' }, isArray: true },
-                    create: { method: 'POST', params: { Id: '' } },
-                    update: { method: 'PUT', params: { Id: '@Id' } },
-                    delete: { method: 'DELETE', params: { Id: '@Id' } }
-                });
 
-                resource.test = function (param, successHandler, errorHandler) {
-                    $http({
-                        url: '/member-test/send-test',
-                        method: "POST",
-                        data: param
-                    }).success(successHandler).error(errorHandler);
+                var resource = {
+                    beta: $resource('/api/member-beta/:Id', {}, {
+                        query: { method: 'GET', params: { Id: '' }, isArray: true },
+                        create: { method: 'POST', params: { Id: '' } },
+                        update: { method: 'PUT', params: { Id: '@Id' } },
+                        delete: { method: 'DELETE', params: { Id: '@Id' } }
+                    }),
+                    test: {
+                        method1: function (param, successHandler, errorHandler) {
+                            $http({
+                                url: '/member/send-test',
+                                method: "POST",
+                                data: param
+                            }).success(successHandler).error(errorHandler);
+                        },
+                        method2: function (param, successHandler, errorHandler) {
+                            $http({
+                                url: '/member/send-test2',
+                                method: "POST",
+                                data: param
+                            }).success(successHandler).error(errorHandler);
+                        }
+                    },
+                    query: function (success, error) {
+                        $http.post('/member/all').success(success).error(error);
+                    },
+                    create: function (success, error) {
+                        $http.post('/member/save').success(success).error(error);
+                    },
+                    update: function (success, error) {
+                        $http.post('/member/save').success(success).error(error);
+                    },
+                    delete: function (success, error) {
+                        $http.post('/member/delete').success(success).error(error);
+                    }
                 };
-
-                resource.test2 = function (param, successHandler, errorHandler) {
-                    $http({
-                        url: '/member-test/send-test2',
-                        method: "POST",
-                        data: param
-                    }).success(successHandler).error(errorHandler);
-                };
-
+                
                 return resource;
             }];
             //<instance>.test({LastName: "Castro", function(data) { console.log(data); }, function(data) { console.log(data); } });

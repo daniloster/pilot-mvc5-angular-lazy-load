@@ -10,13 +10,11 @@ using Pilot.Util.Mvc;
 
 namespace PilotMvc.Controllers
 {
-    [RoutePrefix("")]
-    [Route("{action=index}")]
     public class DefaultController : Controller
     {
         public ActionResult Index()
         {
-            return View("~/Views/Index/Index.cshtml");
+            return View();
         }
 	}
 }

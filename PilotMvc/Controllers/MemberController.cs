@@ -1,121 +1,46 @@
 ﻿using Microsoft.Practices.Unity;
 using Pilot.Entity;
-using Pilot.Service;
 using Pilot.Service.Interfaces;
-using Pilot.Util.Unity.Lifetime;
+using Pilot.Util.Exceptions;
+using Pilot.Util.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+using System.Web.Mvc;
 
 namespace PilotMvc.Controllers
 {
-    /*http://localhost:[port]/api/member*/
-    [Route("api/member")]
-    public class MemberController : ApiController
+
+    [RoutePrefix("member")]
+    public class MemberTestController : Controller
     {
-        //public MemberService service = new MemberService();
         [Dependency]
         public IMemberService Service { get; set; }
 
-        public MemberController() { }
-
-        // GET api/member
-        //[Route("")]
-        //[HttpGet]
-        public IEnumerable<Member> Get()
+        [Route("all")]
+        public ActionResult Get()
         {
-            return Service.Get();
+            return new JsonResultView(Service.Get(), JsonRequestBehavior.AllowGet);
         }
 
-        // GET api/member/5
-        //[Route("{id:int}")]
-        //[HttpGet]
-        public Member Get(int id)
+        [Route("get")]
+        public ActionResult Get(int id)
         {
-            Member member = Service.Get(id);
-            if (member == null)
-            {
-                throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
-            }
-            return member;
+            return new JsonResultView(Service.Get(id), JsonRequestBehavior.AllowGet);
         }
 
-        // POST api/member
-        //[Route("")]
-        //[HttpPost]
-        public HttpResponseMessage Post(Member member)
+        [Route("save")]
+        public ActionResult Save(Member member)
         {
-            if (ModelState.IsValid)
-            {
-                Service.Save(member);
-                Service.Save(member);
-                Service.Save(member);
 
-                HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, member);
-                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = member.Id }));
-                return response;
-            }
-            else
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-            }
+            Service.Save(member);
+            return new JsonResultView(member, JsonRequestBehavior.AllowGet);
         }
 
-        // PUT api/member/5
-        //[Route("{id:int}")]
-        //[HttpPut]
-        public HttpResponseMessage Put(int id, Member member)
+        [Route("delete")]
+        public ActionResult Delete(long id)
         {
-            if (!ModelState.IsValid)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-            }
-
-            if (id != member.Id)
-            {
-                return Request.CreateResponse(HttpStatusCode.BadRequest);
-            }
-
-            
-
-            try
-            {
-                Service.Save(member);
-            }
-            //catch (DbUpdateConcurrencyException ex)
-            catch (Exception ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
-            }
-
-            return Request.CreateResponse(HttpStatusCode.OK);  
-        }
-
-        // DELETE api/member/5
-        //[Route("{id:int}")]
-        //[HttpDelete]
-        public HttpResponseMessage Delete(long id)
-        {
-            Member member = Service.Get(id);
-            if (member == null)
-            {
-                return Request.CreateResponse(HttpStatusCode.NotFound);
-            }
-
-            try
-            {
-                Service.Delete(member);
-            }
-            //catch (DbUpdateConcurrencyException ex)
-            catch (Exception ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
-            }
-
-            return Request.CreateResponse(HttpStatusCode.OK, member);
+            Service.Delete(id);
+            return new JsonResultView(new { Status = "success", Message = "Member has been deleted!" }, JsonRequestBehavior.AllowGet);
         }
 
         protected override void Dispose(bool disposing)
@@ -123,5 +48,41 @@ namespace PilotMvc.Controllers
             Service.Dispose();
             base.Dispose(disposing);
         }
+
+        #region Test methods
+
+        [Route("send-test"), HttpPost, HandleUIException]
+        public JsonResult Send(Member member)
+        {
+            try
+            {
+                var obj = new Member { FirstName = "Mock", LastName = member.LastName, Id = 20 };
+                var list = new List<Member>();
+                for (int i = 0; i < 230; i++)
+                {
+                    list.Add(obj);
+                }
+                return Json(list, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                throw new JsonException(e);
+            }
+        }
+
+        [Route("send-test2"), HttpPost, HandleUIException]
+        public JsonResult Send2(Member member)
+        {
+            try
+            {
+                return new JsonResultView(new { FirstName = "Mock", LastName = member.LastName, Birthday = DateTime.Now }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                throw new JsonException(e);
+            }
+        }
+
+        #endregion
     }
 }

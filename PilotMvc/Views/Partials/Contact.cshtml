@@ -36,7 +36,7 @@
                 </tr>
             </thead>
             <tbody>
-                    <tr data-ng-repeat="entity in contacts | filter:textFilter">
+                    <tr ng-repeat="entity in contacts | filter:textFilter">
                     <td><strong>{{ entity.Id }}</strong></td>
                     <td>
                         <p>{{ entity.Type.Description }}</p>
@@ -48,7 +48,7 @@
                         <p>{{ entity.Member.FirstName }} {{ entity.Member.LastName }}</p>
                     </td>
                     <td>
-                        <p><a data-ng-click="delete(entity, $index)" href="javascript:;">Delete</a></p>
+                        <p><a ng-click="delete(entity, $index)" href="javascript:;">Delete</a></p>
                     </td>
                 </tr>
             </tbody>
