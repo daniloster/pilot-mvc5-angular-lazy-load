@@ -6,10 +6,9 @@ Pilot project integrating MVC5, Entity Framework 6 and front-end based on requir
 1. Purpose
 2. Basic aproaching of modules
   1. DI (*Dependency injection*)
-  2. ~~ASP MVC5~~
-    * ~~What is it?~~
-    * ~~What does it do?~~
-    * ~~How do I configure it?~~
+  2. ASP MVC5
+    * What is it? What does it do?
+    * How do I configure it?
     * ~~Dependency injection with MVC5~~
   3. ~~Javascript~~
     * ~~First steps~~ 
@@ -47,4 +46,112 @@ Firstly, I'll give you some references about the subject and afterwards I'll giv
 [Dependency injection, MSDN](http://msdn.microsoft.com/en-us/library/dn178469(v=pandp.30).aspx)
 [Dependency injection with Unity](http://msdn.microsoft.com/en-us/library/dn178463(v=pandp.30).aspx)
 So, DI comes from IoC (*Inversion of Control*). IoC basically means that none object can instantiate your dependencies. Then, it can be implemented by many ways, one of them it is DI. We have a lot of frameworks and libraries with DI implementation such as Spring, Dagger, Google Guice - [for Java](https://keyholesoftware.com/2014/02/17/dependency-injection-options-for-java/) -, Unity, Spring.NET, Castle Windsor - [for .NET](http://www.hanselman.com/blog/ListOfNETDependencyInjectionContainersIOC.aspx).
-In this project we're going to use Unity.
+In this project we're going to use Unity to inject the dependencies.
+
+### ASP MVC5
+
+#### What is it? What does it do?
+It is a web framework based on assign a URL request to a controller method. In a MVC5 project you can map URLs to base controllers that will return a generic type called ActionResult. As you can see below.
+```CSharp
+
+/// Guessing that we have the mapping below in our project, the following 
+/// controller has access through the URL: "default/index", it means that
+/// you're gonna call Index method inside Default controller.
+routes.MapRoute(
+    name: "AnyNameItIsLikeAKeyForEachMapping",
+    url: "{controller}/{action}"
+);
+
+
+/// Controller named as DefaultController extending a base controller type
+public class DefaultController : Controller
+{
+    /// ActionResult, it is a generic type. In spite of you define return as 
+    /// ActionResult, you can return a lot of sub-types as FileContentResult,
+    /// ContentResult, JsonResult and so on.
+    public ActionResult Index()
+    {
+        return View("~/Views/Index/Index.cshtml");
+    }
+}
+```
+But you can also map URLs to api controllers which ones will answer providing xml and json data. Taking advantage on it, you can build REST services.
+In version 5, MVC brings mapping through the attributes (who are used to handle java code, it is the same as annotations).
+As you can notice in the following example.
+```CSharp
+[Route("api/member")]
+public class MemberController : ApiController
+{
+    /// Without Dependency Injection for while
+    public MemberService service = new MemberService();
+    
+    public MemberController() { }
+
+    // GET api/member
+    public IEnumerable<Member> Get()
+    {
+        return Service.Get();
+    }
+}
+```
+### How do I configure it?
+Mapping routes can be done in two ways.
+  * Literal Mapping in a RouteConfig class
+  * Attribute Mapping in the controller classes
+
+#### Literal Mapping in a RouteConfig class
+In your Global.asax.cs file, on method Application_Start you must have a code like following.
+```CSharp
+protected void Application_Start()
+{
+    /// Defining global serializer which one uses Newtonsoft.Json 
+    /// to define behaviour in a looping reference
+    GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Serialize;
+    /// The following two lines are important to configure our routes
+    GlobalConfiguration.Configure(RouteConfig.Register);
+    RouteConfig.RegisterRoutes(RouteTable.Routes);
+    
+    BundleConfig.RegisterBundles(BundleTable.Bundles);
+}
+```
+Then, in our RouteConfig file (you can create in any directory, but I'd suggest create that class in a config folder (namespace).
+```CSharp
+public class RouteConfig
+{
+    public static void Register(HttpConfiguration config)
+    {
+        /// Mapping our api controllers
+        /// It is important understand the routeTemplate variable
+        /// It means that the core web handler will try to match the 
+        /// request in order. So, try to create your route from the 
+        /// most specific to generic one.
+        /// In that URL mapped, we have {controller} which means the 
+        /// controller name and it is not case sensitive.
+        /// And {id} that is a parameter configured in the next line as optional.
+        /// The name of the parameter should match with parameter name on your 
+        /// methods, then can be omitted.
+        routes.MapHttpRoute(
+            name: "DefaultApi",
+            routeTemplate: "api/{controller}/{id}",
+            defaults: new { id = RouteParameter.Optional }
+        );
+    }
+    
+    public static void RegisterRoutes(RouteCollection routes)
+    {
+        routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+        AreaRegistration.RegisterAllAreas();
+        
+        /// Mapping our base controllers
+        /// In any case, although our controllers are being named meanwhile 
+        /// class as MemberController or ContactController, the parameter 
+        /// {controller} must omit the word "Controller".
+        routes.MapRoute(
+            name: "DefaultController",
+            url: "{controller}/{action}",
+            defaults: new { controller = "Index", action = "Index" }
+        );
+    }
+}
+```
+Afterwards, we are able to make a request base in these pattern of URLs like "contact/query" for base controller and "api/member/:id" for api controller, but the parameter :id must be changed by a real value.
