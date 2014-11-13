@@ -3,7 +3,7 @@ Pilot C# MVC5 (EF6, AngularJS, RequireJS)
 Pilot project integrating MVC5, Entity Framework 6 and front-end based on requirejs and angularjs with lazy load. I'll talk about each part but I'll keep focusing on AngularJS + RequireJS. It is important to understand javascript and closure before going on.
 
 ## Roadmap
-1. Purpose
+1. [Purpose](#purpose)
 2. Basic aproaching of modules
   1. DI (*Dependency injection*)
   2. ASP MVC5
