@@ -490,3 +490,14 @@ namespace PilotMvc.Config.Unity
     }
 }
 ```
+Some classes, which are referenced here, are locate at Pilot.Util project. We have some attributes that make distinction between classes assigning an specific scope of life-cycle.
+Other important class, it is UnityHelper that one provides a filtering based on the referenced attribute.
+
+We should keep in mind that one of the most important parts it is the first initialization, I mean, we need to define a factory for our controllers. As you can see in the next block:
+```Csharp
+//Set container for Controller Factory
+MvcUnityContainer.Container = container;
+
+//Set for Controller Factory
+ControllerBuilder.Current.SetControllerFactory(typeof(UnityControllerFactory));
+```
