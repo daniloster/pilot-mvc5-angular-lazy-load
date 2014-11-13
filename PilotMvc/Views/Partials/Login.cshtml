@@ -1,11 +1,14 @@
-﻿<form name="userForm" ng-controller="userCtrl">
+﻿<form name="userForm" ng-controller="userCtrl" class="pure-form pure-form-aligned">
     <h2>{{ titleRegister }}</h2>
-    <label>User Name:</label><input type="text" ng-model="user.userName" required />
-    <label>Password:</label><input type="text" ng-model="user.password" required />
+    <div class="pure-control-group">
+        <label>User Name:</label><input type="text" ng-model="user.userName" required />
+    </div>
+    <div class="pure-control-group">
+        <label>Password:</label><input type="text" ng-model="user.password" required />
+    </div>
     <br />
-    <br />
-    <input type="submit" value="Add" ng-click="login()" ng-disabled="!userForm.$valid" class="btn btn-primary" />
-    <br />
-    <br />
+    <div class="pure-control-group">
+        <input type="submit" value="Sign in" ng-click="login()" ng-disabled="!userForm.$valid" class="pure-button pure-button-primary" />
+    </div>
     <p>{{ message }}</p>
 </form>

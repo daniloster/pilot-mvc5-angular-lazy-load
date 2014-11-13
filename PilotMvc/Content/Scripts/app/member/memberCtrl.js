@@ -2,7 +2,8 @@
     var MemberCtrl = null;
     define(['app', 'app/member/memberSvc', 'components/pagination/paginationCtrl'], function (app) {
         if (MemberCtrl === null) {
-            MemberCtrl = ['$scope', '$filter', 'memberSvc', function ($scope, $filter, memberSvc) {
+            MemberCtrl = ['$scope', '$rootScope', '$filter', 'memberSvc', function ($scope, $rootScope, $filter, memberSvc) {
+                $rootScope.title = "CRUD Member"
                 $scope.loading = true;
                 $scope.addMode = false;
 

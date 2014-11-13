@@ -2,7 +2,8 @@
     var Ctrl = null;
     define(['app', 'app/member/memberSvc', 'app/contact/contactSvc', 'app/upload/uploadSvc', 'app/upload/fileModel'], function (app) {
         if (Ctrl == null) {
-            Ctrl = ['$scope', 'memberSvc', 'contactSvc', 'uploadSvc', function ($scope, memberSvc, contactSvc, uploadSvc) {
+            Ctrl = ['$scope', '$rootScope', '$filter', 'memberSvc', 'contactSvc', 'uploadSvc', function ($scope, $rootScope, $filter, memberSvc, contactSvc, uploadSvc) {
+                $rootScope.title = "CRUD Contact";
                 var clearContact = function () {
                     $scope.contact = { Member: { Id: 0 }, Type: { Id: 0 } };
                     $scope.myFileData = {};
@@ -14,6 +15,17 @@
                 $scope.members = [];
                 $scope.contactTypes = [];
                 $scope.contacts = [];
+
+                var searchFilter = $filter('filter');
+                $scope.pager = {
+                    items: function () { return searchFilter(!!$scope.contacts ? $scope.contacts : [], $scope.textFilter); },
+                    currentPage: 1,
+                    itemsPerPage: 4
+                };
+
+                $scope.$on('paginationRequireInit', function (event, init) {
+                    init('pager', $scope.pager);
+                });
 
                 $scope.$watch('myFile', function (nval, oval) {
                     if (nval === oval) return;

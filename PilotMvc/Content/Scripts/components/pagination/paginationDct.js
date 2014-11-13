@@ -1,6 +1,6 @@
 ﻿(function () {
     var loaded = false;
-    define(['app'], function (app) {
+    define(['app', 'components/pagination/paginationCtrl'], function (app) {
         if (!loaded) {
             app.lazy.directive("pagination", function () {
                 return {

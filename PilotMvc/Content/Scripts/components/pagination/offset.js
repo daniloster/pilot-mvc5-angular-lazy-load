@@ -1,6 +1,6 @@
 ﻿(function () {
     var loaded = false;
-    define(['app'], function (app) {
+    define(['app', 'components/pagination/paginationDct'], function (app) {
         if (!loaded) {
             app.filter('offset', function () {
                 return function (input, start) {

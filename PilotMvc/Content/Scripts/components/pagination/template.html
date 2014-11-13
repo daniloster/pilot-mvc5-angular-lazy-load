@@ -1,12 +1,12 @@
 ﻿<link href="/Content/Scripts/components/pagination/style.css" type="text/css" rel="stylesheet" />
-<ul class="pure-paginator" ng-controller="paginationCtrl">
-    <li class="pure-button prev"><a href="#" ng-disabled="prevPageDisabled()" ng-click="firstPage()">First</a></li>
-    <li class="pure-button prev"><a href="#" ng-disabled="prevPageDisabled()" ng-click="prevPage()"><i class="fa fa-angle-left fa"></i></a></li>
-    <li class="pagination-desc"><span>Page</span></li>
+<ul class="pure-paginator" ng-controller="paginationCtrl" ng-disabled="isVisible()">
+    <li class="pure-button prev" ng-disabled="prevPageDisabled()" ng-click="firstPage()"><a href="javascript:;">First</a></li>
+    <li class="pure-button prev" ng-disabled="prevPageDisabled()" ng-click="prevPage()"><a href="javascript:;"><i class="fa fa-angle-left fa"></i></a></li>
+    <li class="pagination-desc"><div>Page</div></li>
     <li class="pure-button"><input class="page-input" placeholder="1" type="number" ng-model="newCurrentPage"></li>
-    <li class="pure-button"><a class="page-search" title="Search"><i class="fa fa-search"></i></a></li>
-    <li class="pagination-desc"><span>of {{ pageCount() }}</span></li>
-    <li class="pure-button next"><a href="#" ng-disabled="nextPageDisabled()" ng-click="nextPage()"><i class="fa fa-angle-right fa"></i></a></li>
-    <li class="pure-button next"><a href="#" ng-disabled="nextPageDisabled()" ng-click="lastPage()">Last</a></li>
-    <li class="pagination-desc"><span>{{ totalItems() }} items found</span></li>
+    <li class="pagination-desc"><a class="page-search" title="Search"><i class="fa fa-search"></i></a></li>
+    <li class="pagination-desc"><div>of {{ pageCount() }}</div></li>
+    <li class="pure-button next" ng-disabled="nextPageDisabled()" ng-click="nextPage()"><a href="javascript:;"><i class="fa fa-angle-right fa"></i></a></li>
+    <li class="pure-button next" ng-disabled="nextPageDisabled()" ng-click="lastPage()"><a href="javascript:;">Last</a></li>
+    <li class="pagination-desc"><div>{{ totalItems() }} items found</div></li>
 </ul>

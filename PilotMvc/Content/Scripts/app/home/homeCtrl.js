@@ -2,7 +2,8 @@
     var Ctrl = null, idx = 0;
     define(['app', 'app/home/homeSvc'], function (app) {
         if (Ctrl == null) {
-            Ctrl = ['$scope', '$filter', 'homeSvc', function ($scope, $filter, homeSvc) {
+            Ctrl = ['$scope', '$rootScope', '$filter', 'homeSvc', function ($scope, $rootScope, $filter, homeSvc) {
+                $rootScope.title = "Home";
                 var messages = ["This is the home controller", "Welcome to home controller", "It is a new attempt"];
                 $scope.message = messages[idx];
 

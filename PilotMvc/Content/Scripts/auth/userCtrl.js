@@ -2,10 +2,11 @@
     var Ctrl = null;
     define(['app'], function (app) {
         if (Ctrl == null) {
-            Ctrl = ['$scope', '$location', 'authorizationSvc', function ($scope, $location, authorizationSvc) {
+            Ctrl = ['$scope', '$rootScope', '$location', 'authorizationSvc', function ($scope, $rootScope, $location, authorizationSvc) {
+                $rootScope.title = "Login";
                 $scope.login = function () {
                     authorizationSvc.login($scope.user, function (data) {
-                        $location.path('/home');
+                        $location.path('/');
                     }, function (data) {
                         $scope.message = data.Message;
                     })

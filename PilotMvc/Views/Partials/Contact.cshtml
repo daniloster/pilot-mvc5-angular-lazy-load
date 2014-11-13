@@ -1,58 +1,84 @@
 ﻿<div ng-controller="contactCtrl" class="clearfix">
-    <h2>{{ message }}</h2>
-
-    <form name="addContact">
-        <input type="file" name="myFile" file-model="myFile"/>
-        <span ng-show="!addContact.myFile.$valid">{{ myFile.fileName }}</span>
-        <input ng-show="!addContact.myFile.$valid" type="button" ng-click="upload()" value="Upload" />
-
-
-        <select ng-show="myFileData.Size > 0" ng-model="contact.Member" required ng-options="member.FirstName for member in members">
-          <option value="">-- choose member --</option>
-        </select>
-
-        <select ng-show="myFileData.Size > 0" ng-model="contact.Type" required ng-options="type.Description for type in contactTypes">
-          <option value="">-- choose contact type --</option>
-        </select>
-        <span ng-show="myFileData.Size > 0">{{ contact.Member.FirstName }}</span><br />
-        <span ng-show="myFileData.Size > 0">{{ contact.Member.LastName }}</span><br />
-        <span ng-show="myFileData.Size > 0">{{ contact.Member.Birthday | date:'dd/MM/yyyy' }}</span><br />
-        <span ng-show="myFileData.Size > 0">{{ contact.Type.Description }}</span><br />
-        <input ng-show="myFileData.Size > 0" type="text" ng-model="contact.Value" required/>
-
-        <input type="submit" value="Add" ng-show="myFileData.Size > 0" ng-click="create()" ng-disabled="!addContact.$valid" class="btn btn-primary" />
-        <input type="button" value="Cancel" ng-show="myFileData.Size > 0" ng-click="clear()" class="btn btn-primary" />
-    </form>
-
-    <div class="eight columns">
-        <input type="text" ng-model="textFilter" />
-        <table class="table table-bordered table-hover members-table">
-            <thead class="strong">
-                <tr>
-                    <th>#</th>
-                    <th>Type</th>
-                    <th>Value</th>
-                    <th>Member</th>
-                </tr>
-            </thead>
-            <tbody>
-                    <tr ng-repeat="entity in contacts | filter:textFilter">
-                    <td><strong>{{ entity.Id }}</strong></td>
-                    <td>
-                        <p>{{ entity.Type.Description }}</p>
-                    </td>
-                    <td>
-                        <p>{{ entity.Value }}</p>
-                    </td>
-                    <td>
-                        <p>{{ entity.Member.FirstName }} {{ entity.Member.LastName }}</p>
-                    </td>
-                    <td>
-                        <p><a ng-click="delete(entity, $index)" href="javascript:;">Delete</a></p>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="pure-u-1">
+        <strong class="error">{{ error }}</strong>
     </div>
+    <div class="pure-g">
+        <div class="pure-u-1-2">
+            <h2>{{ message }}</h2>
 
+            <form name="addContact" class="pure-form pure-form-aligned">
+                <div class="pure-control-group">
+                    <input type="file" name="myFile" file-model="myFile" class="pure-button" required />
+                    <input type="button" ng-click="upload()" value="Upload" class="pure-button pure-button-primary"/>
+                </div>
+                
+                <div class="pure-control-group" ng-show="myFileData.Size > 0">
+                    <label>Member</label>
+                    <select ng-model="contact.Member" required ng-options="member.FirstName for member in members">
+                      <option value="">-- choose member --</option>
+                    </select>
+                </div>
+                
+                <div class="pure-control-group" ng-show="myFileData.Size > 0">
+                    <label>Contact type</label>
+                    <select ng-model="contact.Type" required ng-options="type.Description for type in contactTypes">
+                      <option value="">-- choose contact type --</option>
+                    </select>
+                </div>
+
+                <div class="pure-control-group" ng-show="myFileData.Size > 0">
+                    <label>Contact</label>
+                    <input type="text" ng-model="contact.Value" required/>
+                </div>
+
+                <div class="pure-control-group" ng-show="myFileData.Size > 0">
+                    <input type="submit" value="Add" ng-click="create()" ng-disabled="!addContact.$valid" class="pure-button pure-button-primary" />
+                    <input type="button" value="Cancel" ng-click="clear()" class="pure-button" />
+                </div>
+            </form>
+        </div>
+
+        <div class="pure-u-1-2">
+            <form class="pure-form">
+                <fieldset>
+                    <input type="text" placeholder="Search" ng-model="textFilter" />
+                </fieldset>
+            </form>
+            <table class="pure-table pure-table-horizontal">
+                <thead class="strong">
+                    <tr>
+                        <th>#</th>
+                        <th>Type</th>
+                        <th>Value</th>
+                        <th>Member</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr ng-repeat="entity in contacts | filter:textFilter | offset: (pager.currentPage-1)*pager.itemsPerPage | limitTo: pager.itemsPerPage">
+                        <td><strong>{{ entity.Id }}</strong></td>
+                        <td>
+                            <p>{{ entity.Type.Description }}</p>
+                        </td>
+                        <td>
+                            <p>{{ entity.Value }}</p>
+                        </td>
+                        <td>
+                            <p>{{ entity.Member.FirstName }} {{ entity.Member.LastName }}</p>
+                        </td>
+                        <td>
+                            <p><a ng-click="delete(entity, $index)" href="javascript:;">Delete</a></p>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5">
+                            <pagination></pagination>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
 </div>

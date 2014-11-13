@@ -1,5 +1,20 @@
 ﻿.pagination-desc {
     color: #0088cc;
     text-decoration: none;
-    background-color:#C0C1C3;
+    background-color: #E6E6E6;
+    border-radius: 0;
+    padding: .8em 1.4em;
+    vertical-align: top;
+    height: 1.1em;
+}
+
+.page-input {
+    width: 60px;
+    text-align: center;
+    padding: 0;
+}
+
+.pure-paginator .prev a, .pure-paginator .next a {
+    color: #0088cc;
+    text-decoration:none;
 }

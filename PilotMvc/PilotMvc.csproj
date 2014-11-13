@@ -174,7 +174,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Fonts\fontawesome-webfont.svg" />
     <Content Include="Content\Images\ajax-loader.gif" />
+    <Content Include="Content\Images\ajax-loading.gif" />
     <Content Include="Content\Images\sk-apple-touch-icon-114x114.png" />
     <Content Include="Content\Images\sk-apple-touch-icon-72x72.png" />
     <Content Include="Content\Images\sk-apple-touch-icon.png" />
@@ -945,6 +947,10 @@
     <Content Include="Content\Scripts\lib\angularjs\i18n\angular-locale_zu-za.js" />
     <Content Include="Content\Scripts\lib\angularjs\i18n\angular-locale_zu.js" />
     <Content Include="Config\DbConnections.config" />
+    <Content Include="Content\Fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Fonts\FontAwesome.otf" />
     <None Include="Content\Scripts\lib\jQuery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\Scripts\lib\jQuery\jquery-1.10.2.min.js" />
     <Content Include="Content\Scripts\lib\jQuery\jquery.validate.min.js" />
@@ -1023,7 +1029,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="App_Start\" />
-    <Folder Include="Content\Fonts\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -1051,7 +1056,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>53138</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

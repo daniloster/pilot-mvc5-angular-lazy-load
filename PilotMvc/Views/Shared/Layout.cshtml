@@ -41,13 +41,15 @@
     <![endif]-->
     <!-- Primary Page Layout
 	================================================== -->
+    @Html.Partial("~/Views/Shared/LoadingPanel.cshtml")
+
     @Html.Partial("~/Views/Shared/NavMenu.cshtml")
 
     <div role="page" class="pure-g">
 	    <!-- Delete everything in this .container and get started on your own site! -->
         <div class="pure-u-1">
             <header class="wrapper clearfix">
-                <h1 class="remove-bottom" style="margin-top: 40px">@ViewBag.Title</h1>
+                <h1 class="remove-bottom" style="margin-top: 40px">{{ $root.title }}</h1>
             </header>
             
         </div>
@@ -64,8 +66,6 @@
             </footer>
         </div>
     </div>
-
-    @Html.Partial("~/Views/Shared/LoadingPanel.cshtml")
 <!-- End Document
 ================================================== -->
     <script>

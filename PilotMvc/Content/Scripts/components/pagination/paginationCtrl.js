@@ -1,6 +1,6 @@
 ﻿(function () {
     var Ctrl = null;
-    define(['app', 'components/pagination/paginationDct'], function (app) {
+    define(['app'], function (app) {
         if (Ctrl == null) {
             Ctrl = ['$scope', function ($scope) {
                 var pagination = null;
@@ -49,6 +49,10 @@
                     } else {
                         return 0;
                     }
+                };
+
+                $scope.isVisible = function () {
+                    return $scope.pageCount() > 1;
                 };
 
                 $scope.nextPage = function () {
