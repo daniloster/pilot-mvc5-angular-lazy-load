@@ -155,3 +155,134 @@ public class RouteConfig
 }
 ```
 Afterwards, we are able to make a request base in these pattern of URLs like "contact/query" for base controller and "api/member/:id" for api controller, but the parameter :id must be changed by a real value.
+
+####Attribute Mapping in the controller classes
+Mapping by attribute it is very easy. Instead of  routes.MapRoute in our RouteConfig methods, we need to call:
+```CSharp
+public static void Register(HttpConfiguration config)
+{
+    config.MapHttpAttributeRoutes();
+}
+
+public static void RegisterRoutes(RouteCollection routes)
+{
+    routes.MapMvcAttributeRoutes();
+}
+```
+And in our controllers, we can map directly on methods or partial on classes and methods as you can see below.
+```CSharp
+[RoutePrefix("member")]
+public class MemberTestController : Controller
+{
+    private MemberService Service = new MemberService();
+
+    [Route("all")]
+    public ActionResult Get()
+    {
+        return new JsonResultView(Service.Get(), JsonRequestBehavior.AllowGet);
+    }
+
+    [Route("get")]
+    public ActionResult Get(int id)
+    {
+        return new JsonResultView(Service.Get(id), JsonRequestBehavior.AllowGet);
+    }
+
+    [Route("save")]
+    public ActionResult Save(Member member)
+    {
+
+        Service.Save(member);
+        return new JsonResultView(member, JsonRequestBehavior.AllowGet);
+    }
+}
+
+public class UserController : Controller
+{
+    [Route("user/login"), HttpPost, HandleUIException]
+    public ActionResult login(string userName, string password)
+    {
+        object user = null;
+        if ("dan".Equals(userName)) {
+            if (!"123".Equals(password)) {
+                throw new ValidationException("Wrong password!");
+            }
+            user = new {
+                Token = "1",
+                Name = "Danilo Castro",
+                Email = "danilo@mail.com",
+                UserRoles = new int[] { 2, 3 }
+            };
+        }
+        else if ("leti".Equals(userName))
+        {
+            if (!"123".Equals(password))
+            {
+                throw new ValidationException("Wrong password!");
+            }
+            user = new
+            {
+                Token = "1",
+                Name = "Leticia Calmon",
+                Email = "leti@mail.com",
+                UserRoles = new int[] { 1 }
+            };
+        }
+        else 
+        {
+            throw new ValidationException("There is no user with this user name!");
+        }
+
+        HttpContext.Session.Add("CurrentUser", user);
+
+        return new JsonResultView(user, JsonRequestBehavior.AllowGet);
+    }
+}
+```
+It is important notice that the attributes come from namespace "System.Web.Mvc". But to map api controllers you need to reference attributes from namespace "System.Web.Http".
+See the following class:
+```CSharp
+[Route("api/member-beta")] 
+/// The methods are automatically related through their names. 
+/// They names are assigning to request methods GET, POST, PUT, DELETE.
+public class MemberBetaApiController : ApiController
+{
+    private MemberService service = new MemberService();
+
+    public MemberBetaApiController() { }
+
+    // GET api/member
+    public IEnumerable<Member> Get()
+    {
+        return Service.Get();
+    }
+
+    // GET api/member/5
+    public Member Get(int id)
+    {
+        Member member = Service.Get(id);
+        if (member == null)
+        {
+            throw new HttpResponseException(Request.CreateResponse(HttpStatusCode.NotFound));
+        }
+        return member;
+    }
+    
+    // POST api/member
+    public HttpResponseMessage Post(Member member)
+    {
+        if (ModelState.IsValid)
+        {
+            Service.Save(member);
+
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, member);
+            response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = member.Id }));
+            return response;
+        }
+        else
+        {
+            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+        }
+    }
+}
+```
