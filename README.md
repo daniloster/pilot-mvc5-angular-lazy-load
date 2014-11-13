@@ -5,7 +5,7 @@ Pilot project integrating MVC5, Entity Framework 6 and front-end based on requir
 ## Roadmap
 1. [Purpose](#purpose)
 2. [Basic aproaching of modules](#basic-aproaching-of-modules)
-  1. [DI (*Dependency injection*)]
+  1. [DI (*Dependency injection*)](#dependency-injection)
   2. [ASP MVC5](#ASP-MVC5)
     * What is it? What does it do?
     * How do I configure it?
