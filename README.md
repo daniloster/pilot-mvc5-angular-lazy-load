@@ -158,7 +158,7 @@ public class RouteConfig
 ```
 Afterwards, we are able to make a request base in these pattern of URLs like "contact/query" for base controller and "api/member/:id" for api controller, but the parameter :id must be changed by a real value.
 
-####Attribute Mapping in the controller classes
+#### Attribute Mapping in the controller classes
 The Global.asax.cs file keeps the same.
 ```CSharp
 protected void Application_Start()
@@ -302,3 +302,8 @@ public class MemberBetaApiController : ApiController
     }
 }
 ```
+### Dependency injection with MVC5
+I'll start giving a easy reference guide. It is how to implement [Dependency Injection](http://www.codeproject.com/Articles/560798/ASP-NET-MVC-Controller-Dependency-Injection-for-Be) in a beginner perspective.
+In our case, we're going to use Unity, but we have a lot of others mechanisms to implement DI as mentioned before.
+First step we need to create a class with our settings, our registration. Basically, the DI works registering classes and resolving their interfaces. The injection process can be done by interface matches or binding name, we won't aproach all them. Our case, it is interface matches where we have just one class that implement the respective interface, then that one will be instantiate and set in further dependencies.
+Ok! Let's code it!
