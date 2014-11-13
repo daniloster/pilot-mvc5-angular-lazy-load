@@ -25,15 +25,15 @@
 
     <!-- CSS
     ================================================== -->
-    @Styles.Render("~/bundles/skeleton")
+    <link rel="stylesheet" type="text/css" href="/Content/Styles/Pure/pure.min.css" />
+    <link rel="stylesheet" type="text/css" href="/Content/Styles/app.css" />
+    @*<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">*@
+    <link rel="stylesheet" type="text/css" href="/Content/Styles/font-awesome.min.css" />
     
-    @RenderSection("ExtraStyle", false)
-
     <!--[if lt IE 9]>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     
-    @RenderSection("ExtraScript", false)
 </head>
 <body>
     <!--[if lt IE 7]>
@@ -41,29 +41,31 @@
     <![endif]-->
     <!-- Primary Page Layout
 	================================================== -->
-    <div class="container" data-role="page">
+    @Html.Partial("~/Views/Shared/NavMenu.cshtml")
+
+    <div role="page" class="pure-g">
 	    <!-- Delete everything in this .container and get started on your own site! -->
-        <div class="sixteen columns">
+        <div class="pure-u-1">
             <header class="wrapper clearfix">
                 <h1 class="remove-bottom" style="margin-top: 40px">@ViewBag.Title</h1>
             </header>
-            @Html.Partial("~/Views/SkeletonNavMenu.cshtml")
+            
         </div>
-
+        
         <!-- container -->
-        <div ng-view>
+        <div class="pure-u-1" ng-view>
         @RenderBody()
         </div>
         <!-- container -->
-
-        <div class="sixteen columns">
+        
+        <div class="pure-u-1">
             <footer class="wrapper">
                 <h3>footer</h3>
             </footer>
         </div>
     </div>
 
-    @Html.Partial("~/Views/LoadingPanel.cshtml")
+    @Html.Partial("~/Views/Shared/LoadingPanel.cshtml")
 <!-- End Document
 ================================================== -->
     <script>

@@ -1,13 +1,12 @@
 ﻿<link href="/Content/Scripts/components/pagination/style.css" type="text/css" rel="stylesheet" />
-
-<ul class="pagination" ng-controller="paginationCtrl">
-    <li><a href="#" ng-disabled="prevPageDisabled()" ng-click="firstPage()">First</a></li>
-    <li><a href="#" ng-disabled="prevPageDisabled()" ng-click="prevPage()"><i class="fa fa-angle-left fa"></i></a></li>
-    <li><span class="table-pagination">Page</span></li>
-    <li>
-        <input class="page-input" placeholder="Pop your page here" type="number" ng-model="newCurrentPage"></li>
-    <li><a class="page-search" title="Search"><i class="fa fa-search"></i></a></li>
-    <li><span class="table-pagination">of {{ pageCount() }}</span></li>
-    <li><a href="#" ng-disabled="nextPageDisabled()" ng-click="nextPage()"><i class="fa fa-angle-right fa"></i></a></li>
-    <li><a href="#" ng-disabled="nextPageDisabled()" ng-click="lastPage()">Last</a></li>
+<ul class="pure-paginator" ng-controller="paginationCtrl">
+    <li class="pure-button prev"><a href="#" ng-disabled="prevPageDisabled()" ng-click="firstPage()">First</a></li>
+    <li class="pure-button prev"><a href="#" ng-disabled="prevPageDisabled()" ng-click="prevPage()"><i class="fa fa-angle-left fa"></i></a></li>
+    <li class="pagination-desc"><span>Page</span></li>
+    <li class="pure-button"><input class="page-input" placeholder="1" type="number" ng-model="newCurrentPage"></li>
+    <li class="pure-button"><a class="page-search" title="Search"><i class="fa fa-search"></i></a></li>
+    <li class="pagination-desc"><span>of {{ pageCount() }}</span></li>
+    <li class="pure-button next"><a href="#" ng-disabled="nextPageDisabled()" ng-click="nextPage()"><i class="fa fa-angle-right fa"></i></a></li>
+    <li class="pure-button next"><a href="#" ng-disabled="nextPageDisabled()" ng-click="lastPage()">Last</a></li>
+    <li class="pagination-desc"><span>{{ totalItems() }} items found</span></li>
 </ul>

@@ -955,6 +955,9 @@
     <Content Include="Content\Styles\Boilerplate\normalize.css" />
     <Content Include="Content\Styles\Boilerplate\normalize.min.css" />
     <Content Include="Content\Styles\app.css" />
+    <Content Include="Content\Styles\font-awesome.min.css" />
+    <Content Include="Content\Styles\Pure\pure.min.css" />
+    <Content Include="Content\Styles\Pure\pure.css" />
     <Content Include="Content\Styles\Skeleton\base.css" />
     <Content Include="Content\Styles\Skeleton\layout.css" />
     <Content Include="Content\Styles\Skeleton\skeleton.css" />
@@ -999,9 +1002,9 @@
     <Content Include="packages.config" />
     <Content Include="Content\Scripts\lib\zepto.min.js" />
     <Content Include="Views\Partials\Member.cshtml" />
-    <Content Include="Views\SkeletonLayout.cshtml" />
-    <Content Include="Views\SkeletonNavMenu.cshtml" />
-    <Content Include="Views\LoadingPanel.cshtml" />
+    <Content Include="Views\Shared\Layout.cshtml" />
+    <Content Include="Views\Shared\NavMenu.cshtml" />
+    <Content Include="Views\Shared\LoadingPanel.cshtml" />
     <Content Include="Views\Default\Index.cshtml" />
     <Content Include="Views\Partials\Home.cshtml" />
     <Content Include="Content\Scripts\lib\jQuery\jquery-2.min.js" />

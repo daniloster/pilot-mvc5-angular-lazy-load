@@ -6,8 +6,15 @@
                 var pagination = null;
                 $scope.init = function (property, value) {
                     pagination = value;
+                    $scope.newCurrentPage = value.currentPage;
+
                     $scope.$watch('$parent.' + property, function (nval, oval) {
                         pagination = nval;
+                        $scope.newCurrentPage = nval.currentPage;
+                    });
+
+                    $scope.$watch('$parent.' + property + '.currentPage', function (nval, oval) {
+                        $scope.newCurrentPage = nval;
                     });
                 };
 
@@ -15,6 +22,8 @@
                     if (nval == oval) return;
                     if (!!pagination && !!pagination.currentPage && !!nval && nval > -1 && nval <= $scope.pageCount()) {
                         pagination.currentPage = nval;
+                    } else {
+                        $scope.newCurrentPage = oval;
                     }
                 });
 
@@ -56,6 +65,10 @@
 
                 $scope.nextPageDisabled = function () {
                     return !$scope.isInitialized() || pagination.currentPage === $scope.pageCount() ? "disabled" : "";
+                };
+
+                $scope.totalItems = function () {
+                    return pagination.items().length;
                 };
 
                 $scope.isInitialized = function () {
