@@ -4,9 +4,9 @@ Pilot project integrating MVC5, Entity Framework 6 and front-end based on requir
 
 ## Roadmap
 1. [Purpose](#purpose)
-2. Basic aproaching of modules
-  1. DI (*Dependency injection*)
-  2. ASP MVC5
+2. [Basic aproaching of modules](#basic-aproaching-of-modules)
+  1. [DI (*Dependency injection*)]
+  2. [ASP MVC5](#ASP-MVC5)
     * What is it? What does it do?
     * How do I configure it?
     * ~~Dependency injection with MVC5~~
@@ -157,7 +157,21 @@ public class RouteConfig
 Afterwards, we are able to make a request base in these pattern of URLs like "contact/query" for base controller and "api/member/:id" for api controller, but the parameter :id must be changed by a real value.
 
 ####Attribute Mapping in the controller classes
-Mapping by attribute it is very easy. Instead of  routes.MapRoute in our RouteConfig methods, we need to call:
+The Global.asax.cs file keeps the same.
+```CSharp
+protected void Application_Start()
+{
+    /// Defining global serializer which one uses Newtonsoft.Json 
+    /// to define behaviour in a looping reference
+    GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Serialize;
+    /// The following two lines are important to configure our routes
+    GlobalConfiguration.Configure(RouteConfig.Register);
+    RouteConfig.RegisterRoutes(RouteTable.Routes);
+    
+    BundleConfig.RegisterBundles(BundleTable.Bundles);
+}
+```
+Mapping by attribute it is very easy. Instead of routes.MapRoute in our RouteConfig methods, we need to call:
 ```CSharp
 public static void Register(HttpConfiguration config)
 {
