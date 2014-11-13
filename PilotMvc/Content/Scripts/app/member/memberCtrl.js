@@ -1,13 +1,24 @@
 (function () {
     var MemberCtrl = null;
-    define(['app', 'app/member/memberSvc'], function (app) {
+    define(['app', 'app/member/memberSvc', 'components/pagination/paginationCtrl'], function (app) {
         if (MemberCtrl === null) {
-            MemberCtrl = ['$scope', 'memberSvc', function ($scope, memberSvc) {
+            MemberCtrl = ['$scope', '$filter', 'memberSvc', function ($scope, $filter, memberSvc) {
                 $scope.loading = true;
                 $scope.addMode = false;
 
                 $scope.titleView = 'Members View';
                 $scope.titleRegister = 'New Member';
+
+                var searchFilter = $filter('filter');
+                $scope.pager = {
+                    items: function () { return searchFilter(!!$scope.members ? $scope.members : [], $scope.textFilter); },
+                    currentPage: 1,
+                    itemsPerPage: 4
+                };
+
+                $scope.$on('paginationRequireInit', function (event, init) {
+                    init('pager', $scope.pager);
+                });
 
                 //Used to display the data  
                 $scope.getAll = function () {

@@ -187,10 +187,15 @@
     <Content Include="Content\Scripts\app\upload\fileModel.js" />
     <Content Include="Content\Scripts\app\upload\uploadSvc.js" />
     <Content Include="Content\Scripts\app\util\loadingCtrl.js" />
+    <Content Include="Content\Scripts\components\pagination\offset.js" />
+    <Content Include="Content\Scripts\components\pagination\paginationCtrl.js" />
     <Content Include="Content\Scripts\app\_examples\examplesCtrl.js" />
     <Content Include="Content\Scripts\auth\userCtrl.js" />
     <Content Include="Content\Scripts\auth\roles.js" />
     <Content Include="Content\Scripts\auth\session.js" />
+    <Content Include="Content\Scripts\components\pagination\paginationDct.js" />
+    <Content Include="Content\Scripts\components\pagination\style.css" />
+    <Content Include="Content\Scripts\components\pagination\template.html" />
     <Content Include="Content\Scripts\util.js" />
     <Content Include="Content\Scripts\main.js" />
     <Content Include="Content\Scripts\app\member\memberSvc.js" />
@@ -1016,7 +1021,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="App_Start\" />
     <Folder Include="Content\Fonts\" />
-    <Folder Include="Content\Scripts\dct\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

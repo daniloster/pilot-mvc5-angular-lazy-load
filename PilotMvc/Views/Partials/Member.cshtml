@@ -14,7 +14,7 @@
                 </tr>
             </thead>
             <tbody>
-                    <tr ng-repeat="member in members | filter:textFilter">
+                    <tr ng-repeat="member in pager.items() | filter:textFilter | offset: (pager.currentPage-1)*pager.itemsPerPage | limitTo: pager.itemsPerPage">
                     <td><strong ng-hide="member.editMode">{{ member.Id }}</strong></td>
                     <td>
                         <p ng-hide="member.editMode">{{ member.FirstName }}</p>
@@ -49,4 +49,5 @@
             <br />
         </form>
     </div>
+    <pagination></pagination>
 </div>
