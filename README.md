@@ -307,3 +307,186 @@ I'll start giving a easy reference guide. It is how to implement [Dependency Inj
 In our case, we're going to use Unity, but we have a lot of others mechanisms to implement DI as mentioned before.
 First step we need to create a class with our settings, our registration. Basically, the DI works registering classes and resolving their interfaces. The injection process can be done by interface matches or binding name, we won't aproach all them. Our case, it is interface matches where we have just one class that implement the respective interface, then that one will be instantiate and set in further dependencies.
 Ok! Let's code it!
+So, create a classes *Project*->*Config*->*Unity*->*UnityConfig.cs*, in the same directory, *UnityMvcActivator.cs* and *UnityWebApiActivator.cs*.
+```CSharp
+using System;
+using Microsoft.Practices.Unity;
+using Microsoft.Practices.Unity.Configuration;
+using Microsoft.Practices.Unity.InterceptionExtension;
+using Pilot.Util.Logging;
+using Pilot.Util.Unity;
+using Unity.SelfHostWebApiOwin;
+using Pilot.Util.Unity.Lifetime;
+using Pilot.Util.Transaction;
+using System.Web.Mvc;
+using Pilot.Util.Unity.Factory;
+
+namespace PilotMvc.Config.Unity
+{
+    /// <summary>
+    /// Specifies the Unity configuration for the main container.
+    /// </summary>
+    public class UnityConfig
+    {
+        #region Unity Container
+        private static Lazy<IUnityContainer> container = new Lazy<IUnityContainer>(() =>
+        {
+            var container = new UnityContainer();
+            RegisterTypes(container);
+
+            //Set container for Controller Factory
+            MvcUnityContainer.Container = container;
+
+            //Set for Controller Factory
+            ControllerBuilder.Current.SetControllerFactory(typeof(UnityControllerFactory));
+
+            return container;
+        });
+
+        public static IUnityContainer GetConfiguredContainer()
+        {
+            return container.Value;
+        }
+        #endregion
+
+
+
+        public static T Resolve<T>()
+        {
+            T obj = default(T);
+
+            if (container.Value.IsRegistered(typeof(T)))
+            {
+                return container.Value.Resolve<T>();
+            }
+
+            return obj;
+        }
+
+        public static void RegisterTypes(IUnityContainer container)
+        {
+            container.AddNewExtension<Interception>();
+            container
+                    .RegisterTypes(UnityHelpers.GetTypesWithCustomAttribute<UnityIoCPerRequestLifetimeAttribute>(AppDomain.CurrentDomain.GetAssemblies()),
+                                    WithMappings.FromMatchingInterface,
+                                    WithName.Default,
+                                    PerRequest,
+                                    getInjectionMembers: t => new InjectionMember[]
+                                    {
+                                        new Interceptor<InterfaceInterceptor>(),
+                                        new InterceptionBehavior<DiagnosisBehaviour>(),
+                                        new InterceptionBehavior<TransactionBehaviour>()
+                                    })
+                    .RegisterTypes(UnityHelpers.GetTypesWithCustomAttribute<UnityIoCTransientLifetimeAttribute>(AppDomain.CurrentDomain.GetAssemblies()),
+                                    WithMappings.FromMatchingInterface,
+                                    WithName.Default,
+                                    WithLifetime.Transient,
+                                    getInjectionMembers: t => new InjectionMember[]
+                                    {
+                                        new Interceptor<InterfaceInterceptor>(),
+                                        new InterceptionBehavior<DiagnosisBehaviour>(),
+                                        new InterceptionBehavior<TransactionBehaviour>()
+                                    }
+                                )
+                    // Same as singleton
+                    .RegisterTypes(UnityHelpers.GetTypesWithCustomAttribute<UnityIoCContainerControlledLifetimeAttribute>(AppDomain.CurrentDomain.GetAssemblies()),
+                                    WithMappings.FromMatchingInterface,
+                                    WithName.Default,
+                                    WithLifetime.ContainerControlled);
+        }
+
+        public static Func<System.Type, Microsoft.Practices.Unity.LifetimeManager> PerRequest = (x) => new PerRequestLifetimeManager();
+
+
+        /***************************************************************************************************
+         * 
+         * Built in Lifetime Management
+         * 
+         * ContainerControlledLifetimeManager : singleton instance with dispose
+         * HierarchicalLifetimeManager : singleton instance per container with dispose
+         * TransientLifetimeManager : empty manager, always returns new object by resolve, no dispose!
+         * PerRequestLifetimeManager (Unity.MVC) : singleton instance per http request with dispose
+         * ExternallyControlledLifetimeManager : code must handle lifetime management
+         * PerResolveLifetimeManager : like TransientLifetimeManager expect when in same object graph
+         * PerThreadLifetimeManager : A LifetimeManager that holds the instances given to it, keeping one instance per thread.
+         */
+
+        /***************************************************************************************************
+         * The application could use 3 different lifetime managers:
+         * 
+         * singleton
+         * per request
+         * always new
+         * An attribute will be used to register all Types to be registered by convention. To do this, a new attribute has to be created.
+         */
+    }
+}
+```
+```CSharp
+using System.Linq;
+using System.Web.Mvc;
+using Microsoft.Practices.Unity.Mvc;
+
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(PilotMvc.Config.Unity.UnityWebActivator), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(PilotMvc.Config.Unity.UnityWebActivator), "Shutdown")]
+
+namespace PilotMvc.Config.Unity
+{
+    /// <summary>Provides the bootstrapping for integrating Unity with ASP.NET MVC.</summary>
+    public static class UnityWebActivator
+    {
+        /// <summary>Integrates Unity when the application starts.</summary>
+        public static void Start() 
+        {
+            var container = UnityConfig.GetConfiguredContainer();
+
+            FilterProviders.Providers.Remove(FilterProviders.Providers.OfType<FilterAttributeFilterProvider>().First());
+            FilterProviders.Providers.Add(new UnityFilterAttributeFilterProvider(container));
+
+            DependencyResolver.SetResolver(new UnityDependencyResolver(container));
+
+            // TODO: Uncomment if you want to use PerRequestLifetimeManager
+            // Microsoft.Web.Infrastructure.DynamicModuleHelper.DynamicModuleUtility.RegisterModule(typeof(UnityPerRequestHttpModule));
+            Microsoft.Web.Infrastructure.DynamicModuleHelper.DynamicModuleUtility.RegisterModule(typeof(UnityPerRequestHttpModule));
+        }
+
+        /// <summary>Disposes the Unity container when the application is shut down.</summary>
+        public static void Shutdown()
+        {
+            var container = UnityConfig.GetConfiguredContainer();
+            container.Dispose();
+        }
+    }
+}
+```
+```CSharp
+using System.Web.Http;
+using Microsoft.Practices.Unity.WebApi;
+
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(PilotMvc.Config.Unity.UnityWebApiActivator), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethod(typeof(PilotMvc.Config.Unity.UnityWebApiActivator), "Shutdown")]
+
+namespace PilotMvc.Config.Unity
+{
+    /// <summary>Provides the bootstrapping for integrating Unity with WebApi when it is hosted in ASP.NET</summary>
+    public static class UnityWebApiActivator
+    {
+        /// <summary>Integrates Unity when the application starts.</summary>
+        public static void Start() 
+        {
+            // Use UnityHierarchicalDependencyResolver if you want to use a new child container for each IHttpController resolution.
+            // var resolver = new UnityHierarchicalDependencyResolver(UnityConfig.GetConfiguredContainer());
+            var resolver = new UnityDependencyResolver(UnityConfig.GetConfiguredContainer());
+
+            GlobalConfiguration.Configuration.DependencyResolver = resolver;
+        }
+
+        /// <summary>Disposes the Unity container when the application is shut down.</summary>
+        public static void Shutdown()
+        {
+            var container = UnityConfig.GetConfiguredContainer();
+            container.Dispose();
+        }
+    }
+}
+```
