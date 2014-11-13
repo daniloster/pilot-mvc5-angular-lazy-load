@@ -9,6 +9,8 @@ Pilot project integrating MVC5, Entity Framework 6 and front-end based on requir
   2. [ASP MVC5](#asp-mvc5)
     * [What is it? What does it do?](#what-is-it-what-does-it-do)
     * [How do I configure it?](#how-do-i-configure-it)
+      * [Literal Mapping in a RouteConfig class](#literal-mapping-in-a-routeconfig-class)
+      * [Attribute Mapping in the controller classes](#attribute-mapping-in-the-controller-classes)
     * ~~[Dependency injection with MVC5](#dependency-injection-with-mvc5)~~
   3. ~~[Javascript](#javascript)~~
     * ~~[First steps](#first-steps)~~ 
