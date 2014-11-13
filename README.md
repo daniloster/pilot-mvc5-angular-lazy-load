@@ -6,14 +6,14 @@ Pilot project integrating MVC5, Entity Framework 6 and front-end based on requir
 1. [Purpose](#purpose)
 2. [Basic aproaching of modules](#basic-aproaching-of-modules)
   1. [DI (*Dependency injection*)](#dependency-injection)
-  2. [ASP MVC5](#ASP-MVC5)
-    * What is it? What does it do?
-    * How do I configure it?
-    * ~~Dependency injection with MVC5~~
-  3. ~~Javascript~~
-    * ~~First steps~~ 
-    * ~~Closures~~
-    * ~~Best practices~~
+  2. [ASP MVC5](#asp-mvc5)
+    * [What is it? What does it do?](#what-is-it-what-does-it-do)
+    * [How do I configure it?](#how-do-i-configure-it)
+    * ~~[Dependency injection with MVC5](#dependency-injection-with-mvc5)~~
+  3. ~~[Javascript](#javascript)~~
+    * ~~[First steps](#first-steps)~~ 
+    * ~~[Closures](#closures)~~
+    * ~~[Best practices](#best-practices)~~
   4. ~~Javascript (AngularJS + RequireJS)~~
     * ~~First steps~~ 
     * ~~Best pratices~~
