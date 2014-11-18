@@ -96,6 +96,7 @@ public class MemberController : ApiController
     }
 }
 ```
+
 ### How do I configure it?
 Mapping routes can be done in two ways.
   * Literal Mapping in a RouteConfig class
@@ -302,6 +303,7 @@ public class MemberBetaApiController : ApiController
     }
 }
 ```
+
 ### Dependency injection with MVC5
 I'll start giving a easy reference guide. It is how to implement [Dependency Injection](http://www.codeproject.com/Articles/560798/ASP-NET-MVC-Controller-Dependency-Injection-for-Be) in a beginner perspective.
 In our case, we're going to use Unity, but we have a lot of others mechanisms to implement DI as mentioned before.
@@ -501,3 +503,9 @@ MvcUnityContainer.Container = container;
 //Set for Controller Factory
 ControllerBuilder.Current.SetControllerFactory(typeof(UnityControllerFactory));
 ```
+
+### Javascript
+Well, let's start coding in javascript. But not before we realize some concepts, ok?
+Javascript it is really flexible and a powerful language. Sometimes, a set of aspects can be commonly classified as unfavorable, could be also understood as good features.
+
+#### First steps
