@@ -307,7 +307,7 @@ I'll start giving a easy reference guide. It is how to implement [Dependency Inj
 In our case, we're going to use Unity, but we have a lot of others mechanisms to implement DI as mentioned before.
 First step we need to create a class with our settings, our registration. Basically, the DI works registering classes and resolving their interfaces. The injection process can be done by interface matches or binding name, we won't aproach all them. Our case, it is interface matches where we have just one class that implement the respective interface, then that one will be instantiate and set in further dependencies.
 Ok! Let's code it!
-So, create a classes *Project*->*Config*->*Unity*->*UnityConfig.cs*, in the same directory, *UnityMvcActivator.cs* and *UnityWebApiActivator.cs*.
+So, create some classes *Project*->*Config*->*Unity*->*UnityConfig.cs*, in the same directory, *UnityMvcActivator.cs* and *UnityWebApiActivator.cs*.
 ```CSharp
 using System;
 using Microsoft.Practices.Unity;
