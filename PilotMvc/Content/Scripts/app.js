@@ -1,7 +1,7 @@
 ﻿(function () {
     'use strict';
     var app = null;
-    define(['angular', 'resolve', 'auth/roles', 'auth/session'], function (angular, resolve, roles, session) {
+    define(['angular', 'resolve', 'auth/roles', 'auth/session', 'jquery', 'ngRoute', 'ngResource', 'ngMocks', 'ngCookies', 'ngAnimate', 'ngSanitize'], function (angular, resolve, roles, session) {
         if (app === null) {
             app = angular.module('pilotApp', ['ngRoute', 'ngResource', 'ngCookies']);
 
