@@ -506,6 +506,7 @@ ControllerBuilder.Current.SetControllerFactory(typeof(UnityControllerFactory));
 
 ### Javascript
 Well, let's start coding in javascript. But not before we realize some concepts, ok?
-Javascript it is really flexible and a powerful language. Sometimes, a set of aspects can be commonly classified as unfavorable, could be also understood as good features.
+Javascript it is really flexible and a powerful language. Sometimes, a set of aspects that can be commonly classified as unfavorable, could be also understood as good features. So, what do I mean? 
+Javascript is weakly typed, also, it has not properly a definition for classes. We will see how it is possible implement classes with attributes and methods. But, basically, javascript is composed by primitive types as String, Number, undefined and null. In addition of complex types as function, object (instance of a function or json element), Array, Date.
 
 #### First steps
