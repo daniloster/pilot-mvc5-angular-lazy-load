@@ -189,6 +189,10 @@
     <Content Include="Content\Scripts\app\upload\fileModel.js" />
     <Content Include="Content\Scripts\app\upload\uploadSvc.js" />
     <Content Include="Content\Scripts\app\util\loadingCtrl.js" />
+    <Content Include="Content\Scripts\components\date\datePicker.js" />
+    <Content Include="Content\Scripts\components\date\picker.html" />
+    <Content Include="Content\Scripts\components\date\range.html" />
+    <Content Include="Content\Scripts\components\date\style.css" />
     <Content Include="Content\Scripts\components\pagination\offset.js" />
     <Content Include="Content\Scripts\components\pagination\paginationCtrl.js" />
     <Content Include="Content\Scripts\app\_examples\examplesCtrl.js" />
@@ -1058,7 +1062,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>53138</DevelopmentServerPort>
+          <DevelopmentServerPort>62664</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:54412/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
