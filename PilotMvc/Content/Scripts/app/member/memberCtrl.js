@@ -1,9 +1,10 @@
 (function () {
     var MemberCtrl = null;
-    define(['app', 'app/member/memberSvc', 'components/pagination/paginationCtrl'], function (app) {
+    define(['app', 'components/loading/loadingCtrl', 'app/member/memberSvc'], function (app, loadingCtrl) {
         if (MemberCtrl === null) {
             MemberCtrl = ['$scope', '$rootScope', '$filter', 'memberSvc', function ($scope, $rootScope, $filter, memberSvc) {
                 $rootScope.title = "CRUD Member"
+                loadingCtrl.clear(true);
                 $scope.loading = true;
                 $scope.addMode = false;
 
@@ -23,12 +24,13 @@
 
                 //Used to display the data  
                 $scope.getAll = function () {
+                    loadingCtrl.startLoading();
                     memberSvc.query(function (data) {
                         $scope.members = data;
-                        $scope.loading = false;
+                        loadingCtrl.stopLoading();
                     }, function () {
                         $scope.error = "An Error has occured while loading posts!";
-                        $scope.loading = false;
+                        loadingCtrl.stopLoading();
                     });
                 };
 
@@ -42,42 +44,41 @@
 
                 //Used to save a record after edit  
                 $scope.save = function () {
-                    $scope.loading = true;
+                    loadingCtrl.startLoading();
                     var memb = this.member;
                     memberSvc.update({ Id: memb.Id }, memb, function (data) {
                         alert("Saved Successfully!!");
                         memb.editMode = false;
-                        $scope.loading = false;
+                        loadingCtrl.stopLoading();
                     }, function (data) {
                         console.log(memb, data);
                         $scope.error = "An Error has occured while Saving Member! " + data;
-                        $scope.loading = false;
+                        loadingCtrl.stopLoading();
 
                     });
                 };
 
                 //Used to add a new record  
                 $scope.add = function () {
-                    $scope.loading = true;
+                    loadingCtrl.startLoading();
                     var memb = this.newmember;
                     memberSvc.create(memb, function (data) {
                         alert("Added Successfully!!");
                         $scope.addMode = false;
                         $scope.members.push(data);
-                        $scope.loading = false;
+                        loadingCtrl.stopLoading();
                     }, function (data) {
                         $scope.error = "An Error has occured while Adding Member! " + data;
-                        $scope.loading = false;
+                        loadingCtrl.stopLoading();
 
                     });
                 };
 
                 //Used to edit a record  
                 $scope.deletemember = function () {
-                    $scope.loading = true;
+                    loadingCtrl.startLoading();
                     var memberid = this.member.Id;
                     memberSvc.delete({ Id: memberid }, function (data) {
-                        $scope.loading = false;
                         alert("Deleted Successfully!!");
                         //$.each($scope.members, function (i) {
                         //    if ($scope.members[i].Id === memberid) {
@@ -86,8 +87,9 @@
                         //    }
                         //});
                         $scope.getAll();
+                        loadingCtrl.stopLoading();
                     }, function (data) {
-                        $scope.loading = false;
+                        loadingCtrl.stopLoading();
                         $scope.error = "An Error has occured while Saving Member! " + data;
 
                     });

@@ -1,6 +1,6 @@
 (function () {
     var Ctrl = null, idx = 0;
-    define(['app', 'app/home/homeSvc'], function (app) {
+    define(['app', 'components/loading/loadingCtrl', 'app/home/homeSvc'], function (app, loadingCtrl) {
         if (Ctrl == null) {
             Ctrl = ['$scope', '$rootScope', '$filter', 'homeSvc', function ($scope, $rootScope, $filter, homeSvc) {
                 $rootScope.title = "Home";

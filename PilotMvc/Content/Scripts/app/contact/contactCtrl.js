@@ -1,6 +1,6 @@
 (function () {
     var Ctrl = null;
-    define(['app', 'app/member/memberSvc', 'app/contact/contactSvc', 'app/upload/uploadSvc', 'app/upload/fileModel'], function (app) {
+    define(['app', 'components/loading/loadingCtrl', 'app/member/memberSvc', 'app/contact/contactSvc', 'app/upload/uploadSvc', 'app/upload/fileModel'], function (app, loadingCtrl) {
         if (Ctrl == null) {
             Ctrl = ['$scope', '$rootScope', '$filter', 'memberSvc', 'contactSvc', 'uploadSvc', function ($scope, $rootScope, $filter, memberSvc, contactSvc, uploadSvc) {
                 $rootScope.title = "CRUD Contact";
@@ -36,51 +36,52 @@
                 //$scope.contact.Member = find($scope.members, $scope.contact.Member.Id);
 
                 $scope.getMembers = function () {
-                    //loadingCtrl.startLoad();
+                    loadingCtrl.startLoading();
                     memberSvc.query(
                         function (data) {
-                            //loadingCtrl.stopLoad();
+                            loadingCtrl.stopLoading();
                             console.log(data);
                             $scope.members = data;
                         },
                         function (data) {
-                            //loadingCtrl.stopLoad();
                             console.log(data);
                             $scope.members = [];
+                            loadingCtrl.stopLoading();
                         });
                 };
 
                 $scope.getContactTypes = function () {
-                    //loadingCtrl.startLoad();
+                    loadingCtrl.startLoading();
                     contactSvc.getContactTypes(
                         function (data) {
-                            //loadingCtrl.stopLoad();
                             console.log(data);
                             $scope.contactTypes = data;
+                            loadingCtrl.stopLoading();
                         },
                         function (data) {
-                            //loadingCtrl.stopLoad();
                             console.log(data);
                             $scope.contactTypes = [];
+                            loadingCtrl.stopLoading();
                         });
                 };
 
                 $scope.getContacts = function () {
-                    //loadingCtrl.startLoad();
+                    loadingCtrl.startLoading();
                     contactSvc.query(
                         function (data) {
-                            //loadingCtrl.stopLoad();
                             console.log(data);
                             $scope.contacts = data;
+                            loadingCtrl.stopLoading();
                         },
                         function (data) {
-                            //loadingCtrl.stopLoad();
                             console.log(data);
                             $scope.contacts = [];
+                            loadingCtrl.stopLoading();
                         });
                 };
 
                 $scope.upload = function () {
+                    loadingCtrl.startLoading();
                     uploadSvc.sendFile($scope.myFile,
                         function (data) {
                             $scope.myFileData = data;
@@ -93,7 +94,7 @@
                 };
 
                 $scope.create = function () {
-                    //loadingCtrl.startLoad();
+                    loadingCtrl.startLoading();
                     this.contact.ContactTypeId = (!!this.contact.Type) ? this.contact.Type.Id : 0;
                     
                     contactSvc.create(
@@ -103,30 +104,30 @@
                             fileSize: $scope.myFileData.Size
                         },
                         function (data) {
-                            //loadingCtrl.stopLoad();
                             clearContact();
                             console.log(data);
                             $scope.contacts.push(data);
+                            loadingCtrl.stopLoading();
                         },
                         function (data) {
-                            //loadingCtrl.stopLoad();
                             console.log(data);
+                            loadingCtrl.stopLoading();
                         });
                 };
 
                 $scope.delete = function (entity, $index) {
-                    //loadingCtrl.startLoad();
+                    loadingCtrl.startLoading();
                     contactSvc.delete(
                         { id: entity.Id },
                         function (data) {
-                            //loadingCtrl.stopLoad();
                             console.log(data);
                             $scope.contacts.splice($index, 1);
                             $scope.user = data;
+                            loadingCtrl.stopLoading();
                         },
                         function (data) {
-                            //loadingCtrl.stopLoad();
                             console.log(data);
+                            loadingCtrl.stopLoading();
                         });
                 };
 
