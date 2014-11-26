@@ -3,7 +3,9 @@
     define(['app', 'components/loading/loadingCtrl', 'app/member/memberSvc', 'app/contact/contactSvc', 'app/upload/uploadSvc', 'app/upload/fileModel'], function (app, loadingCtrl) {
         if (Ctrl == null) {
             Ctrl = ['$scope', '$rootScope', '$filter', 'memberSvc', 'contactSvc', 'uploadSvc', function ($scope, $rootScope, $filter, memberSvc, contactSvc, uploadSvc) {
+                loadingCtrl.clear(true);
                 $rootScope.title = "CRUD Contact";
+
                 var clearContact = function () {
                     $scope.contact = { Member: { Id: 0 }, Type: { Id: 0 } };
                     $scope.myFileData = {};
@@ -86,10 +88,12 @@
                         function (data) {
                             $scope.myFileData = data;
                             $scope.fileHasBeenUploaded = true;
+                            loadingCtrl.stopLoading();
                         },
                         function (data) {
                             $scope.myFileData = {};
                             $scope.fileHasBeenUploaded = false;
+                            loadingCtrl.stopLoading();
                         });
                 };
 

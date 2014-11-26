@@ -1,5 +1,4 @@
 ﻿(function () {
-    'use strict';
     var app = null;
     define(['angular', 'resolve', 'auth/roles', 'auth/session', 'jquery', 'ngRoute', 'ngResource', 'ngMocks', 'ngCookies', 'ngAnimate', 'ngSanitize'], function (angular, resolve, roles, session) {
         if (app === null) {
@@ -10,7 +9,8 @@
                 factory: app.factory,
                 service: app.service,
                 filter: app.filter,
-                directive: app.directive
+                directive: app.directive,
+                constant: app.constant
             };
 
             app.lazy.factory('authorizationSvc',
@@ -58,7 +58,8 @@
                     factory: $provide.factory,
                     service: $provide.service,
                     filter: $filterProvider.register,
-                    directive: $compileProvider.directive
+                    directive: $compileProvider.directive,
+                    constant: $provide.constant
                 };
 
                 $routeProvider

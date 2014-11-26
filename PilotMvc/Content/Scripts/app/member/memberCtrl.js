@@ -3,8 +3,8 @@
     define(['app', 'components/loading/loadingCtrl', 'app/member/memberSvc'], function (app, loadingCtrl) {
         if (MemberCtrl === null) {
             MemberCtrl = ['$scope', '$rootScope', '$filter', 'memberSvc', function ($scope, $rootScope, $filter, memberSvc) {
-                $rootScope.title = "CRUD Member"
                 loadingCtrl.clear(true);
+                $rootScope.title = "CRUD Member";
                 $scope.loading = true;
                 $scope.addMode = false;
 

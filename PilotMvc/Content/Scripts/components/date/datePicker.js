@@ -1,4 +1,7 @@
 ﻿(function () {
+    /*
+    <input type="text" date-time dismiss="true" ng-model="$parent.dateFrom" views="['date']" format="dd/MM/yyyy" class="just-date" partial="false" readonly required/>
+    */
     var loaded = false;
     define(['app'], function (app) {
         if (!loaded) {
@@ -6,7 +9,7 @@
 
             app.lazy.constant('datePickerConfig', {
                 template: '/Content/Scripts/components/date/picker.html',
-                view: 'month',
+                view: 'date',
                 views: ['year', 'month', 'date', 'hours', 'minutes'],
                 step: 5
             });
@@ -148,7 +151,7 @@
                         after: '=?',
                         before: '=?'
                     },
-                    link: function (scope, element, attrs) {
+                    link: function (scope, element, attrs, ne) {
 
                         scope.date = new Date(scope.model || new Date());
                         scope.views = datePickerConfig.views.concat();
@@ -159,7 +162,7 @@
                         var applyValue = function (value) {
                             // $parse works out how to get the value.
                             // This returns a function that returns the result of your ng-model expression.
-                            var modelGetter = $parse(attrs['datePicker']);
+                            var modelGetter = $parse('$parent.$parent.' + attrs['datePicker']);
                             console.log(modelGetter(scope));
                             // This returns a function that lets us set the value of the ng-model binding expression:
                             var modelSetter = modelGetter.assign;
@@ -169,12 +172,12 @@
                         };
 
                         var step = parseInt(attrs.step || datePickerConfig.step, 10);
-                        var partial = !!attrs.partial;
+                        var partial = attrs.partial != "false";
 
                         /** @namespace attrs.minView, attrs.maxView */
                         scope.views = scope.views.slice(
-                          scope.views.indexOf(attrs.maxView || 'date'),
-                          scope.views.indexOf(attrs.minView || 'date') + 1
+                          scope.views.indexOf(attrs.maxView || 'year'),
+                          scope.views.indexOf(attrs.minView || 'minutes') + 1
                         );
 
                         if (scope.views.length === 1 || scope.views.indexOf(scope.view) === -1) {
@@ -378,7 +381,7 @@
                 },
                 format: 'yyyy-MM-dd HH:mm',
                 views: ['date', 'year', 'month', 'hours', 'minutes'],
-                dismiss: false,
+                dismiss: true,
                 position: 'absolute'
             });
 
@@ -409,6 +412,8 @@
                         var picker = null;
                         var position = attrs.position || dateTimeConfig.position;
                         var container = null;
+
+                        attrs.view = view;
 
                         if (index === -1) {
                             views.splice(index, 1);
@@ -444,17 +449,21 @@
                         }
 
                         function clear() {
-                            if (picker) {
-                                picker.remove();
-                                picker = null;
-                            }
-                            if (container) {
-                                container.remove();
-                                container = null;
-                            }
                             try {
-                                element.blur();
-                            } catch (e) { }
+                                if (picker) {
+                                    picker.remove();
+                                    picker = null;
+                                }
+                                if (container) {
+                                    container.remove();
+                                    container = null;
+                                }
+                            } catch (ex) { }
+                            finally {
+                                try {
+                                    element.blur();
+                                } catch (e) { }
+                            }
                         }
 
                         function showPicker() {
@@ -477,7 +486,7 @@
                             // move picker below input element
 
                             if (position === 'absolute') {
-                                var pos = angular.extend(element.offset(), { height: element[0].offsetHeight });
+                                var pos = angular.extend($(element).offset(), { height: element[0].offsetHeight });
                                 picker.css({ top: pos.top + pos.height, left: pos.left, display: 'inline-block', position: position });
                                 body.append(picker);
                             } else {
