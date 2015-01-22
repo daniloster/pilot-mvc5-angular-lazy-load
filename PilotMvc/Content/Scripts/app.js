@@ -8,12 +8,22 @@
                 controller: app.controller,
                 factory: app.factory,
                 service: app.service,
+                provider: app.provider,
                 filter: app.filter,
                 directive: app.directive,
                 constant: app.constant
             };
 
-            app.lazy.factory('authorizationSvc',
+            var _base = null;
+            try { _base = baseUrl; } catch (e) { }
+            app.lazy.constant('ConfigApp', {
+                hasBaseUrl: !!_base,
+                getPath: function (relativePath) {
+                    return this.hasBaseUrl ? _base + relativePath : relativePath;
+                }
+            });
+
+            app.lazy.factory('AuthorizationService',
             ['$http', '$cookieStore', function ($http, $cookieStore) {
 
                 var resource = {
@@ -42,33 +52,33 @@
                 return resource;
             }]);
 
-            app.config(['$routeProvider', '$locationProvider', '$controllerProvider', '$provide', '$filterProvider', '$compileProvider',
-            function ($routeProvider, $locationProvider, $controllerProvider, $provide, $filterProvider, $compileProvider) {
+            app.config(['$routeProvider', '$locationProvider', '$controllerProvider', '$provide', '$filterProvider', '$compileProvider', '$httpProvider',
+            function ($routeProvider, $locationProvider, $controllerProvider, $provide, $filterProvider, $compileProvider, $httpProvider) {
                 /*app.lazy = {
-                    controller: $controllerProvider.register,
-                    directive: $compileProvider.directive,
-                    filter: $filterProvider.register,
-                    factory: $provide.factory,
-                    service: $provide.service,
                     animation: $animationProvider.register
                 };*/
+
+                $httpProvider.defaults.useXDomain = true;
+                //Remove the header used to identify ajax call  that would prevent CORS from working
+                delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
                 app.lazy = {
                     controller: $controllerProvider.register,
                     factory: $provide.factory,
                     service: $provide.service,
+                    provider: $provide.provider,
                     filter: $filterProvider.register,
                     directive: $compileProvider.directive,
                     constant: $provide.constant
                 };
 
                 $routeProvider
-                    .when("/", { templateUrl: '/partials/home', resolve: resolve(['app/home/homeCtrl'], [roles.Admin, roles.Member, roles.Guest]) })
-                    .when("/not-authorized", { templateUrl: '/partials/not-authorized' })
-                    .when("/login", { templateUrl: '/partials/login', resolve: resolve(['auth/userCtrl']) })
-                    .when("/404", { templateUrl: '/partials/404' })
-                    .when("/member", { templateUrl: '/partials/member', resolve: resolve(['app/member/memberCtrl'], [roles.Admin, roles.Member]) })
-                    .when("/contact", { templateUrl: '/partials/contact', resolve: resolve(['app/contact/contactCtrl'], [roles.Admin, roles.Member]) })
+                    .when("/", { templateUrl: '/Content/Partials/home.html', resolve: resolve(['app/home/homeController'], [roles.Admin, roles.Member, roles.Guest]) })
+                    .when("/not-authorized", { templateUrl: '/Content/Partials/not-authorized.html' })
+                    .when("/login", { templateUrl: '/Content/Partials/login.html', resolve: resolve(['auth/userController']) })
+                    .when("/404", { templateUrl: '/Content/Partials/404.html' })
+                    .when("/member", { templateUrl: '/Content/Partials/member.html', resolve: resolve(['app/member/memberController'], [roles.Admin, roles.Member]) })
+                    .when("/contact", { templateUrl: '/Content/Partials/contact.html', resolve: resolve(['app/contact/contactController'], [roles.Admin, roles.Member]) })
                     .otherwise({ redirectTo: '/404' });
 
                 $locationProvider.html5Mode({

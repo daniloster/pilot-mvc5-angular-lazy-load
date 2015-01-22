@@ -2,7 +2,7 @@
     var Ctrl = null;
     define(['app'], function (app) {
         if (Ctrl == null) {
-            Ctrl = ['$scope', '$rootScope', '$location', 'authorizationSvc', function ($scope, $rootScope, $location, authorizationSvc) {
+            Ctrl = ['$scope', '$rootScope', '$location', 'AuthorizationService', function ($scope, $rootScope, $location, authorizationSvc) {
                 $rootScope.title = "Login";
                 $scope.login = function () {
                     authorizationSvc.login($scope.user, function (data) {
@@ -21,7 +21,7 @@
                 };
             }];
 
-            app.lazy.controller('userCtrl', Ctrl);
+            app.lazy.controller('UserController', Ctrl);
         };
     });
 })();

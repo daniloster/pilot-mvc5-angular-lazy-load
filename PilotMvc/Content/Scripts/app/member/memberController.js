@@ -1,8 +1,8 @@
 (function () {
-    var MemberCtrl = null;
-    define(['app', 'components/loading/loadingCtrl', 'app/member/memberSvc'], function (app, loadingCtrl) {
-        if (MemberCtrl === null) {
-            MemberCtrl = ['$scope', '$rootScope', '$filter', 'memberSvc', function ($scope, $rootScope, $filter, memberSvc) {
+    var Ctrl = null;
+    define(['app', 'components/loading/loadingController', 'app/member/memberService'], function (app, loadingCtrl) {
+        if (Ctrl === null) {
+            Ctrl = ['$scope', '$rootScope', '$filter', 'MemberService', function ($scope, $rootScope, $filter, memberSvc) {
                 loadingCtrl.clear(true);
                 $rootScope.title = "CRUD Member";
                 $scope.loading = true;
@@ -17,10 +17,6 @@
                     currentPage: 1,
                     itemsPerPage: 4
                 };
-
-                $scope.$on('paginationRequireInit', function (event, init) {
-                    init('pager', $scope.pager);
-                });
 
                 //Used to display the data  
                 $scope.getAll = function () {
@@ -80,13 +76,12 @@
                     var memberid = this.member.Id;
                     memberSvc.delete({ Id: memberid }, function (data) {
                         alert("Deleted Successfully!!");
-                        //$.each($scope.members, function (i) {
-                        //    if ($scope.members[i].Id === memberid) {
-                        //        $scope.members.splice(i, 1);
-                        //        return false;
-                        //    }
-                        //});
-                        $scope.getAll();
+                        $.each($scope.members, function (i) {
+                            if ($scope.members[i].Id === memberid) {
+                                $scope.members.splice(i, 1);
+                                return false;
+                            }
+                        });
                         loadingCtrl.stopLoading();
                     }, function (data) {
                         loadingCtrl.stopLoading();
@@ -97,7 +92,7 @@
 
                 $scope.getAll();
             }];
-            app.lazy.controller('memberCtrl', MemberCtrl);
+            app.lazy.controller('MemberController', Ctrl);
         }
     });
 })();

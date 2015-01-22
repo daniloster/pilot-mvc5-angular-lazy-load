@@ -1,13 +1,15 @@
 ﻿(function () {
     var loaded = false;
-    define(['app', 'components/loading/loadingCtrl'], function (app) {
+    define(['angular', 'app', 'components/loading/loadingController'], function (angular, app) {
         if (!loaded) {
-            app.lazy.directive("loading", function () {
+            app.lazy.directive("loading", ['ConfigApp', function (configApp) {
+                angular.element('body').after(angular.element('<link href="' + configApp.getPath('/Content/Scripts/components/loading/style.css') + '" type="text/css" rel="stylesheet" />'));
                 return {
+                    controller: "LoadingController",
                     restrict: 'E',
-                    templateUrl: '/Content/Scripts/components/loading/template.html'
+                    templateUrl: configApp.getPath('/Content/Scripts/components/loading/template.html')
                 };
-            });
+            }]);
             loaded = true;
         }
     });

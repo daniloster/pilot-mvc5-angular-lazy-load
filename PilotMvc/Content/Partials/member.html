@@ -1,5 +1,4 @@
-﻿<loading></loading>
-<div ng-controller="memberCtrl" class="clearfix">
+﻿<div ng-controller="MemberController" class="clearfix">
     <div class="pure-u-1">
         <strong class="error">{{ error }}</strong>
     </div>
@@ -21,7 +20,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="member in pager.items() | filter:textFilter | offset: (pager.currentPage-1)*pager.itemsPerPage | limitTo: pager.itemsPerPage">
+                    <tr ng-repeat="member in pager.items() | filter:textFilter | page: pager.currentPage : pager.itemsPerPage">
                         <td><strong ng-hide="member.editMode">{{ member.Id }}</strong></td>
                         <td>
                             <p ng-hide="member.editMode">{{ member.FirstName }}</p>
@@ -40,7 +39,7 @@
                 <tfoot>
                     <tr>
                         <td colspan="4">
-                            <pagination></pagination>
+                            <pagination pager="pager"></pagination>
                         </td>
                     </tr>
                 </tfoot>

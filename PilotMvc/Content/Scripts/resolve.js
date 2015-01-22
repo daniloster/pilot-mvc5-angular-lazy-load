@@ -1,5 +1,5 @@
 ﻿(function () {
-    var definitions = ['auth/userCtrl', 'app/home/homeCtrl'], redirect = function (routeForUnauthorizedAccess, $location, $rootScope, deferred) {
+    var definitions = ['auth/userController', 'app/home/homeController'], redirect = function (routeForUnauthorizedAccess, $location, $rootScope, deferred) {
         //If user does not have required access, we will route the user to unauthorized access page
         $location.path(routeForUnauthorizedAccess);
         //As there could be some delay when location change event happens, 
@@ -36,7 +36,7 @@
                     }
                     return deferred.promise;
                 }],
-                permission: ['$q', '$route', '$location', '$rootScope', '$cookieStore', 'authorizationSvc',
+                permission: ['$q', '$route', '$location', '$rootScope', '$cookieStore', 'AuthorizationService',
                     function ($q, $route, $location, $rootScope, $cookieStore, authorizationSvc) {
                     var deferred = $q.defer();
 

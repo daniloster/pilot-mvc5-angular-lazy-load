@@ -1,17 +1,25 @@
 ﻿(function () {
     /*
-    <input type="text" date-time dismiss="true" ng-model="$parent.dateFrom" views="['date']" format="dd/MM/yyyy" class="just-date" partial="false" readonly required/>
+    <input type="text" date-time ng-model="justDate" views="['date']" format="dd/MM/yyyy" class="just-date" partial="true" readonly required/>
     */
     var loaded = false;
-    define(['app'], function (app) {
+    define(['angular', 'app'], function (angular, app) {
         if (!loaded) {
             //var Module = angular.module('datePicker', []);
 
-            app.lazy.constant('datePickerConfig', {
-                template: '/Content/Scripts/components/date/picker.html',
-                view: 'date',
-                views: ['year', 'month', 'date', 'hours', 'minutes'],
-                step: 5
+
+
+            app.lazy.provider('datePickerConfig', function () {
+
+                this.$get = ["ConfigApp", function(configApp) {
+                    return {
+                        template: configApp.getPath('/Content/Scripts/components/date/picker.html'),
+                        view: 'date',
+                        views: ['year', 'month', 'date', 'hours', 'minutes'],
+                        step: 5
+                    };
+                }];
+
             });
 
             app.lazy.filter('time', function () {
@@ -164,6 +172,7 @@
                             // This returns a function that returns the result of your ng-model expression.
                             var modelGetter = $parse('$parent.$parent.' + attrs['datePicker']);
                             console.log(modelGetter(scope));
+                            console.log(element);
                             // This returns a function that lets us set the value of the ng-model binding expression:
                             var modelSetter = modelGetter.assign;
                             // This is how you can use it to set the value 'bar' on the given scope.
@@ -339,9 +348,9 @@
                 };
             }]);
 
-            app.lazy.directive('dateRange', function () {
+            app.lazy.directive('dateRange', ["ConfigApp", function(configApp) {
                 return {
-                    templateUrl: '/Content/Scripts/components/date/range.html',
+                    templateUrl: configApp.getPath('/Content/Scripts/components/date/range.html'),
                     scope: {
                         start: '=',
                         end: '='
@@ -362,7 +371,7 @@
                         });
                     }
                 };
-            });
+            }]);
 
             var PRISTINE_CLASS = 'ng-pristine',
                 DIRTY_CLASS = 'ng-dirty';
@@ -395,7 +404,8 @@
                 };
             });
 
-            app.lazy.directive('dateTime', ['$compile', '$document', '$filter', 'dateTimeConfig', '$parse', function ($compile, $document, $filter, dateTimeConfig, $parse) {
+            app.lazy.directive('dateTime', ['$compile', '$document', '$filter', 'dateTimeConfig', '$parse', '$timeout', 'ConfigApp', function ($compile, $document, $filter, dateTimeConfig, $parse, $timeout, configApp) {
+                angular.element('body').after(angular.element('<link href="' + configApp.getPath('/Content/Scripts/components/date/style.css') + '" type="text/css" rel="stylesheet" />'));
                 var body = $document.find('body');
                 var dateFilter = $filter('date');
 
@@ -475,10 +485,12 @@
                             scope.$digest();
 
                             scope.$on('setDate', function (event, date, view) {
-                                updateInput(event);
-                                if (dismiss && views[views.length - 1] === view) {
-                                    clear();
-                                }
+                                $timeout(function () {
+                                    updateInput(event);
+                                    if (dismiss && views[views.length - 1] === view) {
+                                        clear();
+                                    }
+                                }, 50);
                             });
 
                             scope.$on('$destroy', clear);

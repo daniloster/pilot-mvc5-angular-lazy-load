@@ -41,7 +41,7 @@
     <![endif]-->
     <!-- Primary Page Layout
 	================================================== -->
-    @*@Html.Partial("~/Views/Shared/LoadingPanel.cshtml")*@
+    <loading></loading>
 
     @Html.Partial("~/Views/Shared/NavMenu.cshtml")
 
@@ -74,9 +74,7 @@
             baseUrl: '/Content/Scripts',
             enforceDefine: true,
             paths: {
-                'domReady': 'lib/domReady',
                 'modernizr': 'lib/modernizr.min',
-                //'text': 'lib/requirejs.text.min',
                 'jquery': ['https://code.jquery.com/jquery-2.1.1.min', 'lib/jQuery/jquery-2.min'],
                 'angular': ['//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.4/angular.min', 'lib/angularjs/angular.min'],
                 'ngRoute': ['//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-rc.4/angular-route.min', 'lib/angularjs/angular-route.min'],
@@ -94,7 +92,8 @@
                     exports: 'Modernizr'
                 },
                 'angular': {
-                    exports: 'angular'
+                    exports: 'angular',
+                    deps: ['jquery']
                 },
                 'ngRoute': {
                     exports: 'angular',
@@ -137,7 +136,7 @@
             }
         };
     </script>
-    <script data-main="main" src="~/Content/Scripts/lib/requirejs.min.js"></script>
+    <script data-main="main" src="/Content/Scripts/lib/requirejs.min.js"></script>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>

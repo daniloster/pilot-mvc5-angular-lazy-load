@@ -22,7 +22,7 @@
                 };
             }];
 
-            app.lazy.factory('uploadSvc', Svc);
+            app.lazy.factory('UploadService', Svc);
         }
     });
 })();

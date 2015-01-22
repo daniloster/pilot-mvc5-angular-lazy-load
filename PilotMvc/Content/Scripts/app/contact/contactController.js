@@ -1,8 +1,8 @@
 (function () {
     var Ctrl = null;
-    define(['app', 'components/loading/loadingCtrl', 'app/member/memberSvc', 'app/contact/contactSvc', 'app/upload/uploadSvc', 'app/upload/fileModel'], function (app, loadingCtrl) {
+    define(['app', 'components/loading/loadingController', 'app/member/memberService', 'app/contact/contactService', 'app/upload/uploadService', 'app/upload/fileModel'], function (app, loadingCtrl) {
         if (Ctrl == null) {
-            Ctrl = ['$scope', '$rootScope', '$filter', 'memberSvc', 'contactSvc', 'uploadSvc', function ($scope, $rootScope, $filter, memberSvc, contactSvc, uploadSvc) {
+            Ctrl = ['$scope', '$rootScope', '$filter', 'MemberService', 'ContactService', 'UploadService', function ($scope, $rootScope, $filter, memberSvc, contactSvc, uploadSvc) {
                 loadingCtrl.clear(true);
                 $rootScope.title = "CRUD Contact";
 
@@ -24,10 +24,6 @@
                     currentPage: 1,
                     itemsPerPage: 4
                 };
-
-                $scope.$on('paginationRequireInit', function (event, init) {
-                    init('pager', $scope.pager);
-                });
 
                 $scope.$watch('myFile', function (nval, oval) {
                     if (nval === oval) return;
@@ -140,7 +136,7 @@
                 $scope.getMembers();
             }];
 
-            app.lazy.controller('contactCtrl', Ctrl);
+            app.lazy.controller('ContactController', Ctrl);
         };
     });
 })();

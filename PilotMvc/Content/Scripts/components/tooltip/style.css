@@ -1,0 +1,35 @@
+﻿.tooltip {
+    position: absolute;
+    color: #fff;
+    background: #000;
+    border-radius: 3px;
+    padding: 10px 20px;
+    display: inline-block;
+}
+
+    .tooltip.ng-enter {
+        /* IE 8 */
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+        /* IE 5-7 */
+        filter: alpha(opacity=0);
+        /* Netscape */
+        -moz-opacity: 0;
+        /* Safari 1.x */
+        -khtml-opacity: 0;
+        /* Good browsers */
+        opacity: 0;
+        transition: opacity 1s;
+    }
+
+    .tooltip.ng-enter-active {
+        /* IE 8 */
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+        /* IE 5-7 */
+        filter: alpha(opacity=100);
+        /* Netscape */
+        -moz-opacity: 1;
+        /* Safari 1.x */
+        -khtml-opacity: 1;
+        /* Good browsers */
+        opacity: 1;
+    }

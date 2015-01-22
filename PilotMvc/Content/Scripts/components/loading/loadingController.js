@@ -40,7 +40,7 @@
                 };
             }];
 
-            app.lazy.controller('loadingCtrl', Ctrl);
+            app.lazy.controller('LoadingController', Ctrl);
         }
 
         return instance;

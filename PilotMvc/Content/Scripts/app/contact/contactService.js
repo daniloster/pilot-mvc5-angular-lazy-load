@@ -26,7 +26,7 @@
                 };
             }];
 
-            app.lazy.factory('contactSvc', Svc);
+            app.lazy.factory('ContactService', Svc);
         }
     });
 })();

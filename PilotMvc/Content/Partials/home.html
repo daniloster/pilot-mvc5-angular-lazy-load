@@ -1,11 +1,12 @@
-﻿<loading></loading>
-<div ng-controller="homeCtrl" class="clearfix">
+﻿<div ng-controller="HomeController" class="clearfix">
     <h2>{{ message }}</h2>
     <input type="button" ng-click="changeWelcome()" value="Change Welcome" />
     <br />
-    @*<form>*@
+    <br />
+    <br />
+    <form>
         <label>Just Date</label>
-        <input type="text" date-time ng-model="justDate" views="['date']" format="dd/MM/yyyy" class="just-date" partial="true" readonly required/>
+        <input type="text" date-time ng-model="justDate" views="['date']" format="dd/MM/yyyy" class="just-date" readonly required/>
         {{ justDate | date:'dd-MM-yyyy' }}
         <br />
         <br />
@@ -19,6 +20,6 @@
         <label>Year-Month</label>
         <input type="text" date-time ng-model="justMonth" views="['year','month']" format="MM/yyyy" class="just-date" readonly required/>
         {{ justMonth | date:'MM-yyyy' }}
-    @*</form>*@
+    </form>
 </div>
 

@@ -43,8 +43,8 @@
                 
                 return resource;
             }];
-            //<instance>.test({LastName: "Castro", function(data) { console.log(data); }, function(data) { console.log(data); } });
-            app.lazy.factory('memberSvc', Svc);
+            //<instance>.test({LastName: "Castro"}, function(data) { console.log(data); }, function(data) { console.log(data); } });
+            app.lazy.factory('MemberService', Svc);
         }
     });
 })();

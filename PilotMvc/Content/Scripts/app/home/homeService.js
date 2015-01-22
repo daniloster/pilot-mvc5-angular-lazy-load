@@ -12,7 +12,7 @@
                 
                 return resource;
             }];
-            app.lazy.factory('homeSvc', Svc);
+            app.lazy.factory('HomeService', Svc);
         }
     });
 })();
