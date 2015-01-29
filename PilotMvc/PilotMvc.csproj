@@ -967,6 +967,8 @@
     <Content Include="Content\Scripts\lib\jQuery\jquery.validate.min.js" />
     <Content Include="Content\Scripts\lib\jQuery\jquery.validate.unobtrusive.min.js" />
     <Content Include="Content\Scripts\resolve.js" />
+    <Content Include="Content\Scripts\util\array.js" />
+    <Content Include="Content\Scripts\util\jsonQueryExporter.js" />
     <Content Include="Content\Styles\Boilerplate\form.css" />
     <Content Include="Content\Styles\Boilerplate\main.css" />
     <Content Include="Content\Styles\Boilerplate\normalize.css" />
