@@ -2,6 +2,14 @@
     var JsonQuery = null;
     define([], function () {
         if (JsonQuery === null) {
+            var isBrowserIE = function () {
+
+                var ua = window.navigator.userAgent;
+                var msie = ua.indexOf("MSIE ");
+
+                return (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./));
+            };
+
             JsonQuery = function (datasource) {
                 var self = this, ds = typeof datasource != 'object' && typeof datasource != typeof [] ? JSON.parse(datasource) : datasource,
                     Events = {
@@ -138,16 +146,41 @@
                     References for tag A
                     http://www.w3schools.com/tags/tag_a.asp
                     */
+                    downloadCSV(CSV.join(''), fileName + ".csv");
+                },
+                downloadCSV = function (data, fileName) {
+                    var isIE = isBrowserIE();
+                    if (!isIE) {
+                        data = escape(data);
+                        //Initialize file format you want csv or xls
+                        var uriCommon = 'data:text/csv;charset=utf-8,' + data,
+                            link = document.createElement("a");
+                        link.href = uriCommon;
+                        link.download = fileName;
+                        //set the visibility hidden so it will not effect on your web-layout
+                        link.style = "visibility:hidden";
+                        //this part will append the anchor tag and remove it after automatic click
+                        document.body.appendChild(link);
+                        link.onclick = function () {
+                            document.body.removeChild(this);
+                        };
+                        link.click();
+                    } else {
+                        data = decodeURIComponent(data);
+                        var uriIE = 'sep=,\r\n' + data;
 
-                    var link = document.createElement("a");
-                    link.href = 'data:text/csv;charset=utf-8,' + escape(CSV.join());
+                        var iframe = document.createElement('iframe');
+                        document.body.appendChild(iframe);
+                        iframe = iframe.contentWindow || iframe.contentDocument;
 
-                    link.style = "visibility:hidden";
-                    link.download = fileName + ".csv";
-
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
+                        iframe.document.open("text/csv", "replace");
+                        iframe.DocumentType = "text/csv";
+                        iframe.document.write(uriIE);
+                        iframe.document.close();
+                        iframe.focus();
+                        iframe.document.execCommand('SaveAs', true, fileName);
+                        document.body.removeChild(iframe);
+                    }
                 };
 
             };
