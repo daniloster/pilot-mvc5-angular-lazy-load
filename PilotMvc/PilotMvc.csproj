@@ -995,7 +995,9 @@
     <Content Include="Content\Scripts\lib\angularjs\errors.json" />
     <Content Include="Content\Scripts\lib\jQuery\jquery-1.10.2.min.map" />
     <Content Include="Content\Scripts\lib\angularjs\version.json" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\BundleConfig.cs" />

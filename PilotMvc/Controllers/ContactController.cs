@@ -24,7 +24,7 @@ namespace PilotMvc.Controllers
         {
             try
             {
-                System.IO.FileStream fs = UploadController.GetFileStream(fileName, fileSize);
+                System.IO.FileStream fs = UploadController.GetFileStream(fileName, fileSize, "UploadTmpDirectory");
                 //contact.MemberId = contact.Member.Id;
                 Service.Save(contact);
                 return new JsonResultView(contact, JsonRequestBehavior.AllowGet);
