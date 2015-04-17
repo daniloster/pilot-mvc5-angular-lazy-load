@@ -78,7 +78,7 @@
                     .when("/login", { templateUrl: '/Content/Partials/login.html', resolve: resolve(['auth/userController']) })
                     .when("/404", { templateUrl: '/Content/Partials/404.html' })
                     .when("/member", { templateUrl: '/Content/Partials/member.html', resolve: resolve(['app/member/memberController'], [roles.Admin, roles.Member]) })
-                    .when("/contact", { templateUrl: '/Content/Partials/contact.html', resolve: resolve(['app/contact/contactController'], [roles.Admin, roles.Member]) })
+                    .when("/contact", { templateUrl: '/Content/Partials/contact.html', resolve: resolve(['app/contact/contactController', 'components/fileUpload/fileUpload'], [roles.Admin, roles.Member]) })
                     .otherwise({ redirectTo: '/404' });
 
                 $locationProvider.html5Mode({

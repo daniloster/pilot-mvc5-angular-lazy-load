@@ -1,5 +1,6 @@
 ﻿using Pilot.Database.Interfaces;
 using Pilot.Entity;
+using Pilot.Util.Logging;
 using Pilot.Util.Unity.Lifetime;
 using System;
 using System.Collections.Generic;
@@ -32,7 +33,23 @@ namespace Pilot.Database
 
         protected int SaveChanges()
         {
-            return DbContext.SaveChanges();
+            try
+            {
+                return DbContext.SaveChanges();
+            }
+            catch (System.Data.Entity.Validation.DbEntityValidationException e)
+            {
+                LoggerFile.AppendLogSafe(e);
+                foreach (System.Data.Entity.Validation.DbEntityValidationResult item in e.EntityValidationErrors)
+                {
+                    foreach (System.Data.Entity.Validation.DbValidationError error in item.ValidationErrors)
+                    {
+                        LoggerFile.AppendLogSafe(error.ErrorMessage);
+                        LoggerFile.AppendLogSafe(error.PropertyName);
+                    }
+                }
+                throw;
+            }
         }
 
         public T GetAttachedEntity<T>(T entity) where T : class, IBaseEntity

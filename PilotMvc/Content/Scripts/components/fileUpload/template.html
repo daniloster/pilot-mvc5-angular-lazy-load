@@ -1,0 +1,9 @@
+﻿<input type="file" name="sourceFile" file-model="sourceFile" class="btn" />
+<input type="button" ng-click="upload(sourceFile)" value="Upload" class="btn btn-primary" />
+<input type="button" ng-click="clearFileReferences()" value="Remove" class="btn" />
+<span ng-show="!!sourceFile && !sourceFile.hasBeenUploaded"><i class="fa fa-warning fa-lg"></i> New file not uploaded</span>
+<span ng-show="sourceFile.hasBeenUploaded"><i class="fa fa-check fa-lg"></i> File uploaded!</span>
+<div class="col-xs-12" ng-show="(showProgress && fileProgress >= 0)" ng-cloak>
+    <!-- Progress bar here! -->
+    <div class="bar" ng-style="styleProgress"></div>
+</div>

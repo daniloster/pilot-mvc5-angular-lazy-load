@@ -1,6 +1,6 @@
 (function () {
     var Ctrl = null;
-    define(['app', 'components/loading/loadingController', 'app/member/memberService', 'app/contact/contactService', 'app/upload/uploadService', 'app/upload/fileModel'], function (app, loadingCtrl) {
+    define(['app', 'components/loading/loadingController', 'app/member/memberService', 'app/contact/contactService'], function (app, loadingCtrl) {
         if (Ctrl == null) {
             Ctrl = ['$scope', '$rootScope', '$filter', 'MemberService', 'ContactService', 'UploadService', function ($scope, $rootScope, $filter, memberSvc, contactSvc, uploadSvc) {
                 loadingCtrl.clear(true);
@@ -8,9 +8,9 @@
 
                 var clearContact = function () {
                     $scope.contact = { Member: { Id: 0 }, Type: { Id: 0 } };
-                    $scope.myFileData = {};
+                    //$scope.myFileData = {};
                     //$scope.fileHasBeenSelected = false;
-                    $scope.fileHasBeenUploaded = false;
+                    //$scope.fileHasBeenUploaded = false;
                 };
 
                 clearContact();
@@ -25,11 +25,11 @@
                     itemsPerPage: 4
                 };
 
-                $scope.$watch('myFile', function (nval, oval) {
-                    if (nval === oval) return;
-                    //$scope.fileHasBeenSelected = !!nval;
-                    $scope.fileHasBeenUploaded = false;
-                });
+                //$scope.$watch('myFile', function (nval, oval) {
+                //    if (nval === oval) return;
+                //    //$scope.fileHasBeenSelected = !!nval;
+                //    $scope.fileHasBeenUploaded = false;
+                //});
                 //var find = Array.createFinder('Id');
                 //$scope.contact.Member = find($scope.members, $scope.contact.Member.Id);
 
@@ -78,20 +78,20 @@
                         });
                 };
 
-                $scope.upload = function () {
-                    loadingCtrl.startLoading();
-                    uploadSvc.sendFile($scope.myFile,
-                        function (data) {
-                            $scope.myFileData = data;
-                            $scope.fileHasBeenUploaded = true;
-                            loadingCtrl.stopLoading();
-                        },
-                        function (data) {
-                            $scope.myFileData = {};
-                            $scope.fileHasBeenUploaded = false;
-                            loadingCtrl.stopLoading();
-                        });
-                };
+                //$scope.upload = function () {
+                //    loadingCtrl.startLoading();
+                //    uploadSvc.sendFile($scope.myFile,
+                //        function (data) {
+                //            $scope.myFileData = data;
+                //            $scope.fileHasBeenUploaded = true;
+                //            loadingCtrl.stopLoading();
+                //        },
+                //        function (data) {
+                //            $scope.myFileData = {};
+                //            $scope.fileHasBeenUploaded = false;
+                //            loadingCtrl.stopLoading();
+                //        });
+                //};
 
                 $scope.create = function () {
                     loadingCtrl.startLoading();
@@ -100,8 +100,8 @@
                     contactSvc.create(
                         {
                             contact: $scope.contact,
-                            fileName: $scope.myFileData.FileName,
-                            fileSize: $scope.myFileData.Size
+                            fileName: $scope.myFile.fileData.FileName,
+                            fileSize: $scope.myFile.fileData.Size
                         },
                         function (data) {
                             clearContact();
