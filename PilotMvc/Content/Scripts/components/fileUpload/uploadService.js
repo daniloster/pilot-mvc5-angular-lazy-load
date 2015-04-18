@@ -2,7 +2,7 @@
     var Svc = null;
     define(['angular', 'app'], function (angular, app) {
         if (Svc == null) {
-            Svc = ['$http', '$q', function ($http, $q) {
+            Svc = ['$rootScope', '$http', '$q', function ($rootScope, $http, $q) {
 
                 return {
                     sendFile: function(file, successHandler, errorHandler) {
@@ -91,7 +91,7 @@
 
                                 xhr.open("POST", uploadUrl);
                                 xhr.send(formData);
-
+                                
                                 return deferred.promise;
                             }
                         };
@@ -103,13 +103,3 @@
         }
     });
 })();
-
-/*
-return $resource('/api/member/:Id', {} / * Default get with :Id * /, {
-query: { method: 'GET', params: { Id: '' }, isArray: true },
-create: { method: 'POST' },
-update: { method: 'PUT', params: { entryId: '@Id' } },
-remove: { method: 'DELETE' }
-});
-
-*/

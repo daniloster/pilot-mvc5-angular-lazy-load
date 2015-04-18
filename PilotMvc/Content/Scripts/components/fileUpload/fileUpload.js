@@ -1,8 +1,10 @@
 (function () {
     var Element = null;
     define(['app', 'components/loading/loadingController', 'components/fileUpload/uploadService'], function (app, loadingController) {
-        if (Element === null) {
+        if (Element === null) {            
             Element = ['$parse', 'ConfigApp', function ($parse, configApp) {
+                angular.element('body').after(angular.element("<link rel='stylesheet' type='text/css' href='" + configApp.getPath("/Content/Scripts/components/fileUpload/style.css") + "'/>"));
+
                 return {
                     scope:{
                         file: '=',
@@ -27,21 +29,27 @@
 
                         $scope.upload = function (file) {
                             $scope.clear();
-                            loadingController.startLoading();
-                            uploadService.upload([file], { type: 'file', folderType: !!$scope.pathKey ? $scope.pathKey : 'profile' },
+                            if (!$scope.showProgress) {
+                                loadingController.startLoading();
+                            }
+                            uploadService.upload(file, { type: 'file', folderType: !!$scope.pathKey ? $scope.pathKey : 'ProfilePath' },
                             function (progress) {
                                 $scope.fileProgress = progress;
                                 $scope.styleProgress = { 'width': progress + '%' };
                             },
                             function (data) {
-                                file.fileData = data;
+                                file.fileData = data.data;
                                 file.hasBeenUploaded = true;
-                                loadingController.stopLoading();
+                                if (!$scope.showProgress) {
+                                    loadingController.stopLoading();
+                                }
                             },
                             function (data) {
                                 file.fileData = {};
                                 file.hasBeenUploaded = false;
-                                loadingController.stopLoading();
+                                if (!$scope.showProgress) {
+                                    loadingController.stopLoading();
+                                }
                             });
                         };
 
@@ -53,7 +61,7 @@
                         var elem = element.find('[type=file]');
                         elem.bind('change', function () {
                             scope.$apply(function () {
-                                scope.file = elem[0].files[0];
+                                scope.file = elem[0].files;
                                 if (!!scope.file && scope.fireOnchange) {
                                     scope.upload(scope.file);
                                 }
