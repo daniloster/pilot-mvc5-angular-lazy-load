@@ -1,0 +1,7 @@
+﻿<div class="progress-wrapper" ng-hide="hideAll">
+    <ul class="steps">
+        <li class="back pull-left"><a href="#" ng-click="movePrevious()">Back</a></li>
+        <li ng-class="{ 'active': step.isActive }" ng-repeat="step in items"><a href="#">{{ step.name }}</a></li>
+        <li class="next pull-right"><a href="#" ng-click="moveNext()">{{ (isLastMove ? 'Finish' : 'Next') }}</a></li>
+    </ul>
+</div>

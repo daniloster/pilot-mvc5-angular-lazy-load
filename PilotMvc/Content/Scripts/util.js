@@ -1,9 +1,6 @@
-define(['app/home/homeController', 'auth/userController',
-    'components/pagination/pagination', 'components/loading/loading',
-    'components/date/datePicker', 'components/imgCrop/imgCrop',
-    'components/tooltip/tooltip', 'components/currencyFormatter/currencyFormatter',
-    'util/array'],
+define(['app/home/homeController', 'auth/userController', 'components/common/loading/loading',
+    'components/common/date/datePicker', 'components/common/tooltip/tooltip',
+    'components/common/currencyFormatter/currencyFormatter'],
 function () {
-
     
 });

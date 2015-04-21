@@ -1,10 +1,9 @@
 (function () {
     var Ctrl = null;
-    define(['app', 'components/loading/loadingController', 'app/member/memberService', 'app/contact/contactService'], function (app, loadingCtrl) {
+    define(['app', 'components/common/loading/loadingController', 'app/member/memberService', 'app/contact/contactService'], function (app, loadingCtrl) {
         if (Ctrl == null) {
             Ctrl = ['$scope', '$rootScope', '$filter', 'MemberService', 'ContactService', 'UploadService', function ($scope, $rootScope, $filter, memberSvc, contactSvc, uploadSvc) {
                 loadingCtrl.clear(true);
-                $rootScope.title = "CRUD Contact";
 
                 var clearContact = function () {
                     $scope.contact = { Member: { Id: 0 }, Type: { Id: 0 } };
@@ -18,12 +17,8 @@
                 $scope.contactTypes = [];
                 $scope.contacts = [];
 
-                var searchFilter = $filter('filter');
-                $scope.pager = {
-                    items: function () { return searchFilter(!!$scope.contacts ? $scope.contacts : [], $scope.textFilter); },
-                    currentPage: 1,
-                    itemsPerPage: 4
-                };
+                $scope.pageSize = 4;
+                $scope.currentPage = 1;
 
                 //$scope.$watch('myFile', function (nval, oval) {
                 //    if (nval === oval) return;

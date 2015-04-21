@@ -1,9 +1,8 @@
 (function () {
     var Ctrl = null, idx = 0;
-    define(['app', 'components/loading/loadingController', 'app/home/homeService'], function (app, loadingCtrl) {
+    define(['app', 'components/common/loading/loadingController', 'app/home/homeService'], function (app, loadingCtrl) {
         if (Ctrl == null) {
             Ctrl = ['$scope', '$rootScope', '$filter', 'HomeService', function ($scope, $rootScope, $filter, homeSvc) {
-                $rootScope.title = "Home";
                 var messages = ["This is the home controller", "Welcome to home controller", "It is a new attempt"];
                 $scope.message = messages[idx];
 

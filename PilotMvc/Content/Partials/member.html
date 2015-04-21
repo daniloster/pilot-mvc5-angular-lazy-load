@@ -1,10 +1,10 @@
 ﻿<div ng-controller="MemberController" class="clearfix">
-    <div class="pure-u-1">
+    <div class="pure-u-1" ng-cloak>
         <strong class="error">{{ error }}</strong>
     </div>
     <div class="pure-g">
         <div class="pure-u-1-2">
-            <h2>{{ titleView }}</h2>
+            <h2 ng-cloak>{{ titleView }}</h2>
             <form class="pure-form">
                 <fieldset>
                     <input type="text" placeholder="Search" ng-model="textFilter" />
@@ -20,7 +20,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="member in pager.items() | filter:textFilter | page: pager.currentPage : pager.itemsPerPage">
+                    <tr ng-repeat="member in membersOut" ng-cloak>
                         <td><strong ng-hide="member.editMode">{{ member.Id }}</strong></td>
                         <td>
                             <p ng-hide="member.editMode">{{ member.FirstName }}</p>
@@ -39,7 +39,13 @@
                 <tfoot>
                     <tr>
                         <td colspan="4">
-                            <pagination pager="pager"></pagination>
+                            <pagination in-list="members"
+                                out-list="membersOut"
+                                page-size="pageSize"
+                                current-page="currentPage"
+                                search-query="textFilter"
+                                type="small"
+                                class="pull-right"></pagination>
                         </td>
                     </tr>
                 </tfoot>
@@ -49,7 +55,7 @@
             <div class="pure-u-1">
                 <input type="button" ng-hide="addMode" ng-click="toggleAdd()" class="pure-button" value="Add New" />
             </div>
-            <form name="addMember" ng-show="addMode" class="pure-form pure-form-aligned">
+            <form name="addMember" ng-show="addMode" class="pure-form pure-form-aligned" ng-cloak>
                 <h2>{{ titleRegister }}</h2>
                 <div class="pure-control-group">
                     <label>FirstName:</label><input type="text" ng-model="newmember.FirstName" required />

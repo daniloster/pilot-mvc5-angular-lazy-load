@@ -1,22 +1,17 @@
 (function () {
     var Ctrl = null;
-    define(['app', 'components/loading/loadingController', 'app/member/memberService'], function (app, loadingCtrl) {
+    define(['app', 'components/common/loading/loadingController', 'app/member/memberService'], function (app, loadingCtrl) {
         if (Ctrl === null) {
             Ctrl = ['$scope', '$rootScope', '$filter', 'MemberService', function ($scope, $rootScope, $filter, memberSvc) {
                 loadingCtrl.clear(true);
-                $rootScope.title = "CRUD Member";
                 $scope.loading = true;
                 $scope.addMode = false;
 
                 $scope.titleView = 'Members View';
                 $scope.titleRegister = 'New Member';
 
-                var searchFilter = $filter('filter');
-                $scope.pager = {
-                    items: function () { return searchFilter(!!$scope.members ? $scope.members : [], $scope.textFilter); },
-                    currentPage: 1,
-                    itemsPerPage: 4
-                };
+                $scope.pageSize = 4;
+                $scope.currentPage = 1;
 
                 //Used to display the data  
                 $scope.getAll = function () {

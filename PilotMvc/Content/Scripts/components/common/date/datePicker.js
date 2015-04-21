@@ -13,7 +13,7 @@
 
                 this.$get = ["ConfigApp", function(configApp) {
                     return {
-                        template: configApp.getPath('/Content/Scripts/components/date/picker.html'),
+                        template: configApp.getPath('/Content/Scripts/components/common/date/picker.html'),
                         view: 'date',
                         views: ['year', 'month', 'date', 'hours', 'minutes'],
                         step: 5
@@ -350,7 +350,7 @@
 
             app.lazy.directive('dateRange', ["ConfigApp", function(configApp) {
                 return {
-                    templateUrl: configApp.getPath('/Content/Scripts/components/date/range.html'),
+                    templateUrl: configApp.getPath('/Content/Scripts/components/common/date/range.html'),
                     scope: {
                         start: '=',
                         end: '='
@@ -405,7 +405,7 @@
             });
 
             app.lazy.directive('dateTime', ['$compile', '$document', '$filter', 'dateTimeConfig', '$parse', '$timeout', 'ConfigApp', function ($compile, $document, $filter, dateTimeConfig, $parse, $timeout, configApp) {
-                angular.element('body').after(angular.element('<link href="' + configApp.getPath('/Content/Scripts/components/date/style.css') + '" type="text/css" rel="stylesheet" />'));
+                angular.element('body').after(angular.element('<link href="' + configApp.getPath('/Content/Scripts/components/common/date/style.css') + '" type="text/css" rel="stylesheet" />'));
                 var body = $document.find('body');
                 var dateFilter = $filter('date');
 

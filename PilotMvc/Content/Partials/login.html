@@ -1,5 +1,5 @@
 ﻿<form name="userForm" ng-controller="UserController" class="pure-form pure-form-aligned">
-    <h2>{{ titleRegister }}</h2>
+    <h2 ng-cloak>{{ titleRegister }}</h2>
     <div class="pure-control-group">
         <label>User Name:</label><input type="text" ng-model="user.userName" required />
     </div>
@@ -10,5 +10,5 @@
     <div class="pure-control-group">
         <input type="submit" value="Sign in" ng-click="login()" ng-disabled="!userForm.$valid" class="pure-button pure-button-primary" />
     </div>
-    <p>{{ message }}</p>
+    <p ng-cloak>{{ message }}</p>
 </form>

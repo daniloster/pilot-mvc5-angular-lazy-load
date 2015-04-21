@@ -56,7 +56,7 @@
             }]);
 
             app.lazy.directive("tooltip", ['$compile', 'AlignService', 'ConfigApp', function ($compile, alignSvc, configApp) {
-                angular.element('body').after(angular.element("<link rel='stylesheet' type='text/css' href='" + configApp.getPath("/components/tooltip/style.css") + "'/>"));
+                angular.element('body').after(angular.element("<link rel='stylesheet' type='text/css' href='" + configApp.getPath("/Content/Scripts/components/common/tooltip/style.css") + "'/>"));
                 var template =
                  '<div class="tooltip">' +
                    '<p>{{message}}</p>' +

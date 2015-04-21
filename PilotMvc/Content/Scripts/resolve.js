@@ -10,9 +10,11 @@
         });
     };
     define(['auth/session'], function (session) {
-        return function (dependencies, roles) {
-            if (!roles) {
-                roles = [];
+        return function (data) {
+            var dependencies = data.dependencies || [], permission = data.permission || [], title = data.title || undefined;
+
+            if (!permission) {
+                permission = [];
             }
             return {
                 load: ['$q', '$rootScope', function ($q, $rootScope) {
@@ -38,39 +40,49 @@
                 }],
                 permission: ['$q', '$route', '$location', '$rootScope', '$cookieStore', 'AuthorizationService',
                     function ($q, $route, $location, $rootScope, $cookieStore, authorizationSvc) {
-                    var deferred = $q.defer();
+                    var deferred = $q.defer(), authorized = $q.defer();
 
-                    if (roles.length == 0) {
+                    deferred.promise.then(function () {
+                        if (title != undefined) {
+                            $rootScope.title = title;
+                        }
+                        authorized.resolve();
+                    }, function () {
+                        /// redirect to not authorized page
+                        redirect('/not-authorized', $location, $rootScope, authorized);
+                    });
+
+                    if (permission.length == 0) {
                         deferred.resolve();
                     } else {
                         if (session.init($cookieStore)) {
-                            if (session.hasPermission(roles)) {
+                            if (session.hasPermission(permission)) {
                                 deferred.resolve();
                             } else {
                                 /// redirect to not authorized page
-                                redirect('/not-authorized', $location, $rootScope, deferred);
+                                deferred.reject();
                             }
                         } else {
                             // In that case, it is necessary to load the user from session
                             authorizationSvc.getCurrent(function (data) {
                                 if (session.init($cookieStore, data)) {
-                                    if (session.hasPermission(roles)) {
+                                    if (session.hasPermission(permission)) {
                                         deferred.resolve();
                                     } else {
                                         /// redirect to not authorized page
-                                        redirect('/not-authorized', $location, $rootScope, deferred);
+                                        deferred.reject();
                                     }
                                 } else {
                                     /// redirect to not authorized page
-                                    redirect('/not-authorized', $location, $rootScope, deferred);
+                                    deferred.reject();
                                 }
                             }, function (data) {
                                 /// redirect to login page
-                                redirect('/login', $location, $rootScope, deferred);
+                                redirect('/login', $location, $rootScope, authorized);
                             });
                         }
                     }
-                    return deferred.promise;
+                    return authorized.promise;
                 }]
             };
         };
