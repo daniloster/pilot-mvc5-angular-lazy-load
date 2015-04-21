@@ -1,0 +1,7 @@
+﻿.modal div.modal-backdrop {
+    z-index:0;
+}
+
+.modal-title {
+    text-align: left !important;
+}
