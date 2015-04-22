@@ -16,19 +16,19 @@ namespace PilotMvc.Controllers
         [Dependency]
         public IMemberService Service { get; set; }
 
-        [Route("all")]
+        [Route("all"), HttpPost, HandleUIException("It is not possible to list the members")]
         public ActionResult Get()
         {
             return new JsonResultView(Service.Get(), JsonRequestBehavior.AllowGet);
         }
 
-        [Route("get")]
+        [Route("get"), HttpPost, HandleUIException("It is not possible to get the member")]
         public ActionResult Get(int id)
         {
             return new JsonResultView(Service.Get(id), JsonRequestBehavior.AllowGet);
         }
 
-        [Route("save")]
+        [Route("save"), HttpPost, HandleUIException("It is not possible to save the member")]
         public ActionResult Save(Member member)
         {
 
@@ -36,7 +36,7 @@ namespace PilotMvc.Controllers
             return new JsonResultView(member, JsonRequestBehavior.AllowGet);
         }
 
-        [Route("delete")]
+        [Route("delete"), HttpPost, HandleUIException("It is not possible to delete the member")]
         public ActionResult Delete(long id)
         {
             Service.Delete(id);

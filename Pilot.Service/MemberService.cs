@@ -46,20 +46,9 @@ namespace Pilot.Service
 
         private void ValidateRequiredProperties(Member entity)
         {
-            if (entity == null)
-            {
-                throw new ValidationException("A member is required to save into database.", string.Format("{0} entity", typeof(Member).Name));
-            }
-
-            if (string.IsNullOrWhiteSpace(entity.FirstName))
-            {
-                throw new ValidationException("First name is required.", string.Format("{0} entity.{1}", typeof(Member).Name, "FirstName"));
-            }
-
-            if (string.IsNullOrWhiteSpace(entity.LastName))
-            {
-                throw new ValidationException("Last name is required.", string.Format("{0} entity.{1}", typeof(Member).Name, "LastName"));
-            }
+            entity.Assert<Member>("A member is required to save into database.", e => e != null);
+            entity.Assert<Member>("First name is required.", e => !e.FirstName.IsNullOrWhiteSpace());
+            entity.Assert<Member>("Last name is required.", e => !e.LastName.IsNullOrWhiteSpace());
         }
     
     }

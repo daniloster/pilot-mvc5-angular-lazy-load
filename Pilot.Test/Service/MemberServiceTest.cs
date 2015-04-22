@@ -41,7 +41,7 @@ namespace Pilot.Test
             }
             catch (ValidationException ex)
             {
-                Assert.AreEqual<string>(ex.SourceError, string.Format("{0} entity.{1}", typeof(Member).Name, "FirstName"));
+                Assert.AreEqual<string>(ex.Message, "First name is required.");
             }
         }
 
@@ -59,7 +59,7 @@ namespace Pilot.Test
             }
             catch (ValidationException ex)
             {
-                Assert.AreEqual<string>(ex.SourceError, string.Format("{0} entity.{1}", typeof(Member).Name, "LastName"));
+                Assert.AreEqual<string>(ex.Message, "Last name is required.");
             }
         }
 

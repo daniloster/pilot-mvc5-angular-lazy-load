@@ -11,31 +11,28 @@ namespace Pilot.Util.Exceptions
     {
         public JsonResult exceptionDetails;
 
-        public JsonException(JsonResult exceptionDetails)
+        public JsonException(string message, Exception inner) : base(message, inner) 
         {
-            this.exceptionDetails = exceptionDetails;
+            this.exceptionDetails = GetJson(message, inner.StackTrace);
         }
 
-        public JsonException(string message) : base(message) { }
-        public JsonException(string message, Exception inner) : base(message, inner) { }
+        public JsonException(string message) : this(message, null) { }
 
-        public JsonException(System.Exception exception) : this(GetJson(exception)) { }
+        public JsonException(System.Exception exception) : base(exception.Message, exception) 
+        {
+            this.exceptionDetails = GetJson(exception.Message, exception.StackTrace);
+        }
 
         protected JsonException(
         System.Runtime.Serialization.SerializationInfo info,
         System.Runtime.Serialization.StreamingContext context)
             : base(info, context) { }
 
-        public static JsonResult GetJson(Exception e)
-        {
-            return GetJson(e.Message);
-        }
-
-        public static JsonResult GetJson(string message)
+        public static JsonResult GetJson(string message, string details)
         {
             return new JsonResult()
             {
-                Data = new { Message = message },
+                Data = new { Message = message, Details = details },
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet
             };
         }

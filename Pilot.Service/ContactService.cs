@@ -39,28 +39,9 @@ namespace Pilot.Service
 
         private void ValidateRequiredProperties(Contact entity)
         {
-            if (entity == null)
-            {
-                throw new ValidationException("A contact is required to save into database.", string.Format("{0} entity", typeof(Contact).Name));
-            }
-
-            //if (entity.MemberId <= 0)
-            //{
-            //    throw new ValidationException("Member is required.",
-            //        string.Format("{0} entity.{1}", typeof(Contact).Name, "MemberId"));
-            //}
-
-            if (entity.Type == null)
-            {
-                throw new ValidationException("Type is required.",
-                    string.Format("{0} entity.{1}", typeof(Contact).Name, "Type"));
-            }
-
-            if (entity.Value == null)
-            {
-                throw new ValidationException("Contact info is required.",
-                    string.Format("{0} entity.{1}", typeof(Contact).Name, "Value"));
-            }
+            entity.Assert<Contact>("A contact is required to save into database.", e => e != null);
+            entity.Assert<Contact>("Type is required.", e => e.Type != null);
+            entity.Assert<Contact>("Contact info is required.", e => !e.Value.IsNullOrWhiteSpace());
         }
     }
 }

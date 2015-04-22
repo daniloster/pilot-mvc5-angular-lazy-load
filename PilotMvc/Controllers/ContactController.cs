@@ -19,63 +19,35 @@ namespace PilotMvc.Controllers
         [Dependency]
         public IContactService Service { get; set; }
 
-        [Route("create"), HttpPost, HandleUIException]
+        [Route("create"), HttpPost, HandleUIException("Something wrong happens on contact creation")]
         public JsonResult Create(Contact contact, string fileName, int fileSize)
         {
-            try
-            {
-                System.IO.FileStream fs = UploadController.GetFileStream(fileName, fileSize, "UploadTmpDirectory");
-                //contact.MemberId = contact.Member.Id;
-                Service.Save(contact);
-                return new JsonResultView(contact, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception e) 
-            {
-                throw new JsonException(e);
-            }
+            System.IO.FileStream fs = UploadController.GetFileStream(fileName, fileSize, "UploadTmpDirectory");
+            //contact.MemberId = contact.Member.Id;
+            Service.Save(contact);
+            return new JsonResultView(contact);
         }
 
-        [Route("delete"), HttpPost, HandleUIException]
+        [Route("delete"), HttpPost, HandleUIException("It is not possible to delete the contact")]
         public JsonResult Delete(long Id)
         {
-            try
-            {
-                Service.Delete(Id);
-                return new JsonResultView(
-                    new { Message = "Contact has been removed successfully!" }, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception e) 
-            {
-                throw new JsonException(e);
-            }
+            Service.Delete(Id);
+            return new JsonResultView(
+                new { Message = "Contact has been removed successfully!" });
         }
 
-        [Route("query"), HttpPost, HandleUIException]
+        [Route("query"), HttpPost, HandleUIException("It is not possible to list the contacts")]
         public JsonResult Query()
         {
-            try
-            {
-                var contacts = Service.GetWithMember();
-                return new JsonResultView(contacts, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception e) 
-            {
-                throw new JsonException(e);
-            }
+            var contacts = Service.GetWithMember();
+            return new JsonResultView(contacts);
         }
 
-        [Route("get-contact-types"), HttpPost, HandleUIException]
+        [Route("get-contact-types"), HttpPost, HandleUIException("It is not possible to list the contact types")]
         public JsonResult GetContactTypes()
         {
-            try
-            {
-                var contactTypes = Service.GetContactTypes();
-                return new JsonResultView(contactTypes, JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception e)
-            {
-                throw new JsonException(e);
-            }
+            var contactTypes = Service.GetContactTypes();
+            return new JsonResultView(contactTypes);
         }
 	}
 }

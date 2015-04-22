@@ -149,6 +149,7 @@
   <ItemGroup>
     <Compile Include="Data\ApplicationSettings.cs" />
     <Compile Include="Exceptions\BaseException.cs" />
+    <Compile Include="Exceptions\Extensions.cs" />
     <Compile Include="Exceptions\HandleUIExceptionAttribute.cs" />
     <Compile Include="Exceptions\JsonException.cs" />
     <Compile Include="Exceptions\ValidationException.cs" />
