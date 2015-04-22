@@ -220,6 +220,8 @@
     <Content Include="Content\Scripts\components\common\lookup\style.css" />
     <Content Include="Content\Scripts\components\common\modal\dialog.js" />
     <Content Include="Content\Scripts\components\common\modal\style.css" />
+    <Content Include="Content\Scripts\components\common\navMenu\navCheck.js" />
+    <Content Include="Content\Scripts\components\common\navMenu\style.css" />
     <Content Include="Content\Scripts\components\common\pagination\pagination.js" />
     <Content Include="Content\Scripts\components\common\pagination\paginationController.js" />
     <Content Include="Content\Scripts\components\common\pagination\style.css" />
