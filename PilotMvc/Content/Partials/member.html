@@ -14,7 +14,7 @@
                     <h2>Members View</h2>
                     <form class="pure-form">
                         <fieldset>
-                            <input type="text" placeholder="Search" ng-model="textFilter" />
+                            <input type="text" placeholder="Search" ng-model="textFilter" class="form-control"/>
                         </fieldset>
                     </form>
                     <table class="table table-striped">
@@ -66,16 +66,16 @@
                         <h2>Member registration</h2>
                         <div class="form-group">
                             <label>FirstName:</label>
-                            <input type="text" ng-model="newmember.FirstName" required />
+                            <input type="text" ng-model="newmember.FirstName" required class="form-control"/>
                         </div>
                         <div class="form-group">
                             <label>LastName:</label>
-                            <input type="text" ng-model="newmember.LastName" required />
+                            <input type="text" ng-model="newmember.LastName" required class="form-control"/>
                         </div>
                         <br />
                         <div class="form-group">
-                            <input type="submit" value="Add" ng-click="add()" ng-disabled="!addMember.$valid" class="pure-button pure-button-primary" />
-                            <input type="button" value="Cancel" ng-click="toggleAdd()" class="pure-button" />
+                            <input type="submit" value="Add" ng-click="add()" ng-disabled="!addMember.$valid" class="btn btn-primary" />
+                            <input type="button" value="Cancel" ng-click="toggleAdd()" class="btn" />
                         </div>
                     </form>
                 </div>

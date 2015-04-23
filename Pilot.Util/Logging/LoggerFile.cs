@@ -80,7 +80,7 @@ namespace Pilot.Util.Logging
             pathToLog.RemoveAt(pathToLog.Count - 1);
             Directory.CreateDirectory(string.Join(@"\", pathToLog));
             FileLog = fileLog;
-            File.AppendAllLines(FileLog, new string[] {
+            System.IO.File.AppendAllLines(FileLog, new string[] {
                 Subject, ""
             });
         }
@@ -92,7 +92,7 @@ namespace Pilot.Util.Logging
             {
                 GenerateFileLogName();
             }
-            File.AppendAllLines(FileLog, new string[] {
+            System.IO.File.AppendAllLines(FileLog, new string[] {
                 "", string.Format("@[ERROR:BEGIN] {0}", DateTime.Now.ToString("u")),
                 string.Format("- Message: {0}", ex.Message),
                 string.Format("- Stacktrace: {0}", ex.StackTrace),
@@ -104,7 +104,7 @@ namespace Pilot.Util.Logging
         {
             lock (padlock)
             {
-                File.AppendAllLines(LoggerFile.Instance.FileLog, new string[] {
+                System.IO.File.AppendAllLines(LoggerFile.Instance.FileLog, new string[] {
                     "", string.Format("@[ERROR:BEGIN] {0}", DateTime.Now.ToString("u")),
                     string.Format("- Message: {0}", ex.Message),
                     string.Format("- Stacktrace: {0}", ex.StackTrace),
@@ -120,14 +120,14 @@ namespace Pilot.Util.Logging
             {
                 GenerateFileLogName();
             }
-            File.AppendAllLines(FileLog, new string[] { message });
+            System.IO.File.AppendAllLines(FileLog, new string[] { message });
         }
 
         public static void AppendLogSafe(string message)
         {
             lock (padlock)
             {
-                File.AppendAllLines(LoggerFile.Instance.FileLog, new string[] { message });
+                System.IO.File.AppendAllLines(LoggerFile.Instance.FileLog, new string[] { message });
             }
         }
 
@@ -138,14 +138,14 @@ namespace Pilot.Util.Logging
             {
                 GenerateFileLogName();
             }
-            File.AppendAllLines(FileLog, messages);
+            System.IO.File.AppendAllLines(FileLog, messages);
         }
 
         public static void SaveLogSafe(IList<string> messages)
         {
             lock (padlock)
             {
-                File.AppendAllLines(LoggerFile.Instance.FileLog, messages);
+                System.IO.File.AppendAllLines(LoggerFile.Instance.FileLog, messages);
             }
         }
     }

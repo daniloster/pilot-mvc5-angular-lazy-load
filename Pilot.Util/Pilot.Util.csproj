@@ -153,6 +153,7 @@
     <Compile Include="Exceptions\HandleUIExceptionAttribute.cs" />
     <Compile Include="Exceptions\JsonException.cs" />
     <Compile Include="Exceptions\ValidationException.cs" />
+    <Compile Include="File\FileUtil.cs" />
     <Compile Include="Logging\DiagnosisBehaviour.cs" />
     <Compile Include="Logging\DiagnosisEvents.cs" />
     <Compile Include="Logging\EventSourceCreator.cs" />

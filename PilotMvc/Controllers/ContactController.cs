@@ -10,6 +10,7 @@ using Pilot.Util.Mvc;
 using Pilot.Service.Interfaces;
 using Microsoft.Practices.Unity;
 using Pilot.Util.Data;
+using Pilot.Util.File;
 
 namespace PilotMvc.Controllers
 {
@@ -22,7 +23,7 @@ namespace PilotMvc.Controllers
         [Route("create"), HttpPost, HandleUIException("Something wrong happens on contact creation")]
         public JsonResult Create(Contact contact, string fileName, int fileSize)
         {
-            System.IO.FileStream fs = UploadController.GetFileStream(fileName, fileSize, "UploadTmpDirectory");
+            FileUtil.CopyFileStreamFromTempToFolderType(fileName, ApplicationSettings.Instance.ProfilePath);
             //contact.MemberId = contact.Member.Id;
             Service.Save(contact);
             return new JsonResultView(contact);
