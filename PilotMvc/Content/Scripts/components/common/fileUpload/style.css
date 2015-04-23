@@ -1,4 +1,13 @@
-﻿.container-bar {
+﻿input[type=file].btn.btn-success {
+    margin-bottom:10px !important;
+    width: 100% !important;
+}
+
+div.progress {
+    margin-top:10px !important;
+}
+
+.container-bar {
     text-align:center;
     position: relative;
     padding: 10px 0;

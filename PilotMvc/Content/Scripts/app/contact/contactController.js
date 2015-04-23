@@ -7,9 +7,6 @@
 
                 var clearContact = function () {
                     $scope.contact = { Member: { Id: 0 }, Type: { Id: 0 } };
-                    //$scope.myFileData = {};
-                    //$scope.fileHasBeenSelected = false;
-                    //$scope.fileHasBeenUploaded = false;
                 };
 
                 clearContact();
@@ -19,14 +16,6 @@
 
                 $scope.pageSize = 4;
                 $scope.currentPage = 1;
-
-                //$scope.$watch('myFile', function (nval, oval) {
-                //    if (nval === oval) return;
-                //    //$scope.fileHasBeenSelected = !!nval;
-                //    $scope.fileHasBeenUploaded = false;
-                //});
-                //var find = Array.createFinder('Id');
-                //$scope.contact.Member = find($scope.members, $scope.contact.Member.Id);
 
                 $scope.getMembers = function () {
                     loadingCtrl.startLoading();
@@ -38,6 +27,7 @@
                         },
                         function (data) {
                             console.log(data);
+                            $scope.error = data.Message;
                             $scope.members = [];
                             loadingCtrl.stopLoading();
                         });
@@ -53,6 +43,7 @@
                         },
                         function (data) {
                             console.log(data);
+                            $scope.error = data.Message;
                             $scope.contactTypes = [];
                             loadingCtrl.stopLoading();
                         });
@@ -68,25 +59,11 @@
                         },
                         function (data) {
                             console.log(data);
+                            $scope.error = data.Message;
                             $scope.contacts = [];
                             loadingCtrl.stopLoading();
                         });
                 };
-
-                //$scope.upload = function () {
-                //    loadingCtrl.startLoading();
-                //    uploadSvc.sendFile($scope.myFile,
-                //        function (data) {
-                //            $scope.myFileData = data;
-                //            $scope.fileHasBeenUploaded = true;
-                //            loadingCtrl.stopLoading();
-                //        },
-                //        function (data) {
-                //            $scope.myFileData = {};
-                //            $scope.fileHasBeenUploaded = false;
-                //            loadingCtrl.stopLoading();
-                //        });
-                //};
 
                 $scope.create = function () {
                     loadingCtrl.startLoading();
@@ -106,6 +83,7 @@
                         },
                         function (data) {
                             console.log(data);
+                            $scope.error = data.Message;
                             loadingCtrl.stopLoading();
                         });
                 };
@@ -122,6 +100,7 @@
                         },
                         function (data) {
                             console.log(data);
+                            $scope.error = data.Message;
                             loadingCtrl.stopLoading();
                         });
                 };

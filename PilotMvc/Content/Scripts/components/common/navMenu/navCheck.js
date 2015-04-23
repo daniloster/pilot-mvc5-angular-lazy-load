@@ -1,13 +1,13 @@
 ﻿(function () {
-    var loaded = false, active = null, check = function (items, itemPath) {
+    var loaded = false, check = function (items, itemPath) {
         items.each(function (index, item) {
-            checkItem(item, itemPath);
+            checkItem($(item), itemPath);
         });
     }, checkItem = function (item, itemPath) {
         if (item.attr('href').replace('/#/', '/') == itemPath.replace('/#/', '/')) {
-            item.parent().addClass('nav-item-selected');
+            item.parent().addClass('active');
         } else {
-            item.parent().removeClass('nav-item-selected');
+            item.parent().removeClass('active');
         }
     };
     define(['angular', 'app'], function (angular, app) {
@@ -18,13 +18,13 @@
                     restrict: 'A',
                     link: function ($scope, elem, attrs) {
 
-                        active = elem.attr('href');
+                        var active = elem.attr('href');
 
                         elem.on('click', function () {
                             check($('[nav-check]'), active);
                         });
 
-                        checkItem(elem, $location.path());
+                        checkItem($(elem), $location.path());
                     }
                 };
             }]);

@@ -1,5 +1,4 @@
-﻿<!--<link type="text/css" rel="stylesheet" href="/Content/Scripts/components/date/style.css" />-->
-<div ng-switch="view">
+﻿<div ng-switch="view" class="on-top">
   <div ng-switch-when="date">
     <table>
       <thead>
@@ -16,7 +15,7 @@
       <tr ng-repeat="week in weeks">
         <td ng-repeat="day in week">
           <span
-            ng-class="{'now':isNow(day),'active':isSameDay(day),'disabled':(day.getMonth()!=date.getMonth()),'after':isAfter(day),'before':isBefore(day)}"
+            ng-class="{'now':isNow(day),'active':isSameDay(day),'disabled':(day.getMonth()!=date.getMonth() || isUnavailableAfter(day) || isUnavailableBefore(day)),'after':isAfter(day),'before':isBefore(day)}"
             ng-click="setDate(day)" ng-bind="day.getDate()"></span>
         </td>
       </tr>

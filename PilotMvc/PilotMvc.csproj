@@ -186,6 +186,9 @@
     <Content Include="Content\Scripts\app\contact\contactController.js" />
     <Content Include="Content\Scripts\app\contact\contactService.js" />
     <Content Include="Content\Scripts\app\home\homeService.js" />
+    <Content Include="Content\Scripts\components\app\navMenu\menu.js" />
+    <Content Include="Content\Scripts\components\app\navMenu\style.css" />
+    <Content Include="Content\Scripts\components\app\navMenu\template.html" />
     <Content Include="Content\Scripts\components\app\textStyleEditor\editor.js" />
     <Content Include="Content\Scripts\components\app\textStyleEditor\style.css" />
     <Content Include="Content\Scripts\components\app\textStyleEditor\template.html" />
@@ -992,6 +995,7 @@
     <Content Include="Content\Fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\Fonts\fontawesome-webfont.woff" />
     <Content Include="Content\Fonts\FontAwesome.otf" />
+    <Content Include="Content\Scripts\lib\bootstrap.min.js" />
     <None Include="Content\Scripts\lib\jQuery\jquery-1.10.2.intellisense.js" />
     <Content Include="Content\Scripts\lib\jQuery\jquery-1.10.2.min.js" />
     <Content Include="Content\Scripts\lib\jQuery\jquery.validate.min.js" />
@@ -1006,11 +1010,6 @@
     <Content Include="Content\Styles\Boilerplate\normalize.min.css" />
     <Content Include="Content\Styles\app.css" />
     <Content Include="Content\Styles\font-awesome.min.css" />
-    <Content Include="Content\Styles\Pure\pure.min.css" />
-    <Content Include="Content\Styles\Pure\pure.css" />
-    <Content Include="Content\Styles\Skeleton\base.css" />
-    <Content Include="Content\Styles\Skeleton\layout.css" />
-    <Content Include="Content\Styles\Skeleton\skeleton.css" />
     <Content Include="Content\Images\bp-favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Scripts\lib\modernizr.min.js" />
@@ -1053,7 +1052,6 @@
     <Content Include="Content\Scripts\lib\zepto.min.js" />
     <Content Include="Content\Partials\member.html" />
     <Content Include="Views\Shared\Layout.cshtml" />
-    <Content Include="Views\Shared\NavMenu.cshtml" />
     <Content Include="Views\Default\Index.cshtml" />
     <Content Include="Content\Partials\home.html" />
     <Content Include="Content\Scripts\lib\jQuery\jquery-2.min.js" />

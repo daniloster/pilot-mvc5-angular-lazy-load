@@ -19,20 +19,24 @@ define(['lib/IE/isIE', 'util/array', 'util/string'], function (isIE) {
         document.createElement('footer');
 
         // Custom elements
-        document.createElement('loading');
-        document.createElement('pagination');
-        document.createElement('menu-fixed');
-        document.createElement('modal-dialog');
-        document.createElement('date-picker');
-        document.createElement('workflow-footer');
-        document.createElement('color-picker');
+        document.createElement('menu');
         document.createElement('text-style-editor');
+        document.createElement('workflow-footer');
+
+        document.createElement('color-picker');
+        document.createElement('date-picker');
+        document.createElement('file-upload');
+        document.createElement('map');
+        document.createElement('img-crop');
+        document.createElement('loading');
+        document.createElement('modal-dialog');
+        document.createElement('pagination');
         document.createElement('img-upload');
 
         document.createElement('my-editor');
     }
 
-    require(['jquery'], function ($) {
+    require(['jquery', 'bootstrap'], function ($) {
 
         function init() {
             require(['angular', 'app', 'util'], function (angular, app) {
@@ -48,6 +52,9 @@ define(['lib/IE/isIE', 'util/array', 'util/string'], function (isIE) {
             var head = $('head');
 
             css = '<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">';
+            head.append(css);
+
+            css = '<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">';
             head.append(css);
 
             var _base, css;

@@ -3,20 +3,21 @@
     define(['app'], function (app) {
         if (Ctrl == null) {
             Ctrl = ['$scope', '$rootScope', '$location', 'AuthorizationService', function ($scope, $rootScope, $location, authorizationSvc) {
-                $rootScope.title = "Login";
                 $scope.login = function () {
+                    $scope.error = null;
                     authorizationSvc.login($scope.user, function (data) {
                         $location.path('/');
                     }, function (data) {
-                        $scope.message = data.Message;
+                        $scope.error = data.Message;
                     })
                 };
 
                 $scope.logout = function () {
+                    $scope.error = null;
                     authorizationSvc.logout(function (data) {
                         $location.path('/login');
                     }, function (data) {
-                        $scope.message = data.Message;
+                        $scope.error = data.Message;
                     })
                 };
             }];

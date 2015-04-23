@@ -25,10 +25,9 @@
 
     <!-- CSS
     ================================================== -->
-    <link rel="stylesheet" type="text/css" href="/Content/Styles/Pure/pure.min.css" />
     <link rel="stylesheet" type="text/css" href="/Content/Styles/app.css" />
     @*<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">*@
-    <link rel="stylesheet" type="text/css" href="/Content/Styles/font-awesome.min.css" />
+    @*<link rel="stylesheet" type="text/css" href="/Content/Styles/font-awesome.min.css" />*@
     
     <!--[if lt IE 9]>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -41,33 +40,13 @@
     <![endif]-->
     <!-- Primary Page Layout
 	================================================== -->
-    <loading></loading>
-
-    @Html.Partial("~/Views/Shared/NavMenu.cshtml")
-
-    <div role="page" class="pure-g">
-	    <!-- Delete everything in this .container and get started on your own site! -->
-        <div class="pure-u-1">
-            <header class="wrapper clearfix">
-                <h1 class="remove-bottom" style="margin-top: 40px"></h1>
-            </header>
-            
-        </div>
-        
-        <!-- container -->
-        <div class="pure-u-1" ng-view>
-        @RenderBody()
-        </div>
-        <!-- container -->
-        
-        <div class="pure-u-1">
-            <footer class="wrapper">
-                <h3>footer</h3>
-            </footer>
-        </div>
+    
+    <div ng-view>
+    @RenderBody()
     </div>
-<!-- End Document
-================================================== -->
+        
+    <!-- End Document
+    ================================================== -->
     
     <script data-main="main" src="/Content/Scripts/lib/requirejs.min.js"></script>
 

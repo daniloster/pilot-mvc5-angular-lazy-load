@@ -1,18 +1,23 @@
-﻿.members-table input {
+﻿/*
+------------------------------------------------------
+BOOTSTRAP REDEFINITIONS - BEGIN
+------------------------------------------------------*/
+
+nav.navbar.navbar-inverse.navbar-fixed-top {
+    position:relative !important;
+}
+
+/*
+------------------------------------------------------
+BOOTSTRAP REDEFINITIONS - END
+------------------------------------------------------*/
+
+
+
+
+.members-table input {
     width:140px
 }
-
-.strong {
-    font-weight: bold;
-}
-
-.f-left {
-    float: left;
-}
-
-.fr-right {
-}
-
 
 /*
 ------------------------------------------------------

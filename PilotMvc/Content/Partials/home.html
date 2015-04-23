@@ -1,25 +1,33 @@
-﻿<div ng-controller="HomeController" class="clearfix">
-    <h2 ng-cloak>{{ message }}</h2>
-    <input type="button" ng-click="changeWelcome()" value="Change Welcome" />
-    <br />
-    <br />
-    <br />
-    <form ng-cloak>
-        <label>Just Date</label>
-        <input type="text" date-time ng-model="justDate" views="['date']" format="dd/MM/yyyy" class="just-date" readonly required/>
-        {{ justDate | date:'dd-MM-yyyy' }}
-        <br />
-        <br />
+﻿<loading></loading>
+<menu></menu>
+<div class="container">
+    <div class="col-xs-12">
 
-        <label>Just Year</label>
-        <input type="text" date-time ng-model="justYear" views="['year']" format="yyyy" class="just-date" readonly required/>
-        {{ justYear | date:'yyyy' }}
+        <div ng-controller="HomeController" class="clearfix">
+            <h2 ng-cloak>{{ message }}</h2>
+            <input type="button" ng-click="changeWelcome()" value="Change Welcome" />
+            <br />
+            <br />
+            <br />
+            <form ng-cloak>
+                <label>Just Date</label>
+                <input type="text" date-time ng-model="justDate" views="['date']" format="dd/MM/yyyy" class="just-date" readonly required />
+                {{ justDate | date:'dd-MM-yyyy' }}
         <br />
-        <br />
+                <br />
 
-        <label>Year-Month</label>
-        <input type="text" date-time ng-model="justMonth" views="['year','month']" format="MM/yyyy" class="just-date" readonly required/>
-        {{ justMonth | date:'MM-yyyy' }}
-    </form>
+                <label>Just Year</label>
+                <input type="text" date-time ng-model="justYear" views="['year']" format="yyyy" class="just-date" readonly required />
+                {{ justYear | date:'yyyy' }}
+        <br />
+                <br />
+
+                <label>Year-Month</label>
+                <input type="text" date-time ng-model="justMonth" views="['year','month']" format="MM/yyyy" class="just-date" readonly required />
+                {{ justMonth | date:'MM-yyyy' }}
+            </form>
+        </div>
+
+    </div>
 </div>
 
