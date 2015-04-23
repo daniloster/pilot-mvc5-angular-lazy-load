@@ -23,7 +23,7 @@ namespace PilotMvc.Controllers
         [Route("create"), HttpPost, HandleUIException("Something wrong happens on contact creation")]
         public JsonResult Create(Contact contact, string fileName, int fileSize)
         {
-            FileUtil.CopyFileStreamFromTempToFolderType(fileName, ApplicationSettings.Instance.ProfilePath);
+            FileUtil.CopyFileStreamFromTempToFolderType(fileName, "ProfilePath");
             //contact.MemberId = contact.Member.Id;
             Service.Save(contact);
             return new JsonResultView(contact);

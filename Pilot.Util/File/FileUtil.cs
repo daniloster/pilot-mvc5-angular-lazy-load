@@ -52,7 +52,7 @@ namespace Pilot.Util.File
         {
             string partialPath = FileUtil.GetPartialDirectory(folderType);
             string savingPath = FileUtil.GetFullDirectoryFromRelative(partialPath);
-            string tempFolder = FileUtil.GetTempOne(partialPath);
+            string tempFolder = FileUtil.GetTempOne(savingPath);
 
             CopyFileStreamTo(fileName, savingPath, tempFolder);
         }

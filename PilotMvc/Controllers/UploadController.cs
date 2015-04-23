@@ -31,13 +31,19 @@ namespace PilotMvc.Controllers
                 string partialPath = FileUtil.GetPartialDirectory(folderType);
                 string savingPath = FileUtil.GetFullDirectoryFromRelative(partialPath);
                 string displayFolder = FileUtil.GetTempOne(partialPath);
+                string savingPathTemp = FileUtil.GetTempOne(savingPath);
 
                 if (!Directory.Exists(savingPath))
                 {
                     Directory.CreateDirectory(savingPath);
                 }
 
-                string finalPath = string.Format("{0}{1}", savingPath, fileName);
+                if (!Directory.Exists(savingPathTemp))
+                {
+                    Directory.CreateDirectory(savingPathTemp);
+                }
+
+                string finalPath = string.Format("{0}{1}", savingPathTemp, fileName);
 
                 //get a temp image from bytes, instead of loading from disk
                 byte[] bytes = Convert.FromBase64String(imageValue.Replace("data:image/png;base64,", string.Empty));
@@ -77,13 +83,21 @@ namespace PilotMvc.Controllers
                 string partialPath = FileUtil.GetPartialDirectory(folderType);
                 string savingPath = FileUtil.GetFullDirectoryFromRelative(partialPath);
                 string displayFolder = FileUtil.GetTempOne(partialPath);
+                string savingPathTemp = FileUtil.GetTempOne(savingPath);
 
                 if (!Directory.Exists(savingPath))
                 {
                     Directory.CreateDirectory(savingPath);
                 }
 
-                file.SaveAs(string.Format("{0}{1}", savingPath, fileName));
+                if (!Directory.Exists(savingPathTemp))
+                {
+                    Directory.CreateDirectory(savingPathTemp);
+                }
+
+                string finalPath = string.Format("{0}{1}", savingPathTemp, fileName);
+
+                file.SaveAs(finalPath);
 
                 LoggerFile.AppendLogSafe(string.Format("@ FILE UPLOAD: {0} ==> SIZE: {1} ==> FILE TOKEN: {2}", file.FileName, file.ContentLength, fileName));
 
