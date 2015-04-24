@@ -1,0 +1,15 @@
+﻿<div ng-controller="HomeController" class="clearfix">
+    <h2 ng-cloak>{{ message }}</h2>
+    <input type="button" ng-click="changeWelcome()" value="Change Welcome" />
+
+    <div ng-if="user" ng-cloak>
+        <span>{{ user.FirstName }}</span><br />
+        <span>{{ user.LastName }}</span><br />
+        <span>{{ user.Birthday | date:'dd/MM/yyyy' }}</span><br />
+    </div>
+
+    <select ng-model="syncOpt" ng-options="d as d.Name for d in elements">
+        <option value="">Select One</option>
+    </select>
+</div>
+

@@ -1,0 +1,34 @@
+﻿<loading></loading>
+<menu></menu>
+<div class="container">
+    <div class="col-xs-12">
+
+        <div ng-controller="HomeController" class="clearfix">
+            <div class="form-group">
+                <h2 ng-cloak>{{ message }}</h2>
+                <input type="button" ng-click="changeWelcome()" class="btn btn-info" value="Change Welcome" />
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-3">
+                <form ng-cloak>
+                    <div class="form-group">
+                        <label>Just Date</label>
+                        <input type="text" date-time ng-model="justDate" views="['date']" format="dd/MM/yyyy" class="just-date form-control" readonly required />
+                        {{ justDate | date:'dd-MM-yyyy' }}
+                    </div>
+                    <div class="form-group">
+                        <label>Just Year</label>
+                        <input type="text" date-time ng-model="justYear" views="['year']" format="yyyy" class="just-date form-control" readonly required />
+                        {{ justYear | date:'yyyy' }}
+                    </div>
+                    <div class="form-group">
+                        <label>Year-Month</label>
+                        <input type="text" date-time ng-model="justMonth" views="['year','month']" format="MM/yyyy" class="just-date form-control" readonly required />
+                        {{ justMonth | date:'MM-yyyy' }}
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+

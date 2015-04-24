@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Pilot.Service.Interfaces
 {
-    public interface ICRUDService<TEntity> : IDisposable where TEntity : class, IBaseEntity
+    public partial interface ICRUDService<TEntity> : IDisposable where TEntity : class, IBaseEntity
     {
         TEntity GetAttachedEntity(TEntity entity, string[] collectionToLoad);
 

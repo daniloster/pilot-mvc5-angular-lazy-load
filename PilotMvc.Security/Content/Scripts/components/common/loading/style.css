@@ -1,0 +1,67 @@
+﻿
+/*
+------------------------------------------------------
+~/Views/LoadingPanel.cshtml - BEGIN
+------------------------------------------------------*/
+#loadingPanel {
+    box-sizing:border-box;
+    padding:15px;
+    position:fixed;
+    top:50%;
+    margin-top:-40px;
+    left:50%;
+    margin-left:-40px;
+    width:80px;
+    height:80px;
+    background-color:#000;
+    /* IE 8 */
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+    /* IE 5-7 */
+    filter:alpha(opacity=70);
+    /* Netscape */
+    -moz-opacity:0.7;
+    /* Safari 1.x */
+    -khtml-opacity:0.7;
+    /* Good browsers */
+    opacity:0.7;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    -khtml-border-radius:10px;
+    border-radius:10px;
+    z-index:99999
+}
+
+    #loadingPanel img {
+        display:block;
+        margin:0 auto;
+        text-align:center
+    }
+
+#overlay {
+    box-sizing:border-box;
+    position:fixed;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    width:100%;
+    height:100%;
+    margin:0;
+    padding:0;
+    background-color:#000;
+    /* IE 8 */
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=85)";
+    /* IE 5-7 */
+    filter:alpha(opacity=85);
+    /* Netscape */
+    -moz-opacity:0.85;
+    /* Safari 1.x */
+    -khtml-opacity:0.85;
+    /* Good browsers */
+    opacity:0.85;
+    z-index:99990
+}
+/*
+------------------------------------------------------
+~/Views/LoadingPanel.cshtml - END
+------------------------------------------------------*/

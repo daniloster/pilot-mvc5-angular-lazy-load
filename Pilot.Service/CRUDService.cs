@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace Pilot.Service
 {
     [UnityIoCPerRequestLifetime]
-    public class CRUDService<TEntity> : ICRUDService<TEntity> where TEntity : class, IBaseEntity
+    public partial class CRUDService<TEntity> : ICRUDService<TEntity> where TEntity : class, IBaseEntity
     {
         protected IEntityContext<TEntity> db;
 

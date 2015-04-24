@@ -1,0 +1,87 @@
+﻿<loading></loading>
+<menu></menu>
+<div class="container">
+    <div class="col-xs-12">
+
+        <div ng-controller="MemberController" class="clearfix">
+
+            <div class="alert alert-danger" ng-cloak ng-show="error">
+                <strong>Oh snap!</strong> {{ error }}
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <h2>Members View</h2>
+                    <form class="pure-form">
+                        <fieldset>
+                            <input type="text" placeholder="Search" ng-model="textFilter" class="form-control"/>
+                        </fieldset>
+                    </form>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <td>FirstName</td>
+                                <th>LastName</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="member in membersOut" ng-cloak>
+                                <td><strong ng-hide="member.editMode">{{ member.Id }}</strong></td>
+                                <td>
+                                    <p ng-hide="member.editMode">{{ member.FirstName }}</p>
+                                    <input ng-show="member.editMode" type="text" ng-model="member.FirstName" />
+                                </td>
+                                <td>
+                                    <p ng-hide="member.editMode">{{ member.LastName }}</p>
+                                    <input ng-show="member.editMode" type="text" ng-model="member.LastName" />
+                                </td>
+                                <td>
+                                    <p ng-hide="member.editMode"><a ng-click="toggleEdit(member)" href="javascript:;">Edit</a> | <a ng-click="deletemember(member)" href="javascript:;">Delete</a></p>
+                                    <p ng-show="member.editMode"><a ng-click="save(member)" href="javascript:;">Save</a> | <a ng-click="toggleEdit(member)" href="javascript:;">Cancel</a></p>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="4">
+                                    <pagination in-list="members"
+                                        out-list="membersOut"
+                                        page-size="pageSize"
+                                        current-page="currentPage"
+                                        search-query="textFilter"
+                                        type="small"
+                                        class="pull-right"></pagination>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="form-group">
+                        <input type="button" ng-hide="addMode" ng-click="toggleAdd()" class="btn" value="Add New" />
+                    </div>
+                    <form name="addMember" ng-show="addMode" ng-cloak>
+                        <h2>Member registration</h2>
+                        <div class="form-group">
+                            <label>FirstName:</label>
+                            <input type="text" ng-model="newmember.FirstName" required class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <label>LastName:</label>
+                            <input type="text" ng-model="newmember.LastName" required class="form-control"/>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <input type="submit" value="Add" ng-click="add()" ng-disabled="!addMember.$valid" class="btn btn-primary" />
+                            <input type="button" value="Cancel" ng-click="toggleAdd()" class="btn" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>

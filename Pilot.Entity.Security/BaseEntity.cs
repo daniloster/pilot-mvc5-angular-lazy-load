@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pilot.Entity
+namespace Pilot.Entity.Security
 {
     public partial class BaseEntity : IBaseEntity
     {

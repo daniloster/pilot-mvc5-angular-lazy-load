@@ -65,7 +65,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Util\Pilot.Util.csproj">
+    <ProjectReference Include="..\Pilot.Util\Pilot.Util.csproj">
       <Project>{9a1f2121-6587-4a51-b369-0f54cd1edb65}</Project>
       <Name>Pilot.Util</Name>
     </ProjectReference>
