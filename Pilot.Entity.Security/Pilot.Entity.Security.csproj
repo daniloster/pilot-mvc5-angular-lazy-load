@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{219A5209-A63C-4CCE-809D-5B427A425FE1}</ProjectGuid>
+    <ProjectGuid>{218B6F81-8607-48B8-ADEC-1E731F28C913}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Pilot.Entity</RootNamespace>
-    <AssemblyName>Pilot.Entity</AssemblyName>
+    <RootNamespace>Pilot.Entity.Security</RootNamespace>
+    <AssemblyName>Pilot.Entity.Security</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -37,12 +37,13 @@
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\packages\Newtonsoft.Json.6.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,16 +51,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contact.cs" />
     <Compile Include="BaseEntity.cs" />
-    <Compile Include="Domain\ContactType.cs" />
+    <Compile Include="Domain\ResourceType.cs" />
     <Compile Include="IBaseEntity.cs" />
-    <Compile Include="Member.cs" />
+    <Compile Include="Resource.cs" />
+    <Compile Include="Role.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="System.cs" />
+    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Util\Pilot.Util.csproj">
+      <Project>{9a1f2121-6587-4a51-b369-0f54cd1edb65}</Project>
+      <Name>Pilot.Util</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

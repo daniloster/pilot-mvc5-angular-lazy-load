@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pilot.Test", "Pilot.Test\Pi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pilot.Wcf", "Pilot.Wcf\Pilot.Wcf.csproj", "{489ABB2F-AF5E-45B7-B40F-F7DFA63DF038}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pilot.Entity.Security", "Z:\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\Pilot.Entity.Security.csproj", "{218B6F81-8607-48B8-ADEC-1E731F28C913}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{489ABB2F-AF5E-45B7-B40F-F7DFA63DF038}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{489ABB2F-AF5E-45B7-B40F-F7DFA63DF038}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{489ABB2F-AF5E-45B7-B40F-F7DFA63DF038}.Release|Any CPU.Build.0 = Release|Any CPU
+		{218B6F81-8607-48B8-ADEC-1E731F28C913}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{218B6F81-8607-48B8-ADEC-1E731F28C913}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{218B6F81-8607-48B8-ADEC-1E731F28C913}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{218B6F81-8607-48B8-ADEC-1E731F28C913}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

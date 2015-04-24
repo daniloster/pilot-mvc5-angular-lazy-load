@@ -1,36 +1,40 @@
 ﻿(function () {
-    define(['routes', 'resolve', 'auth/roles'], function (routes, resolve, roles) {
+    define(['routes', 'resolve'], function (routes, resolve) {
         return function ($routeProvider) {
 
             $routeProvider
-                    .when("/", {
-                        templateUrl: '/Content/Partials/home.html',
-                        resolve: resolve({
-                            dependencies: ['app/home/homeController'],
-                            permission: [roles.Admin, roles.Member, roles.Guest],
-                            title: 'Home is like a Dashboard'
-                        })
+                    .when("/404", {
+                        templateUrl: '/Content/Partials/404.html',
+                        isPublic: true
                     })
                     .when("/not-authorized", {
                         templateUrl: '/Content/Partials/not-authorized.html',
+                        isPublic: true,
                         title: 'You are fucked and not authorized!'
                     })
+
                     .when("/login", {
                         templateUrl: '/Content/Partials/login.html',
                         resolve: resolve({
                             dependencies: ['auth/userController'],
+                            isPublic: true,
                             title: 'Wonderful login page'
                         })
                     })
-                    .when("/404", {
-                        templateUrl: '/Content/Partials/404.html'
+                    .when("/", {
+                        templateUrl: '/Content/Partials/home.html',
+                        resolve: resolve({
+                            dependencies: ['app/home/homeController'],
+                            isPublic: false,
+                            title: 'Home is like a Dashboard'
+                        })
                     })
                     .when("/member", {
                         templateUrl: '/Content/Partials/member.html',
                         resolve: resolve({
                             dependencies: ['app/member/memberController',
                             'components/common/pagination/pagination'],
-                            permission: [roles.Admin, roles.Member],
+                            isPublic: false,
                             title: 'Members fucking awesome!!!'
                         })
                     })
@@ -40,7 +44,7 @@
                             dependencies: ['app/contact/contactController',
                             'components/common/pagination/pagination',
                             'components/common/fileUpload/fileUpload'],
-                            permission: [roles.Admin, roles.Member],
+                            isPublic: false,
                             title: 'Contact rules!!!'
                         })
                     })

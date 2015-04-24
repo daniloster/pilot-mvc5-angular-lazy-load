@@ -229,12 +229,12 @@
     <Content Include="Content\Scripts\components\common\pagination\paginationController.js" />
     <Content Include="Content\Scripts\components\common\pagination\style.css" />
     <Content Include="Content\Scripts\components\common\pagination\template.html" />
+    <Content Include="Content\Scripts\components\common\security\access.js" />
     <Content Include="Content\Scripts\components\common\services\jsonService.js" />
     <Content Include="Content\Scripts\components\common\tooltip\style.css" />
     <Content Include="Content\Scripts\components\common\tooltip\tooltip.js" />
     <Content Include="Content\Scripts\app\_examples\examplesCtrl.js" />
     <Content Include="Content\Scripts\auth\userController.js" />
-    <Content Include="Content\Scripts\auth\roles.js" />
     <Content Include="Content\Scripts\auth\session.js" />
     <Content Include="Content\Scripts\config.js" />
     <Content Include="Content\Scripts\lib\component-require.min.js" />

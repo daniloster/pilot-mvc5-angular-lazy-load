@@ -10,7 +10,8 @@
                 filter: app.filter,
                 directive: app.directive,
                 constant: app.constant,
-                animation: app.animation
+                animation: app.animation,
+                decorator: app.decorator
             };
 
             app.config(['$routeProvider', '$locationProvider', '$controllerProvider', '$provide', '$filterProvider', '$compileProvider', '$animateProvider', '$httpProvider', '$sceDelegateProvider',
@@ -23,7 +24,8 @@
                     filter: $filterProvider.register,
                     directive: $compileProvider.directive,
                     constant: $provide.constant,
-                    animation: $animateProvider.register
+                    animation: $animateProvider.register,
+                    decorator: $provide.decorator
                 };
 
                 $sceDelegateProvider.resourceUrlWhitelist([

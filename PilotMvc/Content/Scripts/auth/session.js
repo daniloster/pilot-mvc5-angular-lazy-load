@@ -1,53 +1,45 @@
 (function () {
-    var session = null, isLogged = false, token = null, name = null, email = null, userRoles = [], arrayType = typeof [],
+    var session = null, user = null, cookieKey = 'pilot.user.security', arrayType = typeof [],
         save = function ($cookieStore) {
             if (isLogged) {
-                $cookieStore.put('Token', token);
-                $cookieStore.put('Name', name);
-                $cookieStore.put('Email', email);
-                $cookieStore.put('UserRoles', userRoles.join('|#|'));
+                $cookieStore.put(cookieKey, JSON.stringify(user));
             }
         };
     define([], function () {
         if (session == null) {
             session = {
-                init: function ($cookieStore, user) {
-                    if (!!user && !!user.Token) {
-                        token = user.Token;
-                        name = user.Name;
-                        email = user.Email;
-                        userRoles = user.UserRoles;
-                        isLogged = true;
+                init: function ($cookieStore, userData) {
+                    if (!!userData && !!userData.Id) {
+                        user = userData;
                         save($cookieStore);
                         return true;
-                    } else if (!!$cookieStore.get('Token')) {
-                        token = $cookieStore.get('Token');
-                        name = $cookieStore.get('Name');
-                        email = $cookieStore.get('Email');
-                        userRoles = $cookieStore.get('UserRoles').split('|#|');
-                        isLogged = true;
+                    } else if (!!$cookieStore.get(cookieKey)) {
+                        user = JSON.parse($cookieStore.get(cookieKey));
                         return true;
                     }
                     return false;
                 },
                 clear: function ($cookieStore) {
-                    $cookieStore.remove('Token');
-                    $cookieStore.remove('Name');
-                    $cookieStore.remove('Email');
-                    $cookieStore.remove('UserRoles');
+                    $cookieStore.remove(cookieKey);
                 },
-                isLogged: function () { return isLogged; },
-                setUserRoles: function (roles) { userRoles = roles; },
-                hasPermission: function (rolesGranted) {
-                    if (typeof rolesGranted != arrayType) {
-                        rolesGranted = [rolesGranted];
-                    }
-                    if (rolesGranted.length > 0) {
-                        return rolesGranted.filter(function (val, idx) {
-                            return userRoles.indexOf(val.toString()) >= 0;
+                isLogged: function () { return !!user; },
+                hasViewPermission: function (path, systemId) {
+                    if (this.isLogged()) {
+                        path = path.replace('/#/', '/');
+                        user.ViewResources.filter(function (item) {
+                            return item.System.Id == systemId && item.Value == path;
                         }).length > 0;
                     } else {
-                        return true;
+                        return false;
+                    }
+                },
+                hasActionPermission: function (action, systemId) {
+                    if (this.isLogged()) {
+                        user.ActionResources.filter(function (item) {
+                            return item.System.Id == systemId && item.Value == action;
+                        }).length > 0;
+                    } else {
+                        return false;
                     }
                 }
             };

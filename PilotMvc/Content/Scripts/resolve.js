@@ -1,5 +1,5 @@
 ﻿(function () {
-    var definitions = ['auth/userController', 'app/home/homeController'], redirect = function (routeForUnauthorizedAccess, $location, $rootScope, deferred) {
+    var systemId = 1, definitions = ['auth/userController', 'app/home/homeController'], redirect = function (routeForUnauthorizedAccess, $location, $rootScope, deferred) {
         //If user does not have required access, we will route the user to unauthorized access page
         $location.path(routeForUnauthorizedAccess);
         //As there could be some delay when location change event happens, 
@@ -11,11 +11,8 @@
     };
     define(['auth/session'], function (session) {
         return function (data) {
-            var dependencies = data.dependencies || [], permission = data.permission || [], title = data.title || undefined;
+            var dependencies = data.dependencies || [], isPublic = data.isPublic || (data.isPublic == undefined), title = data.title || undefined;
 
-            if (!permission) {
-                permission = [];
-            }
             return {
                 load: ['$q', '$rootScope', function ($q, $rootScope) {
                     var deferred = $q.defer(), dependenciesNotLoaded = [];
@@ -40,7 +37,7 @@
                 }],
                 permission: ['$q', '$route', '$location', '$rootScope', '$cookieStore', 'AuthorizationService',
                     function ($q, $route, $location, $rootScope, $cookieStore, authorizationSvc) {
-                    var deferred = $q.defer(), authorized = $q.defer();
+                    var deferred = $q.defer(), authorized = $q.defer(), path = $location.path();
 
                     deferred.promise.then(function () {
                         if (title != undefined) {
@@ -52,11 +49,11 @@
                         redirect('/not-authorized', $location, $rootScope, authorized);
                     });
 
-                    if (permission.length == 0) {
+                    if (isPublic) {
                         deferred.resolve();
                     } else {
                         if (session.init($cookieStore)) {
-                            if (session.hasPermission(permission)) {
+                            if (session.hasViewPermission(path, systemId)) {
                                 deferred.resolve();
                             } else {
                                 /// redirect to not authorized page
@@ -66,7 +63,7 @@
                             // In that case, it is necessary to load the user from session
                             authorizationSvc.getCurrent(function (data) {
                                 if (session.init($cookieStore, data)) {
-                                    if (session.hasPermission(permission)) {
+                                    if (session.hasViewPermission(path, systemId)) {
                                         deferred.resolve();
                                     } else {
                                         /// redirect to not authorized page
