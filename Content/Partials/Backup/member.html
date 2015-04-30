@@ -1,0 +1,71 @@
+﻿<menu-fixed></menu-fixed>
+
+<div ng-controller="MemberController" class="clearfix">
+    <div class="pure-u-1">
+        <strong class="error">{{ error }}</strong>
+    </div>
+    <div class="pure-g">
+        <div class="pure-u-1-2">
+            <h2>{{ titleView }}</h2>
+            <form class="pure-form">
+                <fieldset>
+                    <input type="text" placeholder="Search" ng-model="textFilter" />
+                </fieldset>
+            </form>
+            <table class="pure-table pure-table-horizontal">
+                <thead class="strong">
+                    <tr>
+                        <th>#</th>
+                        <td>FirstName</td>
+                        <th>LastName</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="member in pager.items() | filter:textFilter | page: pager.currentPage : pager.itemsPerPage">
+                        <td><strong ng-hide="member.editMode">{{ member.Id }}</strong></td>
+                        <td>
+                            <p ng-hide="member.editMode">{{ member.FirstName }}</p>
+                            <input ng-show="member.editMode" type="text" ng-model="member.FirstName" />
+                        </td>
+                        <td>
+                            <p ng-hide="member.editMode">{{ member.LastName }}</p>
+                            <input ng-show="member.editMode" type="text" ng-model="member.LastName" />
+                        </td>
+                        <td>
+                            <p ng-hide="member.editMode"><a ng-click="toggleEdit(member)" href="javascript:;">Edit</a> | <a ng-click="deletemember(member)" href="javascript:;">Delete</a></p>
+                            <p ng-show="member.editMode"><a ng-click="save(member)" href="javascript:;">Save</a> | <a ng-click="toggleEdit(member)" href="javascript:;">Cancel</a></p>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="4">
+                            <pagination pager="pager"></pagination>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="pure-u-1-2">
+            <div class="pure-u-1">
+                <input type="button" ng-hide="addMode" ng-click="toggleAdd()" class="pure-button" value="Add New" />
+            </div>
+            <form name="addMember" ng-show="addMode" class="pure-form pure-form-aligned">
+                <h2>{{ titleRegister }}</h2>
+                <div class="pure-control-group">
+                    <label>FirstName:</label><input type="text" ng-model="newmember.FirstName" required />
+                </div>
+                <div class="pure-control-group">
+                    <label>LastName:</label><input type="text" ng-model="newmember.LastName" required />
+                </div>
+                <br />
+                <div class="pure-control-group">
+                    <input type="submit" value="Add" ng-click="add()" ng-disabled="!addMember.$valid" class="pure-button pure-button-primary" />
+                    <input type="button" value="Cancel" ng-click="toggleAdd()" class="pure-button" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

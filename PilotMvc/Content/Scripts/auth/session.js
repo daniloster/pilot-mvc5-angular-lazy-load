@@ -23,20 +23,26 @@
                     $cookieStore.remove(cookieKey);
                 },
                 isLogged: function () { return !!user; },
-                hasViewPermission: function (path, systemId) {
+                hasViewPermission: function (path) {
                     if (this.isLogged()) {
+                        if (user.IsAdmin) {
+                            return true;
+                        }
                         path = path.replace('/#/', '/');
-                        user.ViewResources.filter(function (item) {
-                            return item.System.Id == systemId && item.Value == path;
+                        return user.ViewResources.filter(function (item) {
+                            return (item.Value == path || new RegExp('^' + item.Value + '$').test(path));
                         }).length > 0;
                     } else {
                         return false;
                     }
                 },
-                hasActionPermission: function (action, systemId) {
+                hasActionPermission: function (action) {
                     if (this.isLogged()) {
-                        user.ActionResources.filter(function (item) {
-                            return item.System.Id == systemId && item.Value == action;
+                        if (user.IsAdmin) {
+                            return true;
+                        }
+                        return user.ActionResources.filter(function (item) {
+                            return item.Value == action;
                         }).length > 0;
                     } else {
                         return false;

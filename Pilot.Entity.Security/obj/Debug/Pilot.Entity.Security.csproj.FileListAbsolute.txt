@@ -75,3 +75,47 @@ C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\Pilot.Entity.Securi
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\Pilot.Entity.Security\obj\Debug\Pilot.Entity.Security.csprojResolveAssemblyReference.cache
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\Pilot.Entity.Security\obj\Debug\Pilot.Entity.Security.dll
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\Pilot.Entity.Security\obj\Debug\Pilot.Entity.Security.pdb
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\Pilot.Entity.Security.dll.config
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\Pilot.Entity.Security.dll
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\Pilot.Entity.Security.pdb
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\EntityFramework.dll
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\EntityFramework.SqlServer.dll
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\Newtonsoft.Json.dll
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\Pilot.Util.dll
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\System.Web.Mvc.dll
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\Microsoft.Practices.Unity.Interception.dll
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\Microsoft.Practices.Unity.dll
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\Owin.dll
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\System.Web.Http.dll
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\Microsoft.Owin.dll
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\Microsoft.Owin.Hosting.dll
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\Unity.SelfHostWebApiOwin.dll
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\System.Web.Http.Owin.dll
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\System.Web.Razor.dll
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\System.Web.WebPages.Razor.dll
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\System.Web.WebPages.dll
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\System.Net.Http.Formatting.dll
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\System.Web.WebPages.Deployment.dll
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\Pilot.Util.pdb
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\EntityFramework.xml
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\EntityFramework.SqlServer.xml
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\Newtonsoft.Json.xml
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\System.Web.Mvc.xml
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\Microsoft.Practices.Unity.Interception.xml
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\Microsoft.Practices.Unity.xml
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\System.Web.Http.xml
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\Microsoft.Owin.xml
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\Microsoft.Owin.Hosting.xml
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\Unity.SelfHostWebApiOwin.pdb
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\System.Web.Http.Owin.xml
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\System.Web.Razor.xml
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\System.Web.WebPages.Razor.xml
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\System.Web.WebPages.xml
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\System.Net.Http.Formatting.xml
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\bin\Debug\System.Web.WebPages.Deployment.xml
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\obj\Debug\Pilot.Entity.Security.csprojResolveAssemblyReference.cache
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\obj\Debug\Pilot.Entity.Security.dll
+\\vmware-host\Shared Folders\Documents\Projects\Csharp\PilotMvc\Pilot.Entity.Security\obj\Debug\Pilot.Entity.Security.pdb

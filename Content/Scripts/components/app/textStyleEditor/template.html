@@ -1,0 +1,96 @@
+﻿<modal-dialog id="{{editorId}}" confirm-yes="confirmEditing()" confirm-no="cancelEditing()" ng-cloak>
+    <div class="header">
+        <h4 class="modal-title">{{ title }}</h4>
+    </div>
+    <div class="body">
+        <div class="control-group {{ dialogStatus }}" ng-cloak ng-show="dialogMessage">
+            {{ dialogMessage }}
+        </div>
+        <div class="control-group">
+
+            <form name="form1">
+            <div class="row">
+                 <div class="col-xs-12 col-md-4">
+                    <div class="form-group">
+                        <label for="{{editorId}}_Color"><i class="fa fa-paint-brush"></i> Colour</label>
+                        <input  class="form-control" color-picker id="{{editorId}}_Color" ng-model="element.Color" type="text" class="form-control" placeholder="Choose colour" required="">
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-4">
+                    <div class="form-group">
+                        <label for="{{editorId}}_BackgroundColor"><i class="fa fa-tint"></i> Background Colour</label>
+                        <input color-picker class="form-control"  id="{{editorId}}_BackgroundColor" ng-model="element.BackgroundColor" type="text" class="form-control" placeholder="Choose colour" required="">
+                    </div>
+                </div>
+    
+            </div>
+           
+            <div class="row">
+                    <fieldset>
+                        <div class="col-xs-12 col-md-4">
+                            <div class="form-group">
+                                <label for="{{editorId}}_Family"><i class="fa fa-font"></i> Font Family</label>
+                                <select class="form-control" id="{{editorId}}_FontFamily" name="{{editorId}}_FontFamily" class="form-control"
+                                        ng-model="element.FontFamily" ng-options="family as family.Name for family in font.families" required=""></select>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-md-4">
+                            <div class="form-group">
+                                <label for="{{editorId}}_Weight"><i class="fa fa-bold"></i> Font Weight</label>
+                                <select class="form-control" id="{{editorId}}_Weight" name="{{editorId}}_Weight" class="form-control"
+                                        ng-model="element.FontWeight" ng-options="weight as weight.Name for weight in element.FontFamily.Weights" required=""></select>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-12 col-md-4">
+                            <div class="form-group">
+                                <label for="{{editorId}}_Size"><i class="fa fa-text-height"></i> Font Size</label>
+                                <select class="form-control" id="{{editorId}}_Size" name="{{editorId}}_Size" class="form-control"
+                                        ng-model="element.FontSize" ng-options="size as size.Name for size in font.sizes" required=""></select>
+                            </div>
+                        </div>
+
+                    </fieldset>
+                </div>
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <label class="main-label block">Text Align</label>
+                        <label class="radio-inline">
+                            <input type="radio" name="{{editorId}}_TextAlign" id="{{editorId}}_TextAlignLeft" value="left" ng-model="element.TextAlign">
+                            Left
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="{{editorId}}_TextAlign" id="{{editorId}}_TextAlignCenter" value="center" ng-model="element.TextAlign">
+                            Center
+                        </label>
+                    </div>
+
+
+          <!--           <div class="col-xs-12 col-md-12">
+                            <label class="main-label">Text Align</label>
+                            <label class="radio-inline" for="{{editorId}}_TextAlignLeft">
+                                Left
+                                <input id="{{editorId}}_TextAlignLeft" name="{{editorId}}_TextAlign" type="radio" ng-model="element.TextAlign" value="left" required="" />
+                            </label>
+                            <label class="radio-inline" for="{{editorId}}_TextAlignCenter">
+                                Center
+                                <input id="{{editorId}}_TextAlignCenter" name="{{editorId}}_TextAlign" type="radio" ng-model="element.TextAlign" value="center" required="" />
+                            </label>
+
+
+                    </div> -->
+                </div>
+            </form>
+
+        </div>
+        <div class="modal-btns">
+            <input type="button" confirm-yes ng-disabled="!form1.$valid" class="btn orange" value="Apply" />
+            <input type="button" confirm-no class="btn grey" value="Cancel" />    
+        </div>
+
+
+    </div>
+</modal-dialog>

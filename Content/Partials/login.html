@@ -1,0 +1,46 @@
+﻿<loading></loading>
+<nav id="menu" class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><i class="fa fa-user fa-lg"></i>&nbsp;&nbsp;Sistema de Acesso</a>
+        </div>
+    </div>
+</nav>
+<div class="clearfix container body" ng-controller="UserController">
+    <div class="col-xs-6 col-md-4">
+        <div class="row">
+            <form name="userForm" role="form">
+                <div class="alert alert-warning" ng-show="message">
+                    <button type="button" class="close" ng-click="message = undefined">&times;</button>
+                    <strong>Atenção!</strong> {{ message }}
+                </div>
+                <div class="form-group" ng-class="{'has-error': userForm.login.$invalid && userForm.login.$dirty}">
+                    <label class="sr-only" for="login">Login</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-user fa-md"></i></div>
+                        <input type="text" name="login" placeholder="Login" class="form-control" ng-model="user.userName" required />
+                        <span class="help-block" ng-show="userForm.login.$error.required && userForm.login.$dirty">Informe o login!</span>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': userForm.senha.$invalid && userForm.senha.$dirty}">
+                    <label class="sr-only" for="senha">Senha</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-lock fa-md"></i></div>
+                        <input type="password" name="senha" id="senha" placeholder="Senha" class="form-control" ng-model="user.password" required />
+                        <span class="help-block" ng-show="userForm.senha.$error.required && userForm.senha.$dirty">Informe a senha!</span>
+                    </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    <input type="submit" value="Entrar" ng-click="login()" ng-disabled="!userForm.$valid" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1038,6 +1038,7 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
+    <Compile Include="Filters\BasicAuthAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1096,7 +1097,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>51949</DevelopmentServerPort>
+          <DevelopmentServerPort>20094</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:54412/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

@@ -7,7 +7,13 @@ namespace Pilot.Database.Security.Interfaces
 {
     public interface IBaseDbContext : IDisposable, IObjectContextAdapter 
     {
-        //DbSet<Member> Members { get; }
+        DbSet<Resource> Resources { get; }
+
+        DbSet<Pilot.Entity.Security.System> Systems { get; }
+
+        DbSet<Role> Roles { get; }
+
+        DbSet<User> Users { get; }
 
         DbEntityEntry<T> Entry<T>(T entity) where T : class;
         int SaveChanges();

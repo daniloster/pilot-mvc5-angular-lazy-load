@@ -1,0 +1,133 @@
+﻿<loading></loading>
+<menu-fixed></menu-fixed>
+<div class="clearfix container body" ng-controller="ObjetoController">
+
+    <form class="form-inline">
+        <div class="row">
+            <div class="col-xs-8 col-md-6">
+                <input type="text" class="form-control" ng-model="search" placeholder="Search" />
+            </div>
+            <div class="col-xs-4 col-md-6">
+                <a class="btn btn-primary pull-right" href="javascript:;" modal-target="#objeto" modal-onload="novo()" role="button">Novo</a>
+            </div>
+        </div>
+    </form>
+    <br />
+
+    <div class="alert alert-warning" ng-show="erro" ng-cloak>
+        <button type="button" class="close" ng-click="erro = undefined">&times;</button>
+        <strong>Atenção!</strong> {{ erro }}
+    </div>
+    <div class="alert alert-success" ng-show="sucesso" ng-cloak>
+        <button type="button" class="close" ng-click="sucesso = undefined">&times;</button>
+        <strong>Sucesso!</strong> {{ sucesso }}
+    </div>
+
+    <div class="col-xs-12">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Valor</th>
+                    <th>Descrição</th>
+                    <th>Tipo</th>
+                    <th>Sistema</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="objeto in paginador.items() | orderBy: ['Sistema.Nome','Valor'] | page: paginador.currentPage : paginador.itemsPerPage" ng-cloak>
+                    <td scope="row">{{ objeto.Id }}</td>
+                    <td>{{ objeto.Valor }}</td>
+                    <td>{{ objeto.Descricao }}</td>
+                    <td>{{ objeto.TipoObjeto.Description }}</td>
+                    <td>{{ objeto.Sistema.Nome }}</td>
+                    <td>
+                        <a href="javascript:;" modal-target="#objeto" modal-onload="editar(objeto.Id)"><i class="fa fa-pencil fa-lg"></i></a>
+                        <a href="javascript:;" modal-target="#delete-modal" modal-onload="confirmarDelete(objeto)"><i class="fa fa-remove fa-lg"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5">
+                        <pagination class="pull-right" pager="paginador"></pagination>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <modal-dialog id="objeto" confirm-yes="salvar()">
+        <div class="header">
+            <h2>Manutenção de Objeto</h2>
+        </div>
+        <div class="body">
+            <div class="row">
+                <div class="alert alert-warning" ng-show="erro" ng-cloak>
+                    <button type="button" class="close" ng-click="erro = undefined">&times;</button>
+                    <strong>Atenção!</strong> {{ erro }}
+                </div>
+                <div class="alert alert-success" ng-show="sucesso" ng-cloak>
+                    <button type="button" class="close" ng-click="sucesso = undefined">&times;</button>
+                    <strong>Parabéns!</strong> {{ sucesso }}
+                </div>
+                <form name="objetoForm" class="form-horizontal" role="form">
+                    <div class="form-group col-xs-12" ng-class="{'has-error': objetoForm.valor.$invalid && objetoForm.valor.$dirty}">
+                        <label class="control-label col-xs-3">Valor</label>
+                        <div class="col-xs-9">
+                            <input type="text" name="valor" placeholder="Valor" class="form-control" ng-model="objeto.Valor" required />
+                            <span class="help-block" ng-show="objetoForm.valor.$error.required && objetoForm.valor.$dirty">Valor é obrigatório!</span>
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-12" ng-class="{'has-error': objetoForm.descricao.$invalid && objetoForm.descricao.$dirty}">
+                        <label class="control-label col-xs-3">Descrição</label>
+                        <div class="col-xs-9">
+                            <input type="text" name="descricao" placeholder="Descrição" class="form-control" ng-model="objeto.Descricao" required />
+                            <span class="help-block" ng-show="objetoForm.descricao.$error.required && objetoForm.descricao.$dirty">Descrição é obrigatório!</span>
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-12" ng-class="{'has-error': objetoForm.tipo.$invalid && objetoForm.tipo.$dirty}">
+                        <label class="control-label col-xs-3">Tipo</label>
+                        <div class="col-xs-9">
+                            <select name="tipo" ng-options="tipoObjeto.Id as tipoObjeto.Description for tipoObjeto in tiposObjeto" class="form-control" ng-model="objeto.TipoObjetoId" required>
+                                <option value="">-- Escolha o tipo --</option>
+                            </select>
+                            <span class="help-block" ng-show="objetoForm.tipo.$error.required && objetoForm.tipo.$dirty">Tipo é obrigatório!</span>
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-12" ng-class="{'has-error': objetoForm.sistema.$invalid && objetoForm.sistema.$dirty}">
+                        <label class="control-label col-xs-3">Sistema</label>
+                        <div class="col-xs-9">
+                            <select name="sistema" ng-options="sistema.Id as sistema.Nome for sistema in sistemas" class="form-control" ng-model="objeto.Sistema.Id" required>
+                                <option value="">-- Escolha o sistema --</option>
+                            </select>
+                            <span class="help-block" ng-show="objetoForm.sistema.$error.required && objetoForm.sistema.$dirty">Sistema é obrigatório!</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="form-group">
+                <input type="button" value="Salvar" confirm-yes ng-disabled="!objetoForm.$valid" class="btn btn-primary" />
+                <input type="button" value="Cancelar" confirm-no class="btn btn-default" />
+            </div>
+        </div>
+    </modal-dialog>
+    <modal-dialog id="delete-modal" confirm-yes="delete()">
+        <div class="header">
+            <h3>Excluir objeto</h3>
+        </div>
+        <div class="body">
+            <p>Tem certeza que deseja excluir o objeto: <strong>{{ objetoSelecionado.Valor }}</strong></p>
+        </div>
+        <div class="footer">
+            <div class="form-group">
+                <input type="button" value="Sim" confirm-yes class="btn btn-primary" />
+                <input type="button" value="Não" confirm-no class="btn btn-default" />
+            </div>
+        </div>
+    </modal-dialog>
+</div>
+

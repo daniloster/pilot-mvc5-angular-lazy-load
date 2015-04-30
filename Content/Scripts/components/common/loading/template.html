@@ -1,0 +1,7 @@
+﻿<div ng-controller="LoadingController" ng-show="isLoading()">
+    <div id="loadingPanel">
+        <img src="{{ baseUrl }}/Content/Images/ajax-loading.gif" class="ajax-loader" />
+    </div>
+
+    <div id="overlay" ng-show="hasOverlay()"></div>
+</div>

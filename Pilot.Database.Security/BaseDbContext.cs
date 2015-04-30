@@ -23,13 +23,37 @@ namespace Pilot.Database.Security
             base.Configuration.ProxyCreationEnabled = false;
         }
 
-        //public DbSet<Member> Members
-        //{
-        //    get
-        //    {
-        //        return this.Set<Member>();
-        //    }
-        //}
+        public DbSet<Resource> Resources
+        {
+            get
+            {
+                return this.Set<Resource>();
+            }
+        }
+
+        public DbSet<Pilot.Entity.Security.System> Systems
+        {
+            get
+            {
+                return this.Set<Pilot.Entity.Security.System>();
+            }
+        }
+
+        public DbSet<Role> Roles
+        {
+            get
+            {
+                return this.Set<Role>();
+            }
+        }
+
+        public DbSet<User> Users
+        {
+            get
+            {
+                return this.Set<User>();
+            }
+        }
         
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -61,6 +61,7 @@ namespace Pilot.Util.Data
         public string PrivateKeyWordEncrypter { get; set; }
         public string UploadTmpDirectory { get; set; }
         public string ProfilePath { get; set; }
+        public string NotAuthorizedMessage { get; set; }
     }
 }
 

@@ -19,7 +19,9 @@ namespace Pilot.Entity.Security
         private const string USER_KEYWORD = "ChickenLittle";
 
         [Required]
-        public string Login { get; set; }
+        public string UserName { get; set; }
+        [Required]
+        public string Email { get; set; }
         [Required]
         [ScriptIgnore(ApplyToOverrides=true)]
         [JsonIgnore]
@@ -64,6 +66,8 @@ namespace Pilot.Entity.Security
         }
 
         [NotMapped]
+        [ScriptIgnore(ApplyToOverrides = true)]
+        [JsonIgnore]
         public IList<Resource> UrlResources
         {
             get
@@ -85,10 +89,10 @@ namespace Pilot.Entity.Security
         
         public void UpdatePassword(string password)
         {
-            this.Assert<User>("Login is required to update the password.",
-                user => !user.Login.IsNullOrWhiteSpace());
+            this.Assert<User>("User name is required to update the password.",
+                user => !user.UserName.IsNullOrWhiteSpace());
 
-            Password = Encrypter.Encrypt(USER_KEYWORD, Login, password);
+            Password = Encrypter.Encrypt(USER_KEYWORD, UserName, password);
         }
     }
 }

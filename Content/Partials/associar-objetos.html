@@ -1,0 +1,66 @@
+﻿<loading></loading>
+<menu-fixed></menu-fixed>
+<div class="clearfix container body" ng-controller="AssociarObjetoController">
+
+    <div>
+        <form name="perfilObjetoForm" role="form">
+            <h2>{{ titleRegister }}</h2>
+
+            <div class="alert alert-warning" ng-show="erro" ng-cloak>
+                <button type="button" class="close" ng-click="erro = undefined">&times;</button>
+                <strong>Atenção!</strong> {{ erro }}
+            </div>
+            <div class="alert alert-success" ng-show="sucesso" ng-cloak>
+                <button type="button" class="close" ng-click="sucesso = undefined">&times;</button>
+                <strong>Parabéns!</strong> {{ sucesso }}
+            </div>
+
+            <div class="col-xs-12 col-md-6" ng-cloak>
+                <div class="form-group">
+                    <label>Perfil</label>
+                    <br />
+                    <span>{{ perfil.Nome }}</span>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6" ng-cloak>
+                <div class="form-group">
+                    <label>Sistema</label>
+                    <br />
+                    <span>{{ perfil.Sistema.Nome }}</span>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6" ng-cloak>
+                <ul class="list-group">
+                    <li class="list-group-item header">Objetos disponíveis</li>
+                    <li class="list-group-item" ng-class="{ 'removed': objeto.Removido }" ng-repeat="objeto in objetosDisponiveis track by objeto.Id+'-'+$index">
+                        <a href="javascript:;" ng-click="adicionar(objeto, $index)"><i class="fa fa-lg fa-arrow-circle-right"></i></a>
+                        <span>{{ objeto.Valor }}</span>
+                    </li>
+                    <li class="list-group-item" ng-if="!objetosDisponiveis || objetosDisponiveis.length==0">
+                        <span>Nenhum objeto disponível.</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-md-6" ng-cloak>
+                <ul class="list-group">
+                    <li class="list-group-item header">Objetos selecionados</li>
+                    <li class="list-group-item" ng-class="{ 'added': objeto.Adicionado }" ng-repeat="objeto in objetosSelecionados track by objeto.Id+'-'+$index">
+                        <a href="javascript:;" ng-click="remover(objeto, $index)"><i class="fa fa-lg fa-arrow-circle-left"></i></a>
+                        <span>{{ objeto.Valor }}</span>
+                    </li>
+                    <li class="list-group-item" ng-if="!objetosSelecionados || objetosSelecionados.length==0">
+                        <span>Nenhum objeto selecionado.</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <input type="button" value="Salvar" ng-click="salvar()" ng-disabled="false" class="btn btn-primary" />
+                    <a class="btn btn-default" href="/#/perfil" role="button">Voltar</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
