@@ -5,14 +5,14 @@
             Svc = ['$http', function ($http) {
 
                 var resource = {
-                    login: function (success, error) {
-                        $http.post('/member/all').success(success).error(error);
+                    getStats: function (success, error) {
+                        $http.post('/dashboard/stats').success(success).error(error);
                     }
                 };
                 
                 return resource;
             }];
-            app.lazy.factory('HomeService', Svc);
+            app.lazy.factory('DashboardService', Svc);
         }
     });
 })();

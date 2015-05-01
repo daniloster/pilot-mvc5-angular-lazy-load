@@ -22,11 +22,15 @@ namespace Pilot.Service.Security.Interfaces
         [Transactional]
         void UpdatePassword(long id, string password);
 
-        User Authorize(string userName, string password);
+        User Authorize(long idSystem, string userName, string password);
 
         int GetTotal();
 
         [Transactional]
         User UpdateFlatUser(User user);
+
+        bool HasGrantedAccess(long idSystem, long idUser, string resourceValue);
+
+        bool HasGrantedAccess(long idSystem, long idUser, short? idResourceType, string resourceValue);
     }
 }

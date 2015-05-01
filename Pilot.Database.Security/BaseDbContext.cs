@@ -21,6 +21,9 @@ namespace Pilot.Database.Security
             : base("name=Pilot.Database.Security.EntityContext")
         {
             base.Configuration.ProxyCreationEnabled = false;
+            /// To import data
+            //base.Configuration.AutoDetectChangesEnabled = false;
+            //base.Configuration.ValidateOnSaveEnabled = false;
         }
 
         public DbSet<Resource> Resources
@@ -31,11 +34,11 @@ namespace Pilot.Database.Security
             }
         }
 
-        public DbSet<Pilot.Entity.Security.System> Systems
+        public DbSet<Pilot.Entity.Security.WebSystem> WebSystems
         {
             get
             {
-                return this.Set<Pilot.Entity.Security.System>();
+                return this.Set<Pilot.Entity.Security.WebSystem>();
             }
         }
 

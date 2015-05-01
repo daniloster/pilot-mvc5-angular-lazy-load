@@ -11,7 +11,8 @@
                 directive: app.directive,
                 constant: app.constant,
                 animation: app.animation,
-                decorator: app.decorator
+                decorator: app.decorator,
+                value: app.value
             };
 
             app.config(['$routeProvider', '$locationProvider', '$controllerProvider', '$provide', '$filterProvider', '$compileProvider', '$animateProvider', '$httpProvider', '$sceDelegateProvider',
@@ -25,7 +26,8 @@
                     directive: $compileProvider.directive,
                     constant: $provide.constant,
                     animation: $animateProvider.register,
-                    decorator: $provide.decorator
+                    decorator: $provide.decorator,
+                    value: $provide.value
                 };
 
                 $sceDelegateProvider.resourceUrlWhitelist([

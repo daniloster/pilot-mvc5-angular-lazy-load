@@ -24,6 +24,6 @@ namespace Pilot.Entity.Security
 
         [Editable(false)]
         [Required]
-        public virtual System System { get; set; }
+        public virtual WebSystem System { get; set; }
     }
 }

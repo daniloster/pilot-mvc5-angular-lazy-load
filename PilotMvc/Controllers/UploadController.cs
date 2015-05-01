@@ -14,7 +14,7 @@ using Pilot.Util.Data;
 using System.IO;
 using Pilot.Util.Logging;
 using System.Drawing;
-using Pilot.Util.File;
+using Pilot.Util.Files;
 
 namespace PilotMvc.Controllers
 {
@@ -63,7 +63,7 @@ namespace PilotMvc.Controllers
                         FileName = fileName,
                         Size = imageValue.Length,
                         ImagePreview = displayFolder + "\\" + fileName
-                    }, JsonRequestBehavior.AllowGet);
+                    });
             }
             catch (Exception e)
             {
@@ -107,7 +107,7 @@ namespace PilotMvc.Controllers
                         FileName = fileName,
                         Size = file.ContentLength,
                         FilePreview = (displayFolder) + "\\" + fileName
-                    }, JsonRequestBehavior.AllowGet);
+                    });
             }
             catch (Exception e)
             {

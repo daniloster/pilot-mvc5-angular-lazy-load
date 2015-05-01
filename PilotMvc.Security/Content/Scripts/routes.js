@@ -5,12 +5,13 @@
             $routeProvider
                     .when("/404", {
                         templateUrl: '/Content/Partials/404.html',
-                        isPublic: true
+                        isPublic: true,
+                        title: 'Pilot Sec | Are you trying to mock me? Page not found!'
                     })
                     .when("/not-authorized", {
                         templateUrl: '/Content/Partials/not-authorized.html',
                         isPublic: true,
-                        title: 'You are fucked and not authorized!'
+                        title: 'Pilot Sec | You are fucked and not authorized!'
                     })
 
                     .when("/login", {
@@ -18,15 +19,15 @@
                         resolve: resolve({
                             dependencies: ['auth/userController'],
                             isPublic: true,
-                            title: 'Wonderful login page'
+                            title: 'Pilot Sec | Wonderful login page'
                         })
                     })
                     .when("/", {
-                        templateUrl: '/Content/Partials/home.html',
+                        templateUrl: '/Content/Partials/dashboard.html',
                         resolve: resolve({
-                            dependencies: ['app/home/homeController'],
+                            dependencies: ['app/dashboard/dashboardController'],
                             isPublic: false,
-                            title: 'Home is like a Dashboard'
+                            title: 'Pilot Sec | Amazing dashboard'
                         })
                     })
                     .when("/member", {

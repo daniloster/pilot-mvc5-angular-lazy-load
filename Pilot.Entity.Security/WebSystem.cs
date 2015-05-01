@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 
 namespace Pilot.Entity.Security
 {
-    public class System : BaseEntity
+    [Table("Systems")]
+    public class WebSystem : BaseEntity
     {
         [Required]
         public string Name { get; set; }

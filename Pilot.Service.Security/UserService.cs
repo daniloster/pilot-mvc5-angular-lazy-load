@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Data.Entity;
 using Pilot.Entity.Security;
 using Pilot.Util.Security;
+using Pilot.Entity.Security.Domain;
 
 namespace Pilot.Service.Security
 {
@@ -94,21 +95,28 @@ namespace Pilot.Service.Security
             base.Save(user);
         }
 
-
-        public User Authorize(string userName, string password)
+        public User Authorize(long idSystem, string userName, string password)
         {
             User user = new User() { UserName = userName };
             user.UpdatePassword(password);
 
-            user =  Db.DbContext.Users
+            user = Db.DbContext.Users
                 .Include(u => u.Roles.Select(p => p.System))
                 .Include(u => u.Roles.Select(p => p.Resources.Select(o => o.System)))
-                .Where(u => u.UserName == user.UserName && u.Password == user.Password).FirstOrDefault();
+                .Where(u => u.UserName == user.UserName && u.Password == user.Password
+                    && u.Roles.Any(r => r.System.Id == idSystem)
+                ).FirstOrDefault();
 
-            user.Assert<User>("User name/password wrong!", u => u != null);
+            user.Assert<User>("User name or password is wrong!", u => u != null);
 
-            if (user.IsFirstAccess) {
+            user.AuthorizedSystemId = idSystem;
+
+            if (user.IsFirstAccess)
+            {
                 user.IsFirstAccess = false;
+                /// Send e-mail to change password here.
+                /// Something like www.yourdomain.com/change-password/793hye723d9h8123d28o73degh2y8dg283g27
+                ///                www.yourdomain.com/change-password/{token-to-authorize-changing-password}
                 base.Save(user);
             }
 
@@ -128,6 +136,41 @@ namespace Pilot.Service.Security
 
             base.Save(user);
             return user;
+        }
+
+        public bool HasGrantedAccess(long idSystem, long idUser, string resourceValue)
+        {
+            return HasGrantedAccess(idSystem, idUser, null, resourceValue);
+        }
+
+        public bool HasGrantedAccess(long idSystem, long idUser, short? idResourceType, string resourceValue)
+        {
+            if (!idResourceType.HasValue)
+            {
+                idResourceType = ResourceType.Url.Id;
+            }
+
+            bool hasResource = Db.DbContext.Users
+                .Any(u => u.Roles.Any(r => r.System.Id == idSystem && r.Resources
+                    .Any(re => idResourceType.Value == re.ResourceTypeId && re.Value == resourceValue))
+                );
+            
+            if (!hasResource)
+            {
+                return true;
+            }
+
+            bool hasAccess = Db.DbContext.Users
+                .Any(u => 
+                    u.Id == idUser &&
+                    u.Roles.Any(r => r.System.Id == idSystem && 
+                        (r.IsAdmin || r.Resources
+                            .Any(re => (!idResourceType.HasValue || idResourceType.Value == re.ResourceTypeId) && re.Value == resourceValue)
+                        )
+                    )
+                );
+
+            return hasAccess;
         }
     }
 }

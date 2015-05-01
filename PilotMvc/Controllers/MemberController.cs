@@ -19,13 +19,13 @@ namespace PilotMvc.Controllers
         [Route("all"), HttpPost, HandleUIException("It is not possible to list the members")]
         public ActionResult Get()
         {
-            return new JsonResultView(Service.Get(), JsonRequestBehavior.AllowGet);
+            return new JsonResultView(Service.Get());
         }
 
         [Route("get"), HttpPost, HandleUIException("It is not possible to get the member")]
         public ActionResult Get(int id)
         {
-            return new JsonResultView(Service.Get(id), JsonRequestBehavior.AllowGet);
+            return new JsonResultView(Service.Get(id));
         }
 
         [Route("save"), HttpPost, HandleUIException("It is not possible to save the member")]
@@ -33,14 +33,14 @@ namespace PilotMvc.Controllers
         {
 
             Service.Save(member);
-            return new JsonResultView(member, JsonRequestBehavior.AllowGet);
+            return new JsonResultView(member);
         }
 
         [Route("delete"), HttpPost, HandleUIException("It is not possible to delete the member")]
         public ActionResult Delete(long id)
         {
             Service.Delete(id);
-            return new JsonResultView(new { Status = "success", Message = "Member has been deleted!" }, JsonRequestBehavior.AllowGet);
+            return new JsonResultView(new { Status = "success", Message = "Member has been deleted!" });
         }
 
         protected override void Dispose(bool disposing)
@@ -62,7 +62,7 @@ namespace PilotMvc.Controllers
                 {
                     list.Add(obj);
                 }
-                return Json(list, JsonRequestBehavior.AllowGet);
+                return Json(list);
             }
             catch (Exception e)
             {
@@ -75,7 +75,7 @@ namespace PilotMvc.Controllers
         {
             try
             {
-                return new JsonResultView(new { FirstName = "Mock", LastName = member.LastName, Birthday = DateTime.Now }, JsonRequestBehavior.AllowGet);
+                return new JsonResultView(new { FirstName = "Mock", LastName = member.LastName, Birthday = DateTime.Now });
             }
             catch (Exception e)
             {

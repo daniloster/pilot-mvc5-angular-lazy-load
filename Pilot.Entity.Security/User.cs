@@ -28,13 +28,18 @@ namespace Pilot.Entity.Security
         public string Password { get; set; }
         [Required]
         public string Name { get; set; }
-        public long? SapId { get; set; }
+
         public bool IsFirstAccess { get; set; }
 
         [Editable(false)]
         [ScriptIgnore(ApplyToOverrides = true)]
         [JsonIgnore]
         public virtual IList<Role> Roles { get; set; }
+
+        [NotMapped]
+        [ScriptIgnore(ApplyToOverrides = true)]
+        [JsonIgnore]
+        public virtual long AuthorizedSystemId { get; set; }
 
 
         [NotMapped]
@@ -45,7 +50,7 @@ namespace Pilot.Entity.Security
                 List<Resource> resources = new List<Resource>();
                 foreach (Role role in Roles)
                 {
-                    resources.AddRange(role.Resources.Where(r => r.ResourceTypeId == ResourceType.Action.Id).ToList());
+                    resources.AddRange(role.Resources.Where(r => r.System.Id == AuthorizedSystemId && r.ResourceTypeId == ResourceType.Action.Id).ToList());
                 }
                 return resources;
             }
@@ -59,7 +64,7 @@ namespace Pilot.Entity.Security
                 List<Resource> resources = new List<Resource>();
                 foreach (Role role in Roles)
                 {
-                    resources.AddRange(role.Resources.Where(r => r.ResourceTypeId == ResourceType.View.Id).ToList());
+                    resources.AddRange(role.Resources.Where(r => r.System.Id == AuthorizedSystemId && r.ResourceTypeId == ResourceType.View.Id).ToList());
                 }
                 return resources;
             }
@@ -75,7 +80,7 @@ namespace Pilot.Entity.Security
                 List<Resource> resources = new List<Resource>();
                 foreach (Role role in Roles)
                 {
-                    resources.AddRange(role.Resources.Where(r => r.ResourceTypeId == ResourceType.Url.Id).ToList());
+                    resources.AddRange(role.Resources.Where(r => r.System.Id == AuthorizedSystemId && r.ResourceTypeId == ResourceType.Url.Id).ToList());
                 }
                 return resources;
             }

@@ -25,7 +25,7 @@ namespace Pilot.Util.Exceptions
             }
             if (filterContext.Exception != null)
             {
-                if (filterContext.Exception is ValidationException)
+                if (filterContext.Exception is ValidationException || filterContext.Exception is UserNotAutheticatedException)
                 {
                     filterContext.Exception = new JsonException(filterContext.Exception);
                 }

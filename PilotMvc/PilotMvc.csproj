@@ -1036,6 +1036,7 @@
     <Compile Include="Config\Unity\UnityMvcActivator.cs" />
     <Compile Include="Config\Unity\UnityWebApiActivator.cs" />
     <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\UploadController.cs" />

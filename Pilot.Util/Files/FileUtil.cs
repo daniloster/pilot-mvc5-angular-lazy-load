@@ -7,12 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Pilot.Util.File
+namespace Pilot.Util.Files
 {
     public class FileUtil
     {
 
-
+        public static string GetAbsolutePath(string relativePath)
+        {
+            return Path.Combine(new string[] { AppDomain.CurrentDomain.BaseDirectory, relativePath });
+        }
 
         public static string GetPartialDirectory(string folderType)
         {

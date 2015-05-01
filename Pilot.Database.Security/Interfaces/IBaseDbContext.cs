@@ -9,7 +9,7 @@ namespace Pilot.Database.Security.Interfaces
     {
         DbSet<Resource> Resources { get; }
 
-        DbSet<Pilot.Entity.Security.System> Systems { get; }
+        DbSet<Pilot.Entity.Security.WebSystem> WebSystems { get; }
 
         DbSet<Role> Roles { get; }
 

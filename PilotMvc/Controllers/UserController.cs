@@ -49,7 +49,7 @@ namespace PilotMvc.Controllers
 
             HttpContext.Session.Add("CurrentUser", user);
 
-            return new JsonResultView(user, JsonRequestBehavior.AllowGet);
+            return new JsonResultView(user);
         }
 
         [Route("current"), HttpPost, HandleUIException]
@@ -62,7 +62,7 @@ namespace PilotMvc.Controllers
                 throw new ValidationException("There is no user logged in!");
             }
 
-            return new JsonResultView(user, JsonRequestBehavior.AllowGet);
+            return new JsonResultView(user);
         }
 	}
 }

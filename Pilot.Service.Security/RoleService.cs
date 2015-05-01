@@ -72,7 +72,7 @@ namespace Pilot.Service.Security
                 .Where(p => p.Id == idRole).FirstOrDefault();
         }
 
-        public void CreateAdministratorRole(Pilot.Entity.Security.System entity)
+        public void CreateAdministratorRole(Pilot.Entity.Security.WebSystem entity)
         {
             Role role = new Role()
             { 

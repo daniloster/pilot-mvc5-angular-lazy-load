@@ -7,49 +7,37 @@ using Pilot.Util.Unity.Lifetime;
 using Pilot.Entity.Security;
 using Pilot.Util.Exceptions;
 using Pilot.Util.Mvc;
+using Microsoft.Practices.Unity;
+using Pilot.Service.Security.Interfaces;
+using Pilot.Util.Data;
+using System.Web.Http.Cors;
 
 namespace PilotMvc.Security.Controllers
 {
     [RoutePrefix("user")]
-    public class UserController : Controller
+    public class UserController : BaseController
     {
-        [Route("login"), HttpPost, HandleUIException]
-        public ActionResult login(string userName, string password)
+
+        [Dependency]
+        public IUserService Service { get; set; }
+
+        [Route("authorize"), HttpPost, HandleUIException]
+        public ActionResult Authorize(long idSystem, string userName, string password)
         {
-            object user = null;
-            if ("dan".Equals(userName)) {
-                if (!"123".Equals(password)) {
-                    throw new ValidationException("Wrong password!");
-                }
-                user = new {
-                    Token = "1",
-                    Name = "Danilo Castro",
-                    Email = "danilo@mail.com",
-                    UserRoles = new int[] { 2, 3 }
-                };
-            }
-            else if ("leti".Equals(userName))
-            {
-                if (!"123".Equals(password))
-                {
-                    throw new ValidationException("Wrong password!");
-                }
-                user = new
-                {
-                    Token = "1",
-                    Name = "Leticia Calmon",
-                    Email = "leti@mail.com",
-                    UserRoles = new int[] { 1 }
-                };
-            }
-            else 
-            {
-                throw new ValidationException("There is no user with this user name!");
-            }
+            User user = Service.Authorize(idSystem, userName, password);
+            return new JsonResultView(user);
+        }
 
-            HttpContext.Session.Add("CurrentUser", user);
-
-            return new JsonResultView(user, JsonRequestBehavior.AllowGet);
+        [Route("login"), HttpPost, HandleUIException]
+        [DisableCors()]
+        public ActionResult Authorize(string userName, string password)
+        {
+            User user = Service.Authorize(ApplicationSettings.Instance.LocalSystemId, userName, password);
+            if (user != null)
+            {
+                user.AuthorizedSystemId = ApplicationSettings.Instance.LocalSystemId;
+            }
+            return new JsonResultView(user);
         }
 
         [Route("current"), HttpPost, HandleUIException]
@@ -62,7 +50,7 @@ namespace PilotMvc.Security.Controllers
                 throw new ValidationException("There is no user logged in!");
             }
 
-            return new JsonResultView(user, JsonRequestBehavior.AllowGet);
+            return new JsonResultView(user);
         }
 	}
 }

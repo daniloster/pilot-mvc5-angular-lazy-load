@@ -9,11 +9,13 @@ using System.Threading.Tasks;
 
 namespace Pilot.Service.Security.Interfaces
 {
-    public interface ISystemService : ICRUDService<Pilot.Entity.Security.System>, IDisposable
+    public interface ISystemService : ICRUDService<Pilot.Entity.Security.WebSystem>, IDisposable
     {
         [Transactional]
-        void Create(Pilot.Entity.Security.System entity);
+        void Create(Pilot.Entity.Security.WebSystem entity);
 
         int GetTotal();
+
+        IList<WebSystem> GetByFilter(WebSystem system);
     }
 }

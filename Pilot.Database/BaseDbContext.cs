@@ -21,6 +21,9 @@ namespace Pilot.Database
             : base("name=Pilot.Database.EntityContext")
         {
             base.Configuration.ProxyCreationEnabled = false;
+            /// To import data
+            //base.Configuration.AutoDetectChangesEnabled = false;
+            //base.Configuration.ValidateOnSaveEnabled = false;
         }
 
         public DbSet<Member> Members

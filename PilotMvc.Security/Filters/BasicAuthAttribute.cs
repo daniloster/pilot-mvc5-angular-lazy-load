@@ -35,7 +35,7 @@ namespace UserManagementMvc.CustomAttributes
                 if (filterContext.HttpContext.Request.HttpMethod == "POST")
                 {
 
-                    authorized = true; // Service.AutorizarAcesso(user.Id, ApplicationSettings.Instance.SystemId, filterContext.HttpContext.Request.RawUrl);
+                    authorized = Service.HasGrantedAccess(ApplicationSettings.Instance.LocalSystemId, user.Id, filterContext.HttpContext.Request.RawUrl);
                     if (!authorized)
                     {
                         filterContext.HttpContext.Response.Clear();

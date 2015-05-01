@@ -18,7 +18,7 @@ namespace Pilot.Service.Security.Interfaces
         Role GetRoleWithResourcesAndSystem(long idRole);
 
         [Transactional]
-        void CreateAdministratorRole(Pilot.Entity.Security.System entity);
+        void CreateAdministratorRole(Pilot.Entity.Security.WebSystem entity);
 
         IList<Role> GetRolesBySystem(long idSystem);
 

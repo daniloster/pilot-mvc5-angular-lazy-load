@@ -14,12 +14,12 @@ using Pilot.Util.Data;
 using System.IO;
 using Pilot.Util.Logging;
 using System.Drawing;
-using Pilot.Util.File;
+using Pilot.Util.Files;
 
 namespace PilotMvc.Security.Controllers
 {
     [RoutePrefix("upload")]
-    public class UploadController : Controller
+    public class UploadController : BaseController
     {
         [Route("imagePng"), HttpPost, HandleUIException]
         public JsonResult ImagePng(string imageName, string imageValue, string folderType)
@@ -63,7 +63,7 @@ namespace PilotMvc.Security.Controllers
                         FileName = fileName,
                         Size = imageValue.Length,
                         ImagePreview = displayFolder + "\\" + fileName
-                    }, JsonRequestBehavior.AllowGet);
+                    });
             }
             catch (Exception e)
             {
@@ -107,7 +107,7 @@ namespace PilotMvc.Security.Controllers
                         FileName = fileName,
                         Size = file.ContentLength,
                         FilePreview = (displayFolder) + "\\" + fileName
-                    }, JsonRequestBehavior.AllowGet);
+                    });
             }
             catch (Exception e)
             {

@@ -1,4 +1,3 @@
-C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\obj\Debug\PilotMvc.Security.csprojResolveAssemblyReference.cache
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\PilotMvc.Security.dll
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\PilotMvc.Security.pdb
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\Antlr3.Runtime.dll
@@ -6,6 +5,7 @@ C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\b
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\EntityFramework.SqlServer.dll
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\Microsoft.Data.Edm.dll
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\Microsoft.Data.OData.dll
+C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\Microsoft.Owin.Cors.dll
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\Microsoft.Owin.dll
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\Microsoft.Owin.Host.HttpListener.dll
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\Microsoft.Owin.Hosting.dll
@@ -25,7 +25,9 @@ C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\b
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\Pilot.Util.dll
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\System.Net.Http.Formatting.dll
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\System.Spatial.dll
+C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\System.Web.Cors.dll
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\System.Web.Helpers.dll
+C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\System.Web.Http.Cors.dll
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\System.Web.Http.dll
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\System.Web.Http.OData.dll
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\System.Web.Http.Owin.dll
@@ -48,6 +50,7 @@ C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\b
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\Microsoft.Data.Edm.xml
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\Microsoft.Data.OData.xml
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\Microsoft.Owin.xml
+C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\Microsoft.Owin.Cors.xml
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\Microsoft.Owin.Host.HttpListener.xml
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\Microsoft.Owin.Hosting.xml
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\Microsoft.Practices.ServiceLocation.pdb
@@ -63,6 +66,7 @@ C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\b
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\System.Net.Http.Formatting.xml
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\System.Spatial.xml
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\System.Web.Http.xml
+C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\System.Web.Http.Cors.xml
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\System.Web.Http.OData.xml
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\System.Web.Http.Owin.xml
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\System.Web.Http.WebHost.xml
@@ -101,5 +105,6 @@ C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\b
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\ru\System.Spatial.resources.dll
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\bin\zh-Hant\System.Spatial.resources.dll
+C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\obj\Debug\PilotMvc.Security.csprojResolveAssemblyReference.cache
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\obj\Debug\PilotMvc.Security.dll
 C:\Users\Dan\Documents\Projects\pilot-mvc5-angular-lazy-load\PilotMvc.Security\obj\Debug\PilotMvc.Security.pdb

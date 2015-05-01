@@ -12,11 +12,15 @@ namespace PilotMvc.Security.Config
     {
         public static void Register(HttpConfiguration config)
         {
+            config.EnableCors();
             config.MapHttpAttributeRoutes();
+            config.EnableCors();
         }
 
         public static void RegisterRoutes(RouteCollection routes)
         {
+            routes.IgnoreRoute("{*allfiles}", new { allfiles = @".*\.(gif|jpg|png|ico)" });
+            routes.IgnoreRoute("{*allangular}", new { allfiles = @".*/#/." });
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             AreaRegistration.RegisterAllAreas();
