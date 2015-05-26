@@ -1,4 +1,5 @@
-define(['lib/IE/isIE', 'util/array', 'util/string'], function (isIE) {
+define(['lib/IE/isIE', 'lib/IE/isIE8', 'lib/IE/isIE9', 'lib/IE/isIE11', 'xdomain', 'xhook', 'util/array', 'util/string'], function (isIE, isIE8, isIE9, isIE11, xdomain, xhook) {
+
     if (isIE) {
         // Angular required elements
         document.createElement('ng-include');
@@ -19,66 +20,47 @@ define(['lib/IE/isIE', 'util/array', 'util/string'], function (isIE) {
         document.createElement('footer');
 
         // Custom elements
-        document.createElement('menu');
-        document.createElement('text-style-editor');
-        document.createElement('workflow-footer');
-
-        document.createElement('color-picker');
-        document.createElement('date-picker');
-        document.createElement('file-upload');
-        document.createElement('map');
-        document.createElement('img-crop');
         document.createElement('loading');
-        document.createElement('modal-dialog');
         document.createElement('pagination');
+        document.createElement('page-footer');
+        document.createElement('menu-fixed');
+        document.createElement('modal-dialog');
+        document.createElement('date-picker');
+        document.createElement('workflow-footer');
+        document.createElement('color-picker');
+        document.createElement('text-style-editor');
         document.createElement('img-upload');
+
+        document.createElement('map');
+        document.createElement('shape');
 
         document.createElement('my-editor');
     }
 
-    require(['jquery', 'bootstrap'], function ($) {
-
-        function init() {
-            require(['angular', 'app', 'util'], function (angular, app) {
-                angular.element(document).ready(function () {
-                    //var elements = $('culturefox-viewer');
-                    //angular.bootstrap(elements.length ? $('culturefox-viewer').parent()[0] : document, [app['name']]);
-                    angular.bootstrap(document, [app['name']]);
+    var loadJquery = function () {
+        require(['jq'], function ($) {
+            var elements = $('[xxxxx-component-attr]');
+            if (elements.length == 0) {
+                $('[src="' + baseUrl + '/Content/Scripts/lib/component-require.min.js"]').siblings().each(function (idx, item) {
+                    if (item.nodeName.toUpperCase() == "XXXXX-COMPONENT-ATTR") {
+                        elements = $(item);
+                    }
                 });
-            });
-        }
+            }
+            var doc = appSettings.applyForAllDocument || elements.length == 0 ? document : elements;
 
-        function load() {
-            var head = $('head');
+            //fix jquery cors
+            $.support.cors = true;
 
-            css = '<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">';
-            head.append(css);
-
-            css = '<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">';
-            head.append(css);
-
-            var _base, css;
-            try {
-                _base = baseUrl || '';
-                if (!!_base) {
-                    css = '<link type="text/css" rel="stylesheet" href="' + _base + '/Content/Styles/common.css" />';
-                    head.append(css);
-                }
-                if (isIE) {
-                    css = '<link type="text/css" rel="stylesheet" href="' + _base + '/Content/Styles/ie-general-fixes.css" />';
-                    head.append(css);
-                }
-            } catch (e) {
-                css = '<link type="text/css" rel="stylesheet" href="/Content/Styles/common.css" />';
-                head.append(css);
-
-                if (isIE) {
-                    css = '<link type="text/css" rel="stylesheet" href="/Content/Styles/ie-general-fixes.css" />';
-                    head.append(css);
-                }
+            function init() {
+                require(['angular', 'app', 'config', 'util'], function (angular, app) {
+                    angular.element(document).ready(function () {
+                        angular.bootstrap(doc, [app['name']]);
+                    });
+                });
             }
 
-            var html, httpEquiv, viewport;
+            var html, head, httpEquiv, viewport, css;
             try {
                 html = $('html');
                 html.attr('xmlns:ng', 'http://angularjs.org');
@@ -87,12 +69,25 @@ define(['lib/IE/isIE', 'util/array', 'util/string'], function (isIE) {
 
             try {
                 head = $('head');
+
+                css = '<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">';
+                head.append(css);
+
+                css = '<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">';
+                head.append(css);
+
                 httpEquiv = head.find('meta[http-equiv]');
                 if (httpEquiv.length) {
                     httpEquiv.attr('http-equiv', 'X-UA-Compatible');
-                    httpEquiv.attr('content', 'IE=edge,chrome=1');
+                    if (!isIE8 && !isIE9) {
+                        httpEquiv.attr('content', 'IE=edge,chrome=1');
+                    }
                 } else {
-                    head.append('<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">');
+                    head.attr('no-http-equiv', 'true');
+
+                    if (!isIE8 && !isIE9) {
+                        head.append('<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">');
+                    }
                 }
             } catch (e) { console.log(e); }
 
@@ -105,18 +100,27 @@ define(['lib/IE/isIE', 'util/array', 'util/string'], function (isIE) {
                 }
             } catch (e) { console.log(e); }
 
-            init()
-        }
+            init();
 
-        if (isIE) {
+        });
+    };
 
-            require(['html5shiv', 'respond', 'html5', 'json3'], function () {
-                load();
+    if (isIE) {
+        require(['html5shiv', 'html5', 'json3'], function () {
+            require(['respond'], function () {
+                var params = {};
+                params[baseUrl] = '/proxy.html';
+                xdomain.slaves(params);
+
+                //fix trackers
+                xhook.addWithCredentials = false;
+                //enabling debug
+                xdomain.debug = true;
+
+                loadJquery();
             });
-
-        } else {
-            load();
-        }
-
-    });
+        });
+    } else {
+        loadJquery();
+    }
 });

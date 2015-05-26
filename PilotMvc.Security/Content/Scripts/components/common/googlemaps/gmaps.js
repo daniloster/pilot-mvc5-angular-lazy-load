@@ -1,5 +1,5 @@
 ﻿(function () {
-    define(['jquery', 'async!http://maps.google.com/maps/api/js?v=3&sensor=false'], function ($) {
+    define(['jq', 'async!http://maps.google.com/maps/api/js?v=3&sensor=false'], function ($) {
         return {
             addMapToCanvas: function (mapCanvasSelector) {
                 var myOptions = {

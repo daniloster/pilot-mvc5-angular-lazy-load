@@ -1,5 +1,5 @@
 ﻿(function () {
-    define(['routes', 'resolve'], function (routes, resolve) {
+    define(['resolve'], function (resolve) {
         return function ($routeProvider) {
 
             $routeProvider

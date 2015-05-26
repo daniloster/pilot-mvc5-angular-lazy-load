@@ -52,7 +52,7 @@
                     if (isPublic) {
                         deferred.resolve();
                     } else {
-                        if (session.init($cookieStore)) {
+                        if (session.init()) {
                             if (session.hasViewPermission(path, systemId)) {
                                 deferred.resolve();
                             } else {

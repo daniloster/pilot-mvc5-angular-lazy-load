@@ -1,5 +1,5 @@
 ﻿(function () {
-    var systemId = 1, definitions = ['auth/userController', 'app/home/homeController'], redirect = function (routeForUnauthorizedAccess, $location, $rootScope, deferred) {
+    var systemId = 1, definitions = [], redirect = function (routeForUnauthorizedAccess, $location, $rootScope, deferred) {
         //If user does not have required access, we will route the user to unauthorized access page
         $location.path(routeForUnauthorizedAccess);
         //As there could be some delay when location change event happens, 

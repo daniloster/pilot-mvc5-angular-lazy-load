@@ -8,7 +8,7 @@
             //var Module = angular.module('datePicker', []);
 
             app.lazy.constant('datePickerConfig', {
-                template: '/Content/Scripts/components/common/date/picker.html',
+                template: '/Content/Scripts/components/date/picker.html',
                 view: 'date',
                 views: ['year', 'month', 'date', 'hours', 'minutes'],
                 step: 5
@@ -140,7 +140,7 @@
                 };
             });
 
-            app.lazy.directive('datePicker', ['datePickerConfig', 'datePickerUtils', '$parse', 'ConfigApp', function datePickerDirective(datePickerConfig, datePickerUtils, $parse, ConfigApp) {
+            app.lazy.directive('datePicker', ['datePickerConfig', 'datePickerUtils', '$parse', function datePickerDirective(datePickerConfig, datePickerUtils, $parse) {
 
                 //noinspection JSUnusedLocalSymbols
                 return {
@@ -149,15 +149,17 @@
                     scope: {
                         model: '=datePicker',
                         after: '=?',
-                        before: '=?'
+                        before: '=?',
+                        unavailableAfter: '=?',
+                        unavailableBefore: '=?'
                     },
                     link: function (scope, element, attrs, ne) {
 
-                        scope.date = new Date(scope.model || new Date());
+                        scope.date = new Date(scope.model || (!!scope.unavailableAfter ? new Date(scope.unavailableAfter).setDate(scope.unavailableAfter.getDate() - 1) : undefined) || new Date());
                         scope.views = datePickerConfig.views.concat();
                         scope.view = attrs.view || datePickerConfig.view;
                         scope.now = new Date();
-                        scope.template = attrs.template || ConfigApp.getPath(datePickerConfig.template);
+                        scope.template = attrs.template || datePickerConfig.template;
 
                         var applyValue = function (value) {
                             // $parse works out how to get the value.
@@ -192,7 +194,7 @@
                         };
 
                         scope.setDate = function (date) {
-                            if (attrs.disabled) {
+                            if (attrs.disabled || (scope.isUnavailableAfter(date)) || (scope.isUnavailableBefore(date))) {
                                 return;
                             }
                             scope.date = date;
@@ -294,6 +296,14 @@
                             return scope.before && datePickerUtils.isBefore(date, scope.before);
                         };
 
+                        scope.isUnavailableAfter = function (date) {
+                            return scope.unavailableAfter && datePickerUtils.isBefore(date, new Date(scope.unavailableAfter));
+                        };
+
+                        scope.isUnavailableBefore = function (date) {
+                            return scope.unavailableBefore && datePickerUtils.isAfter(date, new Date(scope.unavailableBefore));
+                        };
+
                         scope.isSameMonth = function (date) {
                             return datePickerUtils.isSameMonth(scope.model, date);
                         };
@@ -340,9 +350,9 @@
                 };
             }]);
 
-            app.lazy.directive('dateRange', ['ConfigApp', function (ConfigApp) {
+            app.lazy.directive('dateRange', function () {
                 return {
-                    templateUrl: ConfigApp.getPath('/Content/Scripts/components/common/date/range.html'),
+                    templateUrl: '/Content/Scripts/components/date/range.html',
                     scope: {
                         start: '=',
                         end: '='
@@ -363,7 +373,7 @@
                         });
                     }
                 };
-            }]);
+            });
 
             var PRISTINE_CLASS = 'ng-pristine',
                 DIRTY_CLASS = 'ng-dirty';
@@ -378,6 +388,9 @@
                         (attrs.template ? 'template="' + attrs.template + '" ' : '') +
                         (attrs.minView ? 'min-view="' + attrs.minView + '" ' : '') +
                         (attrs.partial ? 'partial="' + attrs.partial + '" ' : '') +
+                        (attrs.auto - close ? 'auto-close="' + attrs.auto - close + '" ' : '') +
+                        (attrs.unavailableAfter ? 'unavailable-after="' + attrs.unavailableAfter + '" ' : '') +
+                        (attrs.unavailableBefore ? 'unavailable-before="' + attrs.unavailableBefore + '" ' : '') +
                         'class="dropdown-menu"></div>';
                 },
                 format: 'yyyy-MM-dd HH:mm',
@@ -396,16 +409,14 @@
                 };
             });
 
-            app.lazy.directive('dateTime', ['$compile', '$document', '$filter', '$parse', '$timeout', 'dateTimeConfig', 'ConfigApp', function ($compile, $document, $filter, $parse, $timeout, dateTimeConfig, ConfigApp) {
+            app.lazy.directive('dateTime', ['$compile', '$document', '$filter', 'dateTimeConfig', '$parse', '$timeout', function ($compile, $document, $filter, dateTimeConfig, $parse, $timeout) {
                 var body = $document.find('body');
                 var dateFilter = $filter('date');
-                angular.element('body').after(angular.element('<link href="' + ConfigApp.getPath('/Content/Scripts/components/common/date/style.css') + '" type="text/css" rel="stylesheet" />'));
 
                 return {
                     require: 'ngModel',
                     scope: true,
                     link: function (scope, element, attrs, ngModel) {
-                        var keepDisplaying = !!attrs.keepDisplaying && attrs.keepDisplaying != "false" && attrs.keepDisplaying != false;
                         var format = attrs.format || dateTimeConfig.format;
                         var parentForm = element.inheritedData('$formController');
                         var views = $parse(attrs.views)(scope) || dateTimeConfig.views.concat();
@@ -415,8 +426,8 @@
                         var picker = null;
                         var position = attrs.position || dateTimeConfig.position;
                         var container = null;
-
                         attrs.view = view;
+                        var autoClose = attrs.auto - close;
 
                         if (index === -1) {
                             views.splice(index, 1);
@@ -453,20 +464,18 @@
 
                         function clear() {
                             try {
-                                if (picker && !keepDisplaying) {
+                                if (picker) {
                                     picker.remove();
                                     picker = null;
                                 }
-                                if (container && !keepDisplaying) {
+                                if (container) {
                                     container.remove();
                                     container = null;
                                 }
                             } catch (ex) { }
                             finally {
                                 try {
-                                    if (!keepDisplaying) {
-                                        element.blur();
-                                    }
+                                    element.blur();
                                 } catch (e) { }
                             }
                         }
@@ -485,6 +494,7 @@
                                 if (dismiss && views[views.length - 1] === view) {
                                     clear();
                                 }
+
                                 //}, 50);
                             });
 

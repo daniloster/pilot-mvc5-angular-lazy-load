@@ -1213,7 +1213,7 @@
                             element.css('display', 'block');
                         }
                         if (getStyle(element[0], 'height').match(/^(0|auto)/)) {
-                            element.css('height', '300px');
+                            element.css('height', '500px');
                         }
 
                         /**
