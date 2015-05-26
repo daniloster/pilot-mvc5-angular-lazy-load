@@ -1,5 +1,5 @@
 ﻿(function () {
-    define(['routes', 'resolve'], function (routes, resolve) {
+    define(['resolve'], function (resolve) {
         return function ($routeProvider) {
 
             $routeProvider
@@ -24,7 +24,7 @@
                     .when("/", {
                         templateUrl: '/Content/Partials/home.html',
                         resolve: resolve({
-                            dependencies: ['app/home/homeController'],
+                            dependencies: ['auth/userController', 'app/home/homeController'],
                             isPublic: false,
                             title: 'Home is like a Dashboard'
                         })

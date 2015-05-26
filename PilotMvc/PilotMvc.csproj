@@ -171,6 +171,7 @@
     </Reference>
     <Reference Include="System.Web.Mvc">
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -186,17 +187,11 @@
     <Content Include="Content\Scripts\app\contact\contactController.js" />
     <Content Include="Content\Scripts\app\contact\contactService.js" />
     <Content Include="Content\Scripts\app\home\homeService.js" />
+    <Content Include="Content\Scripts\auth\authorizationService.js" />
+    <Content Include="Content\Scripts\config\configApp.js" />
     <Content Include="Content\Scripts\components\app\navMenu\menu.js" />
     <Content Include="Content\Scripts\components\app\navMenu\style.css" />
     <Content Include="Content\Scripts\components\app\navMenu\template.html" />
-    <Content Include="Content\Scripts\components\app\textStyleEditor\editor.js" />
-    <Content Include="Content\Scripts\components\app\textStyleEditor\style.css" />
-    <Content Include="Content\Scripts\components\app\textStyleEditor\template.html" />
-    <Content Include="Content\Scripts\components\app\textStyleEditor\textStyleEditorController.js" />
-    <Content Include="Content\Scripts\components\app\workflow\footer.html" />
-    <Content Include="Content\Scripts\components\app\workflow\style.css" />
-    <Content Include="Content\Scripts\components\app\workflow\workflowFooter.js" />
-    <Content Include="Content\Scripts\components\app\workflow\workflowFooterController.js" />
     <Content Include="Content\Scripts\components\common\colorPicker\picker.js" />
     <Content Include="Content\Scripts\components\common\colorPicker\style.css" />
     <Content Include="Content\Scripts\components\common\colorPicker\template.html" />
@@ -207,13 +202,17 @@
     <Content Include="Content\Scripts\components\common\date\style.css" />
     <Content Include="Content\Scripts\components\common\fileUpload\fileModel.js" />
     <Content Include="Content\Scripts\components\common\fileUpload\fileUpload.js" />
-    <Content Include="Content\Scripts\components\common\fileUpload\style.css" />
-    <Content Include="Content\Scripts\components\common\fileUpload\template.html" />
+    <Content Include="Content\Scripts\components\common\fileUpload\file-style.css" />
+    <Content Include="Content\Scripts\components\common\fileUpload\file-template.html" />
     <Content Include="Content\Scripts\components\common\fileUpload\uploadService.js" />
+    <Content Include="Content\Scripts\components\common\form\focusInvalid.js" />
     <Content Include="Content\Scripts\components\common\googlemaps\gmaps.js" />
     <Content Include="Content\Scripts\components\common\googlemaps\map.js" />
     <Content Include="Content\Scripts\components\common\imgCrop\imgCrop.js" />
     <Content Include="Content\Scripts\components\common\imgCrop\style.css" />
+    <Content Include="Content\Scripts\components\common\fileUpload\imgUpload.js" />
+    <Content Include="Content\Scripts\components\common\fileUpload\img-style.css" />
+    <Content Include="Content\Scripts\components\common\fileUpload\img-template.html" />
     <Content Include="Content\Scripts\components\common\loading\loading.js" />
     <Content Include="Content\Scripts\components\common\loading\loadingController.js" />
     <Content Include="Content\Scripts\components\common\loading\style.css" />
@@ -231,16 +230,40 @@
     <Content Include="Content\Scripts\components\common\pagination\template.html" />
     <Content Include="Content\Scripts\components\common\security\access.js" />
     <Content Include="Content\Scripts\components\common\services\jsonService.js" />
+    <Content Include="Content\Scripts\components\common\textStyleEditor\editor.js" />
+    <Content Include="Content\Scripts\components\common\textStyleEditor\style.css" />
+    <Content Include="Content\Scripts\components\common\textStyleEditor\template.html" />
+    <Content Include="Content\Scripts\components\common\textStyleEditor\textStyleEditorController.js" />
     <Content Include="Content\Scripts\components\common\tooltip\style.css" />
     <Content Include="Content\Scripts\components\common\tooltip\tooltip.js" />
-    <Content Include="Content\Scripts\app\_examples\examplesCtrl.js" />
     <Content Include="Content\Scripts\auth\userController.js" />
     <Content Include="Content\Scripts\auth\session.js" />
+    <Content Include="Content\Scripts\components\common\workflow\footer.html" />
+    <Content Include="Content\Scripts\components\common\workflow\style.css" />
+    <Content Include="Content\Scripts\components\common\workflow\workflowFooter.js" />
+    <Content Include="Content\Scripts\components\common\workflow\workflowFooterController.js" />
     <Content Include="Content\Scripts\config.js" />
+    <Content Include="Content\Scripts\config\loggingHttpInterceptor.js" />
     <Content Include="Content\Scripts\lib\component-require.min.js" />
+    <Content Include="Content\Scripts\lib\cors-require.min.js" />
+    <Content Include="Content\Scripts\lib\CORS\cors.js" />
+    <Content Include="Content\Scripts\lib\CORS\xdomain.js" />
+    <Content Include="Content\Scripts\lib\CORS\xhook.js" />
     <Content Include="Content\Scripts\lib\IE\isIE.js" />
+    <Content Include="Content\Scripts\lib\IE\isIE11.js" />
+    <Content Include="Content\Scripts\lib\IE\isIE8.js" />
+    <Content Include="Content\Scripts\lib\IE\isIE89.js" />
+    <Content Include="Content\Scripts\lib\IE\isIE9.js" />
     <Content Include="Content\Scripts\lib\jQuery\colpick.js" />
+    <Content Include="Content\Scripts\lib\jQuery\jquery-1.11.1.min.js" />
+    <Content Include="Content\Scripts\lib\jQuery\jQueryNoConflict.js" />
+    <Content Include="Content\Scripts\lib\jQuery\xdr.js" />
     <Content Include="Content\Scripts\lib\json3.js" />
+    <Content Include="Content\Scripts\lib\respond\respond-proxy.html" />
+    <Content Include="Content\Scripts\lib\respond\respond.js" />
+    <Content Include="Content\Scripts\lib\respond\respond.proxy.gif" />
+    <Content Include="Content\Scripts\lib\respond\respond.proxy.js" />
+    <Content Include="Content\Scripts\lib\webpage-require.min.js" />
     <Content Include="Content\Scripts\routes.js" />
     <Content Include="Content\Scripts\util.js" />
     <Content Include="Content\Scripts\main.js" />
@@ -248,9 +271,6 @@
     <Content Include="Content\Scripts\app\home\homeController.js" />
     <Content Include="Content\Scripts\app\member\memberController.js" />
     <Content Include="Content\Scripts\lib\angularjs\angular-amd.js" />
-    <Content Include="Content\Scripts\lib\domReady.js" />
-    <Content Include="Content\Scripts\lib\requirejs.text.min.js" />
-    <Content Include="Content\Scripts\lib\requirejs.text.readme.js" />
     <Content Include="Content\Scripts\lib\angularjs\angular-animate.min.js" />
     <Content Include="Content\Scripts\lib\angularjs\angular-cookies.min.js" />
     <Content Include="Content\Scripts\lib\angularjs\angular-csp.css" />
@@ -996,10 +1016,6 @@
     <Content Include="Content\Fonts\fontawesome-webfont.woff" />
     <Content Include="Content\Fonts\FontAwesome.otf" />
     <Content Include="Content\Scripts\lib\bootstrap.min.js" />
-    <None Include="Content\Scripts\lib\jQuery\jquery-1.10.2.intellisense.js" />
-    <Content Include="Content\Scripts\lib\jQuery\jquery-1.10.2.min.js" />
-    <Content Include="Content\Scripts\lib\jQuery\jquery.validate.min.js" />
-    <Content Include="Content\Scripts\lib\jQuery\jquery.validate.unobtrusive.min.js" />
     <Content Include="Content\Scripts\resolve.js" />
     <Content Include="Content\Scripts\util\array.js" />
     <Content Include="Content\Scripts\util\jsonQueryExporter.js" />
@@ -1023,7 +1039,6 @@
     <Content Include="Content\Scripts\lib\angularjs\angular-touch.min.js.map" />
     <Content Include="Content\Scripts\lib\angularjs\angular.min.js.map" />
     <Content Include="Content\Scripts\lib\angularjs\errors.json" />
-    <Content Include="Content\Scripts\lib\jQuery\jquery-1.10.2.min.map" />
     <Content Include="Content\Scripts\lib\angularjs\version.json" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -1061,6 +1076,7 @@
     <Content Include="Content\Partials\not-authorized.html" />
     <Content Include="Content\Partials\login.html" />
     <Content Include="Content\Partials\examples.html" />
+    <Content Include="Content\Scripts\lib\respond\Thumbs.db" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

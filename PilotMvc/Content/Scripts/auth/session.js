@@ -1,28 +1,18 @@
 (function () {
-    var session = null, user = null, cookieKey = 'pilot.user.security', arrayType = typeof [],
-        save = function ($cookieStore) {
-            if (isLogged) {
-                $cookieStore.put(cookieKey, JSON.stringify(user));
-            }
-        };
+    var session = null, user = null, arrayType = typeof [];
     define([], function () {
         if (session == null) {
             session = {
-                init: function ($cookieStore, userData) {
-                    if (!!userData && !!userData.Id) {
+                init: function (userData) {
+                    if (!!userData) {
                         user = userData;
-                        save($cookieStore);
-                        return true;
-                    } else if (!!$cookieStore.get(cookieKey)) {
-                        user = JSON.parse($cookieStore.get(cookieKey));
-                        return true;
                     }
-                    return false;
+                    return session.isLogged();
                 },
                 clear: function ($cookieStore) {
-                    $cookieStore.remove(cookieKey);
+                    user = null;
                 },
-                isLogged: function () { return !!user; },
+                isLogged: function () { return !!user && !!user.Id; },
                 hasViewPermission: function (path) {
                     if (this.isLogged()) {
                         if (user.IsAdmin) {

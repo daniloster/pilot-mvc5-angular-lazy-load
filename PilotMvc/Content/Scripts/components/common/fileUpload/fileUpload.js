@@ -3,7 +3,7 @@
     define(['app', 'components/common/loading/loadingController', 'components/common/fileUpload/uploadService'], function (app, loadingController) {
         if (Element === null) {            
             Element = ['$parse', 'ConfigApp', function ($parse, configApp) {
-                angular.element('body').after(angular.element("<link rel='stylesheet' type='text/css' href='" + configApp.getPath("/Content/Scripts/components/common/fileUpload/style.css") + "'/>"));
+                angular.element('body').after(angular.element("<link rel='stylesheet' type='text/css' href='" + configApp.getPath("/Content/Scripts/components/common/fileUpload/file-style.css") + "'/>"));
 
                 return {
                     scope:{
@@ -13,7 +13,7 @@
                         showProgress: '@'
                     },
                     restrict: 'E',
-                    templateUrl: configApp.getPath('/Content/Scripts/components/common/fileUpload/template.html'),
+                    templateUrl: configApp.getPath('/Content/Scripts/components/common/fileUpload/file-template.html'),
                     controller: ['$scope', 'UploadService', function ($scope, uploadService) {
                         $scope.clear = function () {
                             $scope.fileProgress = undefined;

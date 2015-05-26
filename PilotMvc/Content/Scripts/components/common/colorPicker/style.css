@@ -1,3 +1,15 @@
+.containerColorPicker {
+    position: relative;
+    white-space: nowrap !important;
+}
+
+.containerColorPicker a {
+    background-color: #333;
+    padding: 0px 5px 1px 5px;
+    color: #fff;
+    margin-left: 3px;
+}
+
 .myPicker {
 	margin:0;
 	padding:0;
