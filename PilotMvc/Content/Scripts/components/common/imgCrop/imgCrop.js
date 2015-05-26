@@ -7,24 +7,17 @@
             HOW TO BUILD IMG-CROP
             -------------------------------------------------------------------------------------------------------
 
-                    <label class="control-label" for="uploadImage">Profile photo: </label>
+                    <label class="control-label" for="upload">Profile photo: </label>
+                    
                     <input type="file" name="uploadImage" id="uploadImage" style="margin-bottom: 5px" />
                     
-                    <img-crop image="myFile" image-name="myFileName" 
-                        result-image="myProfileImage" file-input="#uploadImage"
-                        area-type="circle|square" area-width="350" area-height="250"></img-crop>
+                    <img-crop image="myFile" image-name="myFileName" result-image="myProfileImage" file-input="#uploadImage"
+                                force-circle="true" area-width="350" area-height="250"></img-crop>
+                    
+                    <input ng-show="!addMode.myFile.$valid" type="button" ng-click="upload()" value="Upload" />
                     
                     <img ng-src="{{ myProfileImage }}" style="width:78px; height:78px;" />
 
-                    You are able to upload the image, but it is going to send the content data 
-                    as PNG, something like the example below:
-
-                    data/image: base64;YAGSdyuGASDSdasyYAsayusgdyuqgwdhsabd
-                    nba79d8ygh3d8ey2b31dhy2gb2yhdbwqhjdba8d7agbds8ygbqa87dy
-                    g2b3dygashdgHGJ
-
-                    This value is synchronized through [result-image] attribute, which you has isolated 
-                    binding type '='.
 
             
             ****/
@@ -34,26 +27,8 @@
              *
              * Copyright (c) 2014 Alex Kaul
              * License: MIT
-             * 
+             *
              * Generated at Wednesday, December 3rd, 2014, 3:54:12 PM
-             ****/
-
-            /*!
-             * 
-             * @ Changes made by Danilo Castro and Fernando Menezes
-             * 
-             * # This component received some fixes and improvements, I'll send a push request to the 
-             * owner as soon as possible.
-             * 
-             * - Crop in circle was not working properly.
-             * - area-width and area-height attributes were not working properly.
-             * - In your custom tag you are able to reference the input[file] by query using [file-input] 
-             * attribute.
-             * - You can sync the name of file selected using [image-name] property that has isolated 
-             * binding type '='.
-             * - Directive now does not make part of any different module, it is integrated to the app 
-             * dynamically, which has lazy load and lazy register implementations.
-             * 
              */
             (function () {
                 'use strict';
@@ -1445,20 +1420,20 @@
                         // Object Pointers
                         var ctx = null,
                             image = null,
-                            theArea = null,
+                            theArea = null;
 
                         // Dimensions
-                            minCanvasDims = [100, 100],
-                            maxCanvasDims = [300, 300],
+                        var minCanvasDims = [100, 100],
+                            maxCanvasDims = [300, 300];
 
                         // Result Image size
-                            resImgSize = 200;
+                        var resImgSize = 200;
 
                         // Result Image type
-                            resImgFormat = 'image/png',
+                        var resImgFormat = 'image/png';
 
                         // Result Image quality
-                            resImgQuality = null;
+                        var resImgQuality = null;
 
                         /* PRIVATE FUNCTIONS */
 
@@ -1506,32 +1481,32 @@
                                     canvasDims[1] = minCanvasDims[1];
                                     canvasDims[0] = canvasDims[1] * imageRatio;
                                 }
-                                elCanvas.prop('width', canvasDims[0]).prop('height', canvasDims[1]).css({ 'margin-left': 0 + 'px', 'margin-top': 0 + 'px' });
+                                elCanvas.prop('width', canvasDims[0]).prop('height', canvasDims[1]).css({ 'margin-left': 0 + 'px', 'margin-top': 0 + 'px', 'margin': 0 + ' auto', 'display': 'block', 'text-align': 'center' });
                                 //.css({ 'margin-left': -canvasDims[0] / 2 + 'px', 'margin-top': -canvasDims[1] / 2 + 'px' });
 
                                 theArea.setX(ctx.canvas.width / 2);
                                 theArea.setY(ctx.canvas.height / 2);
                                 theArea.setSize(Math.min(200, ctx.canvas.width / 2, ctx.canvas.height / 2));
                             } else {
-                                elCanvas.prop('width', 0).prop('height', 0).css({ 'margin-top': 0 });
+                                elCanvas.prop('width', 0).prop('height', 0).css({ 'margin-top': 0, 'margin': 0 + ' auto', 'display': 'block', 'text-align': 'center' });
                             }
 
                             drawScene();
-                        },
+                        };
 
                         /**
                          * Returns event.changedTouches directly if event is a TouchEvent.
                          * If event is a jQuery event, return changedTouches of event.originalEvent
                          */
-                            getChangedTouches = function (event) {
+                        var getChangedTouches = function (event) {
                             if (angular.isDefined(event.changedTouches)) {
                                 return event.changedTouches;
                             } else {
                                 return event.originalEvent.changedTouches;
                             }
-                        },
+                        };
 
-                            onMouseMove = function (e) {
+                        var onMouseMove = function (e) {
                             if (image !== null) {
                                 var offset = getElementOffset(ctx.canvas),
                                     pageX, pageY;
@@ -1545,9 +1520,9 @@
                                 theArea.processMouseMove(pageX - offset.left, pageY - offset.top);
                                 drawScene();
                             }
-                        },
+                        };
 
-                            onMouseDown = function (e) {
+                        var onMouseDown = function (e) {
                             e.preventDefault();
                             e.stopPropagation();
                             if (image !== null) {
@@ -1563,9 +1538,9 @@
                                 theArea.processMouseDown(pageX - offset.left, pageY - offset.top);
                                 drawScene();
                             }
-                        },
+                        };
 
-                            onMouseUp = function (e) {
+                        var onMouseUp = function (e) {
                             if (image !== null) {
                                 var offset = getElementOffset(ctx.canvas),
                                     pageX, pageY;
@@ -1595,17 +1570,19 @@
                             }
 
                             var data = temp_canvas.toDataURL(resImgFormat);
+
                             var img = new Image();
                             img.src = data;
                             img.width = resImgSize;
                             img.height = resImgSize;
                             if (forceCircle) {
-                                var canvas = document.createElement("canvas"),
+                                var canvas = angular.element('<canvas></canvas>')[0],
                                             context = canvas.getContext('2d'),
-                                            x = img.width / 2,
-                                            y = img.height / 2,
-                                            radius = img.width / 2;
-                                canvas.width = canvas.height = img.width;
+                                            x = resImgSize / 2,
+                                            y = resImgSize / 2,
+                                            radius = resImgSize / 2;
+                                //$(canvas).css("position", "absolute").css("top","-2000px").appendTo("body");
+                                canvas.width = canvas.height = resImgSize;
                                 /*
                                 * save() allows us to save the canvas context before
                                 * defining the clipping region so that we can return
@@ -1845,8 +1822,7 @@
 
 
 
-                crop.directive('imgCrop', ['$timeout', 'cropHost', 'cropPubSub', 'ConfigApp', function ($timeout, CropHost, CropPubSub, configApp) {
-                    angular.element('body').after(angular.element('<link href="' + configApp.getPath('/Content/Scripts/components/imgCrop/style.css') + '" type="text/css" rel="stylesheet" />'));
+                crop.directive('imgCrop', ['$timeout', 'cropHost', 'cropPubSub', function ($timeout, CropHost, CropPubSub) {
                     return {
                         restrict: 'E',
                         scope: {
@@ -1854,6 +1830,7 @@
                             image: '=',
                             imageName: '=',
                             resultImage: '=',
+                            acceptedTypes: '@',
 
                             areaWidth: '=',
                             areaHeight: '=',
@@ -1875,11 +1852,23 @@
                             $scope.events = new CropPubSub();
                         }],
                         link: function (scope, element/*, attrs*/) {
+                            var imageExtension = !!scope.acceptedTypes ? scope.acceptedTypes : null;
                             var handleFileSelect = function (evt) {
                                 var file = evt.currentTarget.files[0];
                                 var reader = new FileReader();
                                 reader.onload = function (evt) {
                                     scope.$apply(function ($scope) {
+                                        var isAccepted = true, fileName = document.querySelector(scope.fileInput).value.split('.');
+                                        if (!!imageExtension) {
+                                            isAccepted = imageExtension.split(",").filter(function (val) {
+                                                return fileName.length > 0 && fileName[fileName.length - 1] == val;
+                                            }).length > 0;
+                                        }
+                                        if (!isAccepted) {
+                                            scope.image = '';
+                                            document.querySelector(scope.fileInput).value = '';
+                                            return;
+                                        }
                                         scope.image = evt.target.result;
                                         scope.imageName = file.name;
                                     });
