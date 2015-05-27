@@ -16,7 +16,7 @@
                     .when("/login", {
                         templateUrl: '/Content/Partials/login.html',
                         resolve: resolve({
-                            dependencies: ['auth/userController'],
+                            dependencies: ['auth/authorizationController'],
                             isPublic: true,
                             title: 'Wonderful login page'
                         })
@@ -24,7 +24,7 @@
                     .when("/", {
                         templateUrl: '/Content/Partials/home.html',
                         resolve: resolve({
-                            dependencies: ['auth/userController', 'app/home/homeController'],
+                            dependencies: ['auth/authorizationController', 'app/home/homeController'],
                             isPublic: false,
                             title: 'Home is like a Dashboard'
                         })

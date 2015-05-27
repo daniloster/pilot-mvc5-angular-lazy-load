@@ -9,6 +9,7 @@
             deferred.resolve();
         });
     };
+
     define(['auth/session'], function (session) {
         return function (data) {
             var dependencies = data.dependencies || [], isPublic = data.isPublic || (data.isPublic == undefined), title = data.title || undefined;
@@ -35,8 +36,8 @@
                     }
                     return deferred.promise;
                 }],
-                permission: ['$q', '$route', '$location', '$rootScope', '$cookieStore', 'AuthorizationService',
-                    function ($q, $route, $location, $rootScope, $cookieStore, authorizationSvc) {
+                permission: ['$q', '$route', '$location', '$rootScope', 'AuthorizationService',
+                    function ($q, $route, $location, $rootScope, authorizationSvc) {
                     var deferred = $q.defer(), authorized = $q.defer(), path = $location.path();
 
                     deferred.promise.then(function () {
@@ -62,7 +63,7 @@
                         } else {
                             // In that case, it is necessary to load the user from session
                             authorizationSvc.getCurrent(function (data) {
-                                if (session.init($cookieStore, data)) {
+                                if (session.init(data)) {
                                     if (session.hasViewPermission(path, systemId)) {
                                         deferred.resolve();
                                     } else {

@@ -236,7 +236,7 @@
     <Content Include="Content\Scripts\components\common\textStyleEditor\textStyleEditorController.js" />
     <Content Include="Content\Scripts\components\common\tooltip\style.css" />
     <Content Include="Content\Scripts\components\common\tooltip\tooltip.js" />
-    <Content Include="Content\Scripts\auth\userController.js" />
+    <Content Include="Content\Scripts\auth\authorizationController.js" />
     <Content Include="Content\Scripts\auth\session.js" />
     <Content Include="Content\Scripts\components\common\workflow\footer.html" />
     <Content Include="Content\Scripts\components\common\workflow\style.css" />

@@ -9,7 +9,7 @@
                     }
                     return session.isLogged();
                 },
-                clear: function ($cookieStore) {
+                clear: function () {
                     user = null;
                 },
                 isLogged: function () { return !!user && !!user.Id; },
@@ -19,7 +19,7 @@
                             return true;
                         }
                         path = path.replace('/#/', '/');
-                        return user.ViewResources.filter(function (item) {
+                        return (user.ViewResources || []).filter(function (item) {
                             return (item.Value == path || new RegExp('^' + item.Value + '$').test(path));
                         }).length > 0;
                     } else {
@@ -31,7 +31,7 @@
                         if (user.IsAdmin) {
                             return true;
                         }
-                        return user.ActionResources.filter(function (item) {
+                        return (user.ActionResources || []).filter(function (item) {
                             return item.Value == action;
                         }).length > 0;
                     } else {

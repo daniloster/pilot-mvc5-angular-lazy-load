@@ -22,7 +22,7 @@ namespace PilotMvc.Controllers
                     throw new ValidationException("Wrong password!");
                 }
                 user = new {
-                    Token = "1",
+                    Id = 1,
                     Name = "Danilo Castro",
                     Email = "danilo@mail.com",
                     UserRoles = new int[] { 2, 3 }
@@ -36,7 +36,7 @@ namespace PilotMvc.Controllers
                 }
                 user = new
                 {
-                    Token = "1",
+                    Id = 2,
                     Name = "Leticia Calmon",
                     Email = "leti@mail.com",
                     UserRoles = new int[] { 1 }

@@ -22,7 +22,7 @@
                 };
             }];
 
-            app.lazy.controller('UserController', Ctrl);
+            app.lazy.controller('AuthorizationController', Ctrl);
         };
     });
 })();
