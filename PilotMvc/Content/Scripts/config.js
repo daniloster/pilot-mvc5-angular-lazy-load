@@ -15,6 +15,9 @@
                 value: $provide.value
             };
 
+            // Just allow animation on elements that has the class 'angular-animate'
+            $animateProvider.classNameFilter(/angular-animate/);
+
             // Add the interceptor to the $httpProvider.
             $httpProvider.interceptors.push('LoggingHttpInterceptor');
 

@@ -1010,7 +1010,9 @@
     <Content Include="Content\Scripts\lib\angularjs\i18n\angular-locale_zh.js" />
     <Content Include="Content\Scripts\lib\angularjs\i18n\angular-locale_zu-za.js" />
     <Content Include="Content\Scripts\lib\angularjs\i18n\angular-locale_zu.js" />
-    <Content Include="Config\DbConnections.config" />
+    <Content Include="Config\DbConnections.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\Fonts\fontawesome-webfont.eot" />
     <Content Include="Content\Fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\Fonts\fontawesome-webfont.woff" />
@@ -1077,6 +1079,9 @@
     <Content Include="Content\Partials\login.html" />
     <Content Include="Content\Partials\examples.html" />
     <Content Include="Content\Scripts\lib\respond\Thumbs.db" />
+    <Content Include="Config\TemplateDbConnections.config">
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
