@@ -5,12 +5,16 @@
             $routeProvider
                     .when("/404", {
                         templateUrl: '/Content/Partials/404.html',
-                        isPublic: true
+                        resolve: resolve({
+                            isPublic: true
+                        })
                     })
                     .when("/not-authorized", {
                         templateUrl: '/Content/Partials/not-authorized.html',
-                        isPublic: true,
-                        title: 'You are fucked and not authorized!'
+                        resolve: resolve({
+                            isPublic: true,
+                            title: 'You are fucked and not authorized!'
+                        })
                     })
 
                     .when("/login", {
@@ -24,7 +28,9 @@
                     .when("/", {
                         templateUrl: '/Content/Partials/home.html',
                         resolve: resolve({
-                            dependencies: ['auth/authorizationController', 'app/home/homeController'],
+                            dependencies: ['auth/authorizationController',
+                                'components/common/date/datePicker',
+                                'app/home/homeController'],
                             isPublic: false,
                             title: 'Home is like a Dashboard'
                         })

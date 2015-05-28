@@ -8,7 +8,7 @@
             //var Module = angular.module('datePicker', []);
 
             app.lazy.constant('datePickerConfig', {
-                template: '/Content/Scripts/components/date/picker.html',
+                template: '/Content/Scripts/components/common/date/picker.html',
                 view: 'date',
                 views: ['year', 'month', 'date', 'hours', 'minutes'],
                 step: 5
@@ -140,7 +140,7 @@
                 };
             });
 
-            app.lazy.directive('datePicker', ['datePickerConfig', 'datePickerUtils', '$parse', function datePickerDirective(datePickerConfig, datePickerUtils, $parse) {
+            app.lazy.directive('datePicker', ['datePickerConfig', 'datePickerUtils', '$parse', 'ConfigApp', function datePickerDirective(datePickerConfig, datePickerUtils, $parse, ConfigApp) {
 
                 //noinspection JSUnusedLocalSymbols
                 return {
@@ -159,7 +159,7 @@
                         scope.views = datePickerConfig.views.concat();
                         scope.view = attrs.view || datePickerConfig.view;
                         scope.now = new Date();
-                        scope.template = attrs.template || datePickerConfig.template;
+                        scope.template = attrs.template || ConfigApp.getPath(datePickerConfig.template);
 
                         var applyValue = function (value) {
                             // $parse works out how to get the value.
@@ -350,9 +350,9 @@
                 };
             }]);
 
-            app.lazy.directive('dateRange', function () {
+            app.lazy.directive('dateRange', ['ConfigApp', function (ConfigApp) {
                 return {
-                    templateUrl: '/Content/Scripts/components/date/range.html',
+                    templateUrl: ConfigApp.getPath('/Content/Scripts/components/common/date/range.html'),
                     scope: {
                         start: '=',
                         end: '='
@@ -373,7 +373,7 @@
                         });
                     }
                 };
-            });
+            }]);
 
             var PRISTINE_CLASS = 'ng-pristine',
                 DIRTY_CLASS = 'ng-dirty';
@@ -409,7 +409,10 @@
                 };
             });
 
-            app.lazy.directive('dateTime', ['$compile', '$document', '$filter', 'dateTimeConfig', '$parse', '$timeout', function ($compile, $document, $filter, dateTimeConfig, $parse, $timeout) {
+            app.lazy.directive('dateTime', ['$compile', '$document', '$filter', 'dateTimeConfig', '$parse', '$timeout', 'ConfigApp', function ($compile, $document, $filter, dateTimeConfig, $parse, $timeout, ConfigApp) {
+
+                angular.element('body').after(angular.element('<link href="' + ConfigApp.getPath('/Content/Scripts/components/common/date/style.css') + '" type="text/css" rel="stylesheet" />'));
+
                 var body = $document.find('body');
                 var dateFilter = $filter('date');
 

@@ -11,7 +11,7 @@ using Pilot.Util.Mvc;
 namespace PilotMvc.Controllers
 {
     [RoutePrefix("user")]
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         [Route("login"), HttpPost, HandleUIException]
         public ActionResult login(string userName, string password)
@@ -25,7 +25,7 @@ namespace PilotMvc.Controllers
                     Id = 1,
                     Name = "Danilo Castro",
                     Email = "danilo@mail.com",
-                    UserRoles = new int[] { 2, 3 }
+                    ViewResources = new object[] { new { Value = "/" }, new { Value = "/member" }, new { Value = "/contact" } }
                 };
             }
             else if ("leti".Equals(userName))
@@ -39,7 +39,7 @@ namespace PilotMvc.Controllers
                     Id = 2,
                     Name = "Leticia Calmon",
                     Email = "leti@mail.com",
-                    UserRoles = new int[] { 1 }
+                    ViewResources = new object[] { new { Value = "/" }, new { Value = "/member" } }
                 };
             }
             else 
@@ -47,7 +47,7 @@ namespace PilotMvc.Controllers
                 throw new ValidationException("There is no user with this user name!");
             }
 
-            HttpContext.Session.Add("CurrentUser", user);
+            UpdateUserSession(user, false);
 
             return new JsonResultView(user);
         }
@@ -55,14 +55,12 @@ namespace PilotMvc.Controllers
         [Route("current"), HttpPost, HandleUIException]
         public ActionResult Get()
         {
-            object user = HttpContext.Session["CurrentUser"];
-
-            if (user == null) 
+            if (AuthorizedUser == null) 
             {
                 throw new ValidationException("There is no user logged in!");
             }
 
-            return new JsonResultView(user);
+            return new JsonResultView(AuthorizedUser);
         }
 	}
 }

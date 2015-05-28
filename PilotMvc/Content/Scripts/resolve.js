@@ -1,20 +1,29 @@
 ﻿(function () {
-    var systemId = 1, definitions = [], redirect = function (routeForUnauthorizedAccess, $location, $rootScope, deferred) {
-        //If user does not have required access, we will route the user to unauthorized access page
-        $location.path(routeForUnauthorizedAccess);
-        //As there could be some delay when location change event happens, 
-        //we will keep a watch on $locationChangeSuccess event
-        // and would resolve promise when this event occurs.
-        $rootScope.$on('$locationChangeSuccess', function (next, current) {
-            deferred.resolve();
-        });
-    };
+    //Cache of the dependencies loaded
+    //@type dependencies <Array<String>>
+    var definitions = [];
 
     define(['auth/session'], function (session) {
+
+        /*
+        Resolve function which intercept route changes in order to load the 
+        dependencies and validate navigating permission.
+        */
         return function (data) {
-            var dependencies = data.dependencies || [], isPublic = data.isPublic || (data.isPublic == undefined), title = data.title || undefined;
+            /*
+            Dependencies must be feeded as requirejs syntax.
+            */
+            //@type dependencies <Array<String>>
+            var dependencies = data.dependencies || [],
+                //@type isPublic <Booelan>
+                isPublic = data.isPublic || (data.isPublic == undefined),
+                //@type title <String>
+                title = data.title || undefined;
 
             return {
+                /*
+                It loads all the dependencies just one time checking occurrence on definitions <Array<String>>
+                */
                 load: ['$q', '$rootScope', function ($q, $rootScope) {
                     var deferred = $q.defer(), dependenciesNotLoaded = [];
                     dependencies.forEach(function (val) {
@@ -37,8 +46,18 @@
                     return deferred.promise;
                 }],
                 permission: ['$q', '$route', '$location', '$rootScope', 'AuthorizationService',
-                    function ($q, $route, $location, $rootScope, authorizationSvc) {
-                    var deferred = $q.defer(), authorized = $q.defer(), path = $location.path();
+                function ($q, $route, $location, $rootScope, authorizationSvc) {
+                    var deferred = $q.defer(), authorized = $q.defer(), path = $location.path(),
+                        redirect = function (routeForUnauthorizedAccess) {
+                            //If user does not have required access, we will route the user to unauthorized access page
+                            $location.path(routeForUnauthorizedAccess);
+                            //As there could be some delay when location change event happens, 
+                            //we will keep a watch on $locationChangeSuccess event
+                            // and would resolve promise when this event occurs.
+                            $rootScope.$on('$locationChangeSuccess', function (next, current) {
+                                deferred.resolve();
+                            });
+                        };
 
                     deferred.promise.then(function () {
                         if (title != undefined) {
@@ -47,14 +66,14 @@
                         authorized.resolve();
                     }, function () {
                         /// redirect to not authorized page
-                        redirect('/not-authorized', $location, $rootScope, authorized);
+                        redirect('/not-authorized');
                     });
 
                     if (isPublic) {
                         deferred.resolve();
                     } else {
                         if (session.init()) {
-                            if (session.hasViewPermission(path, systemId)) {
+                            if (session.hasViewPermission(path)) {
                                 deferred.resolve();
                             } else {
                                 /// redirect to not authorized page
@@ -64,7 +83,7 @@
                             // In that case, it is necessary to load the user from session
                             authorizationSvc.getCurrent(function (data) {
                                 if (session.init(data)) {
-                                    if (session.hasViewPermission(path, systemId)) {
+                                    if (session.hasViewPermission(path)) {
                                         deferred.resolve();
                                     } else {
                                         /// redirect to not authorized page
@@ -76,13 +95,15 @@
                                 }
                             }, function (data) {
                                 /// redirect to login page
-                                redirect('/login', $location, $rootScope, authorized);
+                                redirect('/login');
                             });
                         }
                     }
                     return authorized.promise;
                 }]
             };
+
         };
+
     });
 })();
