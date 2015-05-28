@@ -6,7 +6,7 @@
                 angular.element('body').after(angular.element('<link href="' + configApp.getPath('/Content/Scripts/components/common/loading/style.css') + '" type="text/css" rel="stylesheet" />'));
                 return {
                     controller: "LoadingController",
-                    restrict: 'E',
+                    restrict: 'EA',
                     templateUrl: configApp.getPath('/Content/Scripts/components/common/loading/template.html')
                 };
             }]);

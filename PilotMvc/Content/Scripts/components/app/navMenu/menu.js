@@ -6,7 +6,7 @@
                 angular.element('body').after(angular.element('<link href="' + configApp.getPath('/Content/Scripts/components/app/navMenu/style.css') + '" type="text/css" rel="stylesheet" />'));
                 return {
                     replace: true,
-                    restrict: 'E',
+                    restrict: 'EA',
                     templateUrl: configApp.getPath('/Content/Scripts/components/app/navMenu/template.html')
                 };
             }]);

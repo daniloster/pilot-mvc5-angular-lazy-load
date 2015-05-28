@@ -6,12 +6,14 @@
                     .when("/404", {
                         templateUrl: '/Content/Partials/404.html',
                         resolve: resolve({
+                            dependencies:['components/app/navMenu/menu'],
                             isPublic: true
                         })
                     })
                     .when("/not-authorized", {
                         templateUrl: '/Content/Partials/not-authorized.html',
                         resolve: resolve({
+                            dependencies: ['components/app/navMenu/menu'],
                             isPublic: true,
                             title: 'You are fucked and not authorized!'
                         })
@@ -20,7 +22,8 @@
                     .when("/login", {
                         templateUrl: '/Content/Partials/login.html',
                         resolve: resolve({
-                            dependencies: ['auth/authorizationController'],
+                            dependencies: ['auth/authorizationController',
+                                'components/app/navMenu/menu'],
                             isPublic: true,
                             title: 'Wonderful login page'
                         })
@@ -29,6 +32,7 @@
                         templateUrl: '/Content/Partials/home.html',
                         resolve: resolve({
                             dependencies: ['auth/authorizationController',
+                                'components/app/navMenu/menu',
                                 'components/common/date/datePicker',
                                 'app/home/homeController'],
                             isPublic: false,
@@ -39,7 +43,8 @@
                         templateUrl: '/Content/Partials/member.html',
                         resolve: resolve({
                             dependencies: ['app/member/memberController',
-                            'components/common/pagination/pagination'],
+                                'components/app/navMenu/menu',
+                                'components/common/pagination/pagination'],
                             isPublic: false,
                             title: 'Members fucking awesome!!!'
                         })
@@ -48,8 +53,9 @@
                         templateUrl: '/Content/Partials/contact.html',
                         resolve: resolve({
                             dependencies: ['app/contact/contactController',
-                            'components/common/pagination/pagination',
-                            'components/common/fileUpload/fileUpload'],
+                                'components/app/navMenu/menu',
+                                'components/common/pagination/pagination',
+                                'components/common/fileUpload/fileUpload'],
                             isPublic: false,
                             title: 'Contact rules!!!'
                         })

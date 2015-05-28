@@ -35,11 +35,11 @@ namespace Pilot.Service
         public override void Save(Member entity)
         {
             ValidateRequiredProperties(entity);
+            entity = GetAttachedEntity(entity);
             base.Save(entity);
             List<Contact> contacts = new List<Contact>((entity.Contacts == null) ? new Contact[0] : entity.Contacts);
             for (short idx = 0, len = (short)contacts.Count; idx < len; idx++)
             {
-                //contacts[idx].MemberId = entity.Id;
                 ContactSvc.Save(contacts[idx]);
             }
         }

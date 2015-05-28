@@ -48,7 +48,7 @@
 
                 return {
                     replace: true,
-                    restrict: 'E',
+                    restrict: 'EA',
                     scope: {
                         confirmYes: '&',
                         confirmNo: '&'

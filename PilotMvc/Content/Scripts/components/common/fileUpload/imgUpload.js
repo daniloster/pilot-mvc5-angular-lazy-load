@@ -5,7 +5,7 @@
             app.lazy.directive("imgUpload", ['ConfigApp', 'CropEXIF', function (ConfigApp, cropEXIF) {
                 angular.element('body').after(angular.element('<link href="' + ConfigApp.getPath('/Content/Scripts/components/common/fileUpload/img-style.css') + '" type="text/css" rel="stylesheet" />'));
                 return {
-                    restrict: 'E',
+                    restrict: 'EA',
                     templateUrl: ConfigApp.getPath('/Content/Scripts/components/common/fileUpload/img-template.html'),
                     controller: ['$scope', 'ConfigApp', 'UploadService', function ($scope, ConfigApp, uploadService) {
                         $scope.imageValue = '';

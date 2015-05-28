@@ -31,7 +31,6 @@ namespace PilotMvc.Controllers
         [Route("save"), HttpPost, HandleUIException("It is not possible to save the member")]
         public ActionResult Save(Member member)
         {
-
             Service.Save(member);
             return new JsonResultView(member);
         }

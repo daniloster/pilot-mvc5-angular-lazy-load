@@ -1824,7 +1824,7 @@
 
                 crop.directive('imgCrop', ['$timeout', 'cropHost', 'cropPubSub', function ($timeout, CropHost, CropPubSub) {
                     return {
-                        restrict: 'E',
+                        restrict: 'EA',
                         scope: {
                             fileInput: '@',
                             image: '=',

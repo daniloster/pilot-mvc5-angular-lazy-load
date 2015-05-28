@@ -25,7 +25,7 @@
                 angular.element('body').after(angular.element('<link href="' + configApp.getPath('/Content/Scripts/components/common/pagination/style.css') + '" type="text/css" rel="stylesheet" />'));
                 return {
                     controller: "PaginationController",
-                    restrict: 'E',
+                    restrict: 'EA',
                     scope: {
                         inList: '=',
                         outList: '=',

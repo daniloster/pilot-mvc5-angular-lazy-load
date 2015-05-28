@@ -12,7 +12,7 @@
                         fireOnchange: '@',
                         showProgress: '@'
                     },
-                    restrict: 'E',
+                    restrict: 'EA',
                     templateUrl: configApp.getPath('/Content/Scripts/components/common/fileUpload/file-template.html'),
                     controller: ['$scope', 'UploadService', function ($scope, uploadService) {
                         $scope.clear = function () {
@@ -24,6 +24,7 @@
                             if (nval === oval) return;
                             if (!!$scope.file) {
                                 $scope.file.hasBeenUploaded = false;
+                                $scope.clear();
                             }
                         });
 

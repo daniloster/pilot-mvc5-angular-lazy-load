@@ -5,7 +5,7 @@
             app.lazy.directive("workflowFooter", ['ConfigApp', function (ConfigApp) {
                 return {
                     replace: true,
-                    restrict: 'E',
+                    restrict: 'EA',
                     controller: 'WorkflowFooterController',
                     templateUrl: ConfigApp.getPath('/Content/Scripts/components/app/workflow/footer.html')
                 };

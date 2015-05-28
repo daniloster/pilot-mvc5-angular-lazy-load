@@ -13,15 +13,12 @@ namespace Pilot.Util.Exceptions
 
         public JsonException(string message, Exception inner) : base(message, inner) 
         {
-            this.exceptionDetails = GetJson(message, inner.StackTrace);
+            this.exceptionDetails = GetJson(message, inner == null ? string.Empty : inner.StackTrace);
         }
+
+        public JsonException(System.Exception exception) : this(exception.Message, exception) { }
 
         public JsonException(string message) : this(message, null) { }
-
-        public JsonException(System.Exception exception) : base(exception.Message, exception) 
-        {
-            this.exceptionDetails = GetJson(exception.Message, exception.StackTrace);
-        }
 
         protected JsonException(
         System.Runtime.Serialization.SerializationInfo info,

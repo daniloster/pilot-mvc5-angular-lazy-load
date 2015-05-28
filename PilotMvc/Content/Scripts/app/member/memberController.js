@@ -37,8 +37,7 @@
                 $scope.save = function () {
                     loadingCtrl.startLoading();
                     var memb = this.member;
-                    memberSvc.update({ Id: memb.Id }, memb, function (data) {
-                        alert("Saved Successfully!!");
+                    memberSvc.update(memb, function (data) {
                         memb.editMode = false;
                         loadingCtrl.stopLoading();
                     }, function (data) {

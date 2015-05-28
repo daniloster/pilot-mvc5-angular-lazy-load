@@ -9,7 +9,7 @@
                 return {
                     replace: false,
                     controller: "TextStyleEditorController",
-                    restrict: 'E',
+                    restrict: 'EA',
                     templateUrl: ConfigApp.getPath('/Content/Scripts/components/common/textStyleEditor/template.html'),
                     scope: {
                         editorId: '@',

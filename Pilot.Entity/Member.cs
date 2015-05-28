@@ -13,11 +13,6 @@ namespace Pilot.Entity
     [DataContract]
     public class Member : BaseEntity
     {
-        public Member() 
-        {
-            Contacts = new HashSet<Contact>();
-        }
-
         [DataMember]
         public override long Id { get; set; }
         [DataMember]
@@ -28,12 +23,6 @@ namespace Pilot.Entity
         public string Email { get; set; }
         [DataMember]
         [Editable(false)]
-        public virtual ICollection<Contact> Contacts { get; set; }
-
-        [NotMapped]
-        public IList<Contact> ContactList
-        {
-            get { return new List<Contact>(Contacts); }
-        }
+        public virtual IList<Contact> Contacts { get; set; }
     }
 }
