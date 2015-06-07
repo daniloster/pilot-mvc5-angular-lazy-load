@@ -1,0 +1,11 @@
+﻿<!-- error-message-fixed -->
+<div class="center message-fixed alert alert-danger ng-hide" ng-show="$root.errorMessage" ng-cloak>
+    <div>
+        <i class="fa fa-warning"></i>&nbsp; {{ $root.errorMessage }} &nbsp;<i class="fa fa-times hand" ng-click="$root.errorMessage = null"></i>
+    </div>
+</div>
+<div class="center message-fixed alert alert-success ng-hide" ng-show="$root.successMessage" ng-cloak>
+    <div>
+        <i class="fa fa-check"></i>&nbsp; {{ $root.successMessage }} &nbsp;<i class="fa fa-times hand" ng-click="$root.successMessage = null"></i>
+    </div>
+</div>

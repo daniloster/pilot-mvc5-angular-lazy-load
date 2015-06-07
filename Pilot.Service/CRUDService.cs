@@ -16,56 +16,56 @@ namespace Pilot.Service
     [UnityIoCPerRequestLifetime]
     public partial class CRUDService<TEntity> : ICRUDService<TEntity> where TEntity : class, IBaseEntity
     {
-        protected IEntityContext<TEntity> db;
+        protected IEntityContext<TEntity> Db { get; set; }
 
         public CRUDService(IEntityContext<TEntity> db)
         {
-            this.db = db;
+            this.Db = db;
         }
 
         public TEntity GetAttachedEntity(TEntity entity, string[] collectionToLoad)
         {
-            return db.GetAttachedEntity(entity, collectionToLoad);
+            return Db.GetAttachedEntity(entity, collectionToLoad);
         }
 
         public TEntity GetAttachedEntity(TEntity entity)
         {
-            return db.GetAttachedEntity(entity);
+            return Db.GetAttachedEntity(entity);
         }
 
         public virtual void Save(TEntity entity)
         {
-            db.Save(entity);
+            Db.Save(entity);
         }
 
         public virtual void Delete(long id)
         {
-            db.Delete(id);
+            Db.Delete(id);
         }
 
         public virtual void Delete(TEntity entity)
         {
-            db.Delete(entity);
+            Db.Delete(entity);
         }
 
         public virtual TEntity Get(long id)
         {
-            return db.Get(id);
+            return Db.Get(id);
         }
 
         public virtual IList<TEntity> Get(long[] ids)
         {
-            return db.Get(ids);
+            return Db.Get(ids);
         }
 
         public virtual IList<TEntity> Get()
         {
-            return db.Get();
+            return Db.Get();
         }
 
         public void Dispose()
         {
-            db.Dispose();
+            Db.Dispose();
             //_unitOfWork.Dispose();
             //UnityEventLogger.Log.DisposeUnityMessage("BusinessClass");
             //if (!_disposed)

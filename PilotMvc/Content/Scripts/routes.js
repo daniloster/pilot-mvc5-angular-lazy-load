@@ -4,23 +4,25 @@
 
             $routeProvider
                     .when("/404", {
-                        templateUrl: '/Content/Partials/404.html',
+                        templateUrl: '/Content/Partials/access/404.html',
                         resolve: resolve({
-                            dependencies:['components/app/navMenu/menu'],
+                            dependencies: ['auth/authorizationController',
+                                'components/app/navMenu/menu'],
                             isPublic: true
                         })
                     })
                     .when("/not-authorized", {
-                        templateUrl: '/Content/Partials/not-authorized.html',
+                        templateUrl: '/Content/Partials/access/not-authorized.html',
                         resolve: resolve({
-                            dependencies: ['components/app/navMenu/menu'],
+                            dependencies: ['auth/authorizationController',
+                                'components/app/navMenu/menu'],
                             isPublic: true,
                             title: 'You are fucked and not authorized!'
                         })
                     })
 
                     .when("/login", {
-                        templateUrl: '/Content/Partials/login.html',
+                        templateUrl: '/Content/Partials/access/login.html',
                         resolve: resolve({
                             dependencies: ['auth/authorizationController',
                                 'components/app/navMenu/menu'],
@@ -29,35 +31,24 @@
                         })
                     })
                     .when("/", {
-                        templateUrl: '/Content/Partials/home.html',
+                        templateUrl: '/Content/Partials/dashboard.html',
+                        resolve: resolve({
+                            dependencies: ['auth/authorizationController',
+                                'components/app/navMenu/menu'],
+                            isPublic: false,
+                            title: 'Pilot | Dashboard'
+                        })
+                    })
+                    .when("/application", {
+                        templateUrl: '/Content/Partials/application.html',
                         resolve: resolve({
                             dependencies: ['auth/authorizationController',
                                 'components/app/navMenu/menu',
-                                'components/common/date/datePicker',
-                                'app/home/homeController'],
-                            isPublic: false,
-                            title: 'Home is like a Dashboard'
-                        })
-                    })
-                    .when("/member", {
-                        templateUrl: '/Content/Partials/member.html',
-                        resolve: resolve({
-                            dependencies: ['app/member/memberController',
-                                'components/app/navMenu/menu',
-                                'components/common/pagination/pagination'],
-                            isPublic: false,
-                            title: 'Members fucking awesome!!!'
-                        })
-                    })
-                    .when("/contact", {
-                        templateUrl: '/Content/Partials/contact.html',
-                        resolve: resolve({
-                            dependencies: ['app/contact/contactController',
-                                'components/app/navMenu/menu',
+                                'components/common/modal/dialog',
                                 'components/common/pagination/pagination',
-                                'components/common/fileUpload/fileUpload'],
+                                'app/application/applicationController'],
                             isPublic: false,
-                            title: 'Contact rules!!!'
+                            title: 'Pilot | Managing Applications'
                         })
                     })
                     .otherwise({

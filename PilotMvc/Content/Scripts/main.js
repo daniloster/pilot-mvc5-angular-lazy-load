@@ -70,7 +70,11 @@ define(['lib/IE/isIE', 'lib/IE/isIE8', 'lib/IE/isIE9', 'lib/IE/isIE11', 'xdomain
             try {
                 head = $('head');
 
-                css = '<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">';
+                //css = '<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">';
+                css = '<link href="' + baseUrl + '/Content/Styles/bootstrap.min.css" rel="stylesheet">';
+                head.append(css);
+
+                css = '<link href="' + baseUrl + '/Content/Styles/app.css" rel="stylesheet">';
                 head.append(css);
 
                 css = '<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">';

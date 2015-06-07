@@ -5,6 +5,7 @@
             Ctrl = ['$scope', '$rootScope', '$location', 'AuthorizationService', function ($scope, $rootScope, $location, authorizationSvc) {
                 $scope.login = function () {
                     $scope.error = null;
+                    $scope.user.rememberMe = !!$scope.user.rememberMe;
                     authorizationSvc.login($scope.user, function (data) {
                         $location.path('/');
                     }, function (data) {

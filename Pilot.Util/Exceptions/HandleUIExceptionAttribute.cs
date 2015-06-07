@@ -33,6 +33,7 @@ namespace Pilot.Util.Exceptions
                 {
                     filterContext.Exception = new JsonException(DefaultMessage, filterContext.Exception);
                 }
+                
                 if (filterContext.Exception is JsonException && ((JsonException)filterContext.Exception).exceptionDetails != null)
                 {
                     filterContext.ExceptionHandled = true;

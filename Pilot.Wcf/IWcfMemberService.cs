@@ -16,7 +16,7 @@ namespace Pilot.Wcf
 
         [OperationContract]
         [FaultContract(typeof(string))]
-        string GetData(Member member);
+        string GetData(User user);
 
         [OperationContract]
         CompositeType GetDataUsingDataContract(CompositeType composite);

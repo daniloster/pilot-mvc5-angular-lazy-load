@@ -12,13 +12,6 @@ nav.navbar.navbar-inverse.navbar-fixed-top {
 BOOTSTRAP REDEFINITIONS - END
 ------------------------------------------------------*/
 
-
-
-
-.members-table input {
-    width:140px
-}
-
 /*
 ------------------------------------------------------
 BUTTONS FOR PURE - BEGIN
@@ -68,3 +61,16 @@ BUTTONS FOR PURE - BEGIN
 BUTTONS FOR PURE - END
 ------------------------------------------------------*/
 
+/*
+------------------------------------------------------
+TABLE GENERAL - BEGIN
+------------------------------------------------------*/
+
+.table-options {
+    white-space:nowrap !important;
+}
+
+/*
+------------------------------------------------------
+TABLE GENERAL - END
+------------------------------------------------------*/

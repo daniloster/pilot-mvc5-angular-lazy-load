@@ -3,7 +3,7 @@
     define(['app', 'jquery', 'angular', 'bootstrap'], function (app, $, angular) {
         if (!loaded) {
 
-            app.lazy.directive("modalTarget", ['ConfigApp', '$compile', '$parse', function (ConfigApp, $compile, $parse) {
+            app.lazy.directive("modalTarget", ['ConfigApp', '$timeout', function (ConfigApp, $timeout) {
                 return {
                     restrict: 'A',
                     scope: {
@@ -12,21 +12,23 @@
                     link: function ($scope, elem, attrs) {
                         $(elem).on('click', function () {
                             var result = $scope.modalOnload();
-                            if (angular.isFunction(result) || angular.isObject(result)) {
-                                result.then(function (val) {
-                                    if (val) {
-                                        $(attrs.modalTarget).modal('show');
-                                    }
-                                })
-                            } else if (result != false) {
-                                $(attrs.modalTarget).modal('show');
-                            }
+                            $timeout(function () {
+                                if (angular.isFunction(result) || angular.isObject(result)) {
+                                    result.then(function (val) {
+                                        if (val) {
+                                            $(attrs.modalTarget).modal('show');
+                                        }
+                                    })
+                                } else if (result != false) {
+                                    $(attrs.modalTarget).modal('show');
+                                }
+                            }, 10);
                         });
                     }
                 };
             }]);
 
-            app.lazy.directive("modalDialog", ['ConfigApp', '$compile', '$parse', function (ConfigApp, $compile, $parse) {
+            app.lazy.directive("modalDialog", ['ConfigApp', function (ConfigApp) {
                 angular.element('body').after(angular.element('<link href="' + ConfigApp.getPath('/Content/Scripts/components/common/modal/style.css') + '" type="text/css" rel="stylesheet" />'));
 
                 var template = '<div class="modal fade" id="[MODAL:ID]" tabindex="-1" role="dialog" aria-labelledby="[MODAL:ID]Label" aria-hidden="true">' +
@@ -104,10 +106,8 @@
                                         var result = $scope.confirmYes();
                                         if (angular.isFunction(result) || angular.isObject(result)) {
                                             result.then(function (val) {
-                                                if (val) {
-                                                    hide();
-                                                }
-                                            })
+                                                hide();
+                                            });
                                         } else if (result != false) {
                                             hide();
                                         }

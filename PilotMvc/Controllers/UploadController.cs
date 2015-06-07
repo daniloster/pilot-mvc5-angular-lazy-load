@@ -19,7 +19,7 @@ using Pilot.Util.Files;
 namespace PilotMvc.Controllers
 {
     [RoutePrefix("upload")]
-    public class UploadController : Controller
+    public class UploadController : BaseController
     {
         [Route("imagePng"), HttpPost, HandleUIException]
         public JsonResult ImagePng(string imageName, string imageValue, string folderType)

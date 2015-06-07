@@ -7,8 +7,10 @@ namespace Pilot.Database.Interfaces
 {
     public interface IBaseDbContext : IDisposable, IObjectContextAdapter 
     {
-        DbSet<Contact> Contacts { get; /*set;*/ }
-        DbSet<Member> Members { get; /*set;*/ }
+        DbSet<Resource> Resources { get; }
+        DbSet<Application> Applications { get; }
+        DbSet<Role> Roles { get; }
+        DbSet<User> Users { get; }
 
         DbEntityEntry<T> Entry<T>(T entity) where T : class;
         int SaveChanges();

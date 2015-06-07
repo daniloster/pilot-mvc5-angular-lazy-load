@@ -1,0 +1,99 @@
+﻿<div loading></div>
+<div menu></div>
+<div class="container" ng-controller="ApplicationController as appCtrl">
+    <div class="col-xs-12">
+        <h2>Applications <a href="javascript:;" modal-target="#registeringApp" modal-onload="setCurrent({})"><i class="fa fa-plus-circle"></i></a></h2>
+        <form name="appFilterForm" class="col-xs-12" ng-show="!!appsOut && !!appsOut.length">
+            <fieldset>
+                <div class="col-xs-12 col-md-6">
+                    <div class="form-group">
+                        <label class="control-label" for="password">Name</label>
+                        <input type="text" class="form-control" id="Name" name="Name" placeholder="Pop the system's name here" ng-model="filter.Name" required>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-6">
+                    <div class="form-group">
+                        <label class="control-label" for="password">Description</label>
+                        <input type="text" class="form-control" id="Description" name="Description" placeholder="Pop the system's description here" ng-model="filter.Description" required>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+        <table class="table table-striped" ng-show="!!appsOut && !!appsOut.length">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <td>Name</td>
+                    <th>Description</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in appsOut" ng-cloak>
+                    <td><strong>{{ item.Id }}</strong></td>
+                    <td>
+                        <p>{{ item.Name }}</p>
+                    </td>
+                    <td>
+                        <p>{{ item.Description }}</p>
+                    </td>
+                    <td class="table-options">
+                        <a href="javascript:;" modal-target="#registeringApp" modal-onload="setCurrent(item)"><i class="fa fa-pencil fa"></i></a>
+                        <a href="javascript:;" modal-target="#deletingApp" modal-onload="setDeletingItem(item)"><i class="fa fa-times fa"></i></a>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4">
+                        <pagination in-list="apps"
+                            out-list="appsOut"
+                            page-size="pageSize"
+                            current-page="currentPage"
+                            search-query="textFilter"
+                            type="small"
+                            class="pull-right"></pagination>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <div modal-dialog id="registeringApp" confirm-yes="save()" confirm-no="clearCurrent()">
+        <div class="header">
+            <h2 ng-cloak>{{ current.Id > 0 ? "Update an application" : "Create an application" }}</h2>
+        </div>
+        <div class="body">
+            <form name="appForm" ng-cloak>
+                <div class="form-group">
+                    <label>Name:</label>
+                    <input type="text" ng-model="current.Name" required class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Description:</label>
+                    <input type="text" ng-model="current.Description" required class="form-control" />
+                </div>
+            </form>
+        </div>
+        <div class="footer">
+            <input type="submit" value="Save" confirm-yes class="btn btn-primary" />
+            <input type="button" value="Cancel" confirm-no class="btn" />
+        </div>
+    </div>
+
+    <div modal-dialog id="deletingApp" confirm-yes="delete()" confirm-no="clearDeletingItem()">
+        <div class="header">
+            <h2 ng-cloak>Delete an application</h2>
+        </div>
+        <div class="body">
+            <form name="appForm" ng-cloak>
+                <p>Do you really want to delete <strong>{{ deletingItem.Name }}</strong>?</p>
+            </form>
+        </div>
+        <div class="footer">
+            <input type="submit" value="Delete" confirm-yes class="btn btn-primary" />
+            <input type="button" value="Cancel" confirm-no class="btn" />
+        </div>
+    </div>
+</div>

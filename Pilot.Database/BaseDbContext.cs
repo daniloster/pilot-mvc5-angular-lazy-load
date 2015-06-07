@@ -21,23 +21,49 @@ namespace Pilot.Database
             : base("name=Pilot.Database.EntityContext")
         {
             base.Configuration.ProxyCreationEnabled = false;
+            if (base.Database.Exists() && !base.Database.CompatibleWithModel(false))
+            {
+                base.Database.Delete();
+            }
+            //if (base.Database.Exists())
+            //{
+            //    base.Database.Delete();
+            //}
+            base.Database.CreateIfNotExists();
             /// To import data
             //base.Configuration.AutoDetectChangesEnabled = false;
             //base.Configuration.ValidateOnSaveEnabled = false;
         }
 
-        public DbSet<Member> Members
+        public DbSet<Resource> Resources
         {
             get
             {
-                return this.Set<Member>();
+                return this.Set<Resource>();
             }
         }
-        public DbSet<Contact> Contacts
+
+        public DbSet<Application> Applications
         {
             get
             {
-                return this.Set<Contact>();
+                return this.Set<Application>();
+            }
+        }
+
+        public DbSet<Role> Roles
+        {
+            get
+            {
+                return this.Set<Role>();
+            }
+        }
+
+        public DbSet<User> Users
+        {
+            get
+            {
+                return this.Set<User>();
             }
         }
 

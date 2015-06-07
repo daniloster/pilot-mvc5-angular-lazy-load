@@ -9,6 +9,7 @@ using Pilot.Util.Exceptions;
 using Pilot.Util.Mvc;
 using System.Web.Security;
 using System.Web.Script.Serialization;
+using System.Reflection;
 
 namespace PilotMvc.Controllers
 {
@@ -116,6 +117,21 @@ namespace PilotMvc.Controllers
 
             if (Response != null)
                 Response.Cookies.Add(userCookie);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+            var props = this.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.DeclaredOnly | BindingFlags.FlattenHierarchy);
+            IDisposable disposable;
+            foreach (var prop in props)
+            {
+                disposable = (prop.GetValue(this) as IDisposable);
+                if (disposable != null)
+                {
+                    disposable.Dispose();
+                }
+            }
         }
 	}
 }

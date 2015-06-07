@@ -20,17 +20,17 @@ namespace Pilot.Wcf
     public class WcfMemberService : IWcfMemberService
     {
         [Dependency]
-        public IMemberService MyService { get; set; }
+        public IUserService MyService { get; set; }
 
         //public WcfMemberService() {
         //    MyService = WcfContextConfig.Resolve<IWcfMemberService>();
         //}
 
-        public string GetData(Member member)
+        public string GetData(User user)
         {
             try
             {
-                return string.Format("You entered: {0} with ID: ", member.FirstName, member.Id);
+                return string.Format("You entered: {0} with ID: ", user.Name, user.Id);
             }
             catch (Exception e)
             {
