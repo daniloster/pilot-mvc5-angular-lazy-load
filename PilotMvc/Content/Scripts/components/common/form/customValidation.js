@@ -2,8 +2,8 @@
     var loaded = false;
     define(['angular', 'app'], function (angular, app) {
         if (!loaded) {
-            app.lazy.directive("customValidation", ['ConfigApp', function (configApp) {
-                angular.element('body').after(angular.element('<link href="' + configApp.getPath('/Content/Scripts/components/common/form/customValidation.css') + '" type="text/css" rel="stylesheet" />'));
+            app.lazy.directive("customValidation", ['ConfigApp', function (ConfigApp) {
+                angular.element('body').after(angular.element(ConfigApp.getElementLink('/Content/Scripts/components/common/form/customValidation.css')));
                 return {
                     restrict: 'EA',
                     require: 'ngModel',

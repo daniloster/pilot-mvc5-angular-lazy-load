@@ -29,7 +29,7 @@
                 };
             }]);
 
-            //app.lazy.decorator('ngDisabledDirective', ['ConfigApp', '$rootScope', '$location', function (configApp, $rootScope, $location) {
+            //app.lazy.decorator('ngDisabledDirective', ['ConfigApp', '$rootScope', '$location', function (ConfigApp, $rootScope, $location) {
             //    return {
             //        restrict: 'A',
             //        scope: {

@@ -4,7 +4,7 @@
         if (!loaded) {
 
             app.lazy.directive("textStyleEditor", ['ConfigApp', function (ConfigApp) {
-                angular.element('body').after(angular.element('<link href="' + ConfigApp.getPath('/Content/Scripts/components/common/textStyleEditor/style.css') + '" type="text/css" rel="stylesheet" />'));
+                angular.element('body').after(angular.element(ConfigApp.getElementLink('/Content/Scripts/components/common/textStyleEditor/style.css')));
 
                 return {
                     replace: false,

@@ -3,7 +3,7 @@
     define(['app', 'components/common/loading/loadingController', 'components/common/fileUpload/uploadService'], function (app, loadingController) {
         if (Element === null) {            
             Element = ['$parse', 'ConfigApp', function ($parse, configApp) {
-                angular.element('body').after(angular.element("<link rel='stylesheet' type='text/css' href='" + configApp.getPath("/Content/Scripts/components/common/fileUpload/file-style.css") + "'/>"));
+                angular.element('body').after(angular.element(ConfigApp.getElementLink('/Content/Scripts/components/common/fileUpload/file-style.css')));
 
                 return {
                     scope:{

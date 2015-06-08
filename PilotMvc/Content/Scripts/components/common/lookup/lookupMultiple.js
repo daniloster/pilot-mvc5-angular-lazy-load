@@ -4,7 +4,7 @@
         if (!loaded) {
 
             app.lazy.directive("lookupMultiple", ['ConfigApp', '$compile', '$parse', function (ConfigApp, $compile, $parse) {
-                angular.element('body').after(angular.element('<link href="' + ConfigApp.getPath('/Content/Scripts/components/common/lookup/style.css') + '" type="text/css" rel="stylesheet" />'));
+                angular.element('body').after(angular.element(ConfigApp.getElementLink('/Content/Scripts/components/common/lookup/style.css')));
 
                 var templateDropdown = '<a id="[LOOKUP:ID]_btn" class="lookupMultipleBtn" href="javascript:;" ng-click="search()"><i class="fa fa-search fa-lg"></i></a>' +
                     '<select id="dropdown[LOOKUP:ID]" name="dropdown[LOOKUP:ID]" [LOOKUP:REQUIRED] multiple class="ng-hide">' +

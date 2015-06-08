@@ -19,6 +19,17 @@
                         relativePath = '/';
                     }
                     return !!_base ? _base + relativePath : relativePath;
+                },
+                getNoCachePath: function (path) {
+                    if (path.indexOf('?') > -1) {
+                        path = path + '&ngBust=' + appSettings.ngBust;
+                    } else {
+                        path = path + '?ngBust=' + appSettings.ngBust;
+                    }
+                    return path;
+                },
+                getElementLink: function (path) {
+                    return "<link rel='stylesheet' type='text/css' href='" + this.getPath(this.getNoCachePath(path)) + "'/>";
                 }
             });
 

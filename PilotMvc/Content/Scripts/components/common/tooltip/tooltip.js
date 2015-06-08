@@ -3,7 +3,7 @@
     define(['app'], function (app) {
         if (!loaded) {
             app.lazy.directive("tooltip", ['ConfigApp', function (ConfigApp) {
-                angular.element('body').after(angular.element('<link href="' + ConfigApp.getPath('/Content/Scripts/components/common/tooltip/style.css') + '" type="text/css" rel="stylesheet" />'));
+                angular.element('body').after(angular.element(ConfigApp.getElementLink('/Content/Scripts/components/common/tooltip/style.css')));
                 return {
                     restrict: 'A',
                     link: function (scope, elem, attrs) {

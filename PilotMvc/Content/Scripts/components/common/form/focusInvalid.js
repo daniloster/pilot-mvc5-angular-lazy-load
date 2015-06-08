@@ -80,14 +80,14 @@
             };
 
             app.lazy.filter('focusInvalid', ['ConfigApp', function (ConfigApp) {
-                angular.element('body').after(angular.element('<link href="' + ConfigApp.getPath('/Content/Scripts/components/common/form/focusInvalid.css') + '" type="text/css" rel="stylesheet" />'));
+                angular.element('body').after(angular.element(ConfigApp.getElementLink('/Content/Scripts/components/common/form/focusInvalid.css')));
                 return function (fieldName, offsetTop) {
                     return scrollTo('[name=' + fieldName + ']', offsetTop);
                 };
             }]);
 
             app.lazy.filter('focusFirstInvalid', ['ConfigApp', function (ConfigApp) {
-                angular.element('body').after(angular.element('<link href="' + ConfigApp.getPath('/Content/Scripts/components/common/form/focusInvalid.css') + '" type="text/css" rel="stylesheet" />'));
+                angular.element('body').after(angular.element(ConfigApp.getElementLink('/Content/Scripts/components/common/form/focusInvalid.css')));
                 return function (form, offsetTop) {
                     if (!!form.$error) {
                         var invalid = findInvalidElement(form);
@@ -98,7 +98,7 @@
             }]);
 
             app.lazy.filter('messageFirstInvalid', ['ConfigApp', '$rootScope', function (ConfigApp, $rootScope) {
-                angular.element('body').after(angular.element('<link href="' + ConfigApp.getPath('/Content/Scripts/components/common/form/focusInvalid.css') + '" type="text/css" rel="stylesheet" />'));
+                angular.element('body').after(angular.element(ConfigApp.getElementLink('/Content/Scripts/components/common/form/focusInvalid.css')));
                 return function (form, offsetTop) {
                     if (!!form.$error) {
                         var invalid = findInvalidElement(form);
@@ -109,14 +109,14 @@
             }]);
 
             app.lazy.filter('messageCustomInvalid', ['ConfigApp', '$rootScope', function (ConfigApp, $rootScope) {
-                angular.element('body').after(angular.element('<link href="' + ConfigApp.getPath('/Content/Scripts/components/common/form/focusInvalid.css') + '" type="text/css" rel="stylesheet" />'));
+                angular.element('body').after(angular.element(ConfigApp.getElementLink('/Content/Scripts/components/common/form/focusInvalid.css')));
                 return function (form, invalid, msg, offsetTop) {
                     return invalid != null && scrollToWithMessage($rootScope, invalid, 'form[name=' + form.$name + '] [name=' + getName(invalid) + ']', msg, offsetTop);
                 };
             }]);
 
             app.lazy.filter('messageTypeInvalid', ['ConfigApp', '$rootScope', function (ConfigApp, $rootScope) {
-                angular.element('body').after(angular.element('<link href="' + ConfigApp.getPath('/Content/Scripts/components/common/form/focusInvalid.css') + '" type="text/css" rel="stylesheet" />'));
+                angular.element('body').after(angular.element(ConfigApp.getElementLink('/Content/Scripts/components/common/form/focusInvalid.css')));
                 return function (form, invalid, type, offsetTop) {
                     invalid.$typeError = type;
                     var result = scrollToWithMessage($rootScope, invalid, 'form[name=' + form.$name + '] [name=' + getName(invalid) + ']', undefined, offsetTop);

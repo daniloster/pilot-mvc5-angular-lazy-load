@@ -411,7 +411,7 @@
 
             app.lazy.directive('dateTime', ['$compile', '$document', '$filter', 'dateTimeConfig', '$parse', '$timeout', 'ConfigApp', function ($compile, $document, $filter, dateTimeConfig, $parse, $timeout, ConfigApp) {
 
-                angular.element('body').after(angular.element('<link href="' + ConfigApp.getPath('/Content/Scripts/components/common/date/style.css') + '" type="text/css" rel="stylesheet" />'));
+                angular.element('body').after(angular.element(ConfigApp.getElementLink('/Content/Scripts/components/common/date/style.css')));
 
                 var body = $document.find('body');
                 var dateFilter = $filter('date');

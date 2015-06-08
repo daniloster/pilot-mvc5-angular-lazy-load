@@ -12,8 +12,8 @@
     };
     define(['angular', 'app'], function (angular, app) {
         if (!loaded) {
-            app.lazy.directive("navCheck", ['ConfigApp', '$location', function (configApp, $location) {
-                angular.element('body').after(angular.element('<link href="' + configApp.getPath('/Content/Scripts/components/common/navMenu/style.css') + '" type="text/css" rel="stylesheet" />'));
+            app.lazy.directive("navCheck", ['ConfigApp', '$location', function (ConfigApp, $location) {
+                angular.element('body').after(angular.element(ConfigApp.getElementLink('/Content/Scripts/components/common/navMenu/style.css')));
                 return {
                     restrict: 'A',
                     link: function ($scope, elem, attrs) {

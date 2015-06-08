@@ -2,12 +2,12 @@
     var loaded = false;
     define(['angular', 'app', 'components/common/loading/loadingController'], function (angular, app) {
         if (!loaded) {
-            app.lazy.directive("loading", ['ConfigApp', function (configApp) {
-                angular.element('body').after(angular.element('<link href="' + configApp.getPath('/Content/Scripts/components/common/loading/style.css') + '" type="text/css" rel="stylesheet" />'));
+            app.lazy.directive("loading", ['ConfigApp', function (ConfigApp) {
+                angular.element('body').after(angular.element(ConfigApp.getElementLink('/Content/Scripts/components/common/loading/style.css')));
                 return {
                     controller: "LoadingController",
                     restrict: 'EA',
-                    templateUrl: configApp.getPath('/Content/Scripts/components/common/loading/template.html')
+                    templateUrl: ConfigApp.getPath('/Content/Scripts/components/common/loading/template.html')
                 };
             }]);
             loaded = true;

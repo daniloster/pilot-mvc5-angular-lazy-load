@@ -35,7 +35,7 @@
             }]);
 
             app.lazy.directive("modalDialog", ['ConfigApp', function (ConfigApp) {
-                angular.element('body').after(angular.element('<link href="' + ConfigApp.getPath('/Content/Scripts/components/common/modal/style.css') + '" type="text/css" rel="stylesheet" />'));
+                angular.element('body').after(angular.element(ConfigApp.getElementLink('/Content/Scripts/components/common/modal/style.css')));
 
                 var template = '<div class="modal fade" id="[MODAL:ID]" tabindex="-1" role="dialog" aria-labelledby="[MODAL:ID]Label" aria-hidden="true">' +
                 '    <div class="modal-dialog">' +

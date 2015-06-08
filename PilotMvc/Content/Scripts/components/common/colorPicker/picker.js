@@ -3,7 +3,7 @@
     define(['app', 'jq', 'angular', 'bootstrap', 'jqColorPicker'], function (app, $, angular) {
         if (!loaded) {
             app.lazy.directive("colorPicker", ['ConfigApp', '$compile', function (ConfigApp, $compile) {
-                angular.element('body').after(angular.element('<link href="' + ConfigApp.getPath('/Content/Scripts/components/common/colorPicker/style.css') + '" type="text/css" rel="stylesheet" />'));
+                angular.element('body').after(angular.element(ConfigApp.getElementLink('/Content/Scripts/components/common/colorPicker/style.css')));
 
                 return {
                     replace: true,

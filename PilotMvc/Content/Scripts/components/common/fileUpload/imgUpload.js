@@ -3,7 +3,7 @@
     define(['app', 'jq', 'angular', 'bootstrap', 'components/common/fileUpload/uploadService'], function (app, $, angular) {
         if (!loaded) {
             app.lazy.directive("imgUpload", ['ConfigApp', 'CropEXIF', function (ConfigApp, cropEXIF) {
-                angular.element('body').after(angular.element('<link href="' + ConfigApp.getPath('/Content/Scripts/components/common/fileUpload/img-style.css') + '" type="text/css" rel="stylesheet" />'));
+                angular.element('body').after(angular.element(ConfigApp.getElementLink('/Content/Scripts/components/common/fileUpload/img-style.css')));
                 return {
                     restrict: 'EA',
                     templateUrl: ConfigApp.getPath('/Content/Scripts/components/common/fileUpload/img-template.html'),

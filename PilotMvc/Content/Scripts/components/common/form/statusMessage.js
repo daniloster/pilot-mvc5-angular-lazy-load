@@ -2,8 +2,8 @@
     var loaded = false;
     define(['angular', 'app'], function (angular, app) {
         if (!loaded) {
-            app.lazy.directive("statusMessage", ['ConfigApp', function (configApp) {
-                angular.element('body').after(angular.element('<link href="' + configApp.getPath('/Content/Scripts/components/common/form/statusMessage.css') + '" type="text/css" rel="stylesheet" />'));
+            app.lazy.directive("statusMessage", ['ConfigApp', function (ConfigApp) {
+                angular.element('body').after(angular.element(ConfigApp.getElementLink('/Content/Scripts/components/common/form/statusMessage.css')));
                 return {
                     controller: ['$rootScope', '$timeout', function ($rootScope, $timeout) {
 
@@ -86,7 +86,7 @@
 
                     }],
                     restrict: 'EA',
-                    templateUrl: configApp.getPath('/Content/Scripts/components/common/form/statusMessage.html')
+                    templateUrl: ConfigApp.getPath('/Content/Scripts/components/common/form/statusMessage.html')
                 };
             }]);
             loaded = true;

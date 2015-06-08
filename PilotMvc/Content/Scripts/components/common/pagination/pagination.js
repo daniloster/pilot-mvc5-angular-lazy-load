@@ -21,8 +21,8 @@
                     return [];
                 };
             }]);
-            app.lazy.directive("pagination", ['ConfigApp', function (configApp) {
-                angular.element('body').after(angular.element('<link href="' + configApp.getPath('/Content/Scripts/components/common/pagination/style.css') + '" type="text/css" rel="stylesheet" />'));
+            app.lazy.directive("pagination", ['ConfigApp', function (ConfigApp) {
+                angular.element('body').after(angular.element(ConfigApp.getElementLink('/Content/Scripts/components/common/pagination/style.css')));
                 return {
                     controller: "PaginationController",
                     restrict: 'EA',
@@ -34,7 +34,7 @@
                         searchQuery: '=',
                         type: '@'
                     },
-                    templateUrl: configApp.getPath('/Content/Scripts/components/common/pagination/template.html')
+                    templateUrl: ConfigApp.getPath('/Content/Scripts/components/common/pagination/template.html')
                 };
             }]);
             loaded = true;
