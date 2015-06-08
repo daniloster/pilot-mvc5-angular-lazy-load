@@ -10,6 +10,12 @@
                         modalOnload: '&'
                     },
                     link: function ($scope, elem, attrs) {
+                        var modalTimeout;
+                        try {
+                            modalTimeout = parseInt(attrs.modalTimeout);
+                        } catch (e) {
+                            modalTimeout = 10;
+                        }
                         $(elem).on('click', function () {
                             var result = $scope.modalOnload();
                             $timeout(function () {
@@ -22,7 +28,7 @@
                                 } else if (result != false) {
                                     $(attrs.modalTarget).modal('show');
                                 }
-                            }, 10);
+                            }, modalTimeout);
                         });
                     }
                 };
