@@ -39,6 +39,7 @@
                             title: 'Pilot | Dashboard'
                         })
                     })
+
                     .when("/application", {
                         templateUrl: '/Content/Partials/application.html',
                         resolve: resolve({
@@ -47,10 +48,23 @@
                                 'components/common/modal/dialog',
                                 'components/common/pagination/pagination',
                                 'app/application/applicationController'],
-                            isPublic: false,
+                            isPublic: true,
                             title: 'Pilot | Managing Applications'
                         })
                     })
+                    .when("/resource", {
+                        templateUrl: '/Content/Partials/resource.html',
+                        resolve: resolve({
+                            dependencies: ['auth/authorizationController',
+                                'components/app/navMenu/menu',
+                                'components/common/modal/dialog',
+                                'components/common/pagination/pagination',
+                                'app/resource/resourceController'],
+                            isPublic: true,
+                            title: 'Pilot | Managing Resources'
+                        })
+                    })
+
                     .otherwise({
                         redirectTo: '/404'
                     });

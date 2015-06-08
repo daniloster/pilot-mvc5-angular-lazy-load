@@ -157,11 +157,22 @@
     <Compile Include="Config\DatasetMappingAttribute.cs" />
     <Compile Include="Config\PerRequestLifetimeManager.cs" />
     <Compile Include="Config\TestContextConfig.cs" />
+    <Compile Include="Integrated\FirstLoad\FirstLoadTest.cs" />
+    <Compile Include="Integrated\FirstLoad\Scheme.Designer.cs">
+      <DependentUpon>Scheme.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Integrated\Member\MemberServiceTest.cs" />
     <Compile Include="Integrated\Member\Scheme.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Scheme.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Service\UserServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -194,6 +205,17 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Config\DbConnections.config" />
+    <None Include="Integrated\FirstLoad\Scheme.xsc">
+      <DependentUpon>Scheme.xsd</DependentUpon>
+    </None>
+    <None Include="Integrated\FirstLoad\Scheme.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Scheme.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Integrated\FirstLoad\Scheme.xss">
+      <DependentUpon>Scheme.xsd</DependentUpon>
+    </None>
     <None Include="Integrated\Member\Scheme.xsc">
       <DependentUpon>Scheme.xsd</DependentUpon>
     </None>
@@ -206,14 +228,19 @@
       <DependentUpon>Scheme.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controller\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="Config\Database\database-test.script" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Integrated\FirstLoad\Data.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Integrated\Member\Data.xml">
       <SubType>Designer</SubType>
     </Content>

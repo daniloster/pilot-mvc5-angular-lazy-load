@@ -1,8 +1,8 @@
 (function () {
     var Ctrl = null;
-    define(['app', 'components/common/loading/loadingController', 'app/application/applicationService'], function (app, loadingCtrl) {
+    define(['app', 'components/common/loading/loadingController', 'app/resource/resourceService'], function (app, loadingCtrl) {
         if (Ctrl === null) {
-            Ctrl = ['$scope', '$rootScope', '$q', 'ApplicationService', function ($scope, $rootScope, $q, applicationService) {
+            Ctrl = ['$scope', '$rootScope', '$q', 'ResourceService', function ($scope, $rootScope, $q, resourceService) {
                 loadingCtrl.clear(false);
 
                 $scope.pageSize = 4;
@@ -10,11 +10,11 @@
 
                 $scope.search = function () {
                     loadingCtrl.startLoading();
-                    applicationService.query($scope.filter, function (data) {
-                        $scope.apps = data;
+                    resourceService.query($scope.filter, function (data) {
+                        $scope.resources = data;
                         loadingCtrl.stopLoading();
                     }, function (data) {
-                        $scope.apps = undefined;
+                        $scope.resources = undefined;
                         $rootScope.updateErrorMessage(data.Message);
                         loadingCtrl.stopLoading();
                     });
@@ -41,7 +41,7 @@
                     var task = $q.defer();
                     loadingCtrl.startLoading();
                     var isUpdating = !!$scope.current && $scope.current.Id > 0;
-                    applicationService.save($scope.current, function (data) {
+                    resourceService.save($scope.current, function (data) {
                         $rootScope.updateSuccessMessage(data.Message);
                         loadingCtrl.stopLoading();
                         task.resolve();
@@ -58,7 +58,7 @@
                 $scope['delete'] = function () {
                     var task = $q.defer();
                     loadingCtrl.startLoading();
-                    applicationService.delete({ Id: $scope.deletingItem.Id }, function (data) {
+                    resourceService.delete({ Id: $scope.deletingItem.Id }, function (data) {
                         $rootScope.updateSuccessMessage(data.Message);
                         loadingCtrl.stopLoading();
                         task.resolve();
@@ -73,7 +73,7 @@
 
                 $scope.search();
             }];
-            app.lazy.controller('ApplicationController', Ctrl);
+            app.lazy.controller('ResourceController', Ctrl);
         }
     });
 })();

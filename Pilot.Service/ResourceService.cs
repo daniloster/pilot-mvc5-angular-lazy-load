@@ -58,6 +58,22 @@ namespace Pilot.Service
             return Db.DbContext.Resources.Where(o => o.Application.Id == idApplication).ToList();
         }
 
+        public IList<Resource> GetByFilter(Resource filter)
+        {
+            return Db.DbContext.Resources
+                .Where(o => filter.Application == null || filter.Application.Id == 0 || o.Application.Id == filter.Application.Id)
+                .Where(o => filter.ResourceTypeId == 0 || o.ResourceTypeId == filter.ResourceTypeId)
+                .Where(o => filter.Value == null || filter.Value == string.Empty ||
+                    o.Value.ToLower().Contains(filter.Value.ToLower())
+                    || o.Value.ToLower().StartsWith(filter.Value.ToLower())
+                    || o.Value.ToLower().EndsWith(filter.Value.ToLower()))
+                .Where(o => filter.Description == null || filter.Description == string.Empty ||
+                    o.Description.ToLower().Contains(filter.Description.ToLower())
+                    || o.Description.ToLower().StartsWith(filter.Description.ToLower())
+                    || o.Description.ToLower().EndsWith(filter.Description.ToLower()))
+                .ToList();
+        }
+
         public IList<Resource> GetResourcesAvailable(Role role)
         {
             long[] idsSelected = role.Resources.Select(o => o.Id).ToArray();

@@ -77,6 +77,9 @@ define(['lib/IE/isIE', 'lib/IE/isIE8', 'lib/IE/isIE9', 'lib/IE/isIE11', 'xdomain
                 css = '<link href="' + baseUrl + '/Content/Styles/app.css?ngBust=' + appSettings.ngBust + '" rel="stylesheet">';
                 head.append(css);
 
+                css = '<link href="' + baseUrl + '/Content/Styles/checkbox.css?ngBust=' + appSettings.ngBust + '" rel="stylesheet">';
+                head.append(css); 
+
                 css = '<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">';
                 head.append(css);
 

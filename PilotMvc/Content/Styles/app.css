@@ -3,14 +3,24 @@
 BOOTSTRAP REDEFINITIONS - BEGIN
 ------------------------------------------------------*/
 
+.navbar {
+    margin-bottom: 0 !important;
+}
+
 nav.navbar.navbar-inverse.navbar-fixed-top {
-    position:relative !important;
+    /*position:relative !important;*/
+}
+
+.page-body {
+    top:51px !important;
+    position:relative;
 }
 
 /*
 ------------------------------------------------------
 BOOTSTRAP REDEFINITIONS - END
 ------------------------------------------------------*/
+
 
 /*
 ------------------------------------------------------
@@ -61,6 +71,7 @@ BUTTONS FOR PURE - BEGIN
 BUTTONS FOR PURE - END
 ------------------------------------------------------*/
 
+
 /*
 ------------------------------------------------------
 TABLE GENERAL - BEGIN
@@ -68,9 +79,106 @@ TABLE GENERAL - BEGIN
 
 .table-options {
     white-space:nowrap !important;
+    width: 1%;
 }
 
 /*
 ------------------------------------------------------
 TABLE GENERAL - END
+------------------------------------------------------*/
+
+
+/*
+------------------------------------------------------
+GENERAL - BEGIN
+------------------------------------------------------*/
+
+.no-wpadding {
+    padding:0 initial !important;
+}
+
+.no-lpadding {
+    padding-left:0 !important;
+}
+
+.no-rpadding {
+    padding-right:0 !important;
+}
+
+/*
+------------------------------------------------------
+GENERAL - END
+------------------------------------------------------*/
+
+/*
+------------------------------------------------------
+FORM GENERAL - BEGIN
+------------------------------------------------------*/
+
+.form-fieldset-dialog {
+
+}
+
+.form-fieldset-dialog fieldset {
+    display:block !important;
+    border: 1px solid #000;
+    padding-top:22px !important;
+}
+
+.form-fieldset-dialog fieldset legend {
+    display:block !important;
+    line-height:2em;
+    font-size:1.5em;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    border: 1px solid #000;
+    box-sizing: border-box;
+    position: relative;
+    top: 22px;
+}
+
+    .form-fieldset-dialog.blue fieldset {
+        border-color:#428bca;
+    } 
+    .form-fieldset-dialog.blue fieldset legend {
+        background-color:#428bca;
+        color:#fff;
+        border-color:#428bca;
+    }
+
+/*
+------------------------------------------------------
+FORM GENERAL - END
+------------------------------------------------------*/
+
+
+/*
+------------------------------------------------------
+LOGIN PAGE - BEGIN
+------------------------------------------------------*/
+
+.container-login {
+    position: absolute;
+    top: 50%;
+    margin-top: -180px;
+    width: 100%;
+}
+
+.content-login {
+    width: 320px;
+    margin: 0 auto;
+}
+@media screen and (min-width: 500px) {
+    .content-login {
+        width: 480px;
+    }
+}
+
+.login-addon .fa-lg {
+    width:20px !important;
+}
+
+/*
+------------------------------------------------------
+LOGIN PAGE - END
 ------------------------------------------------------*/

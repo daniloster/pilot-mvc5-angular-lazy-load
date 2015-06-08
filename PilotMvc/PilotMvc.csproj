@@ -212,10 +212,13 @@
     <Content Include="Content\Images\sk-favicon.ico" />
     <Content Include="Content\Partials\access\page-template.html" />
     <Content Include="Content\Partials\application.html" />
+    <Content Include="Content\Partials\resource.html" />
     <Content Include="Content\Partials\dashboard.html" />
     <Content Include="Content\Scripts\app.js" />
     <Content Include="Content\Scripts\app\application\applicationController.js" />
     <Content Include="Content\Scripts\app\application\applicationService.js" />
+    <Content Include="Content\Scripts\app\resource\resourceController.js" />
+    <Content Include="Content\Scripts\app\resource\resourceService.js" />
     <Content Include="Content\Scripts\app\_backup\contact\contactController.js" />
     <Content Include="Content\Scripts\app\_backup\contact\contactService.js" />
     <Content Include="Content\Scripts\app\_backup\home\homeService.js" />
@@ -1065,6 +1068,7 @@
     <Content Include="Content\Styles\Boilerplate\normalize.min.css" />
     <Content Include="Content\Styles\app.css" />
     <Content Include="Content\Styles\bootstrap.min.css" />
+    <Content Include="Content\Styles\checkbox.css" />
     <Content Include="Content\Styles\font-awesome.min.css" />
     <Content Include="Content\Images\bp-favicon.ico" />
     <Content Include="Global.asax" />
@@ -1092,6 +1096,7 @@
     <Compile Include="Config\Unity\UnityWebApiActivator.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\ResourceController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
@@ -1129,7 +1134,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="App_Start\" />
-    <Folder Include="Content\Scripts\app\resource\" />
     <Folder Include="Content\Scripts\app\role\" />
     <Folder Include="Content\Scripts\app\user\" />
     <Folder Include="Models\" />

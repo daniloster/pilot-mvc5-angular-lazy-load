@@ -1,32 +1,51 @@
 ﻿<div loading></div>
-<div menu></div>
-<div class="container">
-    <div class="col-xs-12">
+<div class="container-login">
+    <div class="content-login">
 
-        <form name="userForm" ng-controller="AuthorizationController" class="col-xs-12 col-md-6">
-            <h2 ng-cloak>{{ titleRegister }}</h2>
-            <div class="form-group">
-                <div class="input-group input-group-lg">
-                    <span class="input-group-addon" for="userName"><i class="fa fa-user fa-lg"></i></span>
-                    <input type="text" class="form-control" id="userName" name="userName" placeholder="Username" ng-model="user.userName" required>
+
+        <form name="userForm" ng-controller="AuthorizationController" class="col-xs-12 form-fieldset-dialog blue">
+            <fieldset>
+                <legend>Sign in here!
+                </legend>
+
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-addon login-addon" for="userName"><i class="fa fa-user fa-lg"></i></span>
+                            <input type="text" class="form-control" id="userName" name="userName" placeholder="Username" ng-model="user.userName">
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <div class="input-group input-group-lg">
-                    <span class="input-group-addon" for="password"><i class="fa fa-lock fa-lg"></i></span>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Password" ng-model="user.password" required>
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-addon login-addon" for="password"><i class="fa fa-lock fa-lg"></i></span>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password" ng-model="user.password">
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                <input type="submit" value="Sign in" ng-click="login()" ng-disabled="!userForm.$valid" class="btn btn-primary btn-lg" />
-            </div>
+                <div class="col-xs-12">
+                    <div class="checkbox checkbox-info">
+                        <input type="checkbox" class="ng-hide" id="rememberMe" name="rememberMe" ng-model="user.rememberMe" ng-value="true">
+                        <label for="rememberMe">
+                            Remember me!
+                        </label>
+                    </div>
+                </div>
 
-            <div class="alert alert-danger" ng-cloak ng-show="error">
-                <strong>Oh snap!</strong> {{ error }}
-            </div>
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <input type="submit" value="Sign in" ng-click="login()" class="btn btn-primary btn-lg" />
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                    <div status-message sm-position="relative"></div>
+                </div>
+            </fieldset>
         </form>
+
 
     </div>
 </div>

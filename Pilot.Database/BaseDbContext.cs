@@ -29,6 +29,7 @@ namespace Pilot.Database
             //{
             //    base.Database.Delete();
             //}
+            
             base.Database.CreateIfNotExists();
             /// To import data
             //base.Configuration.AutoDetectChangesEnabled = false;

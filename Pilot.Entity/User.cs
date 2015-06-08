@@ -90,7 +90,6 @@ namespace Pilot.Entity
         public User() 
         {
             IsFirstAccess = true;
-            Roles = new List<Role>();
         }
         
         public void UpdatePassword(string password)

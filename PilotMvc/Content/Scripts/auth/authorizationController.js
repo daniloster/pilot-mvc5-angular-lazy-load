@@ -1,24 +1,31 @@
 (function () {
     var Ctrl = null;
-    define(['app'], function (app) {
+    define(['app', 'components/common/loading/loadingController'], function (app, loadingController) {
         if (Ctrl == null) {
             Ctrl = ['$scope', '$rootScope', '$location', 'AuthorizationService', function ($scope, $rootScope, $location, authorizationSvc) {
                 $scope.login = function () {
-                    $scope.error = null;
+                    loadingController.startLoading();
+                    $rootScope.updateErrorMessage(null);
+                    $scope.user = $scope.user || {};
                     $scope.user.rememberMe = !!$scope.user.rememberMe;
                     authorizationSvc.login($scope.user, function (data) {
+                        loadingController.stopLoading();
                         $location.path('/');
                     }, function (data) {
-                        $scope.error = data.Message;
+                        $rootScope.updateErrorMessage(data.Message);
+                        loadingController.stopLoading();
                     })
                 };
 
                 $scope.logout = function () {
-                    $scope.error = null;
+                    loadingController.startLoading();
+                    $rootScope.updateErrorMessage(null);
                     authorizationSvc.logout(function (data) {
+                        loadingController.stopLoading();
                         $location.path('/login');
                     }, function (data) {
-                        $scope.error = data.Message;
+                        $rootScope.updateErrorMessage(data.Message);
+                        loadingController.stopLoading();
                     })
                 };
             }];

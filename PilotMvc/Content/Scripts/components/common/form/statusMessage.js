@@ -86,7 +86,14 @@
 
                     }],
                     restrict: 'EA',
-                    templateUrl: ConfigApp.getPath('/Content/Scripts/components/common/form/statusMessage.html')
+                    templateUrl: ConfigApp.getPath('/Content/Scripts/components/common/form/statusMessage.html'),
+                    link: function (scope, elem, attrs) {
+                        if (!!attrs.smPosition && attrs.smPosition.toLowerCase() == "relative") {
+                            elem.addClass('message-insidebox');
+                        } else {
+                            elem.addClass('message-top-fixed');
+                        }
+                    }
                 };
             }]);
             loaded = true;

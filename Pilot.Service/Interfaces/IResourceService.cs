@@ -22,6 +22,8 @@ namespace Pilot.Service.Interfaces
 
         IList<Resource> GetAssignedResources(Role role);
 
+        IList<Resource> GetByFilter(Resource filter);
+
         int GetTotal();
     }
 }

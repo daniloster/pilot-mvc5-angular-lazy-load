@@ -1,1 +1,24 @@
-﻿
+﻿.alert {
+    border-radius: 0 !important;
+}
+
+.message-insidebox {
+    width: 100%;
+    z-index: 99;
+}
+
+.message-top-fixed {
+    position:absolute;
+    top:51px;
+    width: 100%;
+    z-index: 99;
+}
+
+.message-center {
+    text-align:center;
+}
+
+.hand {
+    cursor: pointer;
+    cursor: hand;
+}
