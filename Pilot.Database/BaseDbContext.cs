@@ -21,16 +21,24 @@ namespace Pilot.Database
             : base("name=Pilot.Database.EntityContext")
         {
             base.Configuration.ProxyCreationEnabled = false;
-            if (base.Database.Exists() && !base.Database.CompatibleWithModel(false))
-            {
-                base.Database.Delete();
-            }
             //if (base.Database.Exists())
             //{
             //    base.Database.Delete();
             //}
-            
-            base.Database.CreateIfNotExists();
+            //base.Database.Create();
+            if (base.Database.Exists() && !base.Database.CompatibleWithModel(false))
+            {
+                base.Database.Delete();
+            }
+            try
+            {
+                base.Database.CreateIfNotExists();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                throw;
+            }
             /// To import data
             //base.Configuration.AutoDetectChangesEnabled = false;
             //base.Configuration.ValidateOnSaveEnabled = false;

@@ -51,7 +51,7 @@ namespace Pilot.Entity
                 List<Resource> resources = new List<Resource>();
                 foreach (Role role in Roles)
                 {
-                    resources.AddRange(role.Resources.Where(r => r.Application.Id == AuthorizedSystemId && r.ResourceTypeId == ResourceType.Action.Id).ToList());
+                    resources.AddRange(role.Resources.Where(r => r.Application.Id == AuthorizedSystemId && r.ResourceTypeId == ResourceType.Feature.Id).ToList());
                 }
                 return resources;
             }
@@ -81,7 +81,7 @@ namespace Pilot.Entity
                 List<Resource> resources = new List<Resource>();
                 foreach (Role role in Roles)
                 {
-                    resources.AddRange(role.Resources.Where(r => r.Application.Id == AuthorizedSystemId && r.ResourceTypeId == ResourceType.Url.Id).ToList());
+                    resources.AddRange(role.Resources.Where(r => r.Application.Id == AuthorizedSystemId && r.ResourceTypeId == ResourceType.RouteUrl.Id).ToList());
                 }
                 return resources;
             }

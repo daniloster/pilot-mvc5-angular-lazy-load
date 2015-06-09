@@ -1,20 +1,66 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Scheme xmlns="http://tempuri.org/Scheme.xsd">
-  <Members>
+  <Applications>
     <Id>1</Id>
-    <FirstName>Danilo</FirstName>
-    <LastName>Castro</LastName>
-    <Email>danilocastro@outlook.com</Email>
-  </Members>
-  <Members>
+    <Name>AMSystem</Name>
+    <Name>Access Management System</Name>
+  </Applications>
+  <Applications>
     <Id>2</Id>
-    <FirstName>Leticia</FirstName>
-    <LastName>Calmon</LastName>
-  </Members>
-  <Contacts>
+    <Name>2Do</Name>
+    <Name>To Do List</Name>
+  </Applications>
+
+  <Resources>
     <Id>1</Id>
-    <MemberId>1</MemberId>
-    <ContactTypeId>1</ContactTypeId>
-    <Value>Parnell Street</Value>
-  </Contacts>
+    <Value>/</Value>
+    <Description>Dashboard page</Description>
+    <ResourceTypeId>2</ResourceTypeId>
+  </Resources>
+  <Resources>
+    <Id>2</Id>
+    <Value>/application</Value>
+    <Description>Applications page</Description>
+    <ResourceTypeId>2</ResourceTypeId>
+  </Resources>
+  <Resources>
+    <Id>3</Id>
+    <Value>/resource</Value>
+    <Description>Resources page</Description>
+    <ResourceTypeId>2</ResourceTypeId>
+  </Resources>
+  <Resources>
+    <Id>4</Id>
+    <Value>/role</Value>
+    <Description>Roles page</Description>
+    <ResourceTypeId>2</ResourceTypeId>
+  </Resources>
+  <Resources>
+    <Id>5</Id>
+    <Value>/user</Value>
+    <Description>Users page</Description>
+    <ResourceTypeId>2</ResourceTypeId>
+  </Resources>
+  <Resources>
+    <Id>6</Id>
+    <Value>/assign-roles</Value>
+    <Description>Assign roles page</Description>
+    <ResourceTypeId>2</ResourceTypeId>
+  </Resources>
+  <Resources>
+    <Id>7</Id>
+    <Value>/assign-roles/by-user</Value>
+    <Description>Assign roles by user page</Description>
+    <ResourceTypeId>2</ResourceTypeId>
+  </Resources>
+  <Resources>
+    <Id>8</Id>
+    <Value>/assign-roles/by-role</Value>
+    <Description>Assign roles by role page</Description>
+    <ResourceTypeId>2</ResourceTypeId>
+  </Resources>
+
+  <Roles>
+    
+  </Roles>
 </Scheme>

@@ -147,7 +147,7 @@ namespace Pilot.Service.Security
         {
             if (!idResourceType.HasValue)
             {
-                idResourceType = ResourceType.Url.Id;
+                idResourceType = ResourceType.RouteUrl.Id;
             }
 
             bool hasResource = Db.DbContext.Users

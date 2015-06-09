@@ -11,12 +11,12 @@ namespace Pilot.Entity.Domain
         public short Id { get; private set; }
         public string Description { get; private set; }
 
-        public static readonly ResourceType Action = new ResourceType() { Id = 1, Description = "Action" };
+        public static readonly ResourceType Feature = new ResourceType() { Id = 1, Description = "Feature" };
         public static readonly ResourceType View = new ResourceType() { Id = 2, Description = "View" };
-        public static readonly ResourceType Url = new ResourceType() { Id = 3, Description = "URL" };
+        public static readonly ResourceType RouteUrl = new ResourceType() { Id = 3, Description = "Route URL" };
 
 
-        public static readonly IList<ResourceType> List = new ResourceType[] { Action, View, Url }.ToArray<ResourceType>();
+        public static readonly IList<ResourceType> List = new ResourceType[] { Feature, View, RouteUrl }.ToArray<ResourceType>();
 
         public static ResourceType Get(short id)
         {

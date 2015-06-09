@@ -12,12 +12,24 @@ namespace Pilot.Database
     {
         internal static void DoMapping(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().HasMany(e => e.Roles).WithMany();
+            modelBuilder.Entity<User>().HasMany(e => e.Roles).WithMany()
+                .Map(m =>
+                {
+                    m.ToTable("UserRoles");
+                    m.MapLeftKey("User_Id");
+                    m.MapRightKey("Role_Id");
+                });
 
-            modelBuilder.Entity<Role>().HasMany(e => e.Resources).WithMany();
-            modelBuilder.Entity<Role>().HasRequired(e => e.Application).WithMany();
+            modelBuilder.Entity<Resource>().HasRequired(e => e.Application).WithMany().WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Resource>().HasRequired(e => e.Application).WithOptional();
+            modelBuilder.Entity<Role>().HasRequired(e => e.Application).WithMany().WillCascadeOnDelete(false);
+            modelBuilder.Entity<Role>().HasMany(e => e.Resources).WithMany()
+                .Map(m =>
+                {
+                    m.ToTable("RoleResources");
+                    m.MapLeftKey("Role_Id");
+                    m.MapRightKey("Resource_Id");
+                });
         }
     }
 }

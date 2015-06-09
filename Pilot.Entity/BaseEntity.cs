@@ -28,8 +28,8 @@ namespace Pilot.Entity
 
         public override bool Equals(object obj)
         {
-            IBaseEntity cmp = (obj as IBaseEntity);
-            return (cmp != null && Id == cmp.Id);
+            IBaseEntity comparator = (obj as IBaseEntity);
+            return (comparator != null && Id == comparator.Id && this.GetType().Equals(comparator.GetType()));
         }
     }
 }

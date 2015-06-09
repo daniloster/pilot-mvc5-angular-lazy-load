@@ -36,7 +36,7 @@ namespace Pilot.Test.Integrated.FirstLoad {
         
         private UserRolesDataTable tableUserRoles;
         
-        private global::System.Data.DataRelation _relationFK_dbo_Resources_dbo_Applications_Id;
+        private global::System.Data.DataRelation _relationFK_dbo_Resources_dbo_Applications_Application_Id;
         
         private global::System.Data.DataRelation _relationFK_dbo_RoleResources_dbo_Resources_Resource_Id;
         
@@ -326,7 +326,7 @@ namespace Pilot.Test.Integrated.FirstLoad {
                     this.tableUserRoles.InitVars();
                 }
             }
-            this._relationFK_dbo_Resources_dbo_Applications_Id = this.Relations["FK_dbo.Resources_dbo.Applications_Id"];
+            this._relationFK_dbo_Resources_dbo_Applications_Application_Id = this.Relations["FK_dbo.Resources_dbo.Applications_Application_Id"];
             this._relationFK_dbo_RoleResources_dbo_Resources_Resource_Id = this.Relations["FK_dbo.RoleResources_dbo.Resources_Resource_Id"];
             this._relationFK_dbo_RoleResources_dbo_Roles_Role_Id = this.Relations["FK_dbo.RoleResources_dbo.Roles_Role_Id"];
             this._relationFK_dbo_Roles_dbo_Applications_Application_Id = this.Relations["FK_dbo.Roles_dbo.Applications_Application_Id"];
@@ -354,10 +354,10 @@ namespace Pilot.Test.Integrated.FirstLoad {
             base.Tables.Add(this.tableRoles);
             this.tableUserRoles = new UserRolesDataTable();
             base.Tables.Add(this.tableUserRoles);
-            this._relationFK_dbo_Resources_dbo_Applications_Id = new global::System.Data.DataRelation("FK_dbo.Resources_dbo.Applications_Id", new global::System.Data.DataColumn[] {
+            this._relationFK_dbo_Resources_dbo_Applications_Application_Id = new global::System.Data.DataRelation("FK_dbo.Resources_dbo.Applications_Application_Id", new global::System.Data.DataColumn[] {
                         this.tableApplications.IdColumn}, new global::System.Data.DataColumn[] {
-                        this.tableResources.IdColumn}, false);
-            this.Relations.Add(this._relationFK_dbo_Resources_dbo_Applications_Id);
+                        this.tableResources.Application_IdColumn}, false);
+            this.Relations.Add(this._relationFK_dbo_Resources_dbo_Applications_Application_Id);
             this._relationFK_dbo_RoleResources_dbo_Resources_Resource_Id = new global::System.Data.DataRelation("FK_dbo.RoleResources_dbo.Resources_Resource_Id", new global::System.Data.DataColumn[] {
                         this.tableResources.IdColumn}, new global::System.Data.DataColumn[] {
                         this.tableRoleResources.Resource_IdColumn}, false);
@@ -1139,6 +1139,8 @@ namespace Pilot.Test.Integrated.FirstLoad {
             
             private global::System.Data.DataColumn columnResourceTypeId;
             
+            private global::System.Data.DataColumn columnApplication_Id;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ResourcesDataTable() {
@@ -1206,6 +1208,14 @@ namespace Pilot.Test.Integrated.FirstLoad {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Application_IdColumn {
+                get {
+                    return this.columnApplication_Id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1241,13 +1251,17 @@ namespace Pilot.Test.Integrated.FirstLoad {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ResourcesRow AddResourcesRow(string Value, string Description, short ResourceTypeId) {
+            public ResourcesRow AddResourcesRow(string Value, string Description, short ResourceTypeId, ApplicationsRow _parentApplicationsRowByFK_dbo_Resources_dbo_Applications_Application_Id) {
                 ResourcesRow rowResourcesRow = ((ResourcesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         Value,
                         Description,
-                        ResourceTypeId};
+                        ResourceTypeId,
+                        null};
+                if ((_parentApplicationsRowByFK_dbo_Resources_dbo_Applications_Application_Id != null)) {
+                    columnValuesArray[4] = _parentApplicationsRowByFK_dbo_Resources_dbo_Applications_Application_Id[0];
+                }
                 rowResourcesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowResourcesRow);
                 return rowResourcesRow;
@@ -1281,6 +1295,7 @@ namespace Pilot.Test.Integrated.FirstLoad {
                 this.columnValue = base.Columns["Value"];
                 this.columnDescription = base.Columns["Description"];
                 this.columnResourceTypeId = base.Columns["ResourceTypeId"];
+                this.columnApplication_Id = base.Columns["Application_Id"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1294,6 +1309,8 @@ namespace Pilot.Test.Integrated.FirstLoad {
                 base.Columns.Add(this.columnDescription);
                 this.columnResourceTypeId = new global::System.Data.DataColumn("ResourceTypeId", typeof(short), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnResourceTypeId);
+                this.columnApplication_Id = new global::System.Data.DataColumn("Application_Id", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnApplication_Id);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, true));
                 this.columnId.AutoIncrement = true;
@@ -1307,6 +1324,7 @@ namespace Pilot.Test.Integrated.FirstLoad {
                 this.columnDescription.AllowDBNull = false;
                 this.columnDescription.MaxLength = 2147483647;
                 this.columnResourceTypeId.AllowDBNull = false;
+                this.columnApplication_Id.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2370,11 +2388,11 @@ namespace Pilot.Test.Integrated.FirstLoad {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public ResourcesRow[] GetResourcesRows() {
-                if ((this.Table.ChildRelations["FK_dbo.Resources_dbo.Applications_Id"] == null)) {
+                if ((this.Table.ChildRelations["FK_dbo.Resources_dbo.Applications_Application_Id"] == null)) {
                     return new ResourcesRow[0];
                 }
                 else {
-                    return ((ResourcesRow[])(base.GetChildRows(this.Table.ChildRelations["FK_dbo.Resources_dbo.Applications_Id"])));
+                    return ((ResourcesRow[])(base.GetChildRows(this.Table.ChildRelations["FK_dbo.Resources_dbo.Applications_Application_Id"])));
                 }
             }
             
@@ -2542,12 +2560,23 @@ namespace Pilot.Test.Integrated.FirstLoad {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public ApplicationsRow ApplicationsRow {
+            public long Application_Id {
                 get {
-                    return ((ApplicationsRow)(this.GetParentRow(this.Table.ParentRelations["FK_dbo.Resources_dbo.Applications_Id"])));
+                    return ((long)(this[this.tableResources.Application_IdColumn]));
                 }
                 set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_dbo.Resources_dbo.Applications_Id"]);
+                    this[this.tableResources.Application_IdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public ApplicationsRow ApplicationsRow {
+                get {
+                    return ((ApplicationsRow)(this.GetParentRow(this.Table.ParentRelations["FK_dbo.Resources_dbo.Applications_Application_Id"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_dbo.Resources_dbo.Applications_Application_Id"]);
                 }
             }
             
@@ -3795,33 +3824,37 @@ SELECT Id, UserName, Email, Password, Name, IsFirstAccess FROM Users WHERE (Id =
             tableMapping.ColumnMappings.Add("Value", "Value");
             tableMapping.ColumnMappings.Add("Description", "Description");
             tableMapping.ColumnMappings.Add("ResourceTypeId", "ResourceTypeId");
+            tableMapping.ColumnMappings.Add("Application_Id", "Application_Id");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
             this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[Resources] WHERE (([Id] = @Original_Id) AND ([ResourceTypeId] " +
-                "= @Original_ResourceTypeId))";
+                "= @Original_ResourceTypeId) AND ([Application_Id] = @Original_Application_Id))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ResourceTypeId", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResourceTypeId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Application_Id", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Application_Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[Resources] ([Value], [Description], [ResourceTypeId]) VALUES (" +
-                "@Value, @Description, @ResourceTypeId);\r\nSELECT Id, Value, Description, Resource" +
-                "TypeId FROM Resources WHERE (Id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[Resources] ([Value], [Description], [ResourceTypeId], [Application_Id]) VALUES (@Value, @Description, @ResourceTypeId, @Application_Id);
+SELECT Id, Value, Description, ResourceTypeId, Application_Id FROM Resources WHERE (Id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Value", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Value", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Description", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Description", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ResourceTypeId", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResourceTypeId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Application_Id", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Application_Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Resources] SET [Value] = @Value, [Description] = @Description, [ResourceTypeId] = @ResourceTypeId WHERE (([Id] = @Original_Id) AND ([ResourceTypeId] = @Original_ResourceTypeId));
-SELECT Id, Value, Description, ResourceTypeId FROM Resources WHERE (Id = @Id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[Resources] SET [Value] = @Value, [Description] = @Description, [ResourceTypeId] = @ResourceTypeId, [Application_Id] = @Application_Id WHERE (([Id] = @Original_Id) AND ([ResourceTypeId] = @Original_ResourceTypeId) AND ([Application_Id] = @Original_Application_Id));
+SELECT Id, Value, Description, ResourceTypeId, Application_Id FROM Resources WHERE (Id = @Id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Value", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Value", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Description", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Description", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ResourceTypeId", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResourceTypeId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Application_Id", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Application_Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Id", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ResourceTypeId", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ResourceTypeId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Application_Id", global::System.Data.SqlDbType.BigInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Application_Id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Id", global::System.Data.SqlDbType.BigInt, 8, global::System.Data.ParameterDirection.Input, 0, 0, "Id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -3838,7 +3871,7 @@ SELECT Id, Value, Description, ResourceTypeId FROM Resources WHERE (Id = @Id)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT Id, Value, Description, ResourceTypeId FROM dbo.Resources";
+            this._commandCollection[0].CommandText = "SELECT Id, Value, Description, ResourceTypeId, Application_Id FROM dbo.Resources";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -3899,9 +3932,10 @@ SELECT Id, Value, Description, ResourceTypeId FROM Resources WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(long Original_Id, short Original_ResourceTypeId) {
+        public virtual int Delete(long Original_Id, short Original_ResourceTypeId, long Original_Application_Id) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((long)(Original_Id));
             this.Adapter.DeleteCommand.Parameters[1].Value = ((short)(Original_ResourceTypeId));
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((long)(Original_Application_Id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3922,7 +3956,7 @@ SELECT Id, Value, Description, ResourceTypeId FROM Resources WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string Value, string Description, short ResourceTypeId) {
+        public virtual int Insert(string Value, string Description, short ResourceTypeId, long Application_Id) {
             if ((Value == null)) {
                 throw new global::System.ArgumentNullException("Value");
             }
@@ -3936,6 +3970,7 @@ SELECT Id, Value, Description, ResourceTypeId FROM Resources WHERE (Id = @Id)";
                 this.Adapter.InsertCommand.Parameters[1].Value = ((string)(Description));
             }
             this.Adapter.InsertCommand.Parameters[2].Value = ((short)(ResourceTypeId));
+            this.Adapter.InsertCommand.Parameters[3].Value = ((long)(Application_Id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3956,7 +3991,7 @@ SELECT Id, Value, Description, ResourceTypeId FROM Resources WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Value, string Description, short ResourceTypeId, long Original_Id, short Original_ResourceTypeId, long Id) {
+        public virtual int Update(string Value, string Description, short ResourceTypeId, long Application_Id, long Original_Id, short Original_ResourceTypeId, long Original_Application_Id, long Id) {
             if ((Value == null)) {
                 throw new global::System.ArgumentNullException("Value");
             }
@@ -3970,9 +4005,11 @@ SELECT Id, Value, Description, ResourceTypeId FROM Resources WHERE (Id = @Id)";
                 this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(Description));
             }
             this.Adapter.UpdateCommand.Parameters[2].Value = ((short)(ResourceTypeId));
-            this.Adapter.UpdateCommand.Parameters[3].Value = ((long)(Original_Id));
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((short)(Original_ResourceTypeId));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((long)(Id));
+            this.Adapter.UpdateCommand.Parameters[3].Value = ((long)(Application_Id));
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((long)(Original_Id));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((short)(Original_ResourceTypeId));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((long)(Original_Application_Id));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((long)(Id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -3993,8 +4030,8 @@ SELECT Id, Value, Description, ResourceTypeId FROM Resources WHERE (Id = @Id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string Value, string Description, short ResourceTypeId, long Original_Id, short Original_ResourceTypeId) {
-            return this.Update(Value, Description, ResourceTypeId, Original_Id, Original_ResourceTypeId, Original_Id);
+        public virtual int Update(string Value, string Description, short ResourceTypeId, long Application_Id, long Original_Id, short Original_ResourceTypeId, long Original_Application_Id) {
+            return this.Update(Value, Description, ResourceTypeId, Application_Id, Original_Id, Original_ResourceTypeId, Original_Application_Id, Original_Id);
         }
     }
     
