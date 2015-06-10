@@ -17,6 +17,7 @@
     <Description>Dashboard page</Description>
     <ResourceTypeId>2</ResourceTypeId>
   </Resources>
+  
   <Resources>
     <Id>2</Id>
     <Value>/application</Value>
@@ -25,42 +26,173 @@
   </Resources>
   <Resources>
     <Id>3</Id>
+    <Value>/application/save</Value>
+    <Description>Route url to save an application</Description>
+    <ResourceTypeId>3</ResourceTypeId>
+  </Resources>
+  <Resources>
+    <Id>4</Id>
+    <Value>/application/delete</Value>
+    <Description>Route url to delete an application</Description>
+    <ResourceTypeId>3</ResourceTypeId>
+  </Resources>
+  
+  <Resources>
+    <Id>5</Id>
     <Value>/resource</Value>
     <Description>Resources page</Description>
     <ResourceTypeId>2</ResourceTypeId>
   </Resources>
   <Resources>
-    <Id>4</Id>
+    <Id>6</Id>
+    <Value>/resource/save</Value>
+    <Description>Route url to save a resource</Description>
+    <ResourceTypeId>3</ResourceTypeId>
+  </Resources>
+  <Resources>
+    <Id>7</Id>
+    <Value>/resource/delete</Value>
+    <Description>Route url to delete a resource</Description>
+    <ResourceTypeId>3</ResourceTypeId>
+  </Resources>
+  
+  <Resources>
+    <Id>8</Id>
     <Value>/role</Value>
     <Description>Roles page</Description>
     <ResourceTypeId>2</ResourceTypeId>
   </Resources>
   <Resources>
-    <Id>5</Id>
+    <Id>9</Id>
+    <Value>/role/save</Value>
+    <Description>Route url to save a role</Description>
+    <ResourceTypeId>3</ResourceTypeId>
+  </Resources>
+  <Resources>
+    <Id>10</Id>
+    <Value>/role/delete</Value>
+    <Description>Route url to delete a role</Description>
+    <ResourceTypeId>3</ResourceTypeId>
+  </Resources>
+  
+  <Resources>
+    <Id>11</Id>
     <Value>/user</Value>
     <Description>Users page</Description>
     <ResourceTypeId>2</ResourceTypeId>
   </Resources>
   <Resources>
-    <Id>6</Id>
+    <Id>12</Id>
+    <Value>/user/save</Value>
+    <Description>Route url to save an user</Description>
+    <ResourceTypeId>3</ResourceTypeId>
+  </Resources>
+  <Resources>
+    <Id>13</Id>
+    <Value>/user/delete</Value>
+    <Description>Route url to delete an user</Description>
+    <ResourceTypeId>3</ResourceTypeId>
+  </Resources>
+  
+  <Resources>
+    <Id>14</Id>
     <Value>/assign-roles</Value>
     <Description>Assign roles page</Description>
     <ResourceTypeId>2</ResourceTypeId>
   </Resources>
   <Resources>
-    <Id>7</Id>
+    <Id>15</Id>
     <Value>/assign-roles/by-user</Value>
     <Description>Assign roles by user page</Description>
     <ResourceTypeId>2</ResourceTypeId>
   </Resources>
   <Resources>
-    <Id>8</Id>
+    <Id>16</Id>
     <Value>/assign-roles/by-role</Value>
     <Description>Assign roles by role page</Description>
     <ResourceTypeId>2</ResourceTypeId>
   </Resources>
+  <Resources>
+    <Id>17</Id>
+    <Value>/assign-roles/apply</Value>
+    <Description>Route url to apply roles to users</Description>
+    <ResourceTypeId>3</ResourceTypeId>
+  </Resources>
 
   <Roles>
-    
+    <Id>1</Id>
+    <Name>AMSystem Admin</Name>
+    <Description>AMSystem Administrator allow user interact with everything.</Description>
+    <IsAdmin>1</IsAdmin>
+    <Application_Id>1</Application_Id>
   </Roles>
+  <Roles>
+    <Id>2</Id>
+    <Name>AMSystem Visitor</Name>
+    <Description>AMSystem Visitor allow user access screen, but with restricted permissions.</Description>
+    <IsAdmin>0</IsAdmin>
+    <Application_Id>1</Application_Id>
+  </Roles>
+  
+  <Roles>
+    <Id>3</Id>
+    <Name>2Do Admin</Name>
+    <Description>2Do Administrator allow user interact with everything.</Description>
+    <IsAdmin>1</IsAdmin>
+    <Application_Id>2</Application_Id>
+  </Roles>
+  <Roles>
+    <Id>4</Id>
+    <Name>2Do Visitor</Name>
+    <Description>2Do Visitor allow user access screen, but with restricted permissions.</Description>
+    <IsAdmin>0</IsAdmin>
+    <Application_Id>2</Application_Id>
+  </Roles>
+
+  <RoleResources>
+    <Role_Id>2</Role_Id>
+    <Resource_Id>1</Resource_Id>
+  </RoleResources>
+  <RoleResources>
+    <Role_Id>2</Role_Id>
+    <Resource_Id>2</Resource_Id>
+  </RoleResources>
+  <RoleResources>
+    <Role_Id>2</Role_Id>
+    <Resource_Id>5</Resource_Id>
+  </RoleResources>
+  <RoleResources>
+    <Role_Id>2</Role_Id>
+    <Resource_Id>8</Resource_Id>
+  </RoleResources>
+  <RoleResources>
+    <Role_Id>2</Role_Id>
+    <Resource_Id>11</Resource_Id>
+  </RoleResources>
+  <RoleResources>
+    <Role_Id>2</Role_Id>
+    <Resource_Id>14</Resource_Id>
+  </RoleResources>
+  <RoleResources>
+    <Role_Id>2</Role_Id>
+    <Resource_Id>15</Resource_Id>
+  </RoleResources>
+  <RoleResources>
+    <Role_Id>2</Role_Id>
+    <Resource_Id>16</Resource_Id>
+  </RoleResources>
+
+  <Users>
+    <Id>1</Id>
+    <UserName>daniloster</UserName>
+    <Email>daniloster@gmail.com</Email>
+    <Password>-112233</Password>
+    <Name>Danilo Castro</Name>
+    <IsFirstAccess>1</IsFirstAccess>
+  </Users>
+
+  <UserRoles>
+    <User_Id>1</User_Id>
+    <Role_Id>1</Role_Id>
+  </UserRoles>
 </Scheme>
