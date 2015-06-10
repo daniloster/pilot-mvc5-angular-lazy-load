@@ -3,9 +3,9 @@
         <table>
             <thead>
                 <tr>
-                    <th ng-click="prev()">‹</th>
-                    <th colspan="5" class="switch" ng-click="setView('month')" ng-cloak>{{ date | date: "yyyy MMMM"}}</th>
-                    <th ng-click="next()">›</i></th>
+                    <th ng-mousedown="prev()">‹</th>
+                    <th colspan="5" class="switch" ng-mousedown="setView('month')" ng-cloak>{{ date | date: "yyyy MMMM"}}</th>
+                    <th ng-mousedown="next()">›</th>
                 </tr>
                 <tr>
                     <th ng-repeat="day in weekdays" style="overflow: hidden" ng-cloak ng-bind="(day | date: 'EEE')"></th>
@@ -15,7 +15,7 @@
                 <tr ng-repeat="week in weeks">
                     <td ng-repeat="day in week">
                         <span ng-class="{'now':isNow(day),'active':isSameDay(day),'disabled':(day.getMonth()!=date.getMonth() || isUnavailableAfter(day) || isUnavailableBefore(day)),'after':isAfter(day),'before':isBefore(day)}"
-                              ng-click="setDate(day)" ng-bind="day.getDate()"></span>
+                              ng-mousedown="setDate(day)" ng-bind="day.getDate()"></span>
                     </td>
                 </tr>
             </tbody>
@@ -25,17 +25,17 @@
         <table>
             <thead>
                 <tr>
-                    <th ng-click="prev(10)">‹</th>
+                    <th ng-mousedown="prev(10)">‹</th>
                     <th colspan="5" class="switch" ng-cloak>{{ years[0].getFullYear() }}-{{ years[years.length-1].getFullYear() }}</th>
-                    <th ng-click="next(10)">›</i></th>
+                    <th ng-mousedown="next(10)">›</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td colspan="7">
-                        <span ng-class="{'active':isSameYear(year),'now':isNow(year)}"
+                        <span ng-class="{'active':isSameYear(year),'now':isNow(year),'disabled':((minAvailableDate && (year.getFullYear() < minAvailableDate.getFullYear())) || (maxAvailableDate && (year.getFullYear() > maxAvailableDate.getFullYear())))}"
                               ng-repeat="year in years"
-                              ng-click="setDate(year)" ng-bind="year.getFullYear()"></span>
+                              ng-mousedown="setDate(year)" ng-bind="year.getFullYear()"></span>
                     </td>
                 </tr>
             </tbody>
@@ -45,17 +45,17 @@
         <table>
             <thead>
                 <tr>
-                    <th ng-click="prev()">‹</th>
-                    <th colspan="5" class="switch" ng-click="setView('year')" ng-cloak>{{ date | date: "yyyy" }}</th>
-                    <th ng-click="next()">›</i></th>
+                    <th ng-mousedown="prev()">‹</th>
+                    <th colspan="5" class="switch" ng-mousedown="setView('year')" ng-cloak>{{ date | date: "yyyy" }}</th>
+                    <th ng-mousedown="next()">›</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td colspan="7">
                         <span ng-repeat="month in months"
-                              ng-class="{'active':isSameMonth(month),'after':isAfter(month),'before':isBefore(month),'now':isNow(month)}"
-                              ng-click="setDate(month)"
+                              ng-class="{'active':isSameMonth(month),'after':isAfter(month),'before':isBefore(month),'now':isNow(month),'disabled':((minAvailableDate && (month.getFullYear() < minAvailableDate.getFullYear() || (month.getFullYear() == minAvailableDate.getFullYear() && month.getMonth() < minAvailableDate.getMonth()))) || (maxAvailableDate && (month.getFullYear() > maxAvailableDate.getFullYear() || (month.getFullYear() == maxAvailableDate.getFullYear() && month.getMonth() > maxAvailableDate.getMonth()))))}"
+                              ng-mousedown="setDate(month)"
                               ng-bind="month|date:'MMM'"></span>
                     </td>
                 </tr>
@@ -66,9 +66,9 @@
         <table>
             <thead>
                 <tr>
-                    <th ng-click="prev(24)">‹</th>
-                    <th colspan="5" class="switch" ng-click="setView('date')" ng-cloak>{{ date | date: "dd MMMM yyyy" }}</th>
-                    <th ng-click="next(24)">›</i></th>
+                    <th ng-mousedown="prev(24)">‹</th>
+                    <th colspan="5" class="switch" ng-mousedown="setView('date')" ng-cloak>{{ date | date: "dd MMMM yyyy" }}</th>
+                    <th ng-mousedown="next(24)">›</th>
                 </tr>
             </thead>
             <tbody>
@@ -76,7 +76,7 @@
                     <td colspan="7">
                         <span ng-repeat="hour in hours"
                               ng-class="{'now':isNow(hour),'active':isSameHour(hour)}"
-                              ng-click="setDate(hour)" ng-bind="hour|time"></span>
+                              ng-mousedown="setDate(hour)" ng-bind="hour|time"></span>
                     </td>
                 </tr>
             </tbody>
@@ -86,9 +86,9 @@
         <table>
             <thead>
                 <tr>
-                    <th ng-click="prev()">‹</th>
-                    <th colspan="5" class="switch" ng-click="setView('hours')" ng-cloak>{{ date | date: "dd MMMM yyyy" }}</th>
-                    <th ng-click="next()">›</i></th>
+                    <th ng-mousedown="prev()">‹</th>
+                    <th colspan="5" class="switch" ng-mousedown="setView('hours')" ng-cloak>{{ date | date: "dd MMMM yyyy" }}</th>
+                    <th ng-mousedown="next()">›</th>
                 </tr>
             </thead>
             <tbody>
@@ -96,7 +96,7 @@
                     <td colspan="7">
                         <span ng-repeat="minute in minutes"
                               ng-class="{active:isSameMinutes(minute),'now':isNow(minute)}"
-                              ng-click="setDate(minute)"
+                              ng-mousedown="setDate(minute)"
                               ng-bind="minute|time"></span>
                     </td>
                 </tr>

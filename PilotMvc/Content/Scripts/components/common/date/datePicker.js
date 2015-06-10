@@ -155,23 +155,22 @@
                     },
                     link: function (scope, element, attrs, ne) {
 
-                        scope.date = new Date(scope.model || (!!scope.unavailableAfter ? new Date(scope.unavailableAfter).setDate(scope.unavailableAfter.getDate() - 1) : undefined) || new Date());
+                        scope.date = new Date(scope.model || new Date());
                         scope.views = datePickerConfig.views.concat();
                         scope.view = attrs.view || datePickerConfig.view;
                         scope.now = new Date();
                         scope.template = attrs.template || ConfigApp.getPath(datePickerConfig.template);
+                        if (scope.unavailableBefore) {
+                            scope.minAvailableDate = new Date(scope.unavailableBefore);
+                            scope.minAvailableDate.setDate(scope.minAvailableDate.getDate() + 1);
+                        }
+                        if (scope.unavailableAfter) {
+                            scope.maxAvailableDate = new Date(scope.unavailableAfter);
+                            scope.maxAvailableDate.setDate(scope.maxAvailableDate.getDate() - 1);
+                        }
 
                         var applyValue = function (value) {
-                            // $parse works out how to get the value.
-                            // This returns a function that returns the result of your ng-model expression.
-                            var modelGetter = $parse('$parent.$parent.' + attrs['datePicker']);
-                            console.log(modelGetter(scope));
-                            console.log(element);
-                            // This returns a function that lets us set the value of the ng-model binding expression:
-                            var modelSetter = modelGetter.assign;
-                            // This is how you can use it to set the value 'bar' on the given scope.
-                            modelSetter(scope, value);
-                            console.log(modelGetter(scope));
+                            scope.model = value;
                         };
 
                         var step = parseInt(attrs.step || datePickerConfig.step, 10);
@@ -179,8 +178,8 @@
 
                         /** @namespace attrs.minView, attrs.maxView */
                         scope.views = scope.views.slice(
-                          scope.views.indexOf(attrs.maxView || 'year'),
-                          scope.views.indexOf(attrs.minView || 'minutes') + 1
+                          scope.views.indexOf('year'),
+                          scope.views.indexOf('minutes') + 1
                         );
 
                         if (scope.views.length === 1 || scope.views.indexOf(scope.view) === -1) {
@@ -194,35 +193,57 @@
                         };
 
                         scope.setDate = function (date) {
+                            var maxAvailableDate = new Date(scope.unavailableAfter);
+                            maxAvailableDate.setDate(maxAvailableDate.getDate() - 1);
+                            if (!!scope.unavailableBefore && date.getFullYear() == maxAvailableDate.getFullYear()) {
+                                if (scope.view == 'year') {
+                                    date = maxAvailableDate;
+                                }
+                                else if (scope.view == 'month' && date.getMonth() == maxAvailableDate.getMonth()) {
+                                    date = maxAvailableDate;
+                                }
+                            }
+                            var minAvailableDate = new Date(scope.unavailableBefore);
+                            minAvailableDate.setDate(minAvailableDate.getDate() + 1);
+                            if (!!scope.unavailableBefore && date.getFullYear() == minAvailableDate.getFullYear()) {
+                                if (scope.view == 'year') {
+                                    date = minAvailableDate;
+                                }
+                                else if (scope.view == 'month' && date.getMonth() == minAvailableDate.getMonth()) {
+                                    date = minAvailableDate;
+                                }
+                            }
                             if (attrs.disabled || (scope.isUnavailableAfter(date)) || (scope.isUnavailableBefore(date))) {
                                 return;
                             }
                             scope.date = date;
-                            applyValue(date);
                             // change next view
                             var nextView = scope.views[scope.views.indexOf(scope.view) + 1];
                             if ((!nextView || partial) || scope.model) {
 
-                                scope.model = new Date(scope.model || date);
+                                //scope.model = new Date(scope.model || date);
                                 var view = partial ? 'minutes' : scope.view;
                                 //noinspection FallThroughInSwitchStatementJS
-                                switch (view) {
-                                    case 'minutes':
-                                        scope.model.setMinutes(date.getMinutes());
-                                        /*falls through*/
-                                    case 'hours':
-                                        scope.model.setHours(date.getHours());
-                                        /*falls through*/
-                                    case 'date':
-                                        scope.model.setDate(date.getDate());
-                                        /*falls through*/
-                                    case 'month':
-                                        scope.model.setMonth(date.getMonth());
-                                        /*falls through*/
-                                    case 'year':
-                                        scope.model.setFullYear(date.getFullYear());
+                                //switch (view) {
+                                //    case 'minutes':
+                                //        scope.model.setMinutes(date.getMinutes());
+                                //        /*falls through*/
+                                //    case 'hours':
+                                //        scope.model.setHours(date.getHours());
+                                //        /*falls through*/
+                                //    case 'date':
+                                //        scope.model.setDate(date.getDate());
+                                //        /*falls through*/
+                                //    case 'month':
+                                //        scope.model.setMonth(date.getMonth());
+                                //        /*falls through*/
+                                //    case 'year':
+                                //        scope.model.setFullYear(date.getFullYear());
+                                //}
+                                if (scope.view == attrs.minView) {
+                                    applyValue(date);
+                                    scope.$emit('setDate', scope.model, scope.view);
                                 }
-                                scope.$emit('setDate', scope.model, scope.view);
                             }
 
                             if (nextView) {
@@ -388,7 +409,6 @@
                         (attrs.template ? 'template="' + attrs.template + '" ' : '') +
                         (attrs.minView ? 'min-view="' + attrs.minView + '" ' : '') +
                         (attrs.partial ? 'partial="' + attrs.partial + '" ' : '') +
-                        (attrs.auto - close ? 'auto-close="' + attrs.auto - close + '" ' : '') +
                         (attrs.unavailableAfter ? 'unavailable-after="' + attrs.unavailableAfter + '" ' : '') +
                         (attrs.unavailableBefore ? 'unavailable-before="' + attrs.unavailableBefore + '" ' : '') +
                         'class="dropdown-menu"></div>';
@@ -402,24 +422,23 @@
             app.lazy.directive('dateTimeAppend', function () {
                 return {
                     link: function (scope, element) {
-                        element.bind('click', function () {
+                        element.bind('mouseup', function () {
                             element.find('input')[0].focus();
                         });
                     }
                 };
             });
 
-            app.lazy.directive('dateTime', ['$compile', '$document', '$filter', 'dateTimeConfig', '$parse', '$timeout', 'ConfigApp', function ($compile, $document, $filter, dateTimeConfig, $parse, $timeout, ConfigApp) {
-
-                angular.element('body').after(angular.element(ConfigApp.getElementLink('/Content/Scripts/components/common/date/style.css')));
-
+            app.lazy.directive('dateTime', ['$compile', '$document', '$filter', '$parse', '$timeout', 'dateTimeConfig', 'ConfigApp', function ($compile, $document, $filter, $parse, $timeout, dateTimeConfig, ConfigApp) {
                 var body = $document.find('body');
                 var dateFilter = $filter('date');
+                angular.element('body').after(angular.element('<link href="' + ConfigApp.getPath('/Content/Scripts/components/common/date/style.css') + '" type="text/css" rel="stylesheet" />'));
 
                 return {
                     require: 'ngModel',
                     scope: true,
                     link: function (scope, element, attrs, ngModel) {
+                        var keepDisplaying = !!attrs.keepDisplaying && attrs.keepDisplaying != "false" && attrs.keepDisplaying != false;
                         var format = attrs.format || dateTimeConfig.format;
                         var parentForm = element.inheritedData('$formController');
                         var views = $parse(attrs.views)(scope) || dateTimeConfig.views.concat();
@@ -429,14 +448,17 @@
                         var picker = null;
                         var position = attrs.position || dateTimeConfig.position;
                         var container = null;
+
                         attrs.view = view;
-                        var autoClose = attrs.auto - close;
 
                         if (index === -1) {
                             views.splice(index, 1);
                         }
 
                         views.unshift(view);
+
+                        attrs.minView = views[views.length - 1];
+                        attrs.maxView = views[0];
 
                         function formatter(value) {
                             return dateFilter(value, format);
@@ -467,18 +489,20 @@
 
                         function clear() {
                             try {
-                                if (picker) {
+                                if (picker && !keepDisplaying) {
                                     picker.remove();
                                     picker = null;
                                 }
-                                if (container) {
+                                if (container && !keepDisplaying) {
                                     container.remove();
                                     container = null;
                                 }
                             } catch (ex) { }
                             finally {
                                 try {
-                                    element.blur();
+                                    if (!keepDisplaying) {
+                                        //element.blur();
+                                    }
                                 } catch (e) { }
                             }
                         }
@@ -496,8 +520,8 @@
                                 updateInput(event);
                                 if (dismiss && views[views.length - 1] === view) {
                                     clear();
+                                    element.blur();
                                 }
-
                                 //}, 50);
                             });
 
@@ -521,11 +545,17 @@
 
                             picker.bind('mousedown', function (evt) {
                                 evt.preventDefault();
+                                element.off('blur');
+                            });
+
+                            picker.bind('mouseup', function (evt) {
+                                evt.preventDefault();
+                                element.on('blur', clear);
                             });
                         }
 
                         element.bind('focus', showPicker);
-                        element.bind('blur', clear);
+                        element.on('blur', clear);
                     }
                 };
             }]);

@@ -204,7 +204,9 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Config\DbConnections.config" />
+    <Content Include="Config\DbConnections.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Integrated\FirstLoad\Scheme.xsc">
       <DependentUpon>Scheme.xsd</DependentUpon>
     </None>

@@ -3,12 +3,12 @@
   <Applications>
     <Id>1</Id>
     <Name>AMSystem</Name>
-    <Name>Access Management System</Name>
+    <Description>Access Management System</Description>
   </Applications>
   <Applications>
     <Id>2</Id>
     <Name>2Do</Name>
-    <Name>To Do List</Name>
+    <Description>To Do List</Description>
   </Applications>
 
   <Resources>
@@ -16,6 +16,7 @@
     <Value>/</Value>
     <Description>Dashboard page</Description>
     <ResourceTypeId>2</ResourceTypeId>
+    <Application_Id>1</Application_Id>
   </Resources>
   
   <Resources>
@@ -23,18 +24,21 @@
     <Value>/application</Value>
     <Description>Applications page</Description>
     <ResourceTypeId>2</ResourceTypeId>
+    <Application_Id>1</Application_Id>
   </Resources>
   <Resources>
     <Id>3</Id>
     <Value>/application/save</Value>
     <Description>Route url to save an application</Description>
     <ResourceTypeId>3</ResourceTypeId>
+    <Application_Id>1</Application_Id>
   </Resources>
   <Resources>
     <Id>4</Id>
     <Value>/application/delete</Value>
     <Description>Route url to delete an application</Description>
     <ResourceTypeId>3</ResourceTypeId>
+    <Application_Id>1</Application_Id>
   </Resources>
   
   <Resources>
@@ -42,18 +46,21 @@
     <Value>/resource</Value>
     <Description>Resources page</Description>
     <ResourceTypeId>2</ResourceTypeId>
+    <Application_Id>1</Application_Id>
   </Resources>
   <Resources>
     <Id>6</Id>
     <Value>/resource/save</Value>
     <Description>Route url to save a resource</Description>
     <ResourceTypeId>3</ResourceTypeId>
+    <Application_Id>1</Application_Id>
   </Resources>
   <Resources>
     <Id>7</Id>
     <Value>/resource/delete</Value>
     <Description>Route url to delete a resource</Description>
     <ResourceTypeId>3</ResourceTypeId>
+    <Application_Id>1</Application_Id>
   </Resources>
   
   <Resources>
@@ -61,18 +68,21 @@
     <Value>/role</Value>
     <Description>Roles page</Description>
     <ResourceTypeId>2</ResourceTypeId>
+    <Application_Id>1</Application_Id>
   </Resources>
   <Resources>
     <Id>9</Id>
     <Value>/role/save</Value>
     <Description>Route url to save a role</Description>
     <ResourceTypeId>3</ResourceTypeId>
+    <Application_Id>1</Application_Id>
   </Resources>
   <Resources>
     <Id>10</Id>
     <Value>/role/delete</Value>
     <Description>Route url to delete a role</Description>
     <ResourceTypeId>3</ResourceTypeId>
+    <Application_Id>1</Application_Id>
   </Resources>
   
   <Resources>
@@ -80,18 +90,21 @@
     <Value>/user</Value>
     <Description>Users page</Description>
     <ResourceTypeId>2</ResourceTypeId>
+    <Application_Id>1</Application_Id>
   </Resources>
   <Resources>
     <Id>12</Id>
     <Value>/user/save</Value>
     <Description>Route url to save an user</Description>
     <ResourceTypeId>3</ResourceTypeId>
+    <Application_Id>1</Application_Id>
   </Resources>
   <Resources>
     <Id>13</Id>
     <Value>/user/delete</Value>
     <Description>Route url to delete an user</Description>
     <ResourceTypeId>3</ResourceTypeId>
+    <Application_Id>1</Application_Id>
   </Resources>
   
   <Resources>
@@ -99,24 +112,28 @@
     <Value>/assign-roles</Value>
     <Description>Assign roles page</Description>
     <ResourceTypeId>2</ResourceTypeId>
+    <Application_Id>1</Application_Id>
   </Resources>
   <Resources>
     <Id>15</Id>
     <Value>/assign-roles/by-user</Value>
     <Description>Assign roles by user page</Description>
     <ResourceTypeId>2</ResourceTypeId>
+    <Application_Id>1</Application_Id>
   </Resources>
   <Resources>
     <Id>16</Id>
     <Value>/assign-roles/by-role</Value>
     <Description>Assign roles by role page</Description>
     <ResourceTypeId>2</ResourceTypeId>
+    <Application_Id>1</Application_Id>
   </Resources>
   <Resources>
     <Id>17</Id>
     <Value>/assign-roles/apply</Value>
     <Description>Route url to apply roles to users</Description>
     <ResourceTypeId>3</ResourceTypeId>
+    <Application_Id>1</Application_Id>
   </Resources>
 
   <Roles>
