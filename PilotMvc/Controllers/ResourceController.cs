@@ -9,6 +9,7 @@ using Pilot.Service.Interfaces;
 using Pilot.Util.Exceptions;
 using Pilot.Util.Mvc;
 using Microsoft.Practices.Unity;
+using Pilot.Entity.Domain;
 
 namespace PilotMvc.Controllers
 {
@@ -22,6 +23,12 @@ namespace PilotMvc.Controllers
         public ActionResult Search(Resource resourceFilter)
         {
             return new JsonResultView(ResourceService.GetByFilter(resourceFilter));
+        }
+
+        [Route("types"), HttpPost, HandleUIException("Something went wrong when tried to list some resources!")]
+        public ActionResult GetTypes()
+        {
+            return new JsonResultView(ResourceType.List);
         }
 
         [Route("save"), HttpPost, HandleUIException("Something went wrong when tried to save the resource!")]

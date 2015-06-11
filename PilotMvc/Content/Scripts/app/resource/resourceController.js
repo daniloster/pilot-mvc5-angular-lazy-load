@@ -1,10 +1,11 @@
 (function () {
     var Ctrl = null;
-    define(['app', 'components/common/loading/loadingController', 'app/resource/resourceService'], function (app, loadingCtrl) {
+    define(['app', 'components/common/loading/loadingController', 'app/resource/resourceService', 'app/shared/optionsService'], function (app, loadingCtrl) {
         if (Ctrl === null) {
-            Ctrl = ['$scope', '$rootScope', '$q', 'ResourceService', function ($scope, $rootScope, $q, resourceService) {
+            Ctrl = ['$scope', '$rootScope', '$q', 'ResourceService', 'OptionsService', function ($scope, $rootScope, $q, resourceService, optionsService) {
                 loadingCtrl.clear(false);
 
+                $scope.hasSearched = false;
                 $scope.pageSize = 4;
                 $scope.currentPage = 1;
 
@@ -13,10 +14,12 @@
                     resourceService.query($scope.filter, function (data) {
                         $scope.resources = data;
                         loadingCtrl.stopLoading();
+                        $scope.hasSearched = true;
                     }, function (data) {
                         $scope.resources = undefined;
                         $rootScope.updateErrorMessage(data.Message);
                         loadingCtrl.stopLoading();
+                        $scope.hasSearched = true;
                     });
                 };
 
@@ -70,6 +73,20 @@
 
                     });
                 };
+
+                optionsService.getAvailableApps(function (data) {
+                    $scope.availableApplications = data;
+                }, function (data) {
+                    $scope.availableApplications = [];
+                    $rootScope.updateErrorMessage(data.Message);
+                });
+
+                optionsService.getAllResourceTypes(function (data) {
+                    $scope.availableResourceTypes = data;
+                }, function (data) {
+                    $scope.availableResourceTypes = [];
+                    $rootScope.updateErrorMessage(data.Message);
+                });
 
                 $scope.search();
             }];

@@ -42,6 +42,15 @@ namespace Pilot.Entity
         [JsonIgnore]
         public virtual long AuthorizedSystemId { get; set; }
 
+        [NotMapped]
+        public virtual bool IsAdmin
+        {
+            get
+            {
+                return Roles != null && Roles.Any(r => r.Application.Id == AuthorizedSystemId && r.IsAdmin);
+            }
+        }
+
 
         [NotMapped]
         public IList<Resource> ActionResources

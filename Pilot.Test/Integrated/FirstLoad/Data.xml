@@ -203,13 +203,26 @@
     <Id>1</Id>
     <UserName>daniloster</UserName>
     <Email>daniloster@gmail.com</Email>
-    <Password>-112233</Password>
+    <Password>9DBFE12741E06DBACA4DDBA9537EBE45</Password>
     <Name>Danilo Castro</Name>
+    <IsFirstAccess>1</IsFirstAccess>
+  </Users>
+
+  <Users>
+    <Id>2</Id>
+    <UserName>carbonara</UserName>
+    <Email>carbonara@gmail.com</Email>
+    <Password>9BD275FB8802A78B14CC866EAA3C5</Password>
+    <Name>Pasta Carbona</Name>
     <IsFirstAccess>1</IsFirstAccess>
   </Users>
 
   <UserRoles>
     <User_Id>1</User_Id>
     <Role_Id>1</Role_Id>
+  </UserRoles>
+  <UserRoles>
+    <User_Id>2</User_Id>
+    <Role_Id>2</Role_Id>
   </UserRoles>
 </Scheme>

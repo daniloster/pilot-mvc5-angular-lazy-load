@@ -4,7 +4,7 @@
 <div class="container page-body" ng-controller="ApplicationController as appCtrl">
     <div class="col-xs-12">
         <h2>Applications <a href="javascript:;" modal-target="#registeringApp" modal-onload="setCurrent({})"><i class="fa fa-plus-circle"></i></a></h2>
-        <form name="appFilterForm" class="col-xs-12  no-wpadding form-fieldset-dialog blue" ng-show="!!appsOut && !!appsOut.length">
+        <form name="appFilterForm" class="col-xs-12  no-wpadding form-fieldset-dialog blue">
             <fieldset>
                 <legend>Filters</legend>
                 <div class="col-xs-12">
@@ -37,13 +37,13 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <td>Name</td>
+                    <th>Name</th>
                     <th>Description</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="item in appsOut" ng-cloak>
+                <tr ng-repeat="item in appsOut track by item.Id" ng-cloak>
                     <td><strong>{{ item.Id }}</strong></td>
                     <td>
                         <p>{{ item.Name }}</p>
@@ -71,6 +71,13 @@
                 </tr>
             </tfoot>
         </table>
+        <div ng-show="hasSearched && !apps.length">
+            <div class="alert alert-info">
+                <div class="message-center">
+                    <strong><i class="fa fa-check"></i>&nbsp;Ops!&nbsp;</strong>We could not find applications for you.</i>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div modal-dialog id="registeringApp" confirm-yes="save()" confirm-no="clearCurrent()">

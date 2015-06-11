@@ -5,6 +5,7 @@
             Ctrl = ['$scope', '$rootScope', '$q', 'ApplicationService', function ($scope, $rootScope, $q, applicationService) {
                 loadingCtrl.clear(false);
 
+                $scope.hasSearched = false;
                 $scope.pageSize = 4;
                 $scope.currentPage = 1;
 
@@ -13,10 +14,12 @@
                     applicationService.query($scope.filter, function (data) {
                         $scope.apps = data;
                         loadingCtrl.stopLoading();
+                        $scope.hasSearched = true;
                     }, function (data) {
                         $scope.apps = undefined;
                         $rootScope.updateErrorMessage(data.Message);
                         loadingCtrl.stopLoading();
+                        $scope.hasSearched = true;
                     });
                 };
 

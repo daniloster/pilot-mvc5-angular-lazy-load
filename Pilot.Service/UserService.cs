@@ -95,7 +95,7 @@ namespace Pilot.Service.Security
             base.Save(user);
         }
 
-        public User Authorize(long idSystem, string userName, string password)
+        public User Authorize(long idApplication, string userName, string password)
         {
             User user = new User() { UserName = userName };
             user.UpdatePassword(password);
@@ -104,12 +104,12 @@ namespace Pilot.Service.Security
                 .Include(u => u.Roles.Select(p => p.Application))
                 .Include(u => u.Roles.Select(p => p.Resources.Select(o => o.Application)))
                 .Where(u => u.UserName == user.UserName && u.Password == user.Password
-                    && u.Roles.Any(r => r.Application.Id == idSystem)
+                    && u.Roles.Any(r => r.Application.Id == idApplication)
                 ).FirstOrDefault();
 
             user.Assert<User>("User name or password is wrong!", u => u != null);
 
-            user.AuthorizedSystemId = idSystem;
+            user.AuthorizedSystemId = idApplication;
 
             if (user.IsFirstAccess)
             {

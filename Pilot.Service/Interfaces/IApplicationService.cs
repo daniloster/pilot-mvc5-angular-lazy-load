@@ -14,5 +14,7 @@ namespace Pilot.Service.Interfaces
         int GetTotal();
 
         IList<Application> GetByFilter(Application system);
+
+        IList<Application> GetAvailableAppsByUser(User AuthorizedUser);
     }
 }

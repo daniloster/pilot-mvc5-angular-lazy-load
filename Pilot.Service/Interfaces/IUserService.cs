@@ -22,7 +22,7 @@ namespace Pilot.Service.Interfaces
         [Transactional]
         void UpdatePassword(long id, string password);
 
-        User Authorize(long idSystem, string userName, string password);
+        User Authorize(long idApplication, string userName, string password);
 
         int GetTotal();
 

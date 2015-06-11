@@ -219,6 +219,7 @@
     <Content Include="Content\Scripts\app\application\applicationService.js" />
     <Content Include="Content\Scripts\app\resource\resourceController.js" />
     <Content Include="Content\Scripts\app\resource\resourceService.js" />
+    <Content Include="Content\Scripts\app\shared\optionsService.js" />
     <Content Include="Content\Scripts\app\_backup\contact\contactController.js" />
     <Content Include="Content\Scripts\app\_backup\contact\contactService.js" />
     <Content Include="Content\Scripts\app\_backup\home\homeService.js" />

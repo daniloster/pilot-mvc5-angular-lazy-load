@@ -26,22 +26,22 @@ namespace PilotMvc.Controllers
             return System.Web.HttpContext.Current.Server.MapPath(relativePath);
         }
 
-        public Object AuthorizedUser
+        public Pilot.Entity.User AuthorizedUser
         {
             get
             {
-                Object user = null;
+                Pilot.Entity.User user = null;
                 HttpCookie authCookie = System.Web.HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
 
                 if (System.Web.HttpContext.Current.Session["_AuthorizedUser"] != null)
                 {
-                    user = System.Web.HttpContext.Current.Session["_AuthorizedUser"] as Object;
+                    user = System.Web.HttpContext.Current.Session["_AuthorizedUser"] as Pilot.Entity.User;
                 }
                 else if (authCookie != null)
                 {
                     FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
 
-                    user = new JavaScriptSerializer().Deserialize<Object>(authTicket.UserData);
+                    user = new JavaScriptSerializer().Deserialize<Pilot.Entity.User>(authTicket.UserData);
                 }
                 else
                 {
@@ -52,7 +52,7 @@ namespace PilotMvc.Controllers
             }
         }
 
-        public void UpdateUserSession(Object user, bool? rememberMe)
+        public void UpdateUserSession(Pilot.Entity.User user, bool? rememberMe)
         {
             if (user == null)
             {
@@ -92,7 +92,7 @@ namespace PilotMvc.Controllers
             }
         }
 
-        private void SetAuthCookieAndSession(Object userLoggedIn, bool? rememberMe)
+        private void SetAuthCookieAndSession(Pilot.Entity.User userLoggedIn, bool? rememberMe)
         {
             System.Web.HttpContext.Current.Session["_AuthorizedUser"] = userLoggedIn;
 

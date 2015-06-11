@@ -4,21 +4,37 @@
 <div class="container page-body" ng-controller="ResourceController">
     <div class="col-xs-12">
         <h2>Resources <a href="javascript:;" modal-target="#registeringResource" modal-onload="setCurrent({})"><i class="fa fa-plus-circle"></i></a></h2>
-        <form name="resourceFilterForm" class="col-xs-12  no-wpadding form-fieldset-dialog blue" ng-show="!!resourcesOut && !!resourcesOut.length">
+        <form name="resourceFilterForm" class="col-xs-12  no-wpadding form-fieldset-dialog blue">
             <fieldset>
                 <legend>Filters</legend>
                 <div class="col-xs-12">
                     <div class="col-xs-12 col-md-6">
                         <div class="form-group">
-                            <label class="control-label" for="password">Name</label>
-                            <input type="text" class="form-control" id="Name" name="Name" placeholder="Pop the resource's name here" ng-model="filter.Name" />
+                            <label>Application:</label>
+                            <select ng-model="filter.Application" ng-options="app.Name for app in availableApplications" class="form-control">
+                                <option value="">-- Choose an application --</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form-group">
+                            <label class="control-label" for="filterResourceType">Resource type:</label>
+                            <select id="filterResourceType" name="filterResourceType" ng-model="filter.ResourceTypeId" ng-options="type.Id as type.Description for type in availableResourceTypes" class="form-control">
+                                <option value="">-- Choose a resource type --</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form-group">
+                            <label class="control-label" for="filterName">Name</label>
+                            <input type="text" class="form-control" id="filterName" name="filterName" placeholder="Pop the resource's name here" ng-model="filter.Name" />
                         </div>
                     </div>
 
                     <div class="col-xs-12 col-md-6">
                         <div class="form-group">
-                            <label class="control-label" for="password">Description</label>
-                            <input type="text" class="form-control" id="Description" name="Description" placeholder="Pop the resource's description here" ng-model="filter.Description" />
+                            <label class="control-label" for="filterDescription">Description</label>
+                            <input type="text" class="form-control" id="filterDescription" name="filterDescription" placeholder="Pop the resource's description here" ng-model="filter.Description" />
                         </div>
                     </div>
 
@@ -37,13 +53,13 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <td>Value</td>
+                    <th>Value</th>
                     <th>Description</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="item in resourcesOut" ng-cloak>
+                <tr ng-repeat="item in resourcesOut track by item.Id" ng-cloak>
                     <td><strong>{{ item.Id }}</strong></td>
                     <td>
                         <p>{{ item.Value }}</p>
@@ -71,6 +87,13 @@
                 </tr>
             </tfoot>
         </table>
+        <div ng-show="hasSearched && !resources.length">
+            <div class="alert alert-info">
+                <div class="message-center">
+                    <strong><i class="fa fa-check"></i>&nbsp;Ops!&nbsp;</strong>We could not find resources for you.</i>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div modal-dialog id="registeringResource" confirm-yes="save()" confirm-no="clearCurrent()">

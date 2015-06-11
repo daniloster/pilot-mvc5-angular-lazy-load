@@ -9,6 +9,7 @@ using Pilot.Util.Exceptions;
 using Pilot.Util.Mvc;
 using Pilot.Service.Interfaces;
 using Microsoft.Practices.Unity;
+using System.Web.Http.Cors;
 
 namespace PilotMvc.Controllers
 {
@@ -29,26 +30,17 @@ namespace PilotMvc.Controllers
         [Route("login"), HttpPost, HandleUIException("Something went wrong when tried to login!")]
         public ActionResult Login(string userName, string password, bool rememberMe)
         {
-            object user = null;
-            if ("dan".Equals(userName)) {
-                if (!"123".Equals(password)) {
-                    throw new ValidationException("Wrong password!");
-                }
-                user = new {
-                    Id = 1,
-                    Name = "Danilo Castro",
-                    Email = "danilo@mail.com",
-                    ViewResources = new object[] { new { Value = "/" }, new { Value = "/application" } }
-                };
-            }
-            else 
-            {
-                throw new ValidationException("There is no user with this user name!");
-            }
+            UpdateUserSession(UserService.Authorize(1, userName, password), rememberMe);
+            return new JsonResultView(AuthorizedUser);
+        }
 
-            UpdateUserSession(user, rememberMe);
 
-            return new JsonResultView(user);
+        [Route("authorize"), HttpPost, HandleUIException("Something went wrong when tried to authorize!")]
+        [EnableCors("*", "*", "*")]
+        public ActionResult Authorize(long idApplication, string userName, string password, bool rememberMe)
+        {
+            UpdateUserSession(UserService.Authorize(idApplication, userName, password), rememberMe);
+            return new JsonResultView(AuthorizedUser);
         }
 
         [Route("current"), HttpPost, HandleUIException("Something went wrong when tried to refresh the user data!")]

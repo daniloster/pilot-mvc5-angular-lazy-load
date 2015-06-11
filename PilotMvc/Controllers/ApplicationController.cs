@@ -24,6 +24,12 @@ namespace PilotMvc.Controllers
             return new JsonResultView(ApplicationService.GetByFilter(applicationFilter));
         }
 
+        [Route("available-by-user"), HttpPost, HandleUIException("Something went wrong when tried to list some applications!")]
+        public ActionResult GetAvailableAppsByUser()
+        {
+            return new JsonResultView(ApplicationService.GetAvailableAppsByUser(AuthorizedUser));
+        }
+
         [Route("save"), HttpPost, HandleUIException("Something went wrong when tried to save the application!")]
         public ActionResult Save(Application application)
         {

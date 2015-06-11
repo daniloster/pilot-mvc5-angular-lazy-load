@@ -60,9 +60,10 @@ namespace Pilot.Service
 
         public IList<Resource> GetByFilter(Resource filter)
         {
+            filter.Application = filter.Application == null ? new Application() : filter.Application;
             return Db.DbContext.Resources
-                .Where(o => filter.Application == null || filter.Application.Id == 0 || o.Application.Id == filter.Application.Id)
-                .Where(o => filter.ResourceTypeId == 0 || o.ResourceTypeId == filter.ResourceTypeId)
+                .Where(o => filter.Application.Id == 0 || o.Application.Id == filter.Application.Id)
+                .Where(o => o.ResourceTypeId == filter.ResourceTypeId || filter.ResourceTypeId == 0)
                 .Where(o => filter.Value == null || filter.Value == string.Empty ||
                     o.Value.ToLower().Contains(filter.Value.ToLower())
                     || o.Value.ToLower().StartsWith(filter.Value.ToLower())

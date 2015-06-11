@@ -88,6 +88,21 @@ namespace Pilot.Service
                 .ToList();
         }
 
+        public IList<Application> GetAvailableAppsByUser(User AuthorizedUser)
+        {
+            if (AuthorizedUser.Roles.Any(r => r.Application.Id == 1 && r.IsAdmin))
+            {
+                return Db.DbContext.Applications.ToList();
+            }
+            else
+            {
+                IList<long> idApplications = AuthorizedUser.Roles.Where(r => r.IsAdmin).Select(r => r.Application.Id).ToList();
+                return Db.DbContext.Applications
+                    .Where(a => idApplications.Any(id => a.Id == id))
+                    .ToList();
+            }
+        }
+
         public void Dispose() 
         {
             this.ResourceService.Dispose();
