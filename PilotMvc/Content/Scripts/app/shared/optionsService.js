@@ -10,6 +10,9 @@
                     },
                     getAllResourceTypes: function (success, error) {
                         $http.post('/resource/types').success(success).error(error);
+                    },
+                    getAvailableRoles: function (success, error) {
+                        $http.post('/role/available-by-user').success(success).error(error);
                     }
                 };
                 

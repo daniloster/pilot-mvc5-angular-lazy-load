@@ -22,7 +22,7 @@ namespace Pilot.Service.Interfaces
 
         IList<Resource> GetAssignedResources(Role role);
 
-        IList<Resource> GetByFilter(Resource filter);
+        IList<Resource> GetByFilter(Resource filter, User authorizedUser, long localSystemId);
 
         int GetTotal();
     }

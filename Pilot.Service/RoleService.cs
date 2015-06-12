@@ -100,24 +100,30 @@ namespace Pilot.Service
             return Db.DbContext.Roles.Include(p => p.Application).Where(p => p.Id == id).FirstOrDefault();
         }
 
-        public IList<Role> GetRolesAvailable(User user, long idSystem)
+        public IList<Role> GetRolesAvailable(User user, long localSystemId)
         {
-            long[] idsSelected = user.Roles.Select(p => p.Id).ToArray();
+            IList<long> idRoles = user.Roles.Select(r => r.Id).ToList();
+            IList<long> idApplications = user.Roles.Where(r => r.IsAdmin).Select(r => r.Application.Id).ToList();
+            bool motherFuckerAdmin = user.Roles.Any(r => r.IsAdmin && r.Application.Id == localSystemId);
 
             return Db.DbContext.Roles
-                .Where(p => p.Application.Id == idSystem)
-                .Where(p => !idsSelected.Any(paId => paId == p.Id))
-                .OrderBy(p => p.Name)
+                .Include(r => r.Application)
+                .Where(r => motherFuckerAdmin || idApplications.Any(idApp => idApp == r.Application.Id))
+                .Where(r => !idRoles.Any(idRole => idRole == r.Id))
+                .OrderBy(r => r.Name)
                 .ToList();
         }
 
-        public IList<Role> GetAssignedRoles(User user, long idSystem)
+        public IList<Role> GetAssignedRoles(User user, long localSystemId)
         {
+            IList<long> idRoles = user.Roles.Select(r => r.Id).ToList();
+
             return Db.DbContext.Users
                 .Include(u => u.Roles)
+                .Include(u => u.Roles.Select(r => r.Application))
                 .Where(u => u.Id == user.Id)
                 .Select(u => u.Roles
-                                .Where(p => p.Application.Id == idSystem)
+                                .Where(p => idRoles.Any(idRole => idRole == p.Id))
                                 .OrderBy(p => p.Name).ToList())
                 .FirstOrDefault();
         }
@@ -133,6 +139,25 @@ namespace Pilot.Service
                 .Where(u => u.Id == idUser)
                 .Select(u => u.Roles)
                 .FirstOrDefault();
+        }
+
+        public IList<Role> GetByFilter(Role filter, User authorizedUser, long localSystemId)
+        {
+            filter.Application = filter.Application == null ? new Application() : filter.Application;
+            IList<long> idApplications = authorizedUser.Roles.Where(r => r.IsAdmin).Select(r => r.Application.Id).ToList();
+            bool motherFuckerAdmin = authorizedUser.Roles.Any(r => r.IsAdmin && r.Application.Id == localSystemId);
+            return Db.DbContext.Roles
+                .Include(r => r.Application)
+                .Where(o => (filter.Application.Id == 0 || o.Application.Id == filter.Application.Id) && (motherFuckerAdmin || idApplications.Any(idApp => idApp == o.Application.Id)))
+                .Where(o => filter.Name == null || filter.Name == string.Empty ||
+                    o.Name.ToLower().Contains(filter.Name.ToLower())
+                    || o.Name.ToLower().StartsWith(filter.Name.ToLower())
+                    || o.Name.ToLower().EndsWith(filter.Name.ToLower()))
+                .Where(o => filter.Description == null || filter.Description == string.Empty ||
+                    o.Description.ToLower().Contains(filter.Description.ToLower())
+                    || o.Description.ToLower().StartsWith(filter.Description.ToLower())
+                    || o.Description.ToLower().EndsWith(filter.Description.ToLower()))
+                .ToList();
         }
     }
 }

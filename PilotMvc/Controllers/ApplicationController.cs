@@ -9,6 +9,7 @@ using Pilot.Service.Interfaces;
 using Pilot.Util.Exceptions;
 using Pilot.Util.Mvc;
 using Microsoft.Practices.Unity;
+using Pilot.Util.Data;
 
 namespace PilotMvc.Controllers
 {
@@ -19,15 +20,15 @@ namespace PilotMvc.Controllers
         public IApplicationService ApplicationService { get; set; }    
 
         [Route("search"), HttpPost, HandleUIException("Something went wrong when tried to list some applications!")]
-        public ActionResult Search(Application applicationFilter)
+        public ActionResult Search(Application filter)
         {
-            return new JsonResultView(ApplicationService.GetByFilter(applicationFilter));
+            return new JsonResultView(ApplicationService.GetByFilter(filter, AuthorizedUser, ApplicationSettings.Instance.LocalSystemId));
         }
 
         [Route("available-by-user"), HttpPost, HandleUIException("Something went wrong when tried to list some applications!")]
         public ActionResult GetAvailableAppsByUser()
         {
-            return new JsonResultView(ApplicationService.GetAvailableAppsByUser(AuthorizedUser));
+            return new JsonResultView(ApplicationService.GetAvailableAppsByUser(AuthorizedUser, ApplicationSettings.Instance.LocalSystemId));
         }
 
         [Route("save"), HttpPost, HandleUIException("Something went wrong when tried to save the application!")]

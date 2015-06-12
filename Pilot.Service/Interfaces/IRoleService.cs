@@ -26,12 +26,14 @@ namespace Pilot.Service.Interfaces
 
         Role GetRoleWithSystem(long id);
 
-        IList<Role> GetAssignedRoles(User user, long idSystem);
+        IList<Role> GetAssignedRoles(User user, long localSystemId);
 
-        IList<Role> GetRolesAvailable(User user, long idSystem);
+        IList<Role> GetRolesAvailable(User user, long localSystemId);
 
         int GetTotal();
 
         IList<Role> GetUserRoles(long idUser);
+
+        IList<Role> GetByFilter(Role filter, User authorizedUser, long localSystemId);
     }
 }

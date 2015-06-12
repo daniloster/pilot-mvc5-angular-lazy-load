@@ -64,6 +64,18 @@
                             title: 'Pilot | Managing Resources'
                         })
                     })
+                    .when("/role", {
+                        templateUrl: '/Content/Partials/role.html',
+                        resolve: resolve({
+                            dependencies: ['auth/authorizationController',
+                                'components/app/navMenu/menu',
+                                'components/common/modal/dialog',
+                                'components/common/pagination/pagination',
+                                'app/role/roleController'],
+                            isPublic: true,
+                            title: 'Pilot | Managing Roles'
+                        })
+                    })
 
                     .otherwise({
                         redirectTo: '/404'

@@ -58,9 +58,12 @@ namespace Pilot.Entity
             get
             {
                 List<Resource> resources = new List<Resource>();
-                foreach (Role role in Roles)
+                if (Roles != null)
                 {
-                    resources.AddRange(role.Resources.Where(r => r.Application.Id == AuthorizedSystemId && r.ResourceTypeId == ResourceType.Feature.Id).ToList());
+                    foreach (Role role in Roles)
+                    {
+                        resources.AddRange(role.Resources.Where(r => r.Application.Id == AuthorizedSystemId && r.ResourceTypeId == ResourceType.Feature.Id).ToList());
+                    }
                 }
                 return resources;
             }
@@ -72,9 +75,12 @@ namespace Pilot.Entity
             get
             {
                 List<Resource> resources = new List<Resource>();
-                foreach (Role role in Roles)
+                if (Roles != null)
                 {
-                    resources.AddRange(role.Resources.Where(r => r.Application.Id == AuthorizedSystemId && r.ResourceTypeId == ResourceType.View.Id).ToList());
+                    foreach (Role role in Roles)
+                    {
+                        resources.AddRange(role.Resources.Where(r => r.Application.Id == AuthorizedSystemId && r.ResourceTypeId == ResourceType.View.Id).ToList());
+                    }
                 }
                 return resources;
             }
@@ -88,9 +94,12 @@ namespace Pilot.Entity
             get
             {
                 List<Resource> resources = new List<Resource>();
-                foreach (Role role in Roles)
+                if (Roles != null)
                 {
-                    resources.AddRange(role.Resources.Where(r => r.Application.Id == AuthorizedSystemId && r.ResourceTypeId == ResourceType.RouteUrl.Id).ToList());
+                    foreach (Role role in Roles)
+                    {
+                        resources.AddRange(role.Resources.Where(r => r.Application.Id == AuthorizedSystemId && r.ResourceTypeId == ResourceType.RouteUrl.Id).ToList());
+                    }
                 }
                 return resources;
             }

@@ -74,7 +74,7 @@ namespace Pilot.Service
             return Db.DbContext.Applications.Count();
         }
 
-        public IList<Application> GetByFilter(Application application)
+        public IList<Application> GetByFilter(Application application, User authorizedUser, long localSystemId)
         {
             return Db.DbContext.Applications
                 .Where(ws => application.Name == null || application.Name == string.Empty
@@ -88,15 +88,15 @@ namespace Pilot.Service
                 .ToList();
         }
 
-        public IList<Application> GetAvailableAppsByUser(User AuthorizedUser)
+        public IList<Application> GetAvailableAppsByUser(User authorizedUser, long localSystemId)
         {
-            if (AuthorizedUser.Roles.Any(r => r.Application.Id == 1 && r.IsAdmin))
+            if (authorizedUser.Roles.Any(r => r.Application.Id == localSystemId && r.IsAdmin))
             {
                 return Db.DbContext.Applications.ToList();
             }
             else
             {
-                IList<long> idApplications = AuthorizedUser.Roles.Where(r => r.IsAdmin).Select(r => r.Application.Id).ToList();
+                IList<long> idApplications = authorizedUser.Roles.Where(r => r.IsAdmin).Select(r => r.Application.Id).ToList();
                 return Db.DbContext.Applications
                     .Where(a => idApplications.Any(id => a.Id == id))
                     .ToList();

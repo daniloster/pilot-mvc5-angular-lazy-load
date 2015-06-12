@@ -212,6 +212,7 @@
     <Content Include="Content\Images\sk-favicon.ico" />
     <Content Include="Content\Partials\access\page-template.html" />
     <Content Include="Content\Partials\application.html" />
+    <Content Include="Content\Partials\role.html" />
     <Content Include="Content\Partials\resource.html" />
     <Content Include="Content\Partials\dashboard.html" />
     <Content Include="Content\Scripts\app.js" />
@@ -219,6 +220,8 @@
     <Content Include="Content\Scripts\app\application\applicationService.js" />
     <Content Include="Content\Scripts\app\resource\resourceController.js" />
     <Content Include="Content\Scripts\app\resource\resourceService.js" />
+    <Content Include="Content\Scripts\app\role\roleController.js" />
+    <Content Include="Content\Scripts\app\role\roleService.js" />
     <Content Include="Content\Scripts\app\shared\optionsService.js" />
     <Content Include="Content\Scripts\app\_backup\contact\contactController.js" />
     <Content Include="Content\Scripts\app\_backup\contact\contactService.js" />
@@ -1097,6 +1100,7 @@
     <Compile Include="Config\Unity\UnityWebApiActivator.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\ResourceController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
@@ -1135,7 +1139,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="App_Start\" />
-    <Folder Include="Content\Scripts\app\role\" />
     <Folder Include="Content\Scripts\app\user\" />
     <Folder Include="Models\" />
   </ItemGroup>

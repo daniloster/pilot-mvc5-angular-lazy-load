@@ -58,11 +58,14 @@ namespace Pilot.Service
             return Db.DbContext.Resources.Where(o => o.Application.Id == idApplication).ToList();
         }
 
-        public IList<Resource> GetByFilter(Resource filter)
+        public IList<Resource> GetByFilter(Resource filter, User authorizedUser, long localSystemId)
         {
             filter.Application = filter.Application == null ? new Application() : filter.Application;
+            IList<long> idApplications = authorizedUser.Roles.Where(r => r.IsAdmin).Select(r => r.Application.Id).ToList();
+            bool motherFuckerAdmin = authorizedUser.Roles.Any(r => r.IsAdmin && r.Application.Id == localSystemId);
             return Db.DbContext.Resources
-                .Where(o => filter.Application.Id == 0 || o.Application.Id == filter.Application.Id)
+                .Include(o => o.Application)
+                .Where(o => (filter.Application.Id == 0 || o.Application.Id == filter.Application.Id) && (motherFuckerAdmin || idApplications.Any(idApp => idApp == o.Application.Id)))
                 .Where(o => o.ResourceTypeId == filter.ResourceTypeId || filter.ResourceTypeId == 0)
                 .Where(o => filter.Value == null || filter.Value == string.Empty ||
                     o.Value.ToLower().Contains(filter.Value.ToLower())

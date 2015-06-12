@@ -1,9 +1,9 @@
 ﻿<div loading></div>
 <div menu></div>
 <div status-message></div>
-<div class="container page-body" ng-controller="ResourceController">
+<div class="container page-body" ng-controller="RoleController">
     <div class="col-xs-12">
-        <h2>Resources <a href="javascript:;" modal-target="#registeringResource" modal-onload="setCurrent({})"><i class="fa fa-plus-circle"></i></a></h2>
+        <h2>Resources <a href="javascript:;" modal-target="#registeringRole" modal-onload="setCurrent({})"><i class="fa fa-plus-circle"></i></a></h2>
         <form name="resourceFilterForm" class="col-xs-12  no-wpadding form-fieldset-dialog blue">
             <fieldset>
                 <legend>Filters</legend>
@@ -18,16 +18,8 @@
                     </div>
                     <div class="col-xs-12 col-md-6">
                         <div class="form-group">
-                            <label class="control-label" for="filterResourceType">Resource type:</label>
-                            <select id="filterResourceType" name="filterResourceType" ng-model="filter.ResourceTypeId" ng-options="type.Id as type.Description for type in availableResourceTypes" class="form-control">
-                                <option value="">-- Choose a resource type --</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-md-6">
-                        <div class="form-group">
-                            <label class="control-label" for="filterValue">Value</label>
-                            <input type="text" class="form-control" id="filterValue" name="filterValue" placeholder="Pop the resource's value here" ng-model="filter.Value" />
+                            <label class="control-label" for="filterName">Name</label>
+                            <input type="text" class="form-control" id="filterName" name="filterName" placeholder="Pop the resource's name here" ng-model="filter.Name" />
                         </div>
                     </div>
 
@@ -49,35 +41,35 @@
     </div>
     <div class="col-xs-12">
         <h3>List of resources <i class="fa fa-archive"></i></h3>
-        <table class="table table-striped" ng-show="!!resourcesOut && !!resourcesOut.length">
+        <table class="table table-striped" ng-show="!!roles && !!roles.length">
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Value</th>
-                    <th>Description</th>
+                    <th>Name</th>
+                    <th>Application</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="item in resourcesOut track by item.Id" ng-cloak>
+                <tr ng-repeat="item in rolesOut track by item.Id" ng-cloak>
                     <td><strong>{{ item.Id }}</strong></td>
                     <td>
-                        <p>{{ item.Value }}</p>
+                        <p>{{ item.Name }}</p>
                     </td>
                     <td>
-                        <p>{{ item.Description }}</p>
+                        <p>{{ item.Application.Name }}</p>
                     </td>
                     <td class="table-options">
-                        <a href="javascript:;" modal-target="#registeringResource" modal-onload="setCurrent(item)"><i class="fa fa-pencil fa"></i></a>
-                        <a href="javascript:;" modal-target="#deletingResource" modal-onload="setDeletingItem(item)"><i class="fa fa-times fa"></i></a>
+                        <a href="javascript:;" modal-target="#registeringRole" modal-onload="setCurrent(item)"><i class="fa fa-pencil fa"></i></a>
+                        <a href="javascript:;" modal-target="#deletingRole" modal-onload="setDeletingItem(item)"><i class="fa fa-times fa"></i></a>
                     </td>
                 </tr>
             </tbody>
             <tfoot>
                 <tr>
                     <td colspan="4">
-                        <pagination in-list="resources"
-                            out-list="resourcesOut"
+                        <pagination in-list="roles"
+                            out-list="rolesOut"
                             page-size="pageSize"
                             current-page="currentPage"
                             search-query="textFilter"
@@ -87,7 +79,7 @@
                 </tr>
             </tfoot>
         </table>
-        <div ng-show="hasSearched && !resources.length">
+        <div ng-show="hasSearched && !roles.length">
             <div class="alert alert-info">
                 <div class="message-center">
                     <strong><i class="fa fa-check"></i>&nbsp;Ops!&nbsp;</strong>We could not find resources for you.</i>
@@ -96,7 +88,7 @@
         </div>
     </div>
 
-    <div modal-dialog id="registeringResource" confirm-yes="save()" confirm-no="clearCurrent()">
+    <div modal-dialog id="registeringRole" confirm-yes="save()" confirm-no="clearCurrent()">
         <div class="header">
             <h2 ng-cloak>{{ current.Id > 0 ? "Update a resource" : "Create a resource" }}</h2>
         </div>
@@ -109,14 +101,8 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label>Resource type:</label>
-                    <select ng-model="current.ResourceTypeId" required ng-options="type.Id as type.Description for type in availableResourceTypes" class="form-control">
-                        <option value="">-- Choose a resource type --</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Value:</label>
-                    <input type="text" ng-model="current.Value" required class="form-control" />
+                    <label>Name:</label>
+                    <input type="text" ng-model="current.Name" required class="form-control" />
                 </div>
                 <div class="form-group">
                     <label>Description:</label>
@@ -130,7 +116,7 @@
         </div>
     </div>
 
-    <div modal-dialog id="deletingResource" confirm-yes="delete()" confirm-no="clearDeletingItem()">
+    <div modal-dialog id="deletingRole" confirm-yes="delete()" confirm-no="clearDeletingItem()">
         <div class="header">
             <h2 ng-cloak>Delete a resource</h2>
         </div>

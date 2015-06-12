@@ -1,8 +1,8 @@
 (function () {
     var Ctrl = null;
-    define(['app', 'components/common/loading/loadingController', 'app/resource/resourceService', 'app/shared/optionsService'], function (app, loadingCtrl) {
+    define(['app', 'components/common/loading/loadingController', 'app/role/roleService', 'app/shared/optionsService'], function (app, loadingCtrl) {
         if (Ctrl === null) {
-            Ctrl = ['$scope', '$rootScope', '$q', 'ResourceService', 'OptionsService', function ($scope, $rootScope, $q, resourceService, optionsService) {
+            Ctrl = ['$scope', '$rootScope', '$q', 'RoleService', 'OptionsService', function ($scope, $rootScope, $q, roleService, optionsService) {
                 loadingCtrl.clear(false);
 
                 $scope.hasSearched = false;
@@ -11,12 +11,12 @@
 
                 $scope.search = function () {
                     loadingCtrl.startLoading();
-                    resourceService.query($scope.filter, function (data) {
-                        $scope.resources = data;
+                    roleService.query($scope.filter, function (data) {
+                        $scope.roles = data;
                         loadingCtrl.stopLoading();
                         $scope.hasSearched = true;
                     }, function (data) {
-                        $scope.resources = undefined;
+                        $scope.roles = undefined;
                         $rootScope.updateErrorMessage(data.Message);
                         loadingCtrl.stopLoading();
                         $scope.hasSearched = true;
@@ -50,7 +50,7 @@
                     var task = $q.defer();
                     loadingCtrl.startLoading();
                     var isUpdating = !!$scope.current && $scope.current.Id > 0;
-                    resourceService.save($scope.current, function (data) {
+                    roleService.save($scope.current, function (data) {
                         $rootScope.updateSuccessMessage(data.Message);
                         loadingCtrl.stopLoading();
                         task.resolve();
@@ -67,7 +67,7 @@
                 $scope['delete'] = function () {
                     var task = $q.defer();
                     loadingCtrl.startLoading();
-                    resourceService.delete({ Id: $scope.deletingItem.Id }, function (data) {
+                    roleService.delete({ Id: $scope.deletingItem.Id }, function (data) {
                         $rootScope.updateSuccessMessage(data.Message);
                         loadingCtrl.stopLoading();
                         task.resolve();
@@ -87,16 +87,9 @@
                     $rootScope.updateErrorMessage(data.Message);
                 });
 
-                optionsService.getAllResourceTypes(function (data) {
-                    $scope.availableResourceTypes = data;
-                }, function (data) {
-                    $scope.availableResourceTypes = [];
-                    $rootScope.updateErrorMessage(data.Message);
-                });
-
                 $scope.search();
             }];
-            app.lazy.controller('ResourceController', Ctrl);
+            app.lazy.controller('RoleController', Ctrl);
         }
     });
 })();

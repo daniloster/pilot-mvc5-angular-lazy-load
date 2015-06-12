@@ -13,8 +13,8 @@ namespace Pilot.Service.Interfaces
     {
         int GetTotal();
 
-        IList<Application> GetByFilter(Application system);
+        IList<Application> GetByFilter(Application system, User authorizedUser, long localSystemId);
 
-        IList<Application> GetAvailableAppsByUser(User AuthorizedUser);
+        IList<Application> GetAvailableAppsByUser(User authorizedUser, long localSystemId);
     }
 }
