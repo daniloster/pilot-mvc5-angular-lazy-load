@@ -10,6 +10,7 @@ using Pilot.Util.Mvc;
 using Pilot.Service.Interfaces;
 using Microsoft.Practices.Unity;
 using System.Web.Http.Cors;
+using Pilot.Util.Data;
 
 namespace PilotMvc.Controllers
 {
@@ -53,5 +54,11 @@ namespace PilotMvc.Controllers
 
             return new JsonResultView(AuthorizedUser);
         }
+
+        [Route("search"), HttpPost, HandleUIException("Something went wrong when tried to refresh the user data!")]
+        public ActionResult Search(User filter)
+        {
+            return new JsonResultView(UserService.GetByFilter(filter, AuthorizedUser, ApplicationSettings.Instance.LocalSystemId));
+        }        
 	}
 }

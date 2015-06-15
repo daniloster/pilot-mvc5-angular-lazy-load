@@ -172,5 +172,10 @@ namespace Pilot.Service.Security
 
             return hasAccess;
         }
+
+        public IList<User> GetByFilter(User filter)
+        {
+
+        }
     }
 }

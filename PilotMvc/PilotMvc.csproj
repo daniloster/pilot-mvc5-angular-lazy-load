@@ -210,14 +210,17 @@
     <Content Include="Content\Images\sk-apple-touch-icon.png" />
     <Content Include="Content\Images\bp-apple-touch-icon-precomposed.png" />
     <Content Include="Content\Images\sk-favicon.ico" />
-    <Content Include="Content\Partials\access\page-template.html" />
-    <Content Include="Content\Partials\application.html" />
-    <Content Include="Content\Partials\role.html" />
-    <Content Include="Content\Partials\resource.html" />
-    <Content Include="Content\Partials\dashboard.html" />
-    <Content Include="Content\Scripts\app.js" />
+    <Content Include="Content\Scripts\app\application\application.html" />
     <Content Include="Content\Scripts\app\application\applicationController.js" />
     <Content Include="Content\Scripts\app\application\applicationService.js" />
+    <Content Include="Content\Scripts\app\shared\access\page-template.html" />
+    <Content Include="Content\Scripts\app\user\user.html" />
+    <Content Include="Content\Scripts\app\role\role.html" />
+    <Content Include="Content\Scripts\app\resource\resource.html" />
+    <Content Include="Content\Scripts\app\shared\dashboard.html" />
+    <Content Include="Content\Scripts\app.js" />
+    <Content Include="Content\Scripts\app\user\userController.js" />
+    <Content Include="Content\Scripts\app\user\userService.js" />
     <Content Include="Content\Scripts\app\resource\resourceController.js" />
     <Content Include="Content\Scripts\app\resource\resourceService.js" />
     <Content Include="Content\Scripts\app\role\roleController.js" />
@@ -1121,9 +1124,9 @@
     <Content Include="Content\Partials\_backup\home.html" />
     <Content Include="Content\Scripts\lib\jQuery\jquery-2.min.js" />
     <Content Include="Content\Partials\_backup\contact.html" />
-    <Content Include="Content\Partials\access\404.html" />
-    <Content Include="Content\Partials\access\not-authorized.html" />
-    <Content Include="Content\Partials\access\login.html" />
+    <Content Include="Content\Scripts\app\shared\access\404.html" />
+    <Content Include="Content\Scripts\app\shared\access\not-authorized.html" />
+    <Content Include="Content\Scripts\auth\login.html" />
     <Content Include="Content\Partials\_backup\examples.html" />
     <Content Include="Content\Scripts\lib\respond\Thumbs.db" />
     <Content Include="Config\TemplateDbConnections.config">
@@ -1139,7 +1142,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="App_Start\" />
-    <Folder Include="Content\Scripts\app\user\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

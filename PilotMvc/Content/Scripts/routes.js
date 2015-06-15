@@ -4,7 +4,7 @@
 
             $routeProvider
                     .when("/404", {
-                        templateUrl: '/Content/Partials/access/404.html',
+                        templateUrl: '/Content/Scripts/app/shared/access/404.html',
                         resolve: resolve({
                             dependencies: ['auth/authorizationController',
                                 'components/app/navMenu/menu'],
@@ -12,7 +12,7 @@
                         })
                     })
                     .when("/not-authorized", {
-                        templateUrl: '/Content/Partials/access/not-authorized.html',
+                        templateUrl: '/Content/Scripts/app/shared/access/not-authorized.html',
                         resolve: resolve({
                             dependencies: ['auth/authorizationController',
                                 'components/app/navMenu/menu'],
@@ -22,7 +22,7 @@
                     })
 
                     .when("/login", {
-                        templateUrl: '/Content/Partials/access/login.html',
+                        templateUrl: '/Content/Scripts/auth/login.html',
                         resolve: resolve({
                             dependencies: ['auth/authorizationController',
                                 'components/app/navMenu/menu'],
@@ -31,7 +31,7 @@
                         })
                     })
                     .when("/", {
-                        templateUrl: '/Content/Partials/dashboard.html',
+                        templateUrl: '/Content/Scripts/app/shared/dashboard.html',
                         resolve: resolve({
                             dependencies: ['auth/authorizationController',
                                 'components/app/navMenu/menu'],
@@ -41,7 +41,7 @@
                     })
 
                     .when("/application", {
-                        templateUrl: '/Content/Partials/application.html',
+                        templateUrl: '/Content/Scripts/app/application/application.html',
                         resolve: resolve({
                             dependencies: ['auth/authorizationController',
                                 'components/app/navMenu/menu',
@@ -53,7 +53,7 @@
                         })
                     })
                     .when("/resource", {
-                        templateUrl: '/Content/Partials/resource.html',
+                        templateUrl: '/Content/Scripts/app/resource/resource.html',
                         resolve: resolve({
                             dependencies: ['auth/authorizationController',
                                 'components/app/navMenu/menu',
@@ -65,7 +65,7 @@
                         })
                     })
                     .when("/role", {
-                        templateUrl: '/Content/Partials/role.html',
+                        templateUrl: '/Content/Scripts/app/role/role.html',
                         resolve: resolve({
                             dependencies: ['auth/authorizationController',
                                 'components/app/navMenu/menu',
