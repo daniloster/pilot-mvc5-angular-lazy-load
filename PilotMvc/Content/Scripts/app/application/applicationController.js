@@ -61,7 +61,7 @@
                 $scope['delete'] = function () {
                     var task = $q.defer();
                     loadingCtrl.startLoading();
-                    applicationService.delete({ Id: $scope.deletingItem.Id }, function (data) {
+                    applicationService.delete({ id: $scope.deletingItem.Id }, function (data) {
                         $rootScope.updateSuccessMessage(data.Message);
                         loadingCtrl.stopLoading();
                         task.resolve();

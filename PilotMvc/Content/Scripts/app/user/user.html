@@ -3,22 +3,22 @@
 <div status-message></div>
 <div class="container page-body" ng-controller="UserController">
     <div class="col-xs-12">
-        <h2>Applications <a href="javascript:;" modal-target="#registeringApp" modal-onload="setCurrent({})"><i class="fa fa-plus-circle"></i></a></h2>
-        <form name="appFilterForm" class="col-xs-12  no-wpadding form-fieldset-dialog blue">
+        <h2>Users <a href="javascript:;" modal-target="#registeringUser" modal-onload="setCurrent({})"><i class="fa fa-plus-circle"></i></a></h2>
+        <form name="userFilterForm" class="col-xs-12  no-wpadding form-fieldset-dialog blue">
             <fieldset>
                 <legend>Filters</legend>
                 <div class="col-xs-12">
                     <div class="col-xs-12 col-md-6">
                         <div class="form-group">
-                            <label class="control-label" for="password">Name</label>
-                            <input type="text" class="form-control" id="Name" name="Name" placeholder="Pop the application's name here" ng-model="filter.Name" />
+                            <label class="control-label" for="Name">Name</label>
+                            <input type="text" class="form-control" id="Name" name="Name" placeholder="Pop the user's name here" ng-model="filter.Name" />
                         </div>
                     </div>
 
                     <div class="col-xs-12 col-md-6">
                         <div class="form-group">
-                            <label class="control-label" for="password">Description</label>
-                            <input type="text" class="form-control" id="Description" name="Description" placeholder="Pop the application's description here" ng-model="filter.Description" />
+                            <label class="control-label" for="Email">Email</label>
+                            <input type="text" class="form-control" id="Email" name="Email" placeholder="Pop the user's email here" ng-model="filter.Email" />
                         </div>
                     </div>
 
@@ -32,36 +32,40 @@
         </form>
     </div>
     <div class="col-xs-12"      >
-        <h3>List of applications <i class="fa fa-cogs"></i></h3>
-        <table class="table table-striped" ng-show="!!appsOut && !!appsOut.length">
+        <h3>List of users <i class="fa fa-cogs"></i></h3>
+        <table class="table table-striped" ng-show="!!usersOut && !!usersOut.length">
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Name</th>
-                    <th>Description</th>
+                    <th>Full name</th>
+                    <th>Email</th>
+                    <th>User name</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="item in appsOut track by item.Id" ng-cloak>
+                <tr ng-repeat="item in usersOut track by item.Id" ng-cloak>
                     <td><strong>{{ item.Id }}</strong></td>
                     <td>
                         <p>{{ item.Name }}</p>
                     </td>
                     <td>
-                        <p>{{ item.Description }}</p>
+                        <p>{{ item.Email }}</p>
+                    </td>
+                    <td>
+                        <p>{{ item.UserName }}</p>
                     </td>
                     <td class="table-options">
-                        <a href="javascript:;" modal-target="#registeringApp" modal-onload="setCurrent(item)"><i class="fa fa-pencil fa"></i></a>
-                        <a href="javascript:;" modal-target="#deletingApp" modal-onload="setDeletingItem(item)"><i class="fa fa-times fa"></i></a>
+                        <a href="javascript:;" modal-target="#registeringUser" modal-onload="setCurrent(item)"><i class="fa fa-pencil fa"></i></a>
+                        <a href="javascript:;" modal-target="#deletingUser" modal-onload="setDeletingItem(item)"><i class="fa fa-times fa"></i></a>
                     </td>
                 </tr>
             </tbody>
             <tfoot>
                 <tr>
                     <td colspan="4">
-                        <pagination in-list="apps"
-                            out-list="appsOut"
+                        <pagination in-list="users"
+                            out-list="usersOut"
                             page-size="pageSize"
                             current-page="currentPage"
                             search-query="textFilter"
@@ -71,28 +75,48 @@
                 </tr>
             </tfoot>
         </table>
-        <div ng-show="hasSearched && !apps.length">
+        <div ng-show="hasSearched && !users.length">
             <div class="alert alert-info">
                 <div class="message-center">
-                    <strong><i class="fa fa-check"></i>&nbsp;Ops!&nbsp;</strong>We could not find applications for you.</i>
+                    <strong><i class="fa fa-check"></i>&nbsp;Ops!&nbsp;</strong>We could not find users for you.</i>
                 </div>
             </div>
         </div>
     </div>
 
-    <div modal-dialog id="registeringApp" confirm-yes="save()" confirm-no="clearCurrent()">
+    <div modal-dialog id="registeringUser" confirm-yes="save()" confirm-no="clearCurrent()">
         <div class="header">
-            <h2 ng-cloak>{{ current.Id > 0 ? "Update an application" : "Create an application" }}</h2>
+            <h2 ng-cloak>{{ current.Id > 0 ? "Update the user" : "Create an user" }}</h2>
         </div>
         <div class="body">
             <form name="regForm" ng-cloak>
                 <div class="form-group">
-                    <label>Name:</label>
+                    <label>Full name:</label>
                     <input type="text" ng-model="current.Name" required class="form-control" />
                 </div>
                 <div class="form-group">
-                    <label>Description:</label>
-                    <input type="text" ng-model="current.Description" required class="form-control" />
+                    <label>Email:</label>
+                    <input type="text" ng-model="current.Email" required class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>User name:</label>
+                    <input type="text" ng-model="current.UserName" required class="form-control" />
+                </div>
+                <div class="form-group" ng-show="current.Id > 0">
+                    <div class="checkbox checkbox-info">
+                        <input type="checkbox" class="ng-hide" id="changingPassword" name="changingPassword" ng-model="changingPassword" ng-value="true">
+                        <label for="changingPassword">
+                            Changing password?
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group" ng-show="changingPassword || !(current.Id > 0)">
+                    <label>Password:</label>
+                    <input type="password" ng-model="current.Password" required class="form-control" />
+                </div>
+                <div class="form-group" ng-show="changingPassword || !(current.Id > 0)">
+                    <label>Confirm password:</label>
+                    <input type="password" ng-model="confirmingPassword" required class="form-control" />
                 </div>
             </form>
         </div>
@@ -102,9 +126,9 @@
         </div>
     </div>
 
-    <div modal-dialog id="deletingApp" confirm-yes="delete()" confirm-no="clearDeletingItem()">
+    <div modal-dialog id="deletingUser" confirm-yes="delete()" confirm-no="clearDeletingItem()">
         <div class="header">
-            <h2 ng-cloak>Delete an application</h2>
+            <h2 ng-cloak>Delete the user</h2>
         </div>
         <div class="body">
             <form name="appForm" ng-cloak>

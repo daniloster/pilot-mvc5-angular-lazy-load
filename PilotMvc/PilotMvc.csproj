@@ -226,9 +226,6 @@
     <Content Include="Content\Scripts\app\role\roleController.js" />
     <Content Include="Content\Scripts\app\role\roleService.js" />
     <Content Include="Content\Scripts\app\shared\optionsService.js" />
-    <Content Include="Content\Scripts\app\_backup\contact\contactController.js" />
-    <Content Include="Content\Scripts\app\_backup\contact\contactService.js" />
-    <Content Include="Content\Scripts\app\_backup\home\homeService.js" />
     <Content Include="Content\Scripts\auth\authorizationService.js" />
     <Content Include="Content\Scripts\components\common\form\customValidation.css" />
     <Content Include="Content\Scripts\components\common\form\customValidation.js" />
@@ -314,9 +311,6 @@
     <Content Include="Content\Scripts\routes.js" />
     <Content Include="Content\Scripts\util.js" />
     <Content Include="Content\Scripts\main.js" />
-    <Content Include="Content\Scripts\app\_backup\member\memberService.js" />
-    <Content Include="Content\Scripts\app\_backup\home\homeController.js" />
-    <Content Include="Content\Scripts\app\_backup\member\memberController.js" />
     <Content Include="Content\Scripts\lib\angularjs\angular-amd.js" />
     <Content Include="Content\Scripts\lib\angularjs\angular-animate.min.js" />
     <Content Include="Content\Scripts\lib\angularjs\angular-cookies.min.js" />
@@ -1118,16 +1112,12 @@
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Content\Scripts\lib\zepto.min.js" />
-    <Content Include="Content\Partials\_backup\member.html" />
     <Content Include="Views\Shared\Layout.cshtml" />
     <Content Include="Views\Default\Index.cshtml" />
-    <Content Include="Content\Partials\_backup\home.html" />
     <Content Include="Content\Scripts\lib\jQuery\jquery-2.min.js" />
-    <Content Include="Content\Partials\_backup\contact.html" />
     <Content Include="Content\Scripts\app\shared\access\404.html" />
     <Content Include="Content\Scripts\app\shared\access\not-authorized.html" />
     <Content Include="Content\Scripts\auth\login.html" />
-    <Content Include="Content\Partials\_backup\examples.html" />
     <Content Include="Content\Scripts\lib\respond\Thumbs.db" />
     <Content Include="Config\TemplateDbConnections.config">
       <SubType>Designer</SubType>

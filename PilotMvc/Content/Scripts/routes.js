@@ -76,6 +76,18 @@
                             title: 'Pilot | Managing Roles'
                         })
                     })
+                    .when("/user", {
+                        templateUrl: '/Content/Scripts/app/user/user.html',
+                        resolve: resolve({
+                            dependencies: ['auth/authorizationController',
+                                'components/app/navMenu/menu',
+                                'components/common/modal/dialog',
+                                'components/common/pagination/pagination',
+                                'app/user/userController'],
+                            isPublic: true,
+                            title: 'Pilot | Managing Users'
+                        })
+                    })
 
                     .otherwise({
                         redirectTo: '/404'

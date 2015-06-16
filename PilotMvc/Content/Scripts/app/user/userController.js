@@ -11,8 +11,8 @@
 
                 $scope.search = function () {
                     loadingCtrl.startLoading();
-                    applicationService.query($scope.filter, function (data) {
-                        $scope.apps = data;
+                    userService.query($scope.filter, function (data) {
+                        $scope.users = data;
                         loadingCtrl.stopLoading();
                         $scope.hasSearched = true;
                     }, function (data) {
@@ -44,7 +44,7 @@
                     var task = $q.defer();
                     loadingCtrl.startLoading();
                     var isUpdating = !!$scope.current && $scope.current.Id > 0;
-                    applicationService.save($scope.current, function (data) {
+                    userService.save($scope.current, function (data) {
                         $rootScope.updateSuccessMessage(data.Message);
                         loadingCtrl.stopLoading();
                         task.resolve();
@@ -61,7 +61,7 @@
                 $scope['delete'] = function () {
                     var task = $q.defer();
                     loadingCtrl.startLoading();
-                    applicationService.delete({ Id: $scope.deletingItem.Id }, function (data) {
+                    userService.delete({ id: $scope.deletingItem.Id }, function (data) {
                         $rootScope.updateSuccessMessage(data.Message);
                         loadingCtrl.stopLoading();
                         task.resolve();

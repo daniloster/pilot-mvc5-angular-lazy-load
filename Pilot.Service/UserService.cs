@@ -173,9 +173,18 @@ namespace Pilot.Service.Security
             return hasAccess;
         }
 
-        public IList<User> GetByFilter(User filter)
+        public IList<User> GetByFilter(User filter, User authorizedUser, long localSystemId)
         {
-
+            return Db.DbContext.Users
+                .Where(ws => filter.Name == null || filter.Name == string.Empty
+                    || ws.Name.ToLower().Contains(filter.Name.ToLower())
+                    || ws.Name.ToLower().StartsWith(filter.Name.ToLower())
+                    || ws.Name.ToLower().EndsWith(filter.Name.ToLower()))
+                .Where(ws => filter.Email == null || filter.Email == string.Empty
+                    || ws.Email.ToLower().Contains(filter.Email.ToLower())
+                    || ws.Email.ToLower().StartsWith(filter.Email.ToLower())
+                    || ws.Email.ToLower().EndsWith(filter.Email.ToLower()))
+                .ToList();
         }
     }
 }

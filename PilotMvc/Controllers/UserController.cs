@@ -55,10 +55,26 @@ namespace PilotMvc.Controllers
             return new JsonResultView(AuthorizedUser);
         }
 
-        [Route("search"), HttpPost, HandleUIException("Something went wrong when tried to refresh the user data!")]
+        /* CRUD interaction methods */
+
+        [Route("search"), HttpPost, HandleUIException("Something went wrong when tried to list some users!")]
         public ActionResult Search(User filter)
         {
             return new JsonResultView(UserService.GetByFilter(filter, AuthorizedUser, ApplicationSettings.Instance.LocalSystemId));
-        }        
+        }
+
+        [Route("save"), HttpPost, HandleUIException("Something went wrong when tried to save the user!")]
+        public ActionResult Save(User user)
+        {
+            UserService.Save(user);
+            return new JsonResultView(new { Status = true, Message = "User has been saved successfully!" });
+        }
+
+        [Route("delete"), HttpPost, HandleUIException("Something went wrong when tried to delete the user!")]
+        public ActionResult Delete(long id)
+        {
+            UserService.Delete(id);
+            return new JsonResultView(new { Status = true, Message = "User has been deleted successfully!" });
+        }
 	}
 }

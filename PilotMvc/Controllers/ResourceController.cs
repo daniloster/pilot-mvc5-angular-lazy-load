@@ -36,7 +36,7 @@ namespace PilotMvc.Controllers
         public ActionResult Save(Resource resource)
         {
             ResourceService.Save(resource);
-            return new JsonResultView(new { Status = true, Message = "The resource has been saved successfully!" });
+            return new JsonResultView(new { Status = true, Message = "Resource has been saved successfully!" });
         }
 
         [Route("delete"), HttpPost, HandleUIException("Something went wrong when tried to delete the resource!")]

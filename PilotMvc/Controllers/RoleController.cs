@@ -35,7 +35,7 @@ namespace PilotMvc.Controllers
         public ActionResult Save(Role role)
         {
             RoleService.Save(role);
-            return new JsonResultView(new { Status = true, Message = "The role has been saved successfully!" });
+            return new JsonResultView(new { Status = true, Message = "Role has been saved successfully!" });
         }
 
         [Route("delete"), HttpPost, HandleUIException("Something went wrong when tried to delete the role!")]

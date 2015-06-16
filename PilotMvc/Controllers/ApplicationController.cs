@@ -35,7 +35,7 @@ namespace PilotMvc.Controllers
         public ActionResult Save(Application application)
         {
             ApplicationService.Save(application);
-            return new JsonResultView(new { Status = true, Message = "The application has been saved successfully!" });
+            return new JsonResultView(new { Status = true, Message = "Application has been saved successfully!" });
         }
 
         [Route("delete"), HttpPost, HandleUIException("Something went wrong when tried to delete the application!")]

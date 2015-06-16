@@ -10,11 +10,14 @@ using Pilot.Util.Mvc;
 using System.Web.Security;
 using System.Web.Script.Serialization;
 using System.Reflection;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace PilotMvc.Controllers
 {
     public class BaseController : Controller
     {
+        private const string SplitterText = "|#@^@#|";
         protected static volatile object sync = new object();
         /// <summary>
         /// Convert a relative path into a real path. Must be used to save files on disk.
@@ -41,7 +44,17 @@ namespace PilotMvc.Controllers
                 {
                     FormsAuthenticationTicket authTicket = FormsAuthentication.Decrypt(authCookie.Value);
 
-                    user = new JavaScriptSerializer().Deserialize<Pilot.Entity.User>(authTicket.UserData);
+                    string[] userRoles = authTicket.UserData.Split(new string[] { SplitterText }, StringSplitOptions.None);
+
+                    if (userRoles.Length > 1)
+                    {
+                        JavaScriptSerializer serializer =  new JavaScriptSerializer();
+                        user = serializer.Deserialize<Pilot.Entity.User>(userRoles[0]);
+                        user.AuthorizedSystemId = serializer.Deserialize<long>(userRoles[1]);
+                        user.Roles = serializer.Deserialize<List<Pilot.Entity.Role>>(userRoles[2]);
+
+                        System.Web.HttpContext.Current.Session["_AuthorizedUser"] = user;
+                    }
                 }
                 else
                 {
@@ -98,13 +111,30 @@ namespace PilotMvc.Controllers
 
             HttpCookie userCookie;
 
-            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,
+            System.Text.StringBuilder stringBuilder = new System.Text.StringBuilder();
+            //StringWriter stringWriter = new StringWriter(stringBuilder);
+            //JsonTextWriter writer = new JsonTextWriter(stringWriter) { Formatting = Formatting.Indented };
+            //JsonSerializer serializer = JsonSerializer.Create(new JsonSerializerSettings()
+            //{
+            //    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            //});
+            //serializer.Serialize(writer, userLoggedIn);
+            //writer.Flush();
+            
+            JavaScriptSerializer serializer = new JavaScriptSerializer();
+            stringBuilder.Append(serializer.Serialize(userLoggedIn))
+                .Append(SplitterText)
+                .Append(serializer.Serialize(userLoggedIn.AuthorizedSystemId))
+                .Append(SplitterText)
+                .Append(serializer.Serialize(userLoggedIn.Roles));
 
+            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,
               userLoggedIn.GetType().GetProperty("Email").GetValue(userLoggedIn).ToString(),
               DateTime.Now,
               DateTime.MaxValue,
               (rememberMe.HasValue ? rememberMe.Value : false),
-              new JavaScriptSerializer().Serialize(userLoggedIn),
+              //new JavaScriptSerializer().Serialize(userLoggedIn),
+              stringBuilder.ToString(),
               FormsAuthentication.FormsCookiePath);
 
             userCookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(ticket));
