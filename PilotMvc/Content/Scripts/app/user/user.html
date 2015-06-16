@@ -112,7 +112,7 @@
                 </div>
                 <div class="form-group" ng-show="changingPassword || !(current.Id > 0)">
                     <label>Password:</label>
-                    <input type="password" ng-model="current.Password" required class="form-control" />
+                    <input type="password" ng-model="current.Password" custom-validation="validatePassword" required class="form-control" />
                 </div>
                 <div class="form-group" ng-show="changingPassword || !(current.Id > 0)">
                     <label>Confirm password:</label>

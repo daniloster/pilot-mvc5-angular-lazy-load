@@ -74,6 +74,18 @@
                     });
                 };
 
+                /* Validation methods */
+                function CustomValidation(name, isValid, formattedValue) {
+                    this.name = name;
+                    this.isValid = isValid;
+                    this.formattedValue = formattedValue;
+                }
+
+                $scope.validatePassword = [new CustomValidation('notEqual', function (value) {
+                    return (!!$scope.current && value == $scope.confirmingPassword);
+                })];
+                /* End validation methods */
+
                 $scope.search();
             }];
             app.lazy.controller('UserController', Ctrl);

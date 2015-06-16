@@ -81,6 +81,7 @@
                         resolve: resolve({
                             dependencies: ['auth/authorizationController',
                                 'components/app/navMenu/menu',
+                                'components/common/form/customValidation',
                                 'components/common/modal/dialog',
                                 'components/common/pagination/pagination',
                                 'app/user/userController'],

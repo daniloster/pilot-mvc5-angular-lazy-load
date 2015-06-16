@@ -1,1 +1,4 @@
-﻿
+﻿.custom-validation.ng-invalid {
+	/*background: #ef2828;*/
+    border: 1px solid #e5371f !important;
+}
