@@ -1,6 +1,6 @@
 (function () {
     var Ctrl = null;
-    define(['app', 'components/common/loading/loadingController', 'app/user/userService'], function (app, loadingCtrl) {
+    define(['app', 'components/common/loading/loadingController', 'components/common/form/customValidator', 'app/user/userService'], function (app, loadingCtrl, CustomValidator) {
         if (Ctrl === null) {
             Ctrl = ['$scope', '$rootScope', '$q', 'UserService', function ($scope, $rootScope, $q, userService) {
                 loadingCtrl.clear(false);
@@ -75,14 +75,8 @@
                 };
 
                 /* Validation methods */
-                function CustomValidation(name, isValid, formattedValue) {
-                    this.name = name;
-                    this.isValid = isValid;
-                    this.formattedValue = formattedValue;
-                }
-
-                $scope.validatePassword = [new CustomValidation('notEqual', function (value) {
-                    return (!!$scope.current && value == $scope.confirmingPassword);
+                $scope.validatePassword = [new CustomValidator('equal', ['confirmingPassword'], function (value) {
+                    return ((!value && !$scope.confirmingPassword) || value == $scope.confirmingPassword);
                 })];
                 /* End validation methods */
 

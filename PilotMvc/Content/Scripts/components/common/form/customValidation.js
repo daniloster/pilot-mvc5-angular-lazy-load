@@ -7,23 +7,58 @@
                 return {
                     restrict: 'A',
                     require: 'ngModel',
-                    link: function (scope, elem, attrs, ngModel) {
-                        elem.addClass('custom-validation');
-                        //For model -> DOM validation
-                        ngModel.$formatters.unshift(function (value) {
-                            /*
-                            @type validity: [<Object>{<String name>, <Boolan isValid>, <Object formattedValue>}]
-                            */
-                            var validations = scope[attrs.customValidation], formattedValue = undefined;
-                            validations.forEach(function (validity) {
-                                ngModel.$setValidity(validity.name, validity.isValid(value));
-                                if (formattedValue == undefined) {
-                                    formattedValue = (validity.formattedValue || function () { return undefined; })(value);
-                                }
-                            });
-                            
-                            return (formattedValue || value);
+                    link: function ($scope, elem, attrs, ngModel) {
+                        var validations = $scope[attrs.customValidation],
+                            validationHandler = function (value, dispatchedBy) {
+                                /*
+                                @type validity: [<Object>{<String name>, <Boolan isValid>, <Object formattedValue>, notifiers:[<Object>]}]
+                                */
+                                var formattedValue = undefined;
+                                validations.forEach(function (validity) {
+                                    if (!dispatchedBy || !validity.triggers || validity.triggers.filter(function (item) { return item == dispatchedBy; }).length) {
+                                        ngModel.$setValidity(validity.name, validity.isValid(value));
+                                        if (formattedValue == undefined) {
+                                            formattedValue = (validity.formattedValue || function () { return undefined; })(value);
+                                        }
+                                    }
+                                });
+
+                                return (formattedValue || value);
+                            },
+                            triggers = [],
+                            refreshTriggers = function () {
+                                validations.forEach(function (validation) {
+                                    if (!!validation.triggers && !!validation.triggers.length) {
+                                        validation.triggers.forEach(function (trigger) {
+                                            if (triggers.filter(function (item) { return item == trigger; }).length == 0) {
+                                                triggers.push(trigger);
+                                                $scope.$watch(trigger, function (nval, oval) {
+                                                    if (nval == oval) return;
+                                                    validationHandler(ngModel.$viewValue, trigger);
+                                                });
+                                            }
+                                        });
+                                    }
+                                });
+                            };
+                        //Init triggers
+                        refreshTriggers();
+                        //Detecting changes for settings
+                        $scope.$watch(attrs.customValidation, function (nval, oval) {
+                            if (nval == oval) return;
+                            validations = nval;
+                            refreshTriggers();
+                            validationHandler(ngModel.$viewValue);
                         });
+
+                        elem.addClass('custom-validation');
+
+                        //For DOM validation -> model
+                        ngModel.$parsers.unshift(function (value) {
+                            return validationHandler(value);
+                        });
+
+                        validationHandler(isNaN(ngModel.$modelValue) ? undefined : ngModel.$modelValue);
                     }
                 };
             }]);

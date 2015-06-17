@@ -229,6 +229,7 @@
     <Content Include="Content\Scripts\auth\authorizationService.js" />
     <Content Include="Content\Scripts\components\common\form\customValidation.css" />
     <Content Include="Content\Scripts\components\common\form\customValidation.js" />
+    <Content Include="Content\Scripts\components\common\form\customValidator.js" />
     <Content Include="Content\Scripts\components\common\form\statusMessage.js" />
     <Content Include="Content\Scripts\components\common\form\statusMessage.html" />
     <Content Include="Content\Scripts\components\common\form\statusMessage.css" />
