@@ -215,6 +215,7 @@
     <Content Include="Content\Scripts\app\application\applicationService.js" />
     <Content Include="Content\Scripts\app\assignRoles\assign-roles-based-on-role.html" />
     <Content Include="Content\Scripts\app\assignRoles\assign-roles.html" />
+    <Content Include="Content\Scripts\app\assignRoles\roleBasedAssignmentService.js" />
     <Content Include="Content\Scripts\app\assignRoles\roleBasedAssignmentController.js" />
     <Content Include="Content\Scripts\app\assignRoles\userBasedAssignmentController.js" />
     <Content Include="Content\Scripts\app\shared\access\page-template.html" />
