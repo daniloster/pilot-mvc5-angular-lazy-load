@@ -25,6 +25,7 @@
                         templateUrl: '/Content/Scripts/auth/login.html',
                         resolve: resolve({
                             dependencies: ['auth/authorizationController',
+                                'components/common/form/checkbox/checkbox',
                                 'components/app/navMenu/menu'],
                             isPublic: true,
                             title: 'Wonderful login page'
@@ -87,6 +88,38 @@
                                 'app/user/userController'],
                             isPublic: true,
                             title: 'Pilot | Managing Users'
+                        })
+                    })
+                    .when("/assign-roles", {
+                        templateUrl: '/Content/Scripts/app/assignRoles/assign-roles.html',
+                        resolve: resolve({
+                            dependencies: ['auth/authorizationController',
+                                'components/app/navMenu/menu',
+                                'components/common/form/customValidation'],
+                            isPublic: true,
+                            title: 'Pilot | Assigning Roles'
+                        })
+                    })
+                    .when("/assign-roles/based-on-role", {
+                        templateUrl: '/Content/Scripts/app/assignRoles/assign-roles-based-on-role.html',
+                        resolve: resolve({
+                            dependencies: ['auth/authorizationController',
+                                'components/app/navMenu/menu',
+                                'components/common/form/customValidation',
+                            'app/assignRoles/roleBasedAssignmentController'],
+                            isPublic: true,
+                            title: 'Pilot | Assigning Roles'
+                        })
+                    })
+                    .when("/assign-roles/based-on-user", {
+                        templateUrl: '/Content/Scripts/app/assignRoles/assign-roles-based-on-user.html',
+                        resolve: resolve({
+                            dependencies: ['auth/authorizationController',
+                                'components/app/navMenu/menu',
+                                'components/common/form/customValidation',
+                            'app/assignRoles/userBasedAssignmentController'],
+                            isPublic: true,
+                            title: 'Pilot | Assigning Roles'
                         })
                     })
 

@@ -55,6 +55,7 @@
                     <th>#</th>
                     <th>Value</th>
                     <th>Description</th>
+                    <th>Resource Type</th>
                     <th></th>
                 </tr>
             </thead>
@@ -66,6 +67,9 @@
                     </td>
                     <td>
                         <p>{{ item.Description }}</p>
+                    </td>
+                    <td>
+                        <p>{{ item.ResourceType.Description }}</p>
                     </td>
                     <td class="table-options">
                         <a href="javascript:;" modal-target="#registeringResource" modal-onload="setCurrent(item)"><i class="fa fa-pencil fa"></i></a>

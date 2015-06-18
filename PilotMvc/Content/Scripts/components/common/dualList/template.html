@@ -1,0 +1,12 @@
+﻿<div>
+    <h4 ng-bind="header" class="dual-list-header"></h4>
+    <input type="text" ng-model="query" class="dual-list-filter"/>
+    <ul class="dual-list">
+        <li ng-repeat="item in allItems | filter: query" ng-class="{ 'dual-list-odd': !isSelected(item) && !$even, 'dual-list-even': !isSelected(item) && !$odd, 'dual-list-selected': isSelected(item) }">
+            <div ng-bind ="itemTemplate"></div>
+            <div>
+                <div pilot-checkbox pilot-checkbox-model="item.Selected"></div>
+            </div>
+        </li>
+    </ul>
+</div>

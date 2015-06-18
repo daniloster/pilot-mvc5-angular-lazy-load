@@ -1,0 +1,39 @@
+﻿<div loading></div>
+<div menu></div>
+<div status-message></div>
+<div class="container page-body" ng-controller="RoleBasedAssignmentController">
+    <div class="col-xs-12">
+        <form name="form" class="col-xs-12  no-wpadding form-fieldset-dialog blue">
+            <fieldset>
+                <legend>Assign Roles</legend>
+                <div class="col-xs-12">
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form-group">
+                            <label>Roles:</label>
+                            <select ng-model="assignment.Role" ng-options="role.Name for role in availableRoles" class="form-control">
+                                <option value="">-- Choose a role --</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <div class="form-group">
+                            <label>Users:</label>
+                        </div>
+                    </div>
+                    <div pilot-dual-list pilot-list-all="allAvailableUsers" pilot-list-assigned="assignment.Users">
+                        <img ng-src="item.ProfileImage" />
+                        <h4>{{ item.Name }}</h4>
+                        <p>{{ item.Email }}</p>
+                    </div>
+
+                    <div class="col-xs-12">
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary" ng-click="assign()" value="Assign" />
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
+</div>
