@@ -8,6 +8,16 @@
                     restrict: 'A',
                     require: 'ngModel',
                     link: function ($scope, elem, attrs, ngModel) {
+                        //Detecting changes for settings
+                        $scope.$watch(attrs.customValidation, function (nval, oval) {
+                            if (nval == oval) return;
+                            validations = nval;
+                            refreshTriggers();
+                            validationHandler(ngModel.$viewValue);
+                        });
+
+                        elem.addClass('custom-validation');
+
                         var validations = $scope[attrs.customValidation],
                             validationHandler = function (value, dispatchedBy) {
                                 /*
@@ -43,16 +53,7 @@
                             };
                         //Init triggers
                         refreshTriggers();
-                        //Detecting changes for settings
-                        $scope.$watch(attrs.customValidation, function (nval, oval) {
-                            if (nval == oval) return;
-                            validations = nval;
-                            refreshTriggers();
-                            validationHandler(ngModel.$viewValue);
-                        });
-
-                        elem.addClass('custom-validation');
-
+                        
                         //For DOM validation -> model
                         ngModel.$parsers.unshift(function (value) {
                             return validationHandler(value);
