@@ -186,5 +186,28 @@ namespace Pilot.Service.Security
                     || ws.Email.ToLower().EndsWith(filter.Email.ToLower()))
                 .ToList();
         }
+
+        public IList<User> GetAssignedUsersByRole(Role filter, User authorizedUser, long localSystemId)
+        {
+            IList<long> idRoles = authorizedUser.Roles.Select(r => r.Id).ToList();
+            IList<long> idApplications = authorizedUser.Roles.Where(r => r.IsAdmin).Select(r => r.Application.Id).ToList();
+            bool motherFuckerAdmin = authorizedUser.Roles.Any(r => r.IsAdmin && r.Application.Id == localSystemId);
+            
+            filter.Assert<Role>("You are not allowed to handle this role.", r => motherFuckerAdmin || idApplications.Any(id => id == r.Application.Id) || idRoles.Any(id => id == r.Id));
+
+            return Db.DbContext.Users
+                .Include(u => u.Roles)
+                .Include(u => u.Roles.Select(r => r.Application))
+                .Where(u => u.Roles.Any(r => r.Id == filter.Id))
+                .ToList();
+        }
+
+        public IList<User> GetAvailableUsers(User authorizedUser, long localSystemId)
+        {
+            return Db.DbContext.Users
+                .Include(u => u.Roles)
+                .Include(u => u.Roles.Select(r => r.Application))
+                .ToList();
+        }
     }
 }

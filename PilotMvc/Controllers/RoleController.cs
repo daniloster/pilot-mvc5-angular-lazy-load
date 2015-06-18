@@ -28,7 +28,7 @@ namespace PilotMvc.Controllers
         [Route("available-by-user"), HttpPost, HandleUIException("Something went wrong when tried to list some roles!")]
         public ActionResult GetAvailableRolesByUser()
         {
-            return new JsonResultView(RoleService.GetAssignedRoles(AuthorizedUser, ApplicationSettings.Instance.LocalSystemId));
+            return new JsonResultView(RoleService.GetAvailableRoles(AuthorizedUser, ApplicationSettings.Instance.LocalSystemId));
         }
 
         [Route("save"), HttpPost, HandleUIException("Something went wrong when tried to save the role!")]

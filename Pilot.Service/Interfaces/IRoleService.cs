@@ -28,7 +28,7 @@ namespace Pilot.Service.Interfaces
 
         IList<Role> GetAssignedRoles(User user, long localSystemId);
 
-        IList<Role> GetRolesAvailable(User user, long localSystemId);
+        IList<Role> GetAvailableRoles(User user, long localSystemId);
 
         int GetTotal();
 

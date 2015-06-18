@@ -13,6 +13,9 @@
                     },
                     getAvailableRoles: function (success, error) {
                         $http.post('/role/available-by-user').success(success).error(error);
+                    },
+                    getAvailableUsers: function (success, error) {
+                        $http.post('/user/available-by-user').success(success).error(error);
                     }
                 };
                 

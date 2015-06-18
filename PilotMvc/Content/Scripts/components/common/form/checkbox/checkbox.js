@@ -14,7 +14,8 @@
                         pilotCheckboxType: '@',
                         pilotCheckboxName: '@',
                         pilotCheckboxLabel: '@',
-                        pilotCheckboxModel: '='
+                        pilotCheckboxModel: '=?',
+                        pilotCheckboxChecked: '&'
                     },
                     templateUrl: ConfigApp.getPath('/Content/Scripts/components/common/form/checkbox/template.html'),
                     link: function (scope, elem, attrs) {
@@ -26,7 +27,15 @@
                         checkbox.attr('id', 'element-' + scope.pilotCheckboxName);
                         checkbox.attr('name', 'element-' + scope.pilotCheckboxName);
                         label.attr('for', 'element-' + scope.pilotCheckboxName);
-                        
+
+                        //it means that is not defined
+                        if (scope.pilotCheckboxChecked() === undefined) {
+                            scope.isChecked = function () {
+                                return scope.pilotCheckboxModel;
+                            };
+                        } else {
+                            scope.isChecked = scope.pilotCheckboxChecked;
+                        }
                     }
                 };
             }]);

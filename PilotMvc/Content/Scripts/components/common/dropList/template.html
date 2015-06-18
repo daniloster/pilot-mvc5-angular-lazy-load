@@ -1,0 +1,14 @@
+﻿<div>
+    <h4 ng-bind="header" class="drop-list-header"></h4>
+    <input type="text" ng-model="query" class="drop-list-filter"/>
+    <ul class="drop-list">
+        <li ng-repeat="item in allItems | filter: query" ng-class="{ 'drop-list-odd': !isSelected(item) && !$even, 'drop-list-even': !isSelected(item) && !$odd, 'drop-list-selected': isSelected(item) }">
+            <div class="drop-list-item-wrapper">
+                <div ng-bind ="itemTemplate"></div>
+                <div>
+                    <div pilot-checkbox pilot-checkbox-checked="isSelected(item)"></div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

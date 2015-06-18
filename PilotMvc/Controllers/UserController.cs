@@ -55,6 +55,19 @@ namespace PilotMvc.Controllers
             return new JsonResultView(AuthorizedUser);
         }
 
+        /* List to interact with user */
+        [Route("assigned-by-role"), HttpPost, HandleUIException("Something went wrong when tried to list some users!")]
+        public ActionResult GetAssignedByRole(Role filter)
+        {
+            return new JsonResultView(UserService.GetAssignedUsersByRole(filter, AuthorizedUser, ApplicationSettings.Instance.LocalSystemId));
+        }
+
+        [Route("available-by-user"), HttpPost, HandleUIException("Something went wrong when tried to list some users!")]
+        public ActionResult GetAvailableUsersByUser()
+        {
+            return new JsonResultView(UserService.GetAvailableUsers(AuthorizedUser, ApplicationSettings.Instance.LocalSystemId));
+        }
+
         /* CRUD interaction methods */
 
         [Route("search"), HttpPost, HandleUIException("Something went wrong when tried to list some users!")]

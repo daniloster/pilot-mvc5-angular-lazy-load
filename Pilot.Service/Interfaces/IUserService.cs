@@ -34,5 +34,9 @@ namespace Pilot.Service.Interfaces
         bool HasGrantedAccess(long idSystem, long idUser, short? idResourceType, string resourceValue);
 
         IList<User> GetByFilter(User filter, User authorizedUser, long localSystemId);
+
+        IList<User> GetAssignedUsersByRole(Role filter, User authorizedUser, long localSystemId);
+
+        IList<User> GetAvailableUsers(User authorizedUser, long localSystemId);
     }
 }

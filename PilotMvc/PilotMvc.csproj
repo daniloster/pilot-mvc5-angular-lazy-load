@@ -231,9 +231,9 @@
     <Content Include="Content\Scripts\app\role\roleService.js" />
     <Content Include="Content\Scripts\app\shared\optionsService.js" />
     <Content Include="Content\Scripts\auth\authorizationService.js" />
-    <Content Include="Content\Scripts\components\common\dualList\dualList.js" />
-    <Content Include="Content\Scripts\components\common\dualList\style.css" />
-    <Content Include="Content\Scripts\components\common\dualList\template.html" />
+    <Content Include="Content\Scripts\components\common\dropList\dropList.js" />
+    <Content Include="Content\Scripts\components\common\dropList\style.css" />
+    <Content Include="Content\Scripts\components\common\dropList\template.html" />
     <Content Include="Content\Scripts\components\common\form\checkbox\checkbox.js" />
     <Content Include="Content\Scripts\components\common\form\checkbox\style.css" />
     <Content Include="Content\Scripts\components\common\form\checkbox\template.html" />

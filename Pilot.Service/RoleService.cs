@@ -100,7 +100,7 @@ namespace Pilot.Service
             return Db.DbContext.Roles.Include(p => p.Application).Where(p => p.Id == id).FirstOrDefault();
         }
 
-        public IList<Role> GetRolesAvailable(User user, long localSystemId)
+        public IList<Role> GetAvailableRoles(User user, long localSystemId)
         {
             IList<long> idRoles = user.Roles.Select(r => r.Id).ToList();
             IList<long> idApplications = user.Roles.Where(r => r.IsAdmin).Select(r => r.Application.Id).ToList();

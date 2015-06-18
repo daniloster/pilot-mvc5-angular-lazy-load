@@ -25,6 +25,15 @@ namespace Pilot.Entity
         [Required]
         public virtual Application Application { get; set; }
 
+        [NotMapped]
+        public string GroupDescription
+        {
+            get
+            {
+                return string.Format("{0} | {1}", Application.Name, Description);
+            }
+        }
+
         public Role()
         {
             Resources = new List<Resource>();
