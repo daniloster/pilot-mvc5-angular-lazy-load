@@ -25,12 +25,6 @@ namespace PilotMvc.Controllers
             return new JsonResultView(RoleService.GetByFilter(filter, AuthorizedUser, ApplicationSettings.Instance.LocalSystemId));
         }
 
-        [Route("available-by-user"), HttpPost, HandleUIException("Something went wrong when tried to list some roles!")]
-        public ActionResult GetAvailableRolesByUser()
-        {
-            return new JsonResultView(RoleService.GetAvailableRoles(AuthorizedUser, ApplicationSettings.Instance.LocalSystemId));
-        }
-
         [Route("save"), HttpPost, HandleUIException("Something went wrong when tried to save the role!")]
         public ActionResult Save(Role role)
         {
@@ -43,6 +37,20 @@ namespace PilotMvc.Controllers
         {
             RoleService.Delete(id);
             return new JsonResultView(new { Status = true, Message = "Role has been role successfully!" });
+        }
+
+        /* Interacting with roles and users */
+        [Route("available-by-user"), HttpPost, HandleUIException("Something went wrong when tried to list some roles!")]
+        public ActionResult GetAvailableRolesByUser()
+        {
+            return new JsonResultView(RoleService.GetAvailableRoles(AuthorizedUser, ApplicationSettings.Instance.LocalSystemId));
+        }
+
+        [Route("assign-role-to-users"), HttpPost, HandleUIException("Something went wrong when tried to list some roles!")]
+        public ActionResult AssignUsers(long idRole, long[] idUsers)
+        {
+            RoleService.AssignUsers(AuthorizedUser, ApplicationSettings.Instance.LocalSystemId, idRole, idUsers);
+            return new JsonResultView(new { Status = true, Message = "Role has been assigned to users successfully!" });
         }
 	}
 }

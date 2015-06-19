@@ -26,12 +26,17 @@ namespace Pilot.Service
         private Lazy<IResourceService> resourceService;
         public IResourceService ResourceService { get { return resourceService.Value; } }
 
+        private Lazy<IUserService> userService;
+        public IUserService UserService { get { return userService.Value; } }
+
         public RoleService(IEntityContext<Role> db, 
             Lazy<IApplicationService> systemService,
-            Lazy<IResourceService> resourceService) 
+            Lazy<IResourceService> resourceService,
+            Lazy<IUserService> userService) 
             : base(db)  {
                 this.applicationService = systemService;
                 this.resourceService = resourceService;
+                this.userService = userService;
         }
 
         public override void Save(Role entity)
@@ -64,6 +69,37 @@ namespace Pilot.Service
             }
 
             base.Save(entity);
+        }
+
+
+
+        public void AssignUsers(User authorizedUser, long localSystemId, long idRole, long[] idUsers)
+        {
+            authorizedUser.Assert<User>("Ops! You cannot handle this role!", u => u.Roles.Any(r => r.Application.Id == localSystemId && r.IsAdmin) || u.Roles.Any(r => r.Id == idRole && r.IsAdmin));
+
+            idUsers = idUsers == null ? new long[0] : idUsers;
+            idRole.Assert<long>("Invalid role.", id => id != 0);
+            idUsers.Assert<long[]>("Invalid user.", ids => !ids.Any(id => id == 0));
+            
+            Role entity = Get(idRole);
+            entity.Assert<Role>("Invalid role.", e => e != null);
+
+            var users = UserService.GetAssignedUsersByRole(entity, authorizedUser, localSystemId);
+            var removedUsers = users
+                .Where(u => !idUsers.Any(idp => idp == u.Id) && u.Roles.Any(r => r.Id == idRole))
+                .ToList();
+
+            foreach (var user in removedUsers)
+            {
+                user.Roles.Remove(entity);
+                UserService.Save(user);
+            }
+
+            foreach (var user in users)
+            {
+                user.Roles.Add(entity);
+                UserService.Save(user);
+            }
         }
 
         public Role GetRoleWithResourcesAndSystem(long idRole)

@@ -2,11 +2,12 @@
     <h4 ng-bind="header" class="drop-list-header"></h4>
     <input type="text" ng-model="query" class="drop-list-filter"/>
     <ul class="drop-list">
-        <li ng-repeat="item in allItems | filter: query" ng-class="{ 'drop-list-odd': !isSelected(item) && !$even, 'drop-list-even': !isSelected(item) && !$odd, 'drop-list-selected': isSelected(item) }">
+        <li class="drop-list-item" pilot-item-click="toggleItem(it)" ng-repeat="it in listAll" 
+            ng-class="{ 'drop-list-odd': !isSelected(it) && !$even, 'drop-list-even': !isSelected(it) && !$odd, 'drop-list-selected': isSelected(it) }">
             <div class="drop-list-item-wrapper">
-                <div ng-bind ="itemTemplate"></div>
-                <div>
-                    <div pilot-checkbox pilot-checkbox-checked="isSelected(item)"></div>
+                <div ng-transclude class="list-item-detail"></div>
+                <div class="checkbox-item">
+                    <div pilot-checkbox pilot-checkbox-checked="isSelected(it)"></div>
                 </div>
             </div>
         </li>

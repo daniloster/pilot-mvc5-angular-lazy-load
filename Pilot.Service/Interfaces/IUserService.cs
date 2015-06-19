@@ -15,7 +15,7 @@ namespace Pilot.Service.Interfaces
         void Register(User entity);
 
         [Transactional]
-        void AssignRoles(long idUser, long idSystem, long[] idRoles);
+        void AssignRoles(User authorizedUser, long localSystemId, long idUser, long[] idRoles);
 
         User GetUserWithRoles(long idUser);
 

@@ -5,8 +5,11 @@
             Svc = ['$http', function ($http) {
 
                 var resource = {
-                    getAvailableUsersByRole: function (data, success, error) {
+                    getAssignedUsersByRole: function (data, success, error) {
                         $http.post('/user/assigned-by-role', data).success(success).error(error);
+                    },
+                    assign: function (data, success, error) {
+                        $http.post('/role/assign-role-to-users', data).success(success).error(error);
                     }
                 };
                 

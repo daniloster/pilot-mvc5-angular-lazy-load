@@ -56,17 +56,19 @@ namespace Pilot.Service.Security
             entity.Assert<User>("There is already an user with this same e-mail.", e => !Db.DbContext.Users.Any(u => e.Email == u.Email && e.Id != u.Id));
         }
 
-
-        public void AssignRoles(long idUser, long idSystem, long[] idRoles)
+        public void AssignRoles(User authorizedUser, long localSystemId, long idUser, long[] idRoles)
         {
+            authorizedUser.Assert<User>("Ops! You cannot handle this role!", u => u.Roles.Any(r => r.Application.Id == localSystemId && r.IsAdmin) || u.Roles.Any(r => idRoles.Any(idRole => r.Id == idRole) && r.IsAdmin));
+
             idRoles = idRoles == null ? new long[0] : idRoles;
             idUser.Assert<long>("Invalid user.", id => id != 0);
             idRoles.Assert<long[]>("Invalid role.", ids => !ids.Any(id => id == 0));
+            
             User entity = GetUserWithRoles(idUser);
             entity.Assert<User>("Invalid user.", e => e != null);
 
             var roles = RoleService.Get(idRoles);
-            var removedRoles = entity.Roles.Where(p => p.Application.Id == idSystem && !idRoles.Any(idp => idp == p.Id)).ToList();
+            var removedRoles = entity.Roles.Where(p => !idRoles.Any(idp => idp == p.Id)).ToList();
 
             foreach (var role in removedRoles)
             {

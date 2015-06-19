@@ -34,7 +34,9 @@
                                 return scope.pilotCheckboxModel;
                             };
                         } else {
-                            scope.isChecked = scope.pilotCheckboxChecked;
+                            scope.isChecked = function () {
+                                return scope.pilotCheckboxModel = scope.pilotCheckboxChecked();
+                            };  
                         }
                     }
                 };

@@ -106,6 +106,7 @@
                             dependencies: ['auth/authorizationController',
                                 'components/app/navMenu/menu',
                                 'components/common/form/customValidation',
+                                'components/common/dropList/dropList',
                             'app/assignRoles/roleBasedAssignmentController'],
                             isPublic: true,
                             title: 'Pilot | Assigning Roles'
@@ -117,6 +118,7 @@
                             dependencies: ['auth/authorizationController',
                                 'components/app/navMenu/menu',
                                 'components/common/form/customValidation',
+                                'components/common/dropList/dropList',
                             'app/assignRoles/userBasedAssignmentController'],
                             isPublic: true,
                             title: 'Pilot | Assigning Roles'

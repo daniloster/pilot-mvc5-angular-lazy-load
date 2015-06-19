@@ -1,5 +1,16 @@
 ﻿.drop-list {
+    margin:10px 0;
+    padding:0;
+    box-sizing:border-box;
+    width:100%;
+}
 
+.drop-list-item {
+    margin:0;
+    padding:5px;
+    width:100%;
+    box-sizing:border-box;
+    list-style-type:none;
 }
 
 .drop-list-header {
@@ -11,7 +22,7 @@
 }
 
 .drop-list-odd {
-    background-color:#aeaeae;
+    background-color:#dedede;
 }
 
 .drop-list-even {
@@ -20,4 +31,24 @@
 
 .drop-list-selected {
     background-color:#428bca;
+}
+
+.drop-list-item-wrapper {
+    text-wrap:none;
+    white-space:nowrap;
+}
+
+.list-item-detail {
+    display:inline-block;
+}
+
+.checkbox-item {
+    /*margin-top:-10px;*/
+    display:inline-block;
+    text-wrap:none;
+    white-space:nowrap;
+}
+
+.checkbox label::before, .checkbox label::after {
+    vertical-align:middle;
 }

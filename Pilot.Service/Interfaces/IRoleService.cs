@@ -20,6 +20,9 @@ namespace Pilot.Service.Interfaces
         [Transactional]
         void CreateAdministratorRole(Application entity);
 
+        [Transactional]
+        void AssignUsers(User authorizedUser, long localSystemId, long idRole, long[] idUsers);
+
         IList<Role> GetRolesByApplication(long idSystem);
 
         IList<Role> GetRolesWithSystem();
