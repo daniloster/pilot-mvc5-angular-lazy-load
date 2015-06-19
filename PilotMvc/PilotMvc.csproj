@@ -205,11 +205,13 @@
     <Content Include="Content\Fonts\fontawesome-webfont.svg" />
     <Content Include="Content\Images\ajax-loader.gif" />
     <Content Include="Content\Images\ajax-loading.gif" />
+    <Content Include="Content\Images\eye.svg" />
     <Content Include="Content\Images\sk-apple-touch-icon-114x114.png" />
     <Content Include="Content\Images\sk-apple-touch-icon-72x72.png" />
     <Content Include="Content\Images\sk-apple-touch-icon.png" />
     <Content Include="Content\Images\bp-apple-touch-icon-precomposed.png" />
     <Content Include="Content\Images\sk-favicon.ico" />
+    <Content Include="Content\Images\eye.png" />
     <Content Include="Content\Scripts\app\application\application.html" />
     <Content Include="Content\Scripts\app\application\applicationController.js" />
     <Content Include="Content\Scripts\app\application\applicationService.js" />
@@ -241,6 +243,9 @@
     <Content Include="Content\Scripts\components\common\form\customValidation.css" />
     <Content Include="Content\Scripts\components\common\form\customValidation.js" />
     <Content Include="Content\Scripts\components\common\form\customValidator.js" />
+    <Content Include="Content\Scripts\components\common\form\password\password.js" />
+    <Content Include="Content\Scripts\components\common\form\password\style.css" />
+    <Content Include="Content\Scripts\components\common\form\password\template.html" />
     <Content Include="Content\Scripts\components\common\form\statusMessage.js" />
     <Content Include="Content\Scripts\components\common\form\statusMessage.html" />
     <Content Include="Content\Scripts\components\common\form\statusMessage.css" />
