@@ -14,8 +14,7 @@
                     scope: {
                         pilotPasswordName: '@',
                         pilotPasswordLabel: '@',
-                        pilotPasswordModel: "=?",
-                        pilotPasswordShowPassword: '&'
+                        pilotPasswordModel: "=?"
                         //pilotPasswordInputType: '@'
                     },
                     templateUrl: ConfigApp.getPath('/Content/Scripts/components/common/form/password/template.html'),
