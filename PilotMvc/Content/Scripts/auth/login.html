@@ -5,7 +5,8 @@
 
         <form name="userForm" ng-controller="AuthorizationController" class="col-xs-12 form-fieldset-dialog blue">
             <fieldset>
-                <legend>Sign in here!
+                <legend>
+                    Sign in here!
                 </legend>
 
                 <div class="col-xs-12">
@@ -21,7 +22,10 @@
                     <div class="form-group">
                         <div class="input-group input-group-lg">
                             <span class="input-group-addon login-addon" for="password"><i class="fa fa-lock fa-lg"></i></span>
-                            <input type="password" class="form-control" id="password" name="password" placeholder="Password" ng-model="user.password">
+
+                            <!--<input type="password" class="form-control" id="password" name="password" placeholder="Password" ng-model="user.password">-->
+
+                            <div pilot-password pilot-password-model="user.password" pilot-password-show-password="showPassword()"></div>
                         </div>
                     </div>
                 </div>

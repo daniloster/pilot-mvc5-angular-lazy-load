@@ -26,6 +26,7 @@
                         resolve: resolve({
                             dependencies: ['auth/authorizationController',
                                 'components/common/form/checkbox/checkbox',
+                                'components/common/form/password/password',
                                 'components/app/navMenu/menu'],
                             isPublic: true,
                             title: 'Wonderful login page'

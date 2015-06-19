@@ -1,0 +1,35 @@
+﻿.password-toggle {
+    display: block;
+    position: absolute;
+    top: 60%;
+    right: 10px;
+    float: right;
+    z-index: 3;
+    background: transparent;
+    border: 0;
+    border-radius: 0.25em;
+    color: #888;
+    cursor: pointer;
+    font-size: 0.75em;
+    font-weight: bold;
+    text-transform: uppercase;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+    .password-toggle:hover, .password-toggle:focus {
+        background-color: #eee;
+        color: #555;
+        outline: transparent;
+    }
+
+/*ConfigApp.baseURL*/
+/*.password-toggle-show {
+    background-position: 0 center;
+    background-image: url('/Content/Images/eye.png');
+}
+
+.password-toggle-hide {
+    background-position: -44px center;
+    background-image: url('/Content/images/eye.svg'), none;
+}*/
