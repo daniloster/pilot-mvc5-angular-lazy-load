@@ -12,7 +12,9 @@
                         config.url = ConfigApp.getNoCachePath(config.url);
                         //// console.log(config); // Contains the data about the request before it is sent.
                         //config.headers.Accept = "application/json, text/plain, text/html, */*";
-                        console.log('@request: ', config);
+                        if (appSettings.debug) {
+                            console.log('@request: ', config);
+                        }
                         // Return the config or wrap it in a promise if blank.
                         return config;
                     },
@@ -27,7 +29,9 @@
                     // On response success
                     response: function (response) {
                         // console.log(response); // Contains the data from the response.
-                        console.log('@response: ', response);
+                        if (appSettings.debug) {
+                            console.log('@response: ', response);
+                        }
                         // Return the response or promise.
                         return response || $q.when(response);
                     },

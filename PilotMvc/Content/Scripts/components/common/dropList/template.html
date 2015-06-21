@@ -1,11 +1,11 @@
-﻿<div>
-    <h4 ng-bind="header" class="drop-list-header"></h4>
-    <input type="text" ng-model="query" class="drop-list-filter"/>
+﻿<div class="ng-cloak">
+    <input type="text" ng-model="query" class="drop-list-filter" ng-show="displaySearch=='true'" />
     <ul class="drop-list">
-        <li class="drop-list-item" pilot-item-click="toggleItem(it)" ng-repeat="it in listAll" 
+        <li class="drop-list-item" pilot-item-click="toggleItem(it, $event)" ng-repeat="it in listAll track by tracker(it)"
             ng-class="{ 'drop-list-odd': !isSelected(it) && !$even, 'drop-list-even': !isSelected(it) && !$odd, 'drop-list-selected': isSelected(it) }">
+            <!-- ng-class="{ 'drop-list-odd': !isSelected(it) && !$even, 'drop-list-even': !isSelected(it) && !$odd, 'drop-list-selected': isSelected(it) }" -->
             <div class="drop-list-item-wrapper">
-                <div ng-transclude class="list-item-detail"></div>
+                <div class="list-item-detail" pilot-item-template></div>
                 <div class="checkbox-item">
                     <div pilot-checkbox pilot-checkbox-checked="isSelected(it)"></div>
                 </div>

@@ -11,7 +11,7 @@ using Pilot.Entity.Domain;
 using Pilot.Service;
 using Pilot.Util.Exceptions;
 
-namespace Pilot.Test.Integrated.Member
+namespace Pilot.Test.Integrated.FirstLoad
 {
     [TestClass]
     public class FirstLoadTest : BaseTest

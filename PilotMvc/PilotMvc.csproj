@@ -304,6 +304,7 @@
     <Content Include="Content\Scripts\components\common\workflow\workflowFooter.js" />
     <Content Include="Content\Scripts\components\common\workflow\workflowFooterController.js" />
     <Content Include="Content\Scripts\config.js" />
+    <Content Include="Content\Scripts\config\debugger.js" />
     <Content Include="Content\Scripts\config\loggingHttpInterceptor.js" />
     <Content Include="Content\Scripts\lib\component-require.min.js" />
     <Content Include="Content\Scripts\lib\cors-require.min.js" />
