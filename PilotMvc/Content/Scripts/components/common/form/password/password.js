@@ -11,22 +11,22 @@
 
                 return {
                     restrict: 'EA',
+                    replace: true,
                     scope: {
                         pilotPasswordName: '@',
                         pilotPasswordLabel: '@',
                         pilotPasswordModel: "=?"
-                        //pilotPasswordInputType: '@'
                     },
                     templateUrl: ConfigApp.getPath('/Content/Scripts/components/common/form/password/template.html'),
 
                     link: function (scope, elem, attrs) {
                         scope.showHide = "Show";
-                        //scope.pilotPasswordInputType = init(scope.pilotPasswordInputType, 'password');
                         scope.pilotPasswordName = init(scope.pilotPasswordName, 'password-' + new Date().getTime());
 
                         var password = elem.find('[type=password]');
-                        password.attr('id', 'element-' + scope.pilotPasswordName);
-                        password.attr('name', 'element-' + scope.pilotPasswordName);
+                        password.attr('id', scope.pilotPasswordName);
+                        password.attr('name', scope.pilotPasswordName);
+                        password.attr('placeholder', scope.pilotPasswordLabel);
 
                         scope.showPassword = function () {
 
