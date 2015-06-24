@@ -1,0 +1,15 @@
+﻿<div class="tabpanel">
+    <div class="col-md-12">
+        <div class="tabs-wrapper clearfix">
+            <ul class="nav nav-tabs" ng-class="{ 'pull-left': (tabAlignment == 'left') }">
+                <li ng-repeat="tabLink in tabs" ng-class="{ 'active': ($index == tabIndexDefault) }">
+                    <a href="javascript:;" ng-click="showTab($index)"><img ng-src="{{tabLink.image}}" ng-show="!!tabLink.image">{{ tabLink.title }}</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="tab-content">
+            <div ng-repeat="tabContainer in tabs" class="tab-pane" ng-class="{ 'active': ($index == tabIndexDefault) }" ng-include="tabContainer.templateLoaded"></div>
+        </div>
+    </div>
+</div>

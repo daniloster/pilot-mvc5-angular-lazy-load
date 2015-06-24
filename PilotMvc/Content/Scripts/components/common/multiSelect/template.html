@@ -1,0 +1,12 @@
+﻿<div class="btn-group open">
+    <button type="button" class="multiselect dropdown-toggle btn btn-default" data-toggle="dropdown" title="{{ allSelected }}">
+        <!--<span class="multiselect-selected-text">Username, Employee Name</span>-->
+        <span class="multiselect-selected-text">{{ allSelected }}</span>
+        <b class="caret"></b>
+    </button>
+    <ul class="multiselect-container dropdown-menu">
+        <li multi-select-click="toggleItem(item)" ng-class="{ 'active': isSelected(item) }" ng-repeat="item in allOptions track by getTracker(item)">
+            <a tabindex="0"><label class="checkbox"><div pilot-checkbox pilot-checkbox-checked="isSelected(item)" pilot-checkbox-label="{{ getDescription(item) }}"></div></label></a>
+        </li>
+    </ul>
+</div>

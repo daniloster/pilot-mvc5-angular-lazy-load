@@ -1,7 +1,7 @@
 ﻿<div class="ng-cloak">
     <input type="text" ng-model="query" class="drop-list-filter" ng-show="displaySearch=='true'" />
     <ul class="drop-list">
-        <li class="drop-list-item" pilot-item-click="toggleItem(it, $event)" ng-repeat="it in listAll track by tracker(it)"
+        <li class="drop-list-item" pilot-item-click="toggleItem(it)" ng-repeat="it in listAll track by tracker(it)"
             ng-class="{ 'drop-list-odd': !isSelected(it) && !$even, 'drop-list-even': !isSelected(it) && !$odd, 'drop-list-selected': isSelected(it) }">
             <!-- ng-class="{ 'drop-list-odd': !isSelected(it) && !$even, 'drop-list-even': !isSelected(it) && !$odd, 'drop-list-selected': isSelected(it) }" -->
             <div class="drop-list-item-wrapper">

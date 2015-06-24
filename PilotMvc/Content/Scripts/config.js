@@ -14,7 +14,9 @@
                 filter: $filterProvider.register,
                 directive: $compileProvider.directive,
                 constant: $provide.constant,
-                animation: $animateProvider.register,
+                animation: function () {
+                    return $animateProvider.register.apply($animateProvider, arguments);
+                },
                 value: $provide.value
             };
 

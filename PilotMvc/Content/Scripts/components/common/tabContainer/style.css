@@ -1,0 +1,6 @@
+﻿.tab-content>.tab-pane.active {
+    display: block !important;
+}
+.nav.nav-tabs .active a {
+  border-bottom: 4px solid #90cb26;
+}

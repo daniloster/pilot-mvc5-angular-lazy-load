@@ -249,6 +249,12 @@
     <Content Include="Content\Scripts\components\common\form\statusMessage.js" />
     <Content Include="Content\Scripts\components\common\form\statusMessage.html" />
     <Content Include="Content\Scripts\components\common\form\statusMessage.css" />
+    <Content Include="Content\Scripts\components\common\multiSelect\bootstrap-multiselect.css" />
+    <Content Include="Content\Scripts\components\common\multiSelect\multiSelect.js" />
+    <Content Include="Content\Scripts\components\common\multiSelect\template.html" />
+    <Content Include="Content\Scripts\components\common\tabContainer\style.css" />
+    <Content Include="Content\Scripts\components\common\tabContainer\tabContainer.js" />
+    <Content Include="Content\Scripts\components\common\tabContainer\template.html" />
     <Content Include="Content\Scripts\config\configApp.js" />
     <Content Include="Content\Scripts\components\app\navMenu\menu.js" />
     <Content Include="Content\Scripts\components\app\navMenu\style.css" />
