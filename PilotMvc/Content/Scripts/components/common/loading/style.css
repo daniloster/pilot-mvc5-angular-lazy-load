@@ -61,6 +61,12 @@
     opacity:0.85;
     z-index:99990
 }
+
+#loadingPanel i {
+    color:#90cb26 !important;
+    font-size:3.2em !important;
+    width: auto !important;
+}
 /*
 ------------------------------------------------------
 ~/Views/LoadingPanel.cshtml - END
