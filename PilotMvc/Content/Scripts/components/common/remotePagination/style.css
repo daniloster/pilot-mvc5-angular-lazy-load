@@ -1,0 +1,95 @@
+﻿.pagination>li {
+ display: inline-block !important;
+ height: 18px !important;
+ /*background-color: #8ec925;
+ border-color: #8ec925;*/
+ /*color:#8ec925;*/
+}
+
+.pagination>li a:hover {
+    color: #2a6496;
+    background-color: #eee;
+    border-color: #ddd;
+}
+
+.pagination > li span, .pagination > li > span:hover, .pagination > li > span:focus {
+    color: #2a6496;
+    background-color: #eee;
+}
+
+.pagination>li a, .pagination>li a:active, .pagination>li>a:focus, .pagination>li a:visited {
+ /*color:#8eb925;*/
+ color:#fff;background-color:#8ec925;
+}
+
+.pagination-desc {
+   /*color: #0088cc;*/
+   color:#8ec925;
+   text-decoration: none;
+   border-radius: 0;
+   vertical-align: top;
+   height: 1.1em;
+}
+
+.page-input {
+   color:#000;
+   width: 60px;
+   text-align: center;
+   padding: 0;
+   height: 29px;
+   font-size: small;
+   font-weight: bolder;
+}
+
+/*.pure-paginator {
+    margin-top: 10px;
+    
+}
+
+.pagination-desc {
+    color: #0088cc;
+    text-decoration: none;
+    border-radius: 0;
+    vertical-align: top;
+    height: 1.1em;
+}
+
+.page-input {
+    width: 60px;
+    text-align: center;
+    padding: 0;
+}
+
+.pure-paginator .prev a, .pure-paginator .next a {
+    color: #0088cc;
+    text-decoration:none;
+}
+
+
+.pure-paginator {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.pure-paginator li {
+    display: inline-block;
+
+
+
+}
+
+
+.pure-paginator li a {
+        padding: 5px 10px;
+}
+.page-search {
+    padding-left: 0px !important;
+}
+
+.items-found {
+    color: #9e9e9e;
+}
+
+.pure-paginator .prev a, .pure-paginator .next a {
+    border: 1px solid #cccccc;
+}*/

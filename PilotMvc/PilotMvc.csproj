@@ -252,6 +252,10 @@
     <Content Include="Content\Scripts\components\common\multiSelect\bootstrap-multiselect.css" />
     <Content Include="Content\Scripts\components\common\multiSelect\multiSelect.js" />
     <Content Include="Content\Scripts\components\common\multiSelect\template.html" />
+    <Content Include="Content\Scripts\components\common\remotePagination\remotePagination.js" />
+    <Content Include="Content\Scripts\components\common\remotePagination\remotePaginationController.js" />
+    <Content Include="Content\Scripts\components\common\remotePagination\style.css" />
+    <Content Include="Content\Scripts\components\common\remotePagination\template.html" />
     <Content Include="Content\Scripts\components\common\tabContainer\style.css" />
     <Content Include="Content\Scripts\components\common\tabContainer\tabContainer.js" />
     <Content Include="Content\Scripts\components\common\tabContainer\template.html" />
