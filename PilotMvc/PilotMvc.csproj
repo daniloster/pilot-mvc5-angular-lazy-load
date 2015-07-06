@@ -234,6 +234,7 @@
     <Content Include="Content\Scripts\app\role\roleService.js" />
     <Content Include="Content\Scripts\app\shared\optionsService.js" />
     <Content Include="Content\Scripts\auth\authorizationService.js" />
+    <Content Include="Content\Scripts\auth\permissionResolver.js" />
     <Content Include="Content\Scripts\components\common\dropList\dropList.js" />
     <Content Include="Content\Scripts\components\common\dropList\style.css" />
     <Content Include="Content\Scripts\components\common\dropList\template.html" />
@@ -315,6 +316,7 @@
     <Content Include="Content\Scripts\components\common\workflow\workflowFooterController.js" />
     <Content Include="Content\Scripts\config.js" />
     <Content Include="Content\Scripts\config\debugger.js" />
+    <Content Include="Content\Scripts\config\dependencyResolver.js" />
     <Content Include="Content\Scripts\config\loggingHttpInterceptor.js" />
     <Content Include="Content\Scripts\lib\component-require.min.js" />
     <Content Include="Content\Scripts\lib\cors-require.min.js" />
@@ -336,7 +338,7 @@
     <Content Include="Content\Scripts\lib\respond\respond.proxy.gif" />
     <Content Include="Content\Scripts\lib\respond\respond.proxy.js" />
     <Content Include="Content\Scripts\lib\webpage-require.min.js" />
-    <Content Include="Content\Scripts\routes.js" />
+    <Content Include="Content\Scripts\routesDefinitionDeferred.js" />
     <Content Include="Content\Scripts\util.js" />
     <Content Include="Content\Scripts\main.js" />
     <Content Include="Content\Scripts\lib\angularjs\angular-amd.js" />
@@ -1087,7 +1089,6 @@
     <Content Include="Content\Fonts\fontawesome-webfont.woff" />
     <Content Include="Content\Fonts\FontAwesome.otf" />
     <Content Include="Content\Scripts\lib\bootstrap.min.js" />
-    <Content Include="Content\Scripts\resolve.js" />
     <Content Include="Content\Scripts\util\array.js" />
     <Content Include="Content\Scripts\util\jsonQueryExporter.js" />
     <Content Include="Content\Scripts\util\string.js" />
@@ -1187,11 +1188,11 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>False</UseIIS>
+          <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51949</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:54412/</IISUrl>
+          <IISUrl>http://localhost:51949/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

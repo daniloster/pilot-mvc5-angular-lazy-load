@@ -1,13 +1,14 @@
 ﻿(function () {
-    define(['app', 'routes', 'config/loggingHttpInterceptor', 'config/configApp', 'auth/authorizationService'], function (app, routes) {
+    define(['app', 'routesDefinitionDeferred', 'config/loggingHttpInterceptor', 'config/configApp', 'auth/authorizationService'], function (app) {
 
-        app.config(['$routeProvider', '$locationProvider', '$controllerProvider', '$provide', '$filterProvider', '$compileProvider', '$animateProvider', '$httpProvider', '$sceDelegateProvider', 'ConfigApp',
-        function ($routeProvider, $locationProvider, $controllerProvider, $provide, $filterProvider, $compileProvider, $animateProvider, $httpProvider, $sceDelegateProvider, ConfigApp) {
+        app.config(['RoutesDefinitionDeferredProvider', '$routeProvider', '$locationProvider', '$controllerProvider', '$provide', '$filterProvider', '$compileProvider', '$animateProvider', '$httpProvider', '$sceDelegateProvider', 'ConfigApp',
+        function (routesDefinitionDeferredProvider, $routeProvider, $locationProvider, $controllerProvider, $provide, $filterProvider, $compileProvider, $animateProvider, $httpProvider, $sceDelegateProvider, ConfigApp) {
             // Recreating the registers for each kind of object, it ensure that, when a script 
             // is load after the application has started, it will bee registered. Knowing 
             // that app.controller / app.factory / and the other methods are unassigned after 
             // load app.
             app.lazy = {
+                provider: $provide.provider,
                 controller: $controllerProvider.register,
                 factory: $provide.factory,
                 service: $provide.service,
@@ -33,7 +34,7 @@
                 // Eg: www.clientwebsite.com/**
                 // It must be the domain that is using the CORS Web Component, once I can use the 
                 // same config file for an Single Page Application or a CORS Web Component.
-                ConfigApp.getPath('/**') 
+                ConfigApp.getPath('/**')
             ]);
             // The blacklist overrides the whitelist so the open redirect here is blocked.
             $sceDelegateProvider.resourceUrlBlacklist([]);
@@ -44,8 +45,7 @@
             delete $httpProvider.defaults.headers.common['X-Requested-With'];
 
             if (appSettings.handleRoutes) {
-                routes($routeProvider);
-
+                routesDefinitionDeferredProvider.map($routeProvider);
                 $locationProvider.html5Mode({
                     enabled: true,
                     requireBase: false

@@ -6,6 +6,7 @@
             app = angular.module('pilotMvc', ['ngRoute', 'ngResource', 'ngCookies', 'ngSanitize', 'ngAnimate']);
 
             app.lazy = {
+                provider: app.provider,
                 controller: app.controller,
                 factory: app.factory,
                 service: app.service,
