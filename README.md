@@ -517,6 +517,8 @@ Javascript is weakly typed, also, it has not properly a definition for classes. 
 
 $routeProvider.when('your_path', { 
   templateUrl: 'path/to/my/template.myExtesion',
+  isPublic: false,
+  title: "My page title",
   resolve: {
     // here you add keys related to NamedFactories or the proper factory definition, according 
     // to my tests, I would advice to create a provider with a method to create different 
