@@ -511,7 +511,7 @@ Javascript is weakly typed, also, it has not properly a definition for classes. 
 
 #### First steps
 
-#### Parentheses for remote authorisation with angular while navigating
+#### Parenthesis for remote authorisation with angular while navigating
 
 ```Javascript
 
