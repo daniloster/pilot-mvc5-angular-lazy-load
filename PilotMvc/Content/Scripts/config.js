@@ -1,5 +1,5 @@
 ﻿(function () {
-    define(['app', 'routesDefinitionDeferred', 'config/loggingHttpInterceptor', 'config/configApp', 'auth/authorizationService'], function (app) {
+    define(['app', 'routesDefinitionDeferred', 'config/loggingHttpInterceptor', 'config/sessionValidatorHttpInterceptor', 'config/configApp', 'auth/authorizationService'], function (app) {
 
         app.config(['RoutesDefinitionDeferredProvider', '$routeProvider', '$locationProvider', '$controllerProvider', '$provide', '$filterProvider', '$compileProvider', '$animateProvider', '$httpProvider', '$sceDelegateProvider', 'ConfigApp',
         function (routesDefinitionDeferredProvider, $routeProvider, $locationProvider, $controllerProvider, $provide, $filterProvider, $compileProvider, $animateProvider, $httpProvider, $sceDelegateProvider, ConfigApp) {
@@ -7,18 +7,24 @@
             // is load after the application has started, it will bee registered. Knowing 
             // that app.controller / app.factory / and the other methods are unassigned after 
             // load app.
+            function wrapIt(func, instance) {
+                return function () {
+                    func.apply(instance, arguments);
+                    return instance;
+                };
+            }
             app.lazy = {
-                provider: $provide.provider,
-                controller: $controllerProvider.register,
-                factory: $provide.factory,
-                service: $provide.service,
-                filter: $filterProvider.register,
-                directive: $compileProvider.directive,
-                constant: $provide.constant,
-                animation: function () {
+                provider: wrapIt($provide.provider, app.lazy),
+                controller: wrapIt($controllerProvider.register, app.lazy),
+                factory: wrapIt($provide.factory, app.lazy),
+                service: wrapIt($provide.service, app.lazy),
+                filter: wrapIt($filterProvider.register, app.lazy),
+                directive: wrapIt($compileProvider.directive, app.lazy),
+                constant: wrapIt($provide.constant, app.lazy),
+                animation: wrapIt(function () {
                     return $animateProvider.register.apply($animateProvider, arguments);
-                },
-                value: $provide.value
+                }, app.lazy),
+                value: wrapIt($provide.value, app.lazy)
             };
 
             // Just allow animation on elements that has the class 'angular-animate'
@@ -26,6 +32,9 @@
 
             // Add the interceptor to the $httpProvider.
             $httpProvider.interceptors.push('LoggingHttpInterceptor');
+
+            // Add the interceptor to check if the session stil alive
+            $httpProvider.interceptors.push('SessionValidatorHttpInterceptor');
 
             $sceDelegateProvider.resourceUrlWhitelist([
                 // Allow same origin resource loads.

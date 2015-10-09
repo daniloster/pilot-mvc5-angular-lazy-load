@@ -250,6 +250,7 @@
     <Content Include="Content\Scripts\components\common\form\statusMessage.js" />
     <Content Include="Content\Scripts\components\common\form\statusMessage.html" />
     <Content Include="Content\Scripts\components\common\form\statusMessage.css" />
+    <Content Include="Content\Scripts\components\common\loading\loadingManager.js" />
     <Content Include="Content\Scripts\components\common\multiSelect\bootstrap-multiselect.css" />
     <Content Include="Content\Scripts\components\common\multiSelect\multiSelect.js" />
     <Content Include="Content\Scripts\components\common\multiSelect\template.html" />
@@ -318,7 +319,7 @@
     <Content Include="Content\Scripts\config\debugger.js" />
     <Content Include="Content\Scripts\config\dependencyResolver.js" />
     <Content Include="Content\Scripts\config\loggingHttpInterceptor.js" />
-    <Content Include="Content\Scripts\lib\component-require.min.js" />
+    <Content Include="Content\Scripts\config\sessionValidatorHttpInterceptor.js" />
     <Content Include="Content\Scripts\lib\cors-require.min.js" />
     <Content Include="Content\Scripts\lib\CORS\cors.js" />
     <Content Include="Content\Scripts\lib\CORS\xdomain.js" />
@@ -337,7 +338,6 @@
     <Content Include="Content\Scripts\lib\respond\respond.js" />
     <Content Include="Content\Scripts\lib\respond\respond.proxy.gif" />
     <Content Include="Content\Scripts\lib\respond\respond.proxy.js" />
-    <Content Include="Content\Scripts\lib\webpage-require.min.js" />
     <Content Include="Content\Scripts\routesDefinitionDeferred.js" />
     <Content Include="Content\Scripts\util.js" />
     <Content Include="Content\Scripts\main.js" />

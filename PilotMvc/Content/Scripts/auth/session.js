@@ -1,7 +1,8 @@
 (function () {
-    var session = null, user = null, arrayType = typeof [];
-    define([], function () {
-        if (session == null) {
+    var loaded = false, session = null, user = null;
+    define(['app'], function (app) {
+        if (!loaded) {
+            
             session = {
                 init: function (userData) {
                     if (!!userData) {
@@ -39,7 +40,12 @@
                     }
                 }
             };
+
+            app.lazy.factory('Session', [function () {
+                return session;
+            }]);
+
+            loaded = true;
         }
-        return session;
     });
 })();

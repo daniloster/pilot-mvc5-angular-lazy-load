@@ -1,44 +1,51 @@
 ﻿(function () {
     var Ctrl = null;
-    define(['app', 'components/common/loading/loadingController', 'app/shared/optionsService', 'app/assignRoles/roleBasedAssignmentService'], function (app, loadingCtrl) {
+    define(['app', 'components/common/loading/loadingManager', 'app/shared/optionsService', 'app/assignRoles/roleBasedAssignmentService'], function (app) {
         if (Ctrl === null) {
-            Ctrl = ['$scope', '$rootScope', '$q', 'OptionsService', 'RoleBasedAssignmentService', function ($scope, $rootScope, $q, optionsService, roleBasedService) {
-                loadingCtrl.clear(false);
-
+            Ctrl = ['$scope', '$rootScope', '$q', 'OptionsService', 'RoleBasedAssignmentService', 'LoadingManager', function ($scope, $rootScope, $q, optionsService, roleBasedService, loadingManager) {
                 $scope.assignment = {};
 
-                loadingCtrl.startLoading();
-                optionsService.getAvailableRoles(function (data) {
+                loadingManager.startLoading();
+                optionsService.getAvailableRoles()
+                .success(function (data) {
                     $scope.availableRoles = data;
-                    loadingCtrl.stopLoading();
-                }, function (data) {
+                })
+                .error(function (data) {
                     $scope.availableRoles = [];
                     $rootScope.updateErrorMessage(data.Message);
-                    loadingCtrl.stopLoading();
+                })
+                .finally(function () {
+                    loadingManager.stopLoading();
                 });
 
-                loadingCtrl.startLoading();
-                optionsService.getAvailableUsers(function (data) {
+                loadingManager.startLoading();
+                optionsService.getAvailableUsers()
+                .success(function (data) {
                     $scope.allAvailableUsers = data;
-                    loadingCtrl.stopLoading();
-                }, function (data) {
+                })
+                .error(function (data) {
                     $scope.allAvailableUsers = [];
                     $rootScope.updateErrorMessage(data.Message);
-                    loadingCtrl.stopLoading();
+                })
+                .finally(function () {
+                    loadingManager.stopLoading();
                 });
 
                 $scope.$watch('assignment.Role', function (newValue, oldValue) {
                     if (newValue == oldValue) return;
 
                     $rootScope.updateErrorMessage(null);
-                    loadingCtrl.startLoading();
-                    roleBasedService.getAssignedUsersByRole(newValue, function (data) {
+                    loadingManager.startLoading();
+                    roleBasedService.getAssignedUsersByRole(newValue)
+                    .success(function (data) {
                         $scope.assignment.Users = data;
-                        loadingCtrl.stopLoading();
-                    }, function (data) {
+                    })
+                    .error(function (data) {
                         $scope.assignment.Users = [];
                         $rootScope.updateErrorMessage(data.Message);
-                        loadingCtrl.stopLoading();
+                    })
+                    .finally(function () {
+                        loadingManager.stopLoading();
                     });
                 });
             }];

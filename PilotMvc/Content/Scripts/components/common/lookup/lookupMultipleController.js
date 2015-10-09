@@ -1,9 +1,9 @@
 ﻿(function () {
     var Ctrl = null;
-    define(['angular', 'app', 'auth/session', 'components/common/loading/loadingController', 'components/common/services/jsonService'],
-    function (angular, app, session, loadingController) {
+    define(['angular', 'app', 'components/common/loading/loadingController', 'components/common/services/jsonService'],
+    function (angular, app, loadingController) {
         if (Ctrl == null) {
-            Ctrl = ['$scope', '$rootScope', '$location', 'JsonService', function ($scope, $rootScope, $location, jsonService) {
+            Ctrl = ['$scope', '$rootScope', '$location', 'JsonService', 'Session', function ($scope, $rootScope, $location, jsonService, session) {
                 $scope.selecteds = $scope.selecteds == undefined ? [] : $scope.selecteds;
                 var selecteds = $scope.selecteds.map(function (item) { return item; });
 

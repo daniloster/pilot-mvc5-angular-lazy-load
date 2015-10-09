@@ -1,13 +1,13 @@
 ﻿(function (Factory, identification) {
     identification = identification || 0;
-    define(['app', 'auth/session'], function (app, session) {
+    define(['app', 'auth/session'], function (app) {
         if (Factory === undefined) {
 
             app.lazy.provider('PermissionResolver', (Factory = function permissionResolverProvider() {
                 var globalActive = true;
                 this.defineResolver = function (id) {
-                    return ['$q', '$route', '$location', '$rootScope', 'AuthorizationService',
-                    function ($q, $route, $location, $rootScope, authorizationService) {
+                    return ['$q', '$route', '$location', '$rootScope', 'AuthorizationService', 'Session',
+                    function ($q, $route, $location, $rootScope, authorizationService, session) {
                         var self = this;
                         self.resolve = function () {
                             var deferred = $q.defer(), authorized = $q.defer(), path = $location.path(), redirect,
@@ -47,32 +47,23 @@
                             if (!!isPublic || (!globalActive && id === 'global')) {
                                 deferred.resolve();
                             } else {
-                                if (session.init()) {
-                                    if (session.hasViewPermission(path)) {
-                                        deferred.resolve();
-                                    } else {
-                                        /// redirect to not authorized page
-                                        deferred.reject();
-                                    }
-                                } else {
-                                    // In that case, it is necessary to load the user from session
-                                    authorizationService.getCurrent(function (data) {
-                                        if (session.init(data)) {
-                                            if (session.hasViewPermission(path)) {
-                                                deferred.resolve();
-                                            } else {
-                                                /// redirect to not authorized page
-                                                deferred.reject();
-                                            }
+                                // In that case, it is necessary to load the user from session
+                                authorizationService.getCurrent(function (data) {
+                                    if (session.init(data)) {
+                                        if (session.hasViewPermission(path)) {
+                                            deferred.resolve();
                                         } else {
                                             /// redirect to not authorized page
                                             deferred.reject();
                                         }
-                                    }, function (data) {
-                                        /// redirect to login page
-                                        redirect('/login');
-                                    });
-                                }
+                                    } else {
+                                        /// redirect to not authorized page
+                                        deferred.reject();
+                                    }
+                                }, function (data) {
+                                    /// redirect to login page
+                                    redirect('/login');
+                                });
                             }
                             return id === 'global' ? authorized.promise : {
                                 activateGlobal: activateGlobal,

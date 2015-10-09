@@ -1,8 +1,8 @@
 ﻿(function () {
     var Svc = null;
-    define(['app', 'auth/session', 'config/configApp'], function (app, session) {
+    define(['app', 'auth/session', 'config/configApp'], function (app) {
         if (Svc == null) {
-            Svc = ['$http', 'ConfigApp', function ($http, ConfigApp) {
+            Svc = ['$http', 'ConfigApp', 'Session', function ($http, ConfigApp, session) {
 
                 var resource = {
                     login: function (user, success, error) {

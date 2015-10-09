@@ -1,8 +1,8 @@
 ﻿(function () {
     var loaded = false;
-    define(['angular', 'app', 'auth/session'], function (angular, app, session) {
+    define(['angular', 'app', 'auth/session'], function (angular, app) {
         if (!loaded) {
-            app.lazy.directive('accessDisabled', [function () {
+            app.lazy.directive('accessDisabled', ['Session', function (session) {
                 return {
                     restrict: 'A',
                     scope: {
@@ -28,29 +28,6 @@
                     }
                 };
             }]);
-
-            //app.lazy.decorator('ngDisabledDirective', ['ConfigApp', '$rootScope', '$location', function (ConfigApp, $rootScope, $location) {
-            //    return {
-            //        restrict: 'A',
-            //        scope: {
-            //            mustDisable: '=ngDisabled'
-            //        },
-            //        link: function ($scope, elem, attrs) {
-
-            //            $rootScope.$on('Access:validate', function (evt) {
-
-            //            });
-
-            //            var active = elem.attr('href');
-
-            //            elem.on('click', function () {
-            //                check($('[nav-check]'), active);
-            //            });
-
-            //            checkItem($(elem), $location.path());
-            //        }
-            //    };
-            //}]);
             loaded = true;
         }
     });

@@ -1,25 +1,27 @@
 (function () {
     var Ctrl = null;
-    define(['app', 'components/common/loading/loadingController', 'app/role/roleService', 'app/shared/optionsService'], function (app, loadingCtrl) {
+    define(['app', 'components/common/loading/loadingManager', 'app/role/roleService', 'app/shared/optionsService'], function (app) {
         if (Ctrl === null) {
-            Ctrl = ['$scope', '$rootScope', '$q', 'RoleService', 'OptionsService', function ($scope, $rootScope, $q, roleService, optionsService) {
-                loadingCtrl.clear(false);
+            Ctrl = ['$scope', '$rootScope', '$q', 'RoleService', 'OptionsService', 'LoadingManager', function ($scope, $rootScope, $q, roleService, optionsService, loadingManager) {
 
                 $scope.hasSearched = false;
                 $scope.pageSize = 4;
                 $scope.currentPage = 1;
 
                 $scope.search = function () {
-                    loadingCtrl.startLoading();
-                    roleService.query($scope.filter, function (data) {
+                    loadingManager.startLoading();
+                    roleService.query($scope.filter)
+                    .success(function (data) {
                         $scope.roles = data;
-                        loadingCtrl.stopLoading();
                         $scope.hasSearched = true;
-                    }, function (data) {
+                    })
+                    .error(function (data) {
                         $scope.roles = undefined;
                         $rootScope.updateErrorMessage(data.Message);
-                        loadingCtrl.stopLoading();
                         $scope.hasSearched = true;
+                    })
+                    .finally(function () {
+                        loadingManager.stopLoading();
                     });
                 };
 
@@ -34,9 +36,6 @@
                 $scope.setCurrent = function (item) {
                     if (item != null) {
                         item = JSON.parse(JSON.stringify(item));
-                        item.Application = $scope.availableApplications.filter(function (it) {
-                            return (item.Application.Id == it.Id);
-                        })[0];
                     }
                     $scope.current = item;
                 };
@@ -48,17 +47,20 @@
                 //Used to save a record after edit  
                 $scope.save = function () {
                     var task = $q.defer();
-                    loadingCtrl.startLoading();
+                    loadingManager.startLoading();
                     var isUpdating = !!$scope.current && $scope.current.Id > 0;
-                    roleService.save($scope.current, function (data) {
+                    roleService.save($scope.current)
+                    .success(function (data) {
                         $rootScope.updateSuccessMessage(data.Message);
-                        loadingCtrl.stopLoading();
                         task.resolve();
                         $scope.search();
-                    }, function (data) {
+                    })
+                    .error(function (data) {
                         $rootScope.updateErrorMessage(data.Message);
-                        loadingCtrl.stopLoading();
                         task.reject();
+                    })
+                    .finally(function () {
+                        loadingManager.stopLoading();
                     });
                     return task.promise;
                 };
@@ -66,17 +68,19 @@
                 //Used to delete a record  
                 $scope['delete'] = function () {
                     var task = $q.defer();
-                    loadingCtrl.startLoading();
-                    roleService.delete({ id: $scope.deletingItem.Id }, function (data) {
+                    loadingManager.startLoading();
+                    roleService.delete({ id: $scope.deletingItem.Id })
+                    .success(function (data) {
                         $rootScope.updateSuccessMessage(data.Message);
-                        loadingCtrl.stopLoading();
                         task.resolve();
                         $scope.search();
-                    }, function (data) {
+                    })
+                    .error(function (data) {
                         $rootScope.updateErrorMessage(data.Message);
-                        loadingCtrl.stopLoading();
                         task.reject();
-
+                    })
+                    .finally(function () {
+                        loadingManager.stopLoading();
                     });
                 };
 

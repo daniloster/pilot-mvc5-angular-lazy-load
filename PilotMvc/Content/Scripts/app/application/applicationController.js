@@ -1,25 +1,26 @@
 (function () {
     var Ctrl = null;
-    define(['app', 'components/common/loading/loadingController', 'app/application/applicationService'], function (app, loadingCtrl) {
+    define(['app', 'components/common/loading/loadingManager', 'app/application/applicationService'], function (app) {
         if (Ctrl === null) {
-            Ctrl = ['$scope', '$rootScope', '$q', 'ApplicationService', function ($scope, $rootScope, $q, applicationService) {
-                loadingCtrl.clear(false);
-
+            Ctrl = ['$scope', '$rootScope', '$q', 'ApplicationService', 'LoadingManager', function ($scope, $rootScope, $q, applicationService, loadingManager) {
                 $scope.hasSearched = false;
                 $scope.pageSize = 4;
                 $scope.currentPage = 1;
 
                 $scope.search = function () {
-                    loadingCtrl.startLoading();
-                    applicationService.query($scope.filter, function (data) {
+                    loadingManager.startLoading();
+                    applicationService.query($scope.filter)
+                    .success(function (data) {
                         $scope.apps = data;
-                        loadingCtrl.stopLoading();
                         $scope.hasSearched = true;
-                    }, function (data) {
+                    })
+                    .error(function (data) {
                         $scope.apps = undefined;
                         $rootScope.updateErrorMessage(data.Message);
-                        loadingCtrl.stopLoading();
                         $scope.hasSearched = true;
+                    })
+                    .finally(function () {
+                        loadingManager.stopLoading();
                     });
                 };
 
@@ -42,17 +43,20 @@
                 //Used to save a record after edit  
                 $scope.save = function () {
                     var task = $q.defer();
-                    loadingCtrl.startLoading();
+                    loadingManager.startLoading();
                     var isUpdating = !!$scope.current && $scope.current.Id > 0;
-                    applicationService.save($scope.current, function (data) {
+                    applicationService.save($scope.current)
+                    .success(function (data) {
                         $rootScope.updateSuccessMessage(data.Message);
-                        loadingCtrl.stopLoading();
                         task.resolve();
                         $scope.search();
-                    }, function (data) {
+                    })
+                    .error(function (data) {
                         $rootScope.updateErrorMessage(data.Message);
-                        loadingCtrl.stopLoading();
                         task.reject();
+                    })
+                    .finally(function () {
+                        loadingManager.stopLoading();
                     });
                     return task.promise;
                 };
@@ -60,17 +64,19 @@
                 //Used to delete a record  
                 $scope['delete'] = function () {
                     var task = $q.defer();
-                    loadingCtrl.startLoading();
-                    applicationService.delete({ id: $scope.deletingItem.Id }, function (data) {
+                    loadingManager.startLoading();
+                    applicationService.delete({ id: $scope.deletingItem.Id })
+                    .success(function (data) {
                         $rootScope.updateSuccessMessage(data.Message);
-                        loadingCtrl.stopLoading();
                         task.resolve();
                         $scope.search();
-                    }, function (data) {
+                    })
+                    .error(function (data) {
                         $rootScope.updateErrorMessage(data.Message);
-                        loadingCtrl.stopLoading();
                         task.reject();
-
+                    })
+                    .finally(function () {
+                        loadingManager.stopLoading();
                     });
                 };
 
