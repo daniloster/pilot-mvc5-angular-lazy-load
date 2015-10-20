@@ -9,8 +9,8 @@
                     restrict: 'EA',
                     scope: {
                         list: '=',
-                        pageSize: '=',
-                        currentPage: '=',
+                        pageSize: '@',
+                        currentPage: '@',
                         filter: '=',
                         restUrl: '=',
                         type: '@'

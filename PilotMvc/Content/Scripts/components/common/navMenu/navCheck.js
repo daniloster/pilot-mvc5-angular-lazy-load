@@ -4,7 +4,7 @@
             checkItem($(item), itemPath);
         });
     }, checkItem = function (item, itemPath) {
-        if (item.attr('href').replace('/#/', '/') == itemPath.replace('/#/', '/')) {
+        if (item.attr('href').replace('/#/mis/', '/mis') == itemPath.replace('/#/mis/', '/mis')) {
             item.parent().addClass('active');
         } else {
             item.parent().removeClass('active');

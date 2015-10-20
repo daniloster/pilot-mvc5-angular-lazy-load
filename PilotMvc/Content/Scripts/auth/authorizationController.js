@@ -1,32 +1,38 @@
 (function () {
     var Ctrl = null;
-    define(['app', 'components/common/loading/loadingController'], function (app, loadingController) {
+    define(['app', 'components/common/loading/loadingManager'], function (app) {
         if (Ctrl == null) {
-            Ctrl = ['$scope', '$rootScope', '$location', 'AuthorizationService', function ($scope, $rootScope, $location, authorizationSvc) {
+            Ctrl = ['$scope', '$rootScope', '$location', 'LoadingManager', 'AuthorizationService', function ($scope, $rootScope, $location, loadingManager, authorizationService) {
                 $scope.login = function () {
-                    loadingController.startLoading();
+                    loadingManager.startLoading();
                     $rootScope.updateErrorMessage(null);
                     $scope.user = $scope.user || {};
                     $scope.user.rememberMe = !!$scope.user.rememberMe;
-                    authorizationSvc.login($scope.user, function (data) {
-                        loadingController.stopLoading();
+                    authorizationService.login($scope.user)
+                    .success(function (data) {
                         $location.path('/');
-                    }, function (data) {
-                        $rootScope.updateErrorMessage(data.Message);
-                        loadingController.stopLoading();
                     })
+                    .error(function (data) {
+                        $rootScope.updateErrorMessage(data.Message);
+                    })
+                    .finally(function () {
+                        loadingManager.stopLoading();
+                    });
                 };
 
                 $scope.logout = function () {
-                    loadingController.startLoading();
+                    loadingManager.startLoading();
                     $rootScope.updateErrorMessage(null);
-                    authorizationSvc.logout(function (data) {
-                        loadingController.stopLoading();
+                    authorizationService.logout()
+                    .success(function (data) {
                         $location.path('/login');
-                    }, function (data) {
-                        $rootScope.updateErrorMessage(data.Message);
-                        loadingController.stopLoading();
                     })
+                    .error(function (data) {
+                        $rootScope.updateErrorMessage(data.Message);
+                    })
+                    .finally(function () {
+                        loadingManager.stopLoading();
+                    });
                 };
             }];
 

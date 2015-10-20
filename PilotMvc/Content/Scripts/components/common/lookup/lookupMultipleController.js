@@ -1,9 +1,9 @@
 ﻿(function () {
     var Ctrl = null;
-    define(['angular', 'app', 'components/common/loading/loadingController', 'components/common/services/jsonService'],
-    function (angular, app, loadingController) {
+    define(['angular', 'app', 'components/common/loading/loadingManager', 'components/common/services/jsonService'],
+    function (angular, app) {
         if (Ctrl == null) {
-            Ctrl = ['$scope', '$rootScope', '$location', 'JsonService', 'Session', function ($scope, $rootScope, $location, jsonService, session) {
+            Ctrl = ['$scope', '$rootScope', '$location', 'JsonService', 'Session', 'LoadingManager', function ($scope, $rootScope, $location, jsonService, session, loadingManager) {
                 $scope.selecteds = $scope.selecteds == undefined ? [] : $scope.selecteds;
                 var selecteds = $scope.selecteds.map(function (item) { return item; });
 
@@ -24,13 +24,16 @@
                         }
                         $scope.sourceArgs.query = query;
                     }
-                    loadingController.startLoading();
-                    jsonService.postData($scope.sourceRef, $scope.sourceArgs, function (data) {
+                    loadingManager.startLoading();
+                    jsonService.postData($scope.sourceRef, $scope.sourceArgs)
+                    .success(function (data) {
                         $scope.dataSource = data;
-                        loadingController.stopLoading();
-                    }, function (data) {
+                    })
+                    .error(function (data) {
                         $scope.dataSource = [];
-                        loadingController.stopLoading();
+                    })
+                    .finally(function () {
+                        loadingManager.stopLoading();
                     });
                 };
 

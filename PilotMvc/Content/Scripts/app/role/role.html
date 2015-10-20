@@ -11,7 +11,7 @@
                     <div class="col-xs-12 col-md-6">
                         <div class="form-group">
                             <label>Application:</label>
-                            <select ng-model="filter.Application" ng-options="app.Name for app in availableApplications" class="form-control">
+                            <select ng-model="filter.Application" ng-options="app.Name for app in availableApplications track by app.Id" class="form-control">
                                 <option value="">-- Choose an application --</option>
                             </select>
                         </div>
@@ -40,7 +40,7 @@
         </form>
     </div>
     <div class="col-xs-12">
-        <h3>List of roles <i class="fa fa-archive"></i></h3>
+        <h3>List of roles <i class="fa fa-sitemap"></i></h3>
         <table class="table table-striped" ng-show="!!roles && !!roles.length">
             <thead>
                 <tr>
@@ -116,7 +116,7 @@
         </div>
     </div>
 
-    <div modal-dialog id="deletingRole" confirm-yes="delete()" confirm-no="clearDeletingItem()">
+    <div modal-dialog id="deletingRole" confirm-yes="remove()" confirm-no="clearDeletingItem()">
         <div class="header">
             <h2 ng-cloak>Delete the role</h2>
         </div>

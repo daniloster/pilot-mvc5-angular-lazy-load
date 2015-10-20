@@ -4,11 +4,11 @@
         if (Svc == null) {
             Svc = ['$http', 'ConfigApp', function ($http, ConfigApp) {
                 return {
-                    postData: function (url, data, success, error) {
-                        $http.post(ConfigApp.getPath(url), data).success(success).error(error);
+                    postData: function (url, data) {
+                        return $http.post(ConfigApp.getPath(url), data);
                     },
-                    post: function (url, success, error) {
-                        $http.post(ConfigApp.getPath(url)).success(success).error(error);
+                    post: function (url) {
+                        return $http.post(ConfigApp.getPath(url));
                     },
                 };
             }];

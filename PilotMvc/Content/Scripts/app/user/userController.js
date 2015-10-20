@@ -1,25 +1,28 @@
 (function () {
     var Ctrl = null;
-    define(['app', 'components/common/loading/loadingController', 'components/common/form/customValidator', 'app/user/userService'], function (app, loadingCtrl, CustomValidator) {
+    define(['app', 'components/common/loading/loadingManager', 'app/user/userService'], function (app) {
         if (Ctrl === null) {
-            Ctrl = ['$scope', '$rootScope', '$q', 'UserService', function ($scope, $rootScope, $q, userService) {
-                loadingCtrl.clear(false);
+            Ctrl = ['$scope', '$rootScope', '$q', 'LoadingManager', 'UserService', 'CustomValidatorFactory', function ($scope, $rootScope, $q, loadingManager, userService, customValidatorFactory) {
+                loadingManager.clear(false);
 
                 $scope.hasSearched = false;
                 $scope.pageSize = 4;
                 $scope.currentPage = 1;
 
                 $scope.search = function () {
-                    loadingCtrl.startLoading();
-                    userService.query($scope.filter, function (data) {
+                    loadingManager.startLoading();
+                    userService.query($scope.filter)
+                    .success(function (data) {
                         $scope.users = data;
-                        loadingCtrl.stopLoading();
                         $scope.hasSearched = true;
-                    }, function (data) {
+                    })
+                    .error(function (data) {
                         $scope.apps = undefined;
                         $rootScope.updateErrorMessage(data.Message);
-                        loadingCtrl.stopLoading();
                         $scope.hasSearched = true;
+                    })
+                    .finally(function () {
+                        loadingManager.stopLoading();
                     });
                 };
 
@@ -42,40 +45,46 @@
                 //Used to save a record after edit  
                 $scope.save = function () {
                     var task = $q.defer();
-                    loadingCtrl.startLoading();
+                    loadingManager.startLoading();
                     var isUpdating = !!$scope.current && $scope.current.Id > 0;
-                    userService.save($scope.current, function (data) {
+                    userService.save($scope.current)
+                    .success(function (data) {
                         $rootScope.updateSuccessMessage(data.Message);
-                        loadingCtrl.stopLoading();
                         task.resolve();
                         $scope.search();
-                    }, function (data) {
+                    })
+                    .error(function (data) {
                         $rootScope.updateErrorMessage(data.Message);
-                        loadingCtrl.stopLoading();
                         task.reject();
+                    })
+                    .finally(function () {
+                        loadingManager.stopLoading();
                     });
                     return task.promise;
                 };
 
                 //Used to delete a record  
-                $scope['delete'] = function () {
+                $scope.remove = function () {
                     var task = $q.defer();
-                    loadingCtrl.startLoading();
-                    userService.delete({ id: $scope.deletingItem.Id }, function (data) {
+                    loadingManager.startLoading();
+                    userService.remove({ id: $scope.deletingItem.Id })
+                    .success(function (data) {
                         $rootScope.updateSuccessMessage(data.Message);
-                        loadingCtrl.stopLoading();
                         task.resolve();
                         $scope.search();
-                    }, function (data) {
+                    })
+                    .error(function (data) {
                         $rootScope.updateErrorMessage(data.Message);
-                        loadingCtrl.stopLoading();
                         task.reject();
 
+                    })
+                    .finally(function () {
+                        loadingManager.stopLoading();
                     });
                 };
 
                 /* Validation methods */
-                $scope.validatePassword = [new CustomValidator('equal', ['confirmingPassword'], function (value) {
+                $scope.validatePassword = [customValidatorFactory.create('equal', ['confirmingPassword'], function (value) {
                     return ((!value && !$scope.confirmingPassword) || value == $scope.confirmingPassword);
                 })];
                 /* End validation methods */

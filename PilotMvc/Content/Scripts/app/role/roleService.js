@@ -6,13 +6,13 @@
 
                 var resource = {
                     query: function (data, success, error) {
-                        $http.post('/role/search', data).success(success).error(error);
+                        return $http.post('/role/search', data);
                     },
                     save: function (data, success, error) {
-                        $http.post('/role/save', data).success(success).error(error);
+                        return $http.post('/role/save', data);
                     },
-                    'delete': function (data, success, error) {
-                        $http.post('/role/delete', data).success(success).error(error);
+                    remove: function (data, success, error) {
+                        return $http.post('/role/delete', data);
                     }
                 };
                 

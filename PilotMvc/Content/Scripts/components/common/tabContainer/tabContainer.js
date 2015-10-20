@@ -97,7 +97,12 @@
                         tabAlignment: "=?"
                     },
                     link: function ($scope, elem, attrs) {
-                        $scope.showTab(isNaN($scope.tabIndexDefault) ? 0 : parseInt($scope.tabIndexDefault));
+                        function validateAndShowTab() {
+                            if (!!$scope.tabs && $scope.tabs.length > 0)
+                                $scope.showTab(isNaN($scope.tabIndexDefault) ? 0 : parseInt($scope.tabIndexDefault));
+                        }
+
+                        $scope.$watch('tabs', validateAndShowTab);
                     }
                 };
             }]);

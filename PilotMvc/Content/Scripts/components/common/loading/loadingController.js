@@ -1,21 +1,18 @@
 ﻿(function () {
-    var Ctrl = null;
+    var Ctrl = ['$scope', 'LoadingManager', function ($scope, loadingManager) {
+
+        $scope.isLoading = function () {
+            return loadingManager.isLoading();
+        };
+
+        $scope.hasOverlay = function () {
+            return loadingManager.hasOverlay();
+        };
+    }], loaded = false;
     define(['app', 'components/common/loading/loadingManager'], function (app) {
-        if (Ctrl == null) {
-            Ctrl = ['$scope', 'LoadingManager', function ($scope, loadingManager) {
-
-                $scope.isLoading = function () {
-                    return instance.isLoading();
-                };
-
-                $scope.hasOverlay = function () {
-                    return instance.hasOverlay();
-                };
-            }];
-
+        if (!loaded) {
+            loaded = true;
             app.lazy.controller('LoadingController', Ctrl);
         }
-
-        return instance;
     });
 })();

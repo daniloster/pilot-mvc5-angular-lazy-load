@@ -32,7 +32,7 @@
         </form>
     </div>
     <div class="col-xs-12"      >
-        <h3>List of users <i class="fa fa-cogs"></i></h3>
+        <h3>List of users <i class="fa fa-group"></i></h3>
         <table class="table table-striped" ng-show="!!usersOut && !!usersOut.length">
             <thead>
                 <tr>
@@ -126,7 +126,7 @@
         </div>
     </div>
 
-    <div modal-dialog id="deletingUser" confirm-yes="delete()" confirm-no="clearDeletingItem()">
+    <div modal-dialog id="deletingUser" confirm-yes="remove()" confirm-no="clearDeletingItem()">
         <div class="header">
             <h2 ng-cloak>Delete the user</h2>
         </div>

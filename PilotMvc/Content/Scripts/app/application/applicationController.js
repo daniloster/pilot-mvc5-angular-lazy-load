@@ -62,10 +62,10 @@
                 };
 
                 //Used to delete a record  
-                $scope['delete'] = function () {
+                $scope.remove = function () {
                     var task = $q.defer();
                     loadingManager.startLoading();
-                    applicationService.delete({ id: $scope.deletingItem.Id })
+                    applicationService.remove({ id: $scope.deletingItem.Id })
                     .success(function (data) {
                         $rootScope.updateSuccessMessage(data.Message);
                         task.resolve();

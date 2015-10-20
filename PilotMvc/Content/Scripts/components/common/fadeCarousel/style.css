@@ -1,0 +1,49 @@
+﻿.carousel-viewport {
+    position: relative;
+    display: block;
+    padding: 15px;
+    margin: 0px 0px 20px 0px;
+    background-color: #e1dfdf;
+    text-align: center;
+}
+
+.carousel-viewport .carousel-container {
+    /*border-radius: 5px 5px 5px 5px;*/
+    /*box-shadow: 1px 1px 5px #454545;*/
+    position:relative;
+    display: table !important;
+    margin: 0 auto;
+    overflow: auto;
+}
+
+.carousel-viewport  .carousel-inner-wrapper {
+    position: absolute;
+    display: block;
+    text-align: center;
+}
+
+.carousel-viewport .carousel-fader {
+    border-radius: 5px 5px 5px 5px;
+    position: relative !important;
+    margin: 0 auto !important;
+    text-align: center !important;
+    /*position: absolute;
+    left: 0px;
+    top: 0px;*/
+    z-index: 2;
+    display: none;
+}   
+
+    .carousel-viewport .carousel-fader.show {
+        display: table !important;
+        transition: opacity 500ms ease;
+    }
+
+    .carousel-viewport .carousel-fader.fadeOut {
+        opacity: 0;
+    }
+
+.carousel-viewport .carousel-reference {
+    border-radius: 5px 5px 5px 5px;
+    display: inline;
+}

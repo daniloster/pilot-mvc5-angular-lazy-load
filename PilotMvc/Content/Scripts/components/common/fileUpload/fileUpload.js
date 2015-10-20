@@ -1,6 +1,6 @@
 (function () {
     var Element = null;
-    define(['app', 'components/common/loading/loadingController', 'components/common/fileUpload/uploadService'], function (app, loadingController) {
+    define(['app', 'components/common/loading/loadingController', 'components/common/fileUpload/uploadService'], function (app) {
         if (Element === null) {            
             Element = ['$parse', 'ConfigApp', function ($parse, configApp) {
                 angular.element('body').after(angular.element(ConfigApp.getElementLink('/Content/Scripts/components/common/fileUpload/file-style.css')));
@@ -14,7 +14,7 @@
                     },
                     restrict: 'EA',
                     templateUrl: configApp.getPath('/Content/Scripts/components/common/fileUpload/file-template.html'),
-                    controller: ['$scope', 'UploadService', function ($scope, uploadService) {
+                    controller: ['$scope', 'UploadService', 'LoadingManager', function ($scope, uploadService, loadingManager) {
                         $scope.clear = function () {
                             $scope.fileProgress = undefined;
                             $scope.styleProgress = {};
@@ -31,7 +31,7 @@
                         $scope.upload = function (file) {
                             $scope.clear();
                             if (!$scope.showProgress) {
-                                loadingController.startLoading();
+                                loadingManager.startLoading();
                             }
                             uploadService.upload(file, { type: 'file', folderType: !!$scope.pathKey ? $scope.pathKey : 'ProfilePath' },
                             function (progress) {
@@ -42,14 +42,14 @@
                                 file.fileData = data.data;
                                 file.hasBeenUploaded = true;
                                 if (!$scope.showProgress) {
-                                    loadingController.stopLoading();
+                                    loadingManager.stopLoading();
                                 }
                             },
                             function (data) {
                                 file.fileData = {};
                                 file.hasBeenUploaded = false;
                                 if (!$scope.showProgress) {
-                                    loadingController.stopLoading();
+                                    loadingManager.stopLoading();
                                 }
                             });
                         };

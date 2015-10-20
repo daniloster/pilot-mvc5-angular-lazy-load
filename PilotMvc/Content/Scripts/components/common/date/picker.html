@@ -4,7 +4,7 @@
             <thead>
                 <tr>
                     <th ng-mousedown="prev()">‹</th>
-                    <th colspan="5" class="switch" ng-mousedown="setView('month')" ng-cloak>{{ date | date: "yyyy MMMM"}}</th>
+                    <th colspan="5" class="switch" ng-mousedown="setView('month')" ng-cloak ng-bind="date | date: 'yyyy MMMM'"></th>
                     <th ng-mousedown="next()">›</th>
                 </tr>
                 <tr>
@@ -14,11 +14,16 @@
             <tbody>
                 <tr ng-repeat="week in weeks">
                     <td ng-repeat="day in week">
-                        <span ng-class="{'now':isNow(day),'active':isSameDay(day),'disabled':(day.getMonth()!=date.getMonth() || isUnavailableAfter(day) || isUnavailableBefore(day)),'after':isAfter(day),'before':isBefore(day)}"
+                        <span ng-class="{'now':isNow(day),'active':isSameDay(day),'disabled':day.getMonth()!=date.getMonth(),'after':isAfter(day),'before':isBefore(day),'unavailable':(isUnavailableAfter(day) || isUnavailableBefore(day))}"
                               ng-mousedown="setDate(day)" ng-bind="day.getDate()"></span>
                     </td>
                 </tr>
             </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="7"><a href="javascript:;" ng-click="clearSelectedDate()" class="btn btn-blue">Clear Selected Date</a></td>
+                </tr>
+            </tfoot>
         </table>
     </div>
     <div ng-switch-when="year">
@@ -26,7 +31,7 @@
             <thead>
                 <tr>
                     <th ng-mousedown="prev(10)">‹</th>
-                    <th colspan="5" class="switch" ng-cloak>{{ years[0].getFullYear() }}-{{ years[years.length-1].getFullYear() }}</th>
+                    <th colspan="5" class="switch" ng-cloak ng-bind="years[0].getFullYear() + '-' + years[years.length-1].getFullYear()"></th>
                     <th ng-mousedown="next(10)">›</th>
                 </tr>
             </thead>
@@ -46,7 +51,7 @@
             <thead>
                 <tr>
                     <th ng-mousedown="prev()">‹</th>
-                    <th colspan="5" class="switch" ng-mousedown="setView('year')" ng-cloak>{{ date | date: "yyyy" }}</th>
+                    <th colspan="5" class="switch" ng-mousedown="setView('year')" ng-cloak ng-bind="date | date: 'yyyy'"></th>
                     <th ng-mousedown="next()">›</th>
                 </tr>
             </thead>
@@ -67,7 +72,7 @@
             <thead>
                 <tr>
                     <th ng-mousedown="prev(24)">‹</th>
-                    <th colspan="5" class="switch" ng-mousedown="setView('date')" ng-cloak>{{ date | date: "dd MMMM yyyy" }}</th>
+                    <th colspan="5" class="switch" ng-mousedown="setView('date')" ng-cloak ng-bind="date | date: 'dd MMMM yyyy'"></th>
                     <th ng-mousedown="next(24)">›</th>
                 </tr>
             </thead>
@@ -87,7 +92,7 @@
             <thead>
                 <tr>
                     <th ng-mousedown="prev()">‹</th>
-                    <th colspan="5" class="switch" ng-mousedown="setView('hours')" ng-cloak>{{ date | date: "dd MMMM yyyy" }}</th>
+                    <th colspan="5" class="switch" ng-mousedown="setView('hours')" ng-cloak ng-bind="date | date: 'dd MMMM yyyy'"></th>
                     <th ng-mousedown="next()">›</th>
                 </tr>
             </thead>

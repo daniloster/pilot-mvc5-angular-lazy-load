@@ -1,0 +1,29 @@
+﻿<div class="ms-container" id="ms-link-select-[HASH_ID]">
+    <div class="ms-selectable">
+        <div class="custom-header">All {{ label }}</div>
+        <ul class="ms-list list-unstyled">
+            <li class="ms-elem-selectable" ng-repeat="item in listAll track by item[itemTrack]"
+                ng-hide="isSelected(item)"
+                ng-click="toggleItem(item)"
+                ng-mouseover="currentAllIndexOver=$index" ng-mouseleave="currentAllIndexOver=null"
+                ng-class="{ 'ms-hover': (currentAllIndexOver == $index) }">
+                <span dual-list-item-template></span>
+            </li>
+        </ul>
+    </div>
+    <div class="ms-selection">
+        <div class="custom-header">Chosen {{ label }}</div>
+        <ul class="ms-list list-unstyled">
+            <li class="ms-elem-selection ms-selected" ng-repeat="item in listAssigned track by item[itemTrack]"
+                ng-click="toggleItem(item)"
+                ng-class="{ 'with-order': showOrdering, 'ms-hover': (currentAssignedIndexOver == $index) }"
+                ng-mouseover="currentAssignedIndexOver=$index" ng-mouseleave="currentAssignedIndexOver=null">
+                <span dual-list-item-template></span>
+                <div ng-show="showOrdering">
+                    <a href="javascript:;" ng-click="moveUp($index, $event);"><i class="fa fa-arrow-up"></i></a>
+                    <a href="javascript:;" ng-click="moveDown($index, $event);"><i class="fa fa-arrow-down"></i></a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

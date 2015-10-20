@@ -11,7 +11,7 @@
                     <div class="col-xs-12 col-md-6">
                         <div class="form-group">
                             <label>Application:</label>
-                            <select ng-model="filter.Application" ng-options="app.Name for app in availableApplications" class="form-control">
+                            <select ng-model="filter.Application" ng-options="app.Name for app in availableApplications track by app.Id" class="form-control">
                                 <option value="">-- Choose an application --</option>
                             </select>
                         </div>
@@ -134,7 +134,7 @@
         </div>
     </div>
 
-    <div modal-dialog id="deletingResource" confirm-yes="delete()" confirm-no="clearDeletingItem()">
+    <div modal-dialog id="deletingResource" confirm-yes="remove()" confirm-no="clearDeletingItem()">
         <div class="header">
             <h2 ng-cloak>Delete the resource</h2>
         </div>

@@ -1,6 +1,6 @@
 ﻿.pagination>li {
  display: inline-block !important;
- height: 18px !important;
+ height: 16px !important;
  /*background-color: #8ec925;
  border-color: #8ec925;*/
  /*color:#8ec925;*/
@@ -13,13 +13,19 @@
 }
 
 .pagination > li span, .pagination > li > span:hover, .pagination > li > span:focus {
-    color: #2a6496;
-    background-color: #eee;
+    color: #2a6496 !important;
+    background-color: #fff;
+    border: none;
+    font-size: 13px;
+}
+
+.left-content .pagination > li span, .pagination > li > span:hover, .pagination > li > span:focus {
+    background-color: #f8f8f8 !important;
 }
 
 .pagination>li a, .pagination>li a:active, .pagination>li>a:focus, .pagination>li a:visited {
  /*color:#8eb925;*/
- color:#fff;background-color:#8ec925;
+ color:#337AB7;background-color:#ffffff; font-size: 13px;
 }
 
 .pagination-desc {
@@ -38,7 +44,7 @@
    padding: 0;
    height: 29px;
    font-size: small;
-   font-weight: bolder;
+  border: solid 1px #ddd;
 }
 
 /*.pure-paginator {

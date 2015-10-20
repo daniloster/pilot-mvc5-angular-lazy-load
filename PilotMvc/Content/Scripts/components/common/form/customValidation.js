@@ -1,6 +1,6 @@
 ﻿(function () {
     var loaded = false;
-    define(['angular', 'app'], function (angular, app) {
+    define(['angular', 'app', 'components/common/form/customValidatorFactory'], function (angular, app) {
         if (!loaded) {
             app.lazy.directive("customValidation", ['ConfigApp', function (ConfigApp) {
                 angular.element('body').after(angular.element(ConfigApp.getElementLink('/Content/Scripts/components/common/form/customValidation.css')));

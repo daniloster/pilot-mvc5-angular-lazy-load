@@ -155,19 +155,45 @@
                     },
                     link: function (scope, element, attrs, ne) {
 
-                        scope.date = new Date(scope.model || new Date());
-                        scope.views = datePickerConfig.views.concat();
-                        scope.view = attrs.view || datePickerConfig.view;
-                        scope.now = new Date();
-                        scope.template = attrs.template || ConfigApp.getPath(datePickerConfig.template);
+                        if (!!attrs.zIndex) {
+                            element.css('z-index', attrs.zIndex);
+                        }
+
                         if (scope.unavailableBefore) {
+                            scope.unavailableBefore.setHours(0);
+                            scope.unavailableBefore.setMinutes(0);
+                            scope.unavailableBefore.setSeconds(0);
+                            scope.unavailableBefore.setMilliseconds(0);
                             scope.minAvailableDate = new Date(scope.unavailableBefore);
-                            scope.minAvailableDate.setDate(scope.minAvailableDate.getDate() + 1);
                         }
                         if (scope.unavailableAfter) {
+                            scope.unavailableAfter.setHours(0);
+                            scope.unavailableAfter.setMinutes(0);
+                            scope.unavailableAfter.setSeconds(0);
+                            scope.unavailableAfter.setMilliseconds(0);
                             scope.maxAvailableDate = new Date(scope.unavailableAfter);
-                            scope.maxAvailableDate.setDate(scope.maxAvailableDate.getDate() - 1);
                         }
+
+                        function refreshTemplate(newValue, oldValue) {
+                            if (newValue == oldValue) return;
+                            if (scope.unavailableBefore) {
+                                scope.minAvailableDate = new Date(scope.unavailableBefore);
+                            }
+                            if (scope.unavailableAfter) {
+                                scope.maxAvailableDate = new Date(scope.unavailableAfter);
+                            }
+                            if ((scope.unavailableBefore && scope.isUnavailableBefore(scope.date)) || (scope.unavailableAfter && scope.isUnavailableAfter(scope.date)))
+                                scope.model = null;
+                        }
+
+                        scope.$watch('unavailableAfter', refreshTemplate);
+                        scope.$watch('unavailableBefore', refreshTemplate);
+
+                        scope.view = attrs.view || datePickerConfig.view;
+                        scope.date = getValidDate(new Date(scope.model || new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate())));
+                        scope.views = datePickerConfig.views.concat();
+                        scope.now = new Date();
+                        scope.template = attrs.template || ConfigApp.getPath(datePickerConfig.template);
 
                         var applyValue = function (value) {
                             scope.model = value;
@@ -191,29 +217,51 @@
                                 scope.view = nextView;
                             }
                         };
-
-                        scope.setDate = function (date) {
-                            var maxAvailableDate = new Date(scope.unavailableAfter);
-                            maxAvailableDate.setDate(maxAvailableDate.getDate() - 1);
-                            if (!!scope.unavailableBefore && date.getFullYear() == maxAvailableDate.getFullYear()) {
+                        function formatNum(number) { return number < 10 ? '0' + number : number; }
+                        function unitMonth(date) { return parseInt(date.getFullYear() + '' + formatNum(date.getMonth())); }
+                        function unitDate(date) { return parseInt(date.getFullYear() + '' + formatNum(date.getMonth()) + '' + formatNum(date.getDate())); }
+                        function getValidDate(date) {
+                            date = !!date ? new Date(date) : new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+                            var maxAvailableDate = new Date(scope.maxAvailableDate);
+                            if (!!scope.unavailableAfter && date.getFullYear() >= maxAvailableDate.getFullYear()) {
                                 if (scope.view == 'year') {
-                                    date = maxAvailableDate;
+                                    return maxAvailableDate;
                                 }
-                                else if (scope.view == 'month' && date.getMonth() == maxAvailableDate.getMonth()) {
-                                    date = maxAvailableDate;
+                                else if (unitMonth(date) >= unitMonth(maxAvailableDate)) {
+                                    if (scope.view == 'month') {
+                                        return maxAvailableDate;
+                                    }
+                                    else if (scope.view == 'date' && unitDate(date) >= unitDate(maxAvailableDate)) {
+                                        return maxAvailableDate;
+                                    }
                                 }
                             }
-                            var minAvailableDate = new Date(scope.unavailableBefore);
-                            minAvailableDate.setDate(minAvailableDate.getDate() + 1);
-                            if (!!scope.unavailableBefore && date.getFullYear() == minAvailableDate.getFullYear()) {
+                            var minAvailableDate = new Date(scope.minAvailableDate);
+                            if (!!scope.unavailableBefore && date.getFullYear() <= minAvailableDate.getFullYear()) {
                                 if (scope.view == 'year') {
-                                    date = minAvailableDate;
+                                    return minAvailableDate;
                                 }
-                                else if (scope.view == 'month' && date.getMonth() == minAvailableDate.getMonth()) {
-                                    date = minAvailableDate;
+                                else if (unitMonth(date) <= unitMonth(minAvailableDate)) {
+                                    if (scope.view == 'month') {
+                                        return minAvailableDate;
+                                    }
+                                    else if (scope.view == 'date' && unitDate(date) <= unitDate(minAvailableDate)) {
+                                        return minAvailableDate;
+                                    }
                                 }
                             }
-                            if (attrs.disabled || (scope.isUnavailableAfter(date)) || (scope.isUnavailableBefore(date))) {
+                            return date;
+                        }
+                        scope.setDate = function (datep) {
+                            var date = getValidDate(datep);
+                            var maxAvailableDate = new Date(scope.maxAvailableDate);
+                            var minAvailableDate = new Date(scope.minAvailableDate);
+                            if (attrs.disabled
+                                //|| (scope.isUnavailableAfter(datep)) || (scope.isUnavailableBefore(datep))
+                                || (scope.view == 'year' && (!!minAvailableDate && minAvailableDate.getFullYear() > datep.getFullYear()) || (!!maxAvailableDate && maxAvailableDate.getFullYear() < datep.getFullYear()))
+                                || (scope.view == 'month' && (!!minAvailableDate && unitMonth(minAvailableDate) > unitMonth(datep)) || (!!maxAvailableDate && unitMonth(maxAvailableDate) < unitMonth(datep)))
+                                || (scope.view == 'date' && (!!minAvailableDate && unitDate(minAvailableDate) > unitDate(datep)) || (!!maxAvailableDate && unitDate(maxAvailableDate) < unitDate(datep)))
+                                ) {
                                 return;
                             }
                             scope.date = date;
@@ -250,26 +298,35 @@
                                 scope.setView(nextView);
                             }
                         };
+                        scope.clearSelectedDate = function () {
+                            scope.date = null;
+                            applyValue(null);
+                            scope.$emit('setDate', scope.model, scope.view);
+                        };
+
+                        scope.isValidDate = function (day) {
+                            return day.getTime() == getValidDate(day).getTime();
+                        };
 
                         function update() {
                             var view = scope.view;
                             var date = scope.date;
                             switch (view) {
                                 case 'year':
-                                    scope.years = datePickerUtils.getVisibleYears(date);
+                                    scope.years = datePickerUtils.getVisibleYears(getValidDate(date));
                                     break;
                                 case 'month':
-                                    scope.months = datePickerUtils.getVisibleMonths(date);
+                                    scope.months = datePickerUtils.getVisibleMonths(getValidDate(date));
                                     break;
                                 case 'date':
                                     scope.weekdays = scope.weekdays || datePickerUtils.getDaysOfWeek();
-                                    scope.weeks = datePickerUtils.getVisibleWeeks(date);
+                                    scope.weeks = datePickerUtils.getVisibleWeeks(getValidDate(date));
                                     break;
                                 case 'hours':
-                                    scope.hours = datePickerUtils.getVisibleHours(date);
+                                    scope.hours = datePickerUtils.getVisibleHours(getValidDate(date));
                                     break;
                                 case 'minutes':
-                                    scope.minutes = datePickerUtils.getVisibleMinutes(date, step);
+                                    scope.minutes = datePickerUtils.getVisibleMinutes(getValidDate(date), step);
                                     break;
                             }
                         }
@@ -286,19 +343,60 @@
 
                         scope.next = function (delta) {
                             var date = scope.date;
+                            auxDate = new Date(date);
                             delta = delta || 1;
                             switch (scope.view) {
                                 case 'year':
-                                    /*falls through*/
+                                    if (!!scope.years && scope.years.length > 0) {
+                                        if (delta > 0) {
+                                            auxDate.setFullYear(scope.years[scope.years.length - 1].getFullYear() + 1);
+                                        }
+                                        else if (delta < 0) {
+                                            auxDate.setFullYear(scope.years[0].getFullYear() - 1);
+                                        }
+                                    }
+                                    if (!scope.isValidDate(auxDate))
+                                        return;
+                                    date.setFullYear(date.getFullYear() + delta);
+                                    break;
                                 case 'month':
+                                    if (!!scope.months && scope.months.length > 0) {
+                                        if (delta > 0) {
+                                            auxDate = new Date(scope.months[scope.months.length - 1]);
+                                            auxDate.setMonth(auxDate.getMonth() + 1);
+                                        }
+                                        else if (delta < 0) {
+                                            auxDate = new Date(scope.months[0]);
+                                            auxDate.setMonth(auxDate.getMonth() - 1);
+                                        }
+                                    }
+                                    //auxDate.setFullYear(auxDate.getFullYear() + delta);
+                                    if (!scope.isValidDate(auxDate))
+                                        return;
                                     date.setFullYear(date.getFullYear() + delta);
                                     break;
                                 case 'date':
+                                    if (!!scope.weeks && scope.weeks.length > 0) {
+                                        if (delta > 0) {
+                                            auxDate = new Date(scope.weeks[scope.weeks.length - 1][6]);
+                                            auxDate.setDate(auxDate.getDate() + 1);
+                                        }
+                                        else if (delta < 0) {
+                                            auxDate = new Date(scope.weeks[0][0]);
+                                            auxDate.setDate(auxDate.getDate() - 1);
+                                        }
+                                    }
+                                    //auxDate.setMonth(auxDate.getMonth() + delta);
+                                    if (!scope.isValidDate(auxDate))
+                                        return;
                                     date.setMonth(date.getMonth() + delta);
                                     break;
                                 case 'hours':
                                     /*falls through*/
                                 case 'minutes':
+                                    auxDate.setHours(auxDate.getHours() + delta);
+                                    if (!scope.isValidDate(auxDate))
+                                        return;
                                     date.setHours(date.getHours() + delta);
                                     break;
                             }
@@ -318,11 +416,11 @@
                         };
 
                         scope.isUnavailableAfter = function (date) {
-                            return scope.unavailableAfter && datePickerUtils.isBefore(date, new Date(scope.unavailableAfter));
+                            return scope.unavailableAfter && date.getTime() != new Date(scope.unavailableAfter).getTime() && datePickerUtils.isBefore(date, new Date(scope.unavailableAfter));
                         };
 
                         scope.isUnavailableBefore = function (date) {
-                            return scope.unavailableBefore && datePickerUtils.isAfter(date, new Date(scope.unavailableBefore));
+                            return scope.unavailableBefore && date.getTime() != new Date(scope.unavailableBefore).getTime() && datePickerUtils.isAfter(date, new Date(scope.unavailableBefore));
                         };
 
                         scope.isSameMonth = function (date) {
@@ -403,12 +501,13 @@
                 template: function (attrs) {
                     return '' +
                         '<div ' +
-                        'date-picker="' + attrs.ngModel + '" ' +
+                        'date-picker="$parent.' + attrs.ngModel + '" ' +
                         (attrs.view ? 'view="' + attrs.view + '" ' : '') +
                         (attrs.maxView ? 'max-view="' + attrs.maxView + '" ' : '') +
                         (attrs.template ? 'template="' + attrs.template + '" ' : '') +
                         (attrs.minView ? 'min-view="' + attrs.minView + '" ' : '') +
                         (attrs.partial ? 'partial="' + attrs.partial + '" ' : '') +
+                        (attrs.zIndex ? 'z-index="' + attrs.zIndex + '" ' : '') +
                         (attrs.unavailableAfter ? 'unavailable-after="' + attrs.unavailableAfter + '" ' : '') +
                         (attrs.unavailableBefore ? 'unavailable-before="' + attrs.unavailableBefore + '" ' : '') +
                         'class="dropdown-menu"></div>';

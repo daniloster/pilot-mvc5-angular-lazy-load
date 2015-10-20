@@ -1,23 +1,25 @@
 ﻿(function() {
-    var Svc = null;
+    var Svc = null, resource = null;
     define(['app'], function (app) {
         if (Svc == null) {
-            Svc = ['$http', function ($http) {
-
-                var resource = {
-                    getAvailableApps: function (success, error) {
-                        $http.post('/application/available-by-user').success(success).error(error);
-                    },
-                    getAllResourceTypes: function (success, error) {
-                        $http.post('/resource/types').success(success).error(error);
-                    },
-                    getAvailableRoles: function (success, error) {
-                        $http.post('/role/available-by-user').success(success).error(error);
-                    },
-                    getAvailableUsers: function (success, error) {
-                        $http.post('/user/available-by-user').success(success).error(error);
-                    }
-                };
+            Svc = ['$injector', function ($injector) {
+                if (resource == null) {
+                    var $http = $injector.$get('$http');
+                    resource = {
+                        getAvailableApps: function (success, error) {
+                            return $http.post('/application/available-by-user');
+                        },
+                        getAllResourceTypes: function (success, error) {
+                            return $http.post('/resource/types');
+                        },
+                        getAvailableRoles: function (success, error) {
+                            return $http.post('/role/available-by-user');
+                        },
+                        getAvailableUsers: function (success, error) {
+                            return $http.post('/user/available-by-user');
+                        }
+                    };
+                }
                 
                 return resource;
             }];

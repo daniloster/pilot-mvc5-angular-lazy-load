@@ -3,7 +3,7 @@
         <div class="tabs-wrapper clearfix">
             <ul class="nav nav-tabs" ng-class="{ 'pull-left': (tabAlignment == 'left') }">
                 <li ng-repeat="tabLink in tabs" ng-class="{ 'active': ($index == tabIndexDefault) }">
-                    <a href="javascript:;" ng-click="showTab($index)"><img ng-src="{{tabLink.image}}" ng-if="!!tabLink.image">{{ tabLink.title }}</a>
+                    <a href="javascript:;" ng-click="showTab($index)"><img ng-src="{{tabLink.image}}" ng-if="!!tabLink.image" /><span ng-bind-html="tabLink.title"></span></a>
                 </li>
             </ul>
         </div>

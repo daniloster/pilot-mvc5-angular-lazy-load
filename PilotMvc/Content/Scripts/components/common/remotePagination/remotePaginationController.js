@@ -1,6 +1,6 @@
 ﻿(function () {
     var Ctrl = null;
-    define(['app', 'components/common/loading/loadingController', 'components/common/services/jsonService'], function (app, loadingController) {
+    define(['app', 'components/common/loading/loadingManager', 'components/common/services/jsonService'], function (app) {
         if (Ctrl == null) {
             Ctrl = ['$scope', '$filter', '$timeout', 'JsonService', function ($scope, $filter, $timeout, jsonService) {
                 
@@ -54,28 +54,30 @@
                 });
 
                 $scope.search = function () {
-                    loadingController.startLoading();
+                    loadingManager.startLoading();
                     $scope.filter = $scope.filter || {};
                     $scope.filter.Page = {
                         Number: $scope.currentPage,
                         Size: $scope.pageSize
                     };
-                    jsonService.postData($scope.restUrl, $scope.filter, function (data) {
+                    jsonService.postData($scope.restUrl, $scope.filter)
+                    .success(function (data) {
                         $scope.list = data.Data || [];
                         $scope.currentPage = data.Number || 1;
-                        $scope.pageSize = data.Size || 1;
+                        $scope.pageSize = data.Size || 10;
                         $scope.totalItems = data.TotalItems || 0;
                         $scope.pageCount = Math.ceil(data.TotalItems / parseFloat($scope.pageSize));
                         refresh();
-                        loadingController.stopLoading();
-                    }, function (data) {
+                    })
+                    .error(function (data) {
                         $scope.list = [];
                         $scope.currentPage = 1;
-                        $scope.pageSize = 1;
                         $scope.totalItems = 0;
                         $scope.pageCount = 0;
                         refresh();
-                        loadingController.stopLoading();
+                    })
+                    .finally(function () {
+                        loadingManager.stopLoading();
                     });
                 };
 

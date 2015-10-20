@@ -20,10 +20,8 @@
                             var result = $scope.modalOnload();
                             $timeout(function () {
                                 if (angular.isFunction(result) || angular.isObject(result)) {
-                                    result.then(function (val) {
-                                        if (val) {
-                                            $(attrs.modalTarget).modal('show');
-                                        }
+                                    result.then(function () {
+                                        $(attrs.modalTarget).modal('show');
                                     })
                                 } else if (result != false) {
                                     $(attrs.modalTarget).modal('show');
@@ -111,8 +109,12 @@
                                     if (angular.isFunction($scope.confirmYes)) {
                                         var result = $scope.confirmYes();
                                         if (angular.isFunction(result) || angular.isObject(result)) {
+                                            console.log('MODAL: GOT A PROMISE by YES');
                                             result.then(function (val) {
+                                                console.log('MODAL: RESOLVED by YES');
                                                 hide();
+                                            }, function () {
+                                                console.log('MODAL: REJECTED by YES');
                                             });
                                         } else if (result != false) {
                                             hide();
@@ -123,10 +125,12 @@
                                     if (angular.isFunction($scope.confirmNo)) {
                                         var result = $scope.confirmNo();
                                         if (angular.isFunction(result) || angular.isObject(result)) {
-                                            result.then(function (val) {
-                                                if (val) {
-                                                    hide();
-                                                }
+                                            console.log('MODAL: GOT A PROMISE by NO');
+                                            result.then(function () {
+                                                console.log('MODAL: RESOLVED by NO');
+                                                hide();
+                                            }, function () {
+                                                console.log('MODAL: REJECTED by NO');
                                             })
                                         } else if (result != false) {
                                             hide();

@@ -21,7 +21,8 @@
                         .when("/404", resolve({
                             templateUrl: '/Content/Scripts/app/shared/access/404.html',
                             dependencies: ['auth/authorizationController',
-                                'components/app/navMenu/menu',
+                                'components/app/menu/menu',
+                                'components/common/form/statusMessage',
                                 'components/common/loading/loading'],
                             isPublic: true,
                             title: '404 | Mojo Management System'
@@ -29,7 +30,8 @@
                         .when("/500", resolve({
                             templateUrl: '/Content/Scripts/app/shared/access/500.html',
                             dependencies: ['auth/authorizationController',
-                                'components/app/navMenu/menu',
+                                'components/app/menu/menu',
+                                'components/common/form/statusMessage',
                                 'components/common/loading/loading'],
                             isPublic: true,
                             title: '500 | Mojo Management System'
@@ -37,7 +39,8 @@
                         .when("/not-authorized", resolve({
                             templateUrl: '/Content/Scripts/app/shared/access/not-authorized.html',
                             dependencies: ['auth/authorizationController',
-                                'components/app/navMenu/menu',
+                                'components/app/menu/menu',
+                                'components/common/form/statusMessage',
                                 'components/common/loading/loading'],
                             isPublic: true,
                             title: 'You are fucked and not authorized!'
@@ -47,7 +50,8 @@
                             dependencies: ['auth/authorizationController',
                                 'components/common/form/checkbox/checkbox',
                                 'components/common/form/password/password',
-                                'components/app/navMenu/menu',
+                                'components/app/menu/menu',
+                                'components/common/form/statusMessage',
                                 'components/common/loading/loading'],
                             isPublic: true,
                             title: 'Login | Mojo Management System'
@@ -60,14 +64,16 @@
                         .when("/", resolve({
                             templateUrl: '/Content/Scripts/app/shared/dashboard.html',
                             dependencies: ['auth/authorizationController',
-                                'components/app/navMenu/menu'],
+                                'components/app/menu/menu',
+                                'components/common/form/statusMessage'],
                             isPublic: false,
                             title: 'Pilot | Dashboard'
                         }))
                         .when("/application", resolve({
                             templateUrl: '/Content/Scripts/app/application/application.html',
                             dependencies: ['auth/authorizationController',
-                                'components/app/navMenu/menu',
+                                'components/app/menu/menu',
+                                'components/common/form/statusMessage',
                                 'components/common/modal/dialog',
                                 'components/common/pagination/pagination',
                                 'components/common/loading/loading',
@@ -78,7 +84,8 @@
                         .when("/resource", resolve({
                             templateUrl: '/Content/Scripts/app/resource/resource.html',
                             dependencies: ['auth/authorizationController',
-                                'components/app/navMenu/menu',
+                                'components/app/menu/menu',
+                                'components/common/form/statusMessage',
                                 'components/common/modal/dialog',
                                 'components/common/pagination/pagination',
                                 'components/common/loading/loading',
@@ -89,7 +96,8 @@
                         .when("/role", resolve({
                             templateUrl: '/Content/Scripts/app/role/role.html',
                             dependencies: ['auth/authorizationController',
-                                'components/app/navMenu/menu',
+                                'components/app/menu/menu',
+                                'components/common/form/statusMessage',
                                 'components/common/modal/dialog',
                                 'components/common/pagination/pagination',
                                 'components/common/loading/loading',
@@ -100,7 +108,8 @@
                         .when("/user", resolve({
                             templateUrl: '/Content/Scripts/app/user/user.html',
                             dependencies: ['auth/authorizationController',
-                                'components/app/navMenu/menu',
+                                'components/app/menu/menu',
+                                'components/common/form/statusMessage',
                                 'components/common/form/customValidation',
                                 'components/common/modal/dialog',
                                 'components/common/pagination/pagination',
@@ -112,7 +121,8 @@
                         .when("/assign-roles", resolve({
                             templateUrl: '/Content/Scripts/app/assignRoles/assign-roles.html',
                             dependencies: ['auth/authorizationController',
-                                'components/app/navMenu/menu',
+                                'components/app/menu/menu',
+                                'components/common/form/statusMessage',
                                 'components/common/form/customValidation',
                             'components/common/loading/loading'],
                             isPublic: true,
@@ -121,7 +131,8 @@
                         .when("/assign-roles/based-on-role", resolve({
                             templateUrl: '/Content/Scripts/app/assignRoles/assign-roles-based-on-role.html',
                             dependencies: ['auth/authorizationController',
-                                'components/app/navMenu/menu',
+                                'components/app/menu/menu',
+                                'components/common/form/statusMessage',
                                 'components/common/form/customValidation',
                                 'components/common/dropList/dropList',
                             'components/common/loading/loading',
@@ -132,7 +143,8 @@
                         .when("/assign-roles/based-on-user", resolve({
                             templateUrl: '/Content/Scripts/app/assignRoles/assign-roles-based-on-user.html',
                             dependencies: ['auth/authorizationController',
-                                'components/app/navMenu/menu',
+                                'components/app/menu/menu',
+                                'components/common/form/statusMessage',
                                 'components/common/form/customValidation',
                                 'components/common/dropList/dropList',
                             'components/common/loading/loading',
