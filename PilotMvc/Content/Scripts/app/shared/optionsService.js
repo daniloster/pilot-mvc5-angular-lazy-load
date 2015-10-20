@@ -4,7 +4,7 @@
         if (Svc == null) {
             Svc = ['$injector', function ($injector) {
                 if (resource == null) {
-                    var $http = $injector.$get('$http');
+                    var $http = $injector.get('$http');
                     resource = {
                         getAvailableApps: function (success, error) {
                             return $http.post('/application/available-by-user');

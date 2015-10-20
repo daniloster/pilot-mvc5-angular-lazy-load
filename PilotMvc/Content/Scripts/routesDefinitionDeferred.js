@@ -65,8 +65,9 @@
                             templateUrl: '/Content/Scripts/app/shared/dashboard.html',
                             dependencies: ['auth/authorizationController',
                                 'components/app/menu/menu',
-                                'components/common/form/statusMessage'],
-                            isPublic: false,
+                                'components/common/form/statusMessage',
+                                'components/common/loading/loading'],
+                            isPublic: true,
                             title: 'Pilot | Dashboard'
                         }))
                         .when("/application", resolve({
