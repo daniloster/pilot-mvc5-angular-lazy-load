@@ -1,10 +1,24 @@
-﻿<div class="alert alert-danger ng-hide" ng-show="$root.errorMessage" ng-cloak>
-    <div class="message-center">
-        <i class="fa fa-warning"></i>&nbsp; {{ $root.errorMessage }} &nbsp;<i class="fa fa-times hand" ng-click="$root.errorMessage = null"></i>
+﻿<div ng-if="!!form">
+    <div class="alert alert-danger ng-hide" ng-show="$parent.errorMessage" ng-cloak>
+        <div class="message-center">
+            {{ $parent.errorMessage }} &nbsp;<i class="fa fa-times hand" ng-click="$parent.errorMessage = null"></i>
+        </div>
+    </div>
+    <div class="alert alert-success ng-hide" ng-show="$parent.successMessage" ng-cloak>
+        <div class="message-center">
+            {{ $parent.successMessage }} &nbsp;<i class="fa fa-times hand" ng-click="$parent.successMessage = null"></i>
+        </div>
     </div>
 </div>
-<div class="alert alert-success ng-hide" ng-show="$root.successMessage" ng-cloak>
-    <div class="message-center">
-        <i class="fa fa-check"></i>&nbsp; {{ $root.successMessage }} &nbsp;<i class="fa fa-times hand" ng-click="$root.successMessage = null"></i>
+<div ng-if="!form">
+    <div class="alert alert-danger ng-hide" ng-show="$root.errorMessage" ng-cloak>
+        <div class="message-center">
+            {{ $root.errorMessage }} &nbsp;<i class="fa fa-times hand" ng-click="$root.errorMessage = null"></i>
+        </div>
+    </div>
+    <div class="alert alert-success ng-hide" ng-show="$root.successMessage" ng-cloak>
+        <div class="message-center">
+            {{ $root.successMessage }} &nbsp;<i class="fa fa-times hand" ng-click="$root.successMessage = null"></i>
+        </div>
     </div>
 </div>

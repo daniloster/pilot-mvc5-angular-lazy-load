@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace Pilot.Test.Integrated.FirstLoad {
+namespace Pilot.Test.Integrated {
     
     
     /// <summary>
@@ -3018,7 +3018,7 @@ namespace Pilot.Test.Integrated.FirstLoad {
         }
     }
 }
-namespace Pilot.Test.Integrated.FirstLoad.SchemeTableAdapters {
+namespace Pilot.Test.Integrated.SchemeTableAdapters {
     
     
     /// <summary>

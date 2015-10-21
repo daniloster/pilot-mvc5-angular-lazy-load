@@ -158,17 +158,12 @@
     <Compile Include="Config\PerRequestLifetimeManager.cs" />
     <Compile Include="Config\TestContextConfig.cs" />
     <Compile Include="Integrated\FirstLoad\FirstLoadTest.cs" />
-    <Compile Include="Integrated\FirstLoad\Scheme.Designer.cs">
+    <Compile Include="Integrated\Scheme.Designer.cs">
       <DependentUpon>Scheme.xsd</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Integrated\Member\MemberServiceTest.cs" />
-    <Compile Include="Integrated\Member\Scheme.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Scheme.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -210,26 +205,15 @@
     <Content Include="Config\TemplateDbConnections.config">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Integrated\FirstLoad\Scheme.xsc">
+    <None Include="Integrated\Scheme.xsc">
       <DependentUpon>Scheme.xsd</DependentUpon>
     </None>
-    <None Include="Integrated\FirstLoad\Scheme.xsd">
+    <None Include="Integrated\Scheme.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>Scheme.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="Integrated\FirstLoad\Scheme.xss">
-      <DependentUpon>Scheme.xsd</DependentUpon>
-    </None>
-    <None Include="Integrated\Member\Scheme.xsc">
-      <DependentUpon>Scheme.xsd</DependentUpon>
-    </None>
-    <None Include="Integrated\Member\Scheme.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Scheme.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Integrated\Member\Scheme.xss">
+    <None Include="Integrated\Scheme.xss">
       <DependentUpon>Scheme.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />

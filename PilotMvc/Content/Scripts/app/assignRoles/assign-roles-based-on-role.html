@@ -1,34 +1,47 @@
 ﻿<div loading></div>
 <div menu></div>
-<div status-message></div>
 <div class="container page-body" ng-controller="RoleBasedAssignmentController">
     <div class="col-xs-12">
-        <form name="form" class="col-xs-12  no-wpadding form-fieldset-dialog blue">
+        <form name="assignRoleForm" class="col-xs-12  no-wpadding form-fieldset-dialog blue" submit-validation="assign(assignRoleForm)">
             <fieldset>
                 <legend>Assign Roles</legend>
                 <div class="col-xs-12">
+                    <div class="col-xs-12">
+                        <div status-message sm-position="relative" sm-form="assignRoleForm"></div>
+                    </div>
                     <div class="col-xs-12 col-md-6">
                         <div class="form-group">
                             <label>Roles:</label>
-                            <select ng-model="assignment.Role" ng-options="role.Name for role in availableRoles track by role.Id" class="form-control">
+                            <select name="assignmentRole" ng-model="assignment.Role" 
+                                ng-options="role.Name for role in availableRoles track by role.Id" class="form-control" 
+                                required message-required="Role is required to be assigned!">
                                 <option value="">-- Choose a role --</option>
                             </select>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-md-6">
+                    <div class="col-xs-12">
                         <div class="form-group">
-                            <label>Users:</label>
+                            <label>Users</label>
+                            <div id="chosenUsers" dual-list
+                                    list-all="allAvailableUsers"
+                                    list-assigned="assignment.Users"
+                                    item-track="Id"
+                                    max-items="'1000'">
+                                <img ng-src="{{ item.ProfileImage }}" />
+                                <h4>{{ item.Name }}</h4>
+                                <p>{{ item.Email }}</p>
+                            </div>
                         </div>
-                        <div pilot-drop-list pilot-list-all="allAvailableUsers" pilot-list-assigned="assignment.Users" pilot-list-item-track="Id">
+                        <!--<div pilot-drop-list pilot-list-all="allAvailableUsers" pilot-list-assigned="assignment.Users" pilot-list-item-track="Id">
                             <img ng-src="{{ it.ProfileImage }}" />
                             <h4>{{it.Name}}</h4>
                             <p>{{it.Email}}</p>
-                        </div>
+                        </div>-->
                     </div>
 
                     <div class="col-xs-12">
                         <div class="form-group">
-                            <input type="submit" class="btn btn-primary" ng-click="assign()" value="Assign" />
+                            <input type="submit" class="btn btn-primary" value="Assign" />
                         </div>
                     </div>
                 </div>

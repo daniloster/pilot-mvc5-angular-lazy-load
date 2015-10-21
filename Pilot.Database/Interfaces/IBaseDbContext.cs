@@ -12,6 +12,7 @@ namespace Pilot.Database.Interfaces
         DbSet<Role> Roles { get; }
         DbSet<User> Users { get; }
 
+        System.Data.Entity.Database DataBase { get; }
         DbEntityEntry<T> Entry<T>(T entity) where T : class;
         int SaveChanges();
         Task<int> SaveChangesAsync();

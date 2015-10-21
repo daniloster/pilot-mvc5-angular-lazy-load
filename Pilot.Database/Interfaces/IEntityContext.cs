@@ -13,7 +13,7 @@ namespace Pilot.Database.Interfaces
     {
         IBaseDbContext DbContext { get; }
 
-        DbSet<TEntity> Repository { get; }
+        DbRawSqlQuery<T> SqlQuery<T>(string query, params object[] parameters);
 
         T GetAttachedEntity<T>(T entity) where T : class, IBaseEntity;
 

@@ -1,4 +1,25 @@
 ﻿.custom-validation.ng-invalid {
 	/*background: #ef2828;*/
-    border: 1px solid #e5371f !important;
+    border: solid 1px;
+    border-spacing: 1px 1px !important;
+    border-color: #e5371f !important;
+}
+
+.refine-search select.ng-invalid {
+     width: 80% !important;
+}
+
+.refine-search select.ng-valid {
+     width: 80% !important;
+}
+
+input.ng-invalid, select.ng-invalid, textarea.ng-invalid, span.form-control.ng-invalid {
+    border-spacing: 1px 1px !important;
+    border-color: #e5371f !important;
+    width: 100% !important;
+}
+
+input.ng-invalid<.parent-alert, select.ng-invalid<.parent-alert, textarea.ng-invalid<.parent-alert {
+    border-spacing: 1px 1px !important;
+    border-color: #e5371f !important;
 }

@@ -1,9 +1,9 @@
 ﻿(function () {
     var app = null;
-    define(['angular', 'ngRoute', 'ngResource', 'ngMocks', 'ngCookies', 'ngAnimate', 'ngSanitize'],
+    define(['angular', 'ngRoute', 'ngResource', 'ngMocks', 'ngCookies', 'ngAnimate', 'ngSanitize', 'ngMessages'],
         function (angular) {
         if (app === null) {
-            app = angular.module('pilotMvc', ['ngRoute', 'ngResource', 'ngCookies', 'ngSanitize', 'ngAnimate']);
+            app = angular.module('pilotMvc', ['ngRoute', 'ngResource', 'ngCookies', 'ngSanitize', 'ngAnimate', 'ngMessages']);
 
             app.lazy = {
                 provider: app.provider,

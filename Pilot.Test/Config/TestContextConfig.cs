@@ -67,13 +67,33 @@ namespace Pilot.Test.Config
                         testContext.TestRunDirectory, 
                         Type.GetType(testContext.FullyQualifiedTestClassName).Assembly.GetName().Name, 
                         mapping.SchemeXsd);
-                    string xml = string.Format(@"{0}\..\..\{1}\{2}", 
+                    string[] xml;
+                    if (string.IsNullOrWhiteSpace(mapping.DataXml)) {
+                        xml = mapping.DataColletionXml.Select(dataXml => string.Format(@"{0}\..\..\{1}\{2}",
+                            testContext.TestRunDirectory,
+                            Type.GetType(testContext.FullyQualifiedTestClassName).Assembly.GetName().Name,
+                            dataXml)).ToArray();
+                    } else {
+                        xml = new string[] { string.Format(@"{0}\..\..\{1}\{2}", 
                         testContext.TestRunDirectory, 
                         Type.GetType(testContext.FullyQualifiedTestClassName).Assembly.GetName().Name, 
-                        mapping.DataXml);
+                        mapping.DataXml) };
+                    }
 
                     mySqliteDatabase.ReadXmlSchema(xsd);
-                    mySqliteDatabase.ReadXml(xml);
+                    string singleDataXml = string.Empty;
+                    for (int i = 0, len = xml.Length; i < len; i++)
+                    {
+                        singleDataXml = xml[i];
+                        if (i == 0) 
+                        {
+                            mySqliteDatabase.ReadXml(singleDataXml);
+                        } 
+                        else 
+                        {
+                            mySqliteDatabase.AppendXml(singleDataXml);
+                        }
+                    }
 
                     mySqliteDatabase.PerformDbOperation(NDbUnit.Core.DbOperationFlag.CleanInsertIdentity);
                 }
@@ -131,7 +151,7 @@ namespace Pilot.Test.Config
                                         new InterceptionBehavior<DiagnosisBehaviour>()
                                     }
                                 )
-                    // Same as singleton
+                // Same as singleton
                     .RegisterTypes(UnityHelpers.GetTypesWithCustomAttribute<UnityIoCContainerControlledLifetimeAttribute>(new Assembly[]{
                                             Assembly.Load("Pilot.Database"),
                                             Assembly.Load("Pilot.Service"),

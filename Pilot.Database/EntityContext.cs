@@ -4,6 +4,7 @@ using Pilot.Util.Logging;
 using Pilot.Util.Unity.Lifetime;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -26,9 +27,9 @@ namespace Pilot.Database
             RepositoryAccess = dbContext.GetType().GetProperty(string.Format("{0}s", typeof(TEntity).Name));
         }
 
-        public DbSet<TEntity> Repository
+        public DbRawSqlQuery<T> SqlQuery<T>(string query, params object[] parameters)
         {
-            get { return RepositoryAccess.GetValue(DbContext) as DbSet<TEntity>; }
+            return DbContext.DataBase.SqlQuery<T>(query, parameters);
         }
 
         protected int SaveChanges()
@@ -56,6 +57,7 @@ namespace Pilot.Database
         {
             return GetAttachedEntity(entity, new string[0]);
         }
+
         public T GetAttachedEntity<T>(T entity, string[] collectionToLoad) where T : class, IBaseEntity
         {
             DbEntityEntry<T> entry = DbContext.Entry<T>(entity);
@@ -68,6 +70,23 @@ namespace Pilot.Database
                 {
                     var attachedEntry = DbContext.Entry(attachedEntity);
                     attachedEntry.CurrentValues.SetValues(entity);
+                    foreach (PropertyInfo propInfo in attachedEntry.Entity.GetType().GetProperties().Where(propertyInfo => !attachedEntry.CurrentValues.PropertyNames.Contains(propertyInfo.Name)))
+                    {
+                        if (propInfo.CanWrite && propInfo.SetMethod != null && propInfo.SetMethod.IsPublic)
+                        {
+                            if (propInfo.PropertyType.IsClass)
+                            {
+                                if (propInfo.GetCustomAttributes<NotMappedAttribute>().Count() > 0)
+                                {
+                                    propInfo.SetValue(attachedEntry.Entity, propInfo.GetValue(entity));
+                                }
+                                else
+                                {
+                                    attachedEntry.Reference(propInfo.Name).CurrentValue = propInfo.GetValue(entity);
+                                }
+                            }
+                        }
+                    }
                     collectionToLoad.All(prop => { attachedEntry.Collection(prop).Load(); return true; });
                     return attachedEntry.Entity;
                 }
@@ -90,6 +109,16 @@ namespace Pilot.Database
                     {
                         var attachedEntry = DbContext.Entry(attachedEntity);
                         attachedEntry.CurrentValues.SetValues(entity);
+                        foreach (PropertyInfo propInfo in attachedEntry.Entity.GetType().GetProperties().Where(propertyInfo => !attachedEntry.CurrentValues.PropertyNames.Contains(propertyInfo.Name)))
+                        {
+                            if (propInfo.CanWrite && propInfo.SetMethod != null && propInfo.SetMethod.IsPublic)
+                            {
+                                if (propInfo.PropertyType.IsClass)
+                                    attachedEntry.Reference(propInfo.Name).CurrentValue = entity.GetType().GetProperty(propInfo.Name).GetValue(entity);
+                                //else
+                                //    attachedEntry.Collection(propInfo.Name).CurrentValue = entity.GetType().GetProperty(propInfo.Name).GetValue(entity);
+                            }
+                        }
                     }
                     else
                     {
@@ -122,12 +151,12 @@ namespace Pilot.Database
 
         public virtual TEntity Get(long id)
         {
-            return this.DbContext.ObjectContext.CreateObjectSet<TEntity>().Where(et => et.Id == id).SingleOrDefault<TEntity>();  
+            return this.DbContext.ObjectContext.CreateObjectSet<TEntity>().Where(et => et.Id == id).SingleOrDefault<TEntity>();
         }
 
         public virtual IList<TEntity> Get()
         {
-            return new List<TEntity>(this.DbContext.ObjectContext.CreateObjectSet<TEntity>().AsEnumerable()); 
+            return new List<TEntity>(this.DbContext.ObjectContext.CreateObjectSet<TEntity>().AsEnumerable());
         }
 
         public virtual IList<TEntity> Get(long[] ids)

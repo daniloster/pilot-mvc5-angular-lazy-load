@@ -18,7 +18,7 @@ namespace Pilot.Test.Integrated.FirstLoad
     {
 
         [TestMethod]
-        [DatasetMapping(SchemeXsd = @"Integrated\FirstLoad\Scheme.xsd", DataXml = @"Integrated\FirstLoad\Data.xml")]
+        [DatasetMapping(SchemeXsd = @"Integrated\Scheme.xsd", DataXml = @"Integrated\FirstLoad\Data.xml")]
         public void LoadInitialData()
         {
             User user = new User();

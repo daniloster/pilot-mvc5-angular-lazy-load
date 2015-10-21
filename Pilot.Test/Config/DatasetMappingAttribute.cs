@@ -11,5 +11,6 @@ namespace Pilot.Test.Config
     {
         public string SchemeXsd { get; set; }
         public string DataXml { get; set; }
+        public string[] DataColletionXml { get; set; }
     }
 }

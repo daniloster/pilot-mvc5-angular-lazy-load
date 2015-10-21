@@ -287,7 +287,6 @@
     <Content Include="Content\Scripts\components\common\fileUpload\file-style.css" />
     <Content Include="Content\Scripts\components\common\fileUpload\file-template.html" />
     <Content Include="Content\Scripts\components\common\fileUpload\uploadService.js" />
-    <Content Include="Content\Scripts\components\common\form\focusInvalid.js" />
     <Content Include="Content\Scripts\components\common\googlemaps\gmaps.js" />
     <Content Include="Content\Scripts\components\common\googlemaps\map.js" />
     <Content Include="Content\Scripts\components\common\imgCrop\imgCrop.js" />
@@ -329,6 +328,8 @@
     <Content Include="Content\Scripts\config\dependencyResolver.js" />
     <Content Include="Content\Scripts\config\loggingHttpInterceptor.js" />
     <Content Include="Content\Scripts\config\sessionValidatorHttpInterceptor.js" />
+    <Content Include="Content\Scripts\lib\angularjs\angular-messages.min.js" />
+    <Content Include="Content\Scripts\lib\angularjs\requirejs.min.js" />
     <Content Include="Content\Scripts\lib\cors-require.min.js" />
     <Content Include="Content\Scripts\lib\CORS\cors.js" />
     <Content Include="Content\Scripts\lib\CORS\xdomain.js" />

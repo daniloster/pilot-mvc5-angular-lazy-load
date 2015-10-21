@@ -46,13 +46,13 @@
                                 if (hasGenericList) {
                                     $scope.listAllAssigned.splice(indexForGenericList, 1);
                                 }
-                                $scope.listHasChanged();
+                                ($scope.listHasChanged || function () { })();
                             } else if ($scope.maxItems === undefined || $scope.listAssigned.length < parseInt($scope.maxItems)) {
                                 $scope.listAssigned.push(item);
                                 if (hasGenericList) {
                                     $scope.listAllAssigned.push(item);
                                 }
-                                $scope.listHasChanged();
+                                ($scope.listHasChanged || function () { })();
                             }
                         };
 
@@ -67,7 +67,7 @@
                                     }
                                     return it;
                                 });
-                                $scope.listHasChanged();
+                                ($scope.listHasChanged || function () { })();
                             }
                         };
 
@@ -82,13 +82,13 @@
                                     }
                                     return it;
                                 });
-                                $scope.listHasChanged();
+                                ($scope.listHasChanged || function () { })();
                             }
                         };
                     }],
                     scope: {
                         label: '@dualListLabel',
-                        showOrdering: '=',
+                        showOrdering: '=?',
                         itemTrack: '@',
                         listAll: '=',
                         listAssigned: '=',

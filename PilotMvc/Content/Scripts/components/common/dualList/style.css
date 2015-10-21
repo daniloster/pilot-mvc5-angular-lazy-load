@@ -77,6 +77,11 @@
   font-size: 14px;
 }
 
+.ms-container .ms-selectable li.ms-elem-selectable h4,
+.ms-container .ms-selection li.ms-elem-selection h4{
+  margin-top:0 !important;
+}
+
 .ms-container .ms-selectable li.ms-hover,
 .ms-container .ms-selection li.ms-hover{
   cursor: pointer;

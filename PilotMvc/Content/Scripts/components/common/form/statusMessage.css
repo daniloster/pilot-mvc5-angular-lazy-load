@@ -8,10 +8,27 @@
 }
 
 .message-top-fixed {
-    position:absolute;
-    top:51px;
+    position:fixed;
+    /*top:51px;*/
+    top:66px;
+    right:0;
     width: 100%;
     z-index: 99;
+}
+
+[sm-position=relative] .alert, .message-top-fixed .alert {
+    border-color:transparent !important;
+    margin-top: 40px;
+    display: block !important;
+}
+
+[sm-position=relative] .alert {
+    margin-top: 0;
+}
+
+[sm-position=relative] .alert.ng-hide,
+.message-top-fixed .alert.ng-hide {
+    display: none !important;
 }
 
 .message-center {
@@ -21,4 +38,21 @@
 .hand {
     cursor: pointer;
     cursor: hand;
+}
+
+.alert-danger {
+    color: #ffffff;
+    background: #EA4747;
+    font-size: 14px;
+    /*padding: 5px 10px;*/
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+
+.alert-success {
+    color:#3c763d;
+    background-color:#dff0d8;
+    border-color:#d6e9c6;
+    font-size: 14px;
+    margin-bottom: 10px;
 }

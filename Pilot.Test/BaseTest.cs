@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Pilot.Test.Config;
 using Microsoft.Practices.Unity;
+using Pilot.Service.Interfaces;
 
 namespace Pilot.Test
 {
@@ -38,10 +39,39 @@ namespace Pilot.Test
             }
         }
 
+        public string TestProjectPath
+        {
+            get
+            {
+                if (TestContext == null)
+                {
+                    return string.Empty;
+                }
+                else
+                {
+                    return string.Format(@"{0}\..\..\{1}\",
+                        TestContext.TestRunDirectory,
+                        Type.GetType(TestContext.FullyQualifiedTestClassName).Assembly.GetName().Name);
+                }
+            }
+        }
+
+        //[AssemblyInitialize()]
+        //public static void AssemblyInit(TestContext context)
+        //{
+        //    TestContextConfig.Instance.SetupUnity(context);
+
+        //}
+
         [TestInitialize()]
         public void Initialize()
         {
             TestContextConfig.Instance.SetupUnity(TestContext);
+            try
+            {
+                TestContextConfig.Resolve<IUserService>().Get(1);
+            }
+            catch { }
             TestContextConfig.Instance.SetupNDbUnit(TestContext);
         }
 

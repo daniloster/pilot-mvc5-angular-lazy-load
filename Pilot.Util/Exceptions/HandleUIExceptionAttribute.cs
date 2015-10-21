@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pilot.Util.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,9 @@ namespace Pilot.Util.Exceptions
             }
             if (filterContext.Exception != null)
             {
+                LoggerFile.AppendLogSafe(filterContext.Exception.Message);
+                LoggerFile.AppendLogSafe(filterContext.Exception.StackTrace);
+
                 if (filterContext.Exception is ValidationException || filterContext.Exception is UserNotAutheticatedException)
                 {
                     filterContext.Exception = new JsonException(filterContext.Exception);

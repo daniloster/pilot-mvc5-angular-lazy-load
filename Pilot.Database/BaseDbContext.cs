@@ -21,11 +21,6 @@ namespace Pilot.Database
             : base("name=Pilot.Database.EntityContext")
         {
             base.Configuration.ProxyCreationEnabled = false;
-            //if (base.Database.Exists())
-            //{
-            //    base.Database.Delete();
-            //}
-            //base.Database.Create();
             if (base.Database.Exists() && !base.Database.CompatibleWithModel(false))
             {
                 base.Database.Delete();
@@ -42,6 +37,14 @@ namespace Pilot.Database
             /// To import data
             //base.Configuration.AutoDetectChangesEnabled = false;
             //base.Configuration.ValidateOnSaveEnabled = false;
+        }
+
+        public System.Data.Entity.Database DataBase
+        {
+            get
+            {
+                return base.Database;
+            }
         }
 
         public DbSet<Resource> Resources

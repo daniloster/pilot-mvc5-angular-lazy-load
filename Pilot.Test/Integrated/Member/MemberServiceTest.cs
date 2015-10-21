@@ -18,7 +18,7 @@ namespace Pilot.Test.Integrated.Member
     {
 
         //[TestMethod]
-        //[DatasetMapping(SchemeXsd = @"Integrated\Member\Scheme.xsd", DataXml = @"Integrated\Member\Data.xml")]
+        //[DatasetMapping(SchemeXsd = @"Integrated\Scheme.xsd", DataXml = @"Integrated\Member\Data.xml")]
         //public void WhenTriedToGetMemberWithContactByMemberId1ThenShouldRetrieveMemberDaniloAndContactParnellStreet()
         //{
         //    IMemberService memberSvc = TestContextConfig.Resolve<IMemberService>();
@@ -31,7 +31,7 @@ namespace Pilot.Test.Integrated.Member
         //}
 
         //[TestMethod]
-        //[DatasetMapping(SchemeXsd = @"Integrated\Member\Scheme.xsd", DataXml = @"Integrated\Member\Data.xml")]
+        //[DatasetMapping(SchemeXsd = @"Integrated\Scheme.xsd", DataXml = @"Integrated\Member\Data.xml")]
         //public void WhenTriedToGetMemberById1ThenShouldRetrieveMemberDanilo()
         //{
         //    IMemberService memberSvc = TestContextConfig.Resolve<IMemberService>();
@@ -41,7 +41,7 @@ namespace Pilot.Test.Integrated.Member
         //}
 
         //[TestMethod]
-        //[DatasetMapping(SchemeXsd = @"Integrated\Member\Scheme.xsd", DataXml = @"Integrated\Member\Data.xml")]
+        //[DatasetMapping(SchemeXsd = @"Integrated\Scheme.xsd", DataXml = @"Integrated\Member\Data.xml")]
         //public void WhenTriedInsertingWithAllRequiredPropertiesThenShouldHaveBeenCreatedANewRecord()
         //{
         //    IMemberService memberSvc = TestContextConfig.Resolve<IMemberService>();
@@ -63,7 +63,7 @@ namespace Pilot.Test.Integrated.Member
         //}
 
         //[TestMethod]
-        //[DatasetMapping(SchemeXsd = @"Integrated\Member\Scheme.xsd", DataXml = @"Integrated\Member\Data.xml")]
+        //[DatasetMapping(SchemeXsd = @"Integrated\Scheme.xsd", DataXml = @"Integrated\Member\Data.xml")]
         //public void WhenTriedInsertingWithContactMissingRequiredPropertiesThenMustNotRecordMember()
         //{
         //    IMemberService memberSvc = TestContextConfig.Resolve<IMemberService>();

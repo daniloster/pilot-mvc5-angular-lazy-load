@@ -156,6 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\ApplicationSettings.cs" />
+    <Compile Include="Data\EnumerableExtensions.cs" />
     <Compile Include="Exceptions\BaseException.cs" />
     <Compile Include="Exceptions\UserNotAutheticatedException.cs" />
     <Compile Include="Exceptions\Extensions.cs" />

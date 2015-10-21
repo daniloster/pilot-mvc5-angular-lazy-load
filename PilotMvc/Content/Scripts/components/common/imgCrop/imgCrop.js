@@ -34,7 +34,7 @@
                 'use strict';
 
                 //var crop = angular.module('ngImgCrop', []);
-                var crop = app;
+                var crop = app.lazy;
 
                 crop.factory('cropAreaCircle', ['cropArea', function (CropArea) {
                     var CropAreaCircle = function () {
@@ -1891,9 +1891,10 @@
 
                                 if (storedResultImage !== resultImage) {
                                     storedResultImage = resultImage;
-                                    if (angular.isDefined(scope.resultImage)) {
-                                        scope.resultImage = resultImage;
-                                    }
+                                    scope.resultImage = resultImage;
+                                    //if (angular.isDefined(scope.resultImage)) {
+                                    //    scope.resultImage = resultImage;
+                                    //}
                                     scope.onChange({ $dataURI: scope.resultImage });
                                 }
                             };

@@ -21,7 +21,7 @@
                 loadingManager.startLoading();
                 optionsService.getAvailableUsers()
                 .success(function (data) {
-                    $scope.allAvailableUsers = data;
+                    allAvailableUsers = data;
                 })
                 .error(function (data) {
                     $scope.allAvailableUsers = [];
@@ -33,6 +33,12 @@
 
                 $scope.$watch('assignment.Role', function (newValue, oldValue) {
                     if (newValue == oldValue) return;
+
+                    if (!!newValue) {
+                        $scope.allAvailableUsers = allAvailableUsers;
+                    } else {
+                        $scope.allAvailableUsers = [];
+                    }
 
                     $rootScope.updateErrorMessage(null);
                     loadingManager.startLoading();
@@ -48,6 +54,19 @@
                         loadingManager.stopLoading();
                     });
                 });
+
+                $scope.assign = function (form) {
+                    if (form.$valid) {
+                        loadingManager.startLoading();
+                        roleBasedService.assign({ idUser: $scope.assignment.Role.Id, idRoles: ($scope.assignment.Users || []).map(function (user) { return user.Id }) })
+                        .success(function (data) {
+                            $scope.$broadcast('ValidateFormAndSubmit[' + form.$name + ']', { message: data.Message });
+                        })
+                        .finally(function () {
+                            loadingManager.stopLoading();
+                        });
+                    }
+                };
             }];
             app.lazy.controller('RoleBasedAssignmentController', Ctrl);
         }
