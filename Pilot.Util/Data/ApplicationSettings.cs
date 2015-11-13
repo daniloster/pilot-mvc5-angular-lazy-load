@@ -63,7 +63,8 @@ namespace Pilot.Util.Data
         public string ProfilePath { get; set; }
         public string NotAuthorizedMessage { get; set; }
         public long LocalSystemId { get; set; }
-        
+        public bool AutoBuildDatabase { get; set; }
+
     }
 }
 

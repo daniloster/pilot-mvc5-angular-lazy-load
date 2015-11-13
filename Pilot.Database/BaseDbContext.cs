@@ -1,6 +1,7 @@
 ﻿using Microsoft.Practices.Unity;
 using Pilot.Database.Interfaces;
 using Pilot.Entity;
+using Pilot.Util.Data;
 using Pilot.Util.Transaction;
 using Pilot.Util.Unity.Lifetime;
 using System;
@@ -21,18 +22,21 @@ namespace Pilot.Database
             : base("name=Pilot.Database.EntityContext")
         {
             base.Configuration.ProxyCreationEnabled = false;
-            if (base.Database.Exists() && !base.Database.CompatibleWithModel(false))
-            {
-                base.Database.Delete();
-            }
-            try
-            {
-                base.Database.CreateIfNotExists();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.StackTrace);
-                throw;
+            if (ApplicationSettings.Instance.AutoBuildDatabase)
+            { 
+                if (base.Database.Exists() && !base.Database.CompatibleWithModel(false))
+                {
+                    base.Database.Delete();
+                }
+                try
+                {
+                    base.Database.CreateIfNotExists();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.StackTrace);
+                    throw;
+                }
             }
             /// To import data
             //base.Configuration.AutoDetectChangesEnabled = false;
