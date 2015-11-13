@@ -19,3 +19,5 @@ Pilot.Database/obj/
 packages/
 !packages/repositories.config
 PilotMvc/.bin/node_modules/
+PilotMvc/node_modules/
+PilotMvc/Content/Build/

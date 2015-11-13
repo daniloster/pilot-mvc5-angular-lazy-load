@@ -210,8 +210,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include=".bin\Gruntfile.js" />
-    <Content Include="Content\App\boot-cors.js" />
+    <Content Include="Gruntfile.js" />
+    <Content Include="Content\App\lib\boot-cors.js" />
     <Content Include="Content\App\boot.js" />
     <Content Include="Content\Fonts\fontawesome-webfont.svg" />
     <Content Include="Content\Images\ajax-loader.gif" />
@@ -1135,7 +1135,6 @@
     <Content Include="Content\App\lib\angularjs\angular.min.js.map" />
     <Content Include="Content\App\lib\angularjs\errors.json" />
     <Content Include="Content\App\lib\angularjs\version.json" />
-    <Content Include="Gruntfile.js" />
     <Content Include="proxy.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -1174,12 +1173,8 @@
     <Content Include="Config\TemplateDbConnections.config">
       <SubType>Designer</SubType>
     </Content>
-    <None Include=".bin\git.cmd" />
-    <None Include=".bin\grunt.cmd" />
-    <None Include=".bin\node.cmd" />
-    <None Include=".bin\npm.cmd" />
-    <Content Include=".bin\package.json" />
     <Content Include="package.json" />
+    <Content Include=".bin\grunt.cmd" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1190,7 +1185,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="App_Start\" />
-    <Folder Include="Content\Build\" />
+    <Folder Include="Content\Build\bin\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Pilot.Entity\Pilot.Entity.csproj">
@@ -1211,7 +1206,7 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <PropertyGroup>
-    <RunPostBuildEvent>Always</RunPostBuildEvent>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
@@ -1235,9 +1230,7 @@
     </VisualStudio>
   </ProjectExtensions>
   <PropertyGroup>
-    <PreBuildEvent>$(ProjectDir).bin\node.cmd
-$(ProjectDir).bin\npm.cmd
-$(ProjectDir).bin\grunt.cmd</PreBuildEvent>
+    <PreBuildEvent>$(ProjectDir).bin\grunt.cmd</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

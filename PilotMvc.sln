@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PilotMvc", "PilotMvc\PilotMvc.csproj", "{C4178FBE-2667-46B1-8F41-383750FC6F53}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pilot.Service", "Pilot.Service\Pilot.Service.csproj", "{593464A3-22BC-44A5-BCFE-228441D7F5D1}"
@@ -18,9 +16,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pilot.Wcf", "Pilot.Wcf\Pilot.Wcf.csproj", "{489ABB2F-AF5E-45B7-B40F-F7DFA63DF038}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5DA5950E-C1DD-40B9-9584-E86CF74C1384}"
-	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
