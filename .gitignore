@@ -18,3 +18,4 @@ Pilot.Database/bin/
 Pilot.Database/obj/
 packages/
 !packages/repositories.config
+PilotMvc/.bin/node_modules/
