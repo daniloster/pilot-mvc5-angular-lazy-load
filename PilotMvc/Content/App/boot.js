@@ -1,5 +1,5 @@
-﻿var appSettings = (function (window, appSettings) {
-    var console;
+﻿(function (window) {
+    var console, appSettings;
     try { window.console.log('IE'); console = window.console; } catch (e) { window.console = console = ({ log: function () { } }); }
     appSettings = {
         baseUrl: 'http://localhost:51949',
@@ -143,5 +143,6 @@
     };
     requirejs.config(requireConfig);
 
+    window.appSettings = appSettings;
     return appSettings;
 })(window);

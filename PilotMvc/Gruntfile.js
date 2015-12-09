@@ -13,6 +13,10 @@
                     },
                 },
             },
+            release: {
+                src: 'Content/Build/bin/<%= pkg.name %>.min.js',
+                dest: 'Content/<%= pkg.name %>.min.js'
+            }
         },
         concat: {
             options: {
@@ -61,5 +65,5 @@
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
     // Default task(s).
-    grunt.registerTask('default', ['clean', 'copy', 'concat', 'uglify'/*, 'jshint'*/]);
+    grunt.registerTask('default', ['clean', 'copy:main', 'concat', 'uglify', 'copy:release'/*, 'jshint'*/]);
 };
