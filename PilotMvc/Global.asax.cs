@@ -21,7 +21,7 @@ namespace PilotMvc
 
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Serialize;
             GlobalConfiguration.Configure(RouteConfig.Register);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
+            RouteConfig.RegisterWebRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }

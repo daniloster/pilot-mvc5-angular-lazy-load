@@ -12,12 +12,21 @@ namespace PilotMvc.Config
     {
         public static void Register(HttpConfiguration config)
         {
-            config.EnableCors();
-            config.MapHttpAttributeRoutes();
+            EnableCors(config);
+            RegisterHttpApiRoutes(config);
+        }
+
+        public static void EnableCors(HttpConfiguration config)
+        {
             config.EnableCors();
         }
 
-        public static void RegisterRoutes(RouteCollection routes)
+        public static void RegisterHttpApiRoutes(HttpConfiguration config)
+        {
+            config.MapHttpAttributeRoutes();
+        }
+
+        public static void RegisterWebRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{*allfiles}", new { allfiles = @".*\.(gif|jpg|png|ico|js|css)" });
             routes.IgnoreRoute("{*allangular}", new { allfiles = @".*/#/." });
