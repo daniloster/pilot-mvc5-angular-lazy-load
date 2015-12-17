@@ -1,13 +1,14 @@
 {
-  "name": "PilotMvc",
+  "name": "mojo-management",
   "version": "0.1.0",
   "devDependencies": {
     "grunt": "~0.4.5",
-    "grunt-contrib-jshint": "~0.10.0",
-    "grunt-contrib-nodeunit": "~0.4.1",
-    "grunt-contrib-uglify": "~0.5.0",
-	"grunt-contrib-concat": "~0.5.1",
-	"grunt-contrib-copy": "~0.8.2",
-	"grunt-contrib-clean": "~0.4.0"
+    "grunt-contrib-jshint": "latest",
+    "grunt-contrib-nodeunit": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-contrib-concat": "latest",
+    "grunt-contrib-copy": "latest",
+    "grunt-contrib-clean": "latest",
+    "grunt-contrib-imagemin": "latest"
   }
 }
